@@ -1,0 +1,49 @@
+/* Navbar styles */
+.hero_navbar {
+    
+    position: sticky; 
+    top: 0; 
+    width: 100%; 
+    background-color: #ffffff; 
+    color: white; 
+    display: flex; 
+    align-items: center;  
+    padding: 10px 20px; 
+    z-index: 1000;
+    border-bottom: 2px solid #ccc; 
+  }
+  
+  /* Logo section */
+  .logo {
+    margin-right: auto; 
+  }
+  
+  .logo a {
+    text-decoration: none; 
+    color: rgb(15, 14, 14);  
+    font-size: 24px; 
+    font-weight: bold;  
+  }
+  
+  /* Links section */
+  ul {
+    list-style-type: none;  
+    margin: 0; 
+    padding: 0;  
+    display: flex; 
+  }
+  
+  ul li {
+    margin-left: 20px;  
+  }
+  
+  ul li a {
+    text-decoration: none;  
+    color: rgb(0, 0, 0);  
+    font-size: 18px;
+  }
+  
+  ul li a:hover {
+    color: #ddd; 
+  }
+  
