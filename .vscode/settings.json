@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "Postgress",
+            "database": "faithtech_create",
+            "username": "faithtech_user",
+            "password": "faithtech_password"
+        }
+    ]
+}
