@@ -6,7 +6,7 @@ export function Table_of_contents() {
     <div className="hero_Table_of_contents">
       <ul>
         <li>
-          <Link to="/Overview"> Overview </Link>
+          <Link to="/Create"> Overview </Link>
         </li>
         <li>
           <Link to="/Discover">Discover</Link>

@@ -6,6 +6,7 @@ import { Help } from './pages/help';
 import { Overview } from './pages/overview';
 import Navbar from './pages/navbar';
 import Table_of_contents from './pages/table_of_contents';
+import Footer from './pages/footer';
 import './app.css'; 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             </Routes>
           </div>
         </div>
+        <Footer className="cFooter" />
       </Router>
     </div>
   );

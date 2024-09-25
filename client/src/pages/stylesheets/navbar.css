@@ -3,7 +3,6 @@
     
     position: sticky; 
     top: 0; 
-    width: 100%; 
     background-color: #ffffff; 
     color: white; 
     display: flex; 
@@ -26,24 +25,24 @@
   }
   
   /* Links section */
-  ul {
+  .hero_navbar ul {
     list-style-type: none;  
     margin: 0; 
     padding: 0;  
     display: flex; 
   }
   
-  ul li {
+  .hero_navbar ul li {
     margin-left: 20px;  
   }
   
-  ul li a {
+  .hero_navbar ul li a {
     text-decoration: none;  
     color: rgb(0, 0, 0);  
     font-size: 18px;
   }
   
-  ul li a:hover {
+  .hero_navbar ul li a:hover {
     color: #ddd; 
   }
   
