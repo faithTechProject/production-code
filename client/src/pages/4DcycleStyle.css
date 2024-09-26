@@ -1,0 +1,46 @@
+.s4dcycle{
+	border: 2px solid rgb(15, 4, 4);
+	color: red;
+	background-color: lightgrey;
+	text-align: center;
+}
+
+.s4dcycle h2{
+	color: black;
+}
+
+.s4dcycle .gallery{	
+	background-color: white;
+	margin: 5px;
+	border: 1px solid #ccc;
+	border-radius: 7%;
+	float: left;
+	width: 180px;
+}
+
+.s4dcycle th, td {
+	
+}
+
+.s4dcycle .button1{
+	padding: 10px;
+	background: #596F62;
+	transition-duration: 0.3s;
+	cursor: pointer;
+}
+
+.s4dcycle .button1:hover{
+	background: #C3D898
+}
+/*
+<ul class="menu__list" style="display: block; overflow: visible; height: auto; will-change: 
+height; transition: height 258ms ease-in-out;">
+<li class="menu__list-item">
+<a class="menu__link" tabindex="0" href="/prepare/projects">Projects</a></li>
+<li class="menu__list-item">
+<a class="menu__link" tabindex="0" href="/prepare/teams">Teams</a></li>
+<li class="menu__list-item">
+<a class="menu__link" tabindex="0" href="/prepare/timeline">Timeline</a></li>
+<li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item">
+<a class="menu__link" tabindex="0" href="/prepare/resources">Resources</a></li>
+</ul>*/
