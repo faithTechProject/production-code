@@ -20,11 +20,7 @@ export function RedemptiveKevin() {
                 </svg>
                 </div>
                 <div class="kevin-flex-item_2">
-                    <p><strong>Discover:</strong> A time of lament to God in preparing and thinking over all aspects of a problem</p>
-                    <p><strong>Discern:</strong> Prayerfully utilizing God's wisdom in approaching a problem in the world, avoiding the reckless technology mindset.
-                        Four guidlines to help with discernment include: Reject, Recieve, Reimagine and Create. </p>
-                    <p><strong>Develop:</strong> God is the Creator, and as people created in His image we can co-create with the Holy Spirit to develop software in a way that honors Jesus.</p>
-                    <p><strong>Demonstrate:</strong> A final release of a project.</p>
+                    <p>At FaithTech, we believe there is a way of building technology that redemptively changes the world while transforming those who build it. Our community has developed a uniquely Jesus-centered way to build that is laid out in the FaithTech Playbook. Check it out by clicking the link below (it's a quick read).</p>
                     <KevinDownloadPlaybook class="kevin-download-playbook-button"></KevinDownloadPlaybook>
                 </div>
             </div>
