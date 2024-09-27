@@ -1,7 +1,12 @@
 import './App.css';
+
+import { Link } from "react-router-dom"
+import { RedemptiveKevin } from "../RedemptiveKevin"
+import './stylesheets/common.css';
 export function Create() {
     return (
         <>
+            <h1>Create</h1>
             <div id="oTopImage">
                 <h3 class="oTitle">FAITH<sc>TECH</sc> WORKBOOK</h3>
             </div>
