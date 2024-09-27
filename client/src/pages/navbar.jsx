@@ -3,7 +3,7 @@ import './stylesheets/navbar.css';
 
 export function Navbar() {
   return (
-    <nav className="hero_navbar">
+    <nav className="hero_navbar" >
       <div className="logo">
         <Link to="/">Logo</Link>
       </div>
@@ -21,4 +21,5 @@ export function Navbar() {
     </nav>
   );
 }
+
 export default Navbar;
