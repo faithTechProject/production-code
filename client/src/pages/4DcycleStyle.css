@@ -1,38 +1,40 @@
 .s4dcycle{
-	border: 2px solid rgb(15, 4, 4);
-	color: red;
+	/*border: 2px solid rgb(15, 4, 4);*/
+	color: black;
 	background-color: lightgrey;
 	text-align: center;
 }
 
 .s4dcycle h2{
-	color: black;
+	color: #ea542c;
 }
 
 .s4dcycle .gallery{	
 	background-color: white;
 	margin: 5px;
-	border: 1px solid #ccc;
 	border-radius: 7%;
 	float: left;
-	width: 180px;
+	/*width: 180px;*/
+	width: 20%;
 }
-
-.s4dcycle th, td {
-	
+.s4dcycle .p1{
+	font-size:medium
 }
-
 .s4dcycle .button1{
 	padding: 10px;
-	background: #596F62;
-	transition-duration: 0.3s;
+	color: white;
+	background: grey;
+	transition-duration: 0.2s;
 	cursor: pointer;
+	visibility: visible;
 }
 
 .s4dcycle .button1:hover{
-	background: #C3D898
+	background: rgb(58, 57, 57)
 }
 /*
+#ea542c is dark orange
+
 <ul class="menu__list" style="display: block; overflow: visible; height: auto; will-change: 
 height; transition: height 258ms ease-in-out;">
 <li class="menu__list-item">
