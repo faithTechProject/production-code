@@ -12,6 +12,7 @@ export function Create() {
             </div>
             <h1 class="oh1">Introduction</h1>
             <p class="op">Welcome to the FaithTech Workbook! This guide is designed to help you building technology using the redemptive framework outlined in the FaithTech Playbook. Whether you're looking to glorify God by solving real-world problems as part of a FaithTech community, another community of Christ-followers, or just a couple of friends - this guide is for you!</p>
+            <RedemptiveKevin></RedemptiveKevin>
             <h2 class="oh2">How to Use This Workbook</h2>
             <p2 class="op2">Each section of this workbook corresponds to a stage in the 4D Cycle. Work through each section in order, completing the exercises and reflecting on the questions provided. Feel free to revisit sections as needed and adapt the exercises to your specific context.</p2>
             <div id="oArrowImage"></div>
