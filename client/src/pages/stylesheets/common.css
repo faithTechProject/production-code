@@ -15,12 +15,6 @@ html, body {
     background-image: radial-gradient(#FFFFFF,#FFFFFF,#CCCCDD);
 }
 
-h1 {
-    margin-left: 20px;
-    font-family: var(--font-main);
-    color: var(--color-primary);
-}
-
 /*--------------------------
 ---------- FOOTER ----------
 --------------------------*/

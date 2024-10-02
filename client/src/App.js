@@ -4,9 +4,9 @@ import { Create } from './pages/create';
 import { Stories } from './pages/stories';
 import { Help } from './pages/help';
 import { Overview } from './pages/overview';
-import Navbar from './pages/navbar';
-import Table_of_contents from './pages/table_of_contents';
-import Footer from './pages/footer';
+import Navbar from './pages/common/navbar';
+import Table_of_contents from './pages/common/table_of_contents';
+import Footer from './pages/common/footer';
 import './app.css'; 
 
 function App() {

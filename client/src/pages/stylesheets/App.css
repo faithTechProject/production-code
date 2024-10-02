@@ -1,0 +1,62 @@
+body {   
+    background-image: linear-gradient(rgb(192, 209, 219), white, rgb(192, 209, 219));
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.oh1{
+    color: rgb(212, 83, 23);
+    padding: 15px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.oh2{
+    color: black;
+    padding: 15px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.oTitle{
+    color: white;
+    padding: 50px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.oTitle sc{
+    color:rgb(212, 83, 23);
+}
+
+.op{
+    color: black;
+    max-width: 90%;
+    font-size: 15px;
+}
+
+.op2{
+    color: black;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: left;
+    font-size: 15px;
+    display: block;
+}
+
+#oTopImage{
+	height: 200px;
+	width: 100%;
+	background-image: url(../images/network.jpeg);
+    background-size: cover;
+}
+
+#oArrowImage{
+    height: 50px;
+    width: 700px;
+    background-image: url(../images/4Dcycle.jpeg);
+    margin-left: auto;
+    margin-right: auto;
+    background-size: cover;
+}
