@@ -3,10 +3,9 @@ import { Home } from './pages/home';
 import { Create } from './pages/create';
 import { Stories } from './pages/stories';
 import { Help } from './pages/help';
-import { Team } from './pages/team';
-import { Problem } from './pages/problem';
-import { Reflect } from './pages/reflect';
-import { Project} from './pages/project';
+import { discoverTeams } from './pages/discover/teams';
+import { discoverLament } from './pages/discover/lament';
+import { discoverProjects } from './pages/discover/projects';
 import { Overview } from './pages/overview';
 import Navbar from './pages/common/navbar';
 import Table_of_contents from './pages/common/table_of_contents';
@@ -27,10 +26,9 @@ function App() {
               <Route path="/stories" element={<Stories />} />
               <Route path="/help" element={<Help />} />
               <Route path="/overview" element={<Overview />} />
-              <Route path="/problem" element={<Problem />} />
-              <Route path="/project" element={<Project />} />
-              <Route path="/reflect" element={<Reflect />} />
-              <Route path="/team" element={<Team />} />
+              <Route path="/discover/teams" element={<discoverTeams />} />
+              <Route path="/discover/lament" element={<discoverLament />} />
+              <Route path="/discover/projects" element={<discoverProjects />} />
             </Routes>
           </div>
         </div>
