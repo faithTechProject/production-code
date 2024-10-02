@@ -1,0 +1,12 @@
+* {
+    box-sizing: border-box;
+    /*font-family: ;*/
+  }
+
+  /* Style the content */
+  .content {
+    background-color: #ddd;
+    padding: 10px;
+    height: 200px; /* Should be removed. Only for demonstration */
+  }
+  
