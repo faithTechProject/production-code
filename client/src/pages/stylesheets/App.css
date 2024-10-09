@@ -30,9 +30,7 @@ body {
 
 .op{
     color: black;
-    padding-left: 400px;
-    padding-right: 400px;
-    text-align: left;
+    max-width: 90%;
     font-size: 15px;
 }
 
@@ -50,14 +48,14 @@ body {
 #oTopImage{
 	height: 200px;
 	width: 100%;
-	background-image: url(network.jpeg);
+	background-image: url(../images/network.jpeg);
     background-size: cover;
 }
 
 #oArrowImage{
     height: 50px;
     width: 700px;
-    background-image: url(4Dcycle.jpeg);
+    background-image: url(../images/4Dcycle.jpeg);
     margin-left: auto;
     margin-right: auto;
     background-size: cover;
