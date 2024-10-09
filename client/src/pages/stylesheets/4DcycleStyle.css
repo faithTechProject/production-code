@@ -1,0 +1,43 @@
+.s4dcycle{
+	/*border: 2px solid rgb(15, 4, 4);*/
+	color: black;
+	background-color: lightgrey;
+	text-align: center;
+	border: 2px solid black;
+}
+
+.s4dcycle h2{
+	color: #ea542c;
+}
+
+.s4dcycle .galleryDiv{	
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 20px;
+    color: black;
+}
+
+.gallery{	
+	max-width: 20%;
+	background-color: white;
+	border-radius: 5px;
+}
+
+.s4dcycle .p1{
+	font-size:medium
+}
+.s4dcycle .button1{
+	padding: 10px;
+	color: white;
+	background: grey;
+	transition-duration: 0.2s;
+	cursor: pointer;
+	visibility: visible;
+}
+
+.s4dcycle .button1:hover{
+	background: rgb(58, 57, 57)
+}
+/*
+#ea542c is dark orange*/

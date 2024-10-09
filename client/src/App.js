@@ -3,11 +3,20 @@ import { Home } from './pages/home';
 import { Create } from './pages/create';
 import { Stories } from './pages/stories';
 import { Help } from './pages/help';
+import { discoverTeams } from './pages/discover/teams';
+import { discoverLament } from './pages/discover/lament';
+import { discoverProjects } from './pages/discover/projects';
 import { Overview } from './pages/overview';
+<<<<<<< HEAD
 import { Discover } from './pages/discover';
 import Navbar from './pages/navbar';
 import Table_of_contents from './pages/table_of_contents';
 import Footer from './pages/footer';
+=======
+import Navbar from './pages/common/navbar';
+import Table_of_contents from './pages/common/table_of_contents';
+import Footer from './pages/common/footer';
+>>>>>>> origin
 import './app.css'; 
 
 function App() {
@@ -24,7 +33,13 @@ function App() {
               <Route path="/stories" element={<Stories />} />
               <Route path="/help" element={<Help />} />
               <Route path="/overview" element={<Overview />} />
+<<<<<<< HEAD
               <Route path="/discover" element={<Discover />} />
+=======
+              <Route path="/discover/teams" element={<discoverTeams />} />
+              <Route path="/discover/lament" element={<discoverLament />} />
+              <Route path="/discover/projects" element={<discoverProjects />} />
+>>>>>>> origin
             </Routes>
           </div>
         </div>
