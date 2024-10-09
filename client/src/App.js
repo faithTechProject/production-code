@@ -7,6 +7,7 @@ import { Overview } from './pages/overview';
 import Navbar from './pages/navbar';
 import Table_of_contents from './pages/table_of_contents';
 import Footer from './pages/footer';
+import { TestPageDatabase } from './pages/testPageDatabase';
 import './app.css'; 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <Route path="/stories" element={<Stories />} />
               <Route path="/help" element={<Help />} />
               <Route path="/overview" element={<Overview />} />
+              <Route path="/testPageDatabase" element={<TestPageDatabase />} />
             </Routes>
           </div>
         </div>
