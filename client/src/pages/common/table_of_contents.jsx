@@ -1,5 +1,6 @@
 import '../stylesheets/table_of_contents.css'
 import Dropdown from './dropdown';
+import { Link } from "react-router-dom"
 import { overviewItems, discoverItems, discernItems, developItems, demonstrateItems } from './menuItems';
 
 export function Table_of_contents() { 
@@ -7,7 +8,7 @@ export function Table_of_contents() {
     <div className="hero_Table_of_contents">
         <ul className="contents">
         <li>
-            <Dropdown title="Overview" items={overviewItems} />
+            <Link to="/create" class="tocLink">Overview</Link>
           </li>
           <li>
             <Dropdown title="Discover" items={discoverItems} />
