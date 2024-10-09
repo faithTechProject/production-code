@@ -1,4 +1,4 @@
-import './App.css';
+import './stylesheets/App.css';
 import './4DcycleStyle.css';
 import { Link } from "react-router-dom";
 import { RedemptiveKevin } from "../RedemptiveKevin";
@@ -11,7 +11,7 @@ export function Create() {
                 <h3 class="oTitle">FAITH<sc>TECH</sc> WORKBOOK</h3>
             </div>
             <h1 class="oh1">Introduction</h1>
-            <p class="op">Welcome to the FaithTech Workbook! This guide is designed to help you building technology using the redemptive framework outlined in the FaithTech Playbook. Whether you're looking to glorify God by solving real-world problems as part of a FaithTech community, another community of Christ-followers, or just a couple of friends - this guide is for you!</p>
+            <p class="op">Welcome to the FaithTech Workbook! This guide is designed to help you build technology using the redemptive framework outlined in the FaithTech Playbook. Whether you're looking to glorify God by solving real-world problems as part of a FaithTech community, another community of Christ-followers, or just a couple of friends - this guide is for you!</p>
             <div className="s4dcycle">{/*This is the 4D cycle bar*/}
                 <h2>The 4D Cycle</h2>
                 <table><tr>

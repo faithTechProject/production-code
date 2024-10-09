@@ -50,14 +50,14 @@ body {
 #oTopImage{
 	height: 200px;
 	width: 100%;
-	background-image: url(network.jpeg);
+	background-image: url(../network.jpeg);
     background-size: cover;
 }
 
 #oArrowImage{
     height: 50px;
     width: 700px;
-    background-image: url(4Dcycle.jpeg);
+    background-image: url(../4Dcycle.jpeg);
     margin-left: auto;
     margin-right: auto;
     background-size: cover;

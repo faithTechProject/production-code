@@ -4,6 +4,7 @@ import { Create } from './pages/create';
 import { Stories } from './pages/stories';
 import { Help } from './pages/help';
 import { Overview } from './pages/overview';
+import { Discover } from './pages/discover';
 import Navbar from './pages/navbar';
 import Table_of_contents from './pages/table_of_contents';
 import Footer from './pages/footer';
@@ -23,6 +24,7 @@ function App() {
               <Route path="/stories" element={<Stories />} />
               <Route path="/help" element={<Help />} />
               <Route path="/overview" element={<Overview />} />
+              <Route path="/discover" element={<Discover />} />
             </Routes>
           </div>
         </div>
