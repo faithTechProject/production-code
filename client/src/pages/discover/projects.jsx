@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export function DiscoverProjects() {
     function toggle(x) {
         console.log(getComputedStyle(document.getElementsByClassName('cover')[x]).getPropertyValue('height'))
-        if (getComputedStyle(document.getElementsByClassName('cover')[x]).getPropertyValue('height') != '90px') {
+        if (getComputedStyle(document.getElementsByClassName('cover')[x]).getPropertyValue('height') !== '90px') {
             document.getElementsByClassName('cover')[x].style.setProperty('height','var(--button-height)')
         } else {
             document.getElementsByClassName('cover')[x].style.setProperty('height','calc(var(--var-height) - var(--image-height))')
@@ -16,8 +16,8 @@ export function DiscoverProjects() {
             </div>
             <div className="body">
                 <h1>The 4D Cycle</h1>
-                <p1>To effectively lead projects using the 4D Cycle, it's crucial to have a deep understanding of each stage.</p1>
-                <div class="deck">
+                <p>To effectively lead projects using the 4D Cycle, it's crucial to have a deep understanding of each stage.</p>
+                <div class="infoDeck">
                     <div className= "card">
                         <div class="image"></div>
                             <ul className='content'>
@@ -66,7 +66,51 @@ export function DiscoverProjects() {
             <div className='body'>
                 <h1>Host Ideation Session</h1>
                 <p>Use the box below to document all ideas from your idea session. Include a short list of potential projects.</p>
-                <input type="text"></input>
+                <h2>List of Ideas</h2>
+                <textarea className="inputText"></textarea>
+            </div>
+            <div className='body'>
+                <h1>Identifying Local Needs</h1>
+                <p>Highlight three areas in your community where technology could address local challenges. 
+                    Label the area of your community in the "Title" section, and use the space below it to note technological challenges or issues that technology could address.
+                </p>
+                <h2>Community Needs</h2>
+                <div className='communityDeck'>
+                    <div className='card'>
+                        <textarea className='title' placeholder='Title...'></textarea>
+                        <textarea className='description' placeholder='Description of challenges...'></textarea>
+                    </div>
+                    <div className='card'>
+                        <textarea className='title' placeholder='Title...'></textarea>
+                        <textarea className='description' placeholder='Description of challenges...'></textarea>
+                    </div>
+                    <div className='card'>
+                        <textarea className='title' placeholder='Title...'></textarea>
+                        <textarea className='description' placeholder='Description of challenges...'></textarea>
+                    </div>
+                </div>
+            </div>
+            <div className='body'>
+                <h1>Partnering with Non-Profits/Churches</h1>
+                <p>Use the matrix below to list potential non-profit and church partners, their needs, and potential project ideas.</p>
+                <h2>Partnership Matrix</h2>
+            </div>
+            <div className='body'>
+                <h1>Engage with Local Schools and Universities</h1>
+                <p>Use the template provided below to develop a proposal for a collaborative project or mentorship program with a local educational institution.</p>
+                <h2>Proposal Template</h2>
+                <textarea id='educationProposal'></textarea>
+            </div>
+            <div className='body'>
+                <h1>Analyze Existing Technology</h1>
+                <p>Use the following boxes to highlight current uses, gaps, and opportunities for redemptive technology projects.</p>
+                <h2>Technology Use</h2>
+                <p>Technology Audit: Assess how technology is currently used.</p>
+                <textarea id='techAudit'></textarea>
+                <p>Technology Disparities: Identify gaps.</p>
+                <textarea id='techGaps'></textarea>
+                <p>Emerging Technology: Brainstorm opportunities.</p>
+                <textarea id='techOpportunities'></textarea>
             </div>
         </>
     )

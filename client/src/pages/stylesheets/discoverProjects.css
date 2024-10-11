@@ -22,12 +22,31 @@ h1{
     font-size: 30px;
 }
 
-p {
+h2{
+    color: #000;
+    margin: 0px;
     text-align: center;
+    font-size: 26px;
 }
 
-input[type="text"] {
+p {
+    text-align: center;
+    width: 80%;
+    margin-left: 10%;
 }
+
+textarea {
+    width: 60%;
+    margin-left:20%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+  }
+
 /*###############
 ##### HEADER ####
 ###############*/
@@ -85,7 +104,7 @@ input[type="text"] {
 ###### CARDS #####
 ################*/
 
-.deck{	
+.infoDeck{	
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -93,7 +112,7 @@ input[type="text"] {
     color: black;
 }
 
-.card{	
+.infoDeck .card{	
     --var-height: 450px;
     width: 300px;
     height: var(--var-height);
@@ -109,13 +128,13 @@ input[type="text"] {
     margin: 10px;
 }
 
-.card .image{
+.infoDeck .card .image{
     height: var(--image-height);
     background-image: linear-gradient(#000,#888);
     border-radius: 3px 3px 0px 0px;
 }
 
-.card .cover{
+.infoDeck .card .cover{
     height: calc(var(--var-height) - var(--image-height));
 	color: white;
 	background: var(--color-primary);
@@ -129,7 +148,7 @@ input[type="text"] {
     border-style: none;
 }
 
-.card .content{
+.infoDeck .card .content{
     z-index: 1;
     margin-top: auto;
     transition: 1s;
@@ -138,4 +157,70 @@ input[type="text"] {
     height: calc(var(--var-height) - var(--image-height) - var(--button-height));
     overflow:hidden;
     font-size: 14px;;
+}
+
+/*#####################
+### COMMUNITY NEEDS ###
+#####################*/
+
+.communityDeck{	
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 20px;
+    color: black;
+}
+
+.communityDeck .card{	
+    --var-height: 450px;
+    width: 300px;
+    height: var(--var-height);
+	background-color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    --image-height: calc(var(--var-height)*.2);
+    --button-height: calc(var(--var-height)*.2);
+    border-radius: 5px;
+    border-color: #000;
+    border-style: solid;
+    margin: 10px;
+}
+
+.communityDeck .title{
+    border-style: none;
+    border-bottom-style: solid;
+    border-radius: 0px;
+    border-color:#000;
+    width: 100%;
+    margin-left: 0px;
+    height: 10%;
+
+}
+
+.communityDeck .title:focus{
+    outline:none;
+    border-style: none;
+    border-bottom-style: solid;
+    border-radius: 0px;
+    border-color:#000;
+    width: 100%;
+    margin-left: 0px;
+    height: 10%;
+
+}
+
+.communityDeck .description{
+    border-style:none;
+    width: 100%;
+    margin-left: 0px;
+    height: 90%;
+}
+
+.communityDeck .description:focus{
+    outline:none;
+    border-style:none;
+    width: 100%;
+    margin-left: 0px;
+    height: 90%;
 }
