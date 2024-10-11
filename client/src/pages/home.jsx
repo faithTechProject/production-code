@@ -8,6 +8,7 @@ export function Home() {
             <div><Link to="/create">Create</Link></div>
             <div><Link to="/stories">Stories</Link></div>
             <div><Link to="/help">Help</Link></div>
+            <div><Link to="/testPageDatabase">Data</Link></div>
         </>
     )
 }

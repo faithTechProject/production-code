@@ -11,6 +11,7 @@ import { DiscoverOverview } from './pages/discover/overview';
 import Navbar from './pages/common/navbar';
 import Table_of_contents from './pages/common/table_of_contents';
 import Footer from './pages/common/footer';
+import { TestPageDatabase } from './pages/testPageDatabase';
 import './app.css'; 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
               <Route path="/discover/projects" element={<DiscoverProjects />} />
               <Route path="/discover/teams" element={<DiscoverTeams />} />
               <Route path="/discover/lament" element={<discoverLament />} />
+              <Route path="/testPageDatabase" element={<TestPageDatabase />} />
             </Routes>
           </div>
         </div>
