@@ -89,13 +89,17 @@
   visibility: visible;
 }
 
-.dropdown-content a {
+.dropdown-content a, .tocLink {
   color: black;
   padding: 8px 12px;
   text-decoration: none;
   display: block;
 }
 
-.dropdown-content a:hover {
+.tocLink {
+  padding: 8px 9px;
+}
+
+.dropdown-content a:hover, .tocLink:hover {
   background-color: #f1f1f1;
 }

@@ -5,7 +5,7 @@ import { Stories } from './pages/stories';
 import { Help } from './pages/help';
 import { discoverTeams } from './pages/discover/teams';
 import { discoverLament } from './pages/discover/lament';
-import { discoverProjects } from './pages/discover/projects';
+import { DiscoverProjects } from './pages/discover/projects';
 import { Overview } from './pages/overview';
 import { DiscoverOverview } from './pages/discover/overview';
 import Navbar from './pages/common/navbar';
@@ -28,9 +28,9 @@ function App() {
               <Route path="/help" element={<Help />} />
               <Route path="/overview" element={<Overview />} />
               <Route path="/discover/overview" element={<DiscoverOverview />} />
+              <Route path="/discover/projects" element={<DiscoverProjects />} />
               <Route path="/discover/teams" element={<discoverTeams />} />
               <Route path="/discover/lament" element={<discoverLament />} />
-              <Route path="/discover/projects" element={<discoverProjects />} />
             </Routes>
           </div>
         </div>
