@@ -12,10 +12,10 @@ import { InfoService } from './info/info.service';
 import { ReflectionController } from './reflection/reflection.controller';
 import { Reflection } from './reflection/reflection.entity'
 import { ReflectionService } from './reflection/reflection.service';
-import { SkillMatrixModule } from './skill-matrix/skill-matrix.module';
-import { SkillMatrix } from './skill-matrix/skill-matrix.entity';
-import { SkillMatrixController } from './skill-matrix/skill-matrix.controller';
-import { SkillMatrixService } from './skill-matrix/skill-matrix.service';
+import { MatrixModule } from './matrix/matrix.module';
+import { Matrix } from './matrix/matrix.entity';
+import { MatrixController } from './matrix/matrix.controller';
+import { MatrixService } from './matrix/matrix.service';
 
 @Module({
   imports: [
@@ -26,13 +26,13 @@ import { SkillMatrixService } from './skill-matrix/skill-matrix.service';
       username: 'faithtech_user',
       password: 'faithtech_password',
       database: 'faithtech_create',
-      entities: [Poll, Info, Reflection, SkillMatrix], // postgres database tables.
+      entities: [Poll, Info, Reflection, Matrix], // postgres database tables.
       synchronize: true, // not for production builds.  Data loss posible.
     }),
-    TypeOrmModule.forFeature([Poll, Info, Reflection, SkillMatrix]),
+    TypeOrmModule.forFeature([Poll, Info, Reflection, Matrix]),
     UsersModule
   ],
-  controllers: [ReflectionController, SkillMatrixController],
-  providers: [ReflectionService, SkillMatrixService],
+  controllers: [ReflectionController, MatrixController, PollController],
+  providers: [ReflectionService, MatrixService, PollService],
 })
 export class AppModule {}

@@ -1,5 +1,7 @@
-.kevin_form {
-    
+.kevin_table {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .kevin-table, .kevin-th, .kevin-td {

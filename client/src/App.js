@@ -7,9 +7,9 @@ import { discoverTeams } from './pages/discover/teams';
 import { discoverLament } from './pages/discover/lament';
 import { discoverProjects } from './pages/discover/projects';
 import { Overview } from './pages/overview';
-import Navbar from './pages/navbar';
-import Table_of_contents from './pages/table_of_contents';
-import Footer from './pages/footer';
+import Navbar from './pages/common/navbar';
+import Table_of_contents from './pages/common/table_of_contents';
+import Footer from './pages/common/footer';
 import { TestPageDatabase } from './pages/testPageDatabase';
 import './app.css'; 
 

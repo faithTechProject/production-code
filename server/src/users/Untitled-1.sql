@@ -1,2 +1,2 @@
-SELECT * FROM skill_matrix
-ORDER BY id;
+SELECT * FROM matrix
+ORDER BY name;

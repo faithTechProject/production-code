@@ -2,14 +2,19 @@ import axios from 'axios';
 import { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import "./testPageDatabase.css";
+import { Table } from "./components/Table"; 
+import { Modal } from './components/Modal';
 
 export function TestPageDatabase()
 {
+    const[modalOpen, setModalOpen] = useState(false);
     
-    const [reflection, setReflection] = useState([])
-    const [response, setResponse] = useState("")
+    const [reflection, setReflection] = useState([]);
+    const [response, setResponse] = useState("");
     
-
+    const onMount = useRef(false);
+    
+    
     function reactPost() {
         axios.post("http://localhost:3000/polls", {
             question: "What is your favorite color",
@@ -42,7 +47,6 @@ export function TestPageDatabase()
     function getInfo(value) {
         axios.get(`http://localhost:3000/reflection/${value}`).then(res => {
             setInformations(res.data)
-            console.log(informations)
         })
         
 
@@ -56,48 +60,86 @@ export function TestPageDatabase()
     const [areasForGrowth, setAreasForGrowth] = useState("");
 
 
-    function handleSubmit2() {
-        setMatrixData([id, name, skills, pastExperiences, areasForGrowth]);
-        axios.post(`http://localhost:3000/skill-matrix`, {
-            id: +id,
-            name: name,
-            skills: skills,
-            past_experiences: pastExperiences,
-            areas_for_growth: areasForGrowth
-        })
-    }
+    //function handleSubmit2() {
+        //axios.post(`http://localhost:3000/skill-matrix`, {
+        //    id: +id, // convert string to number.
+        //    name: name,
+        //    skills: skills,
+        //    past_experiences: pastExperiences,
+        //    areas_for_growth: areasForGrowth
+    //    }//)
 
-    console.log(matrixData)
+        //axios.get(`http://localhost:3000/skill-matrix/1`).then(res => {
+        //        //setResponse(res.data)
+        //        setMatrixData(res.data.map((item) => item))
+        //})
+    //}
 
     
+    const [rows, setRows] = useState([ 
+        {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
+        {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
+        {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
+        {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
+        {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
+    ]);
 
     useEffect(() => {
-        
-        //setMatrixData(myData.map((item) => item.matrixData))
-        //console.log(myData);
-        
-        axios.get(`http://localhost:3000/reflection/1`).then(res => {
-            //setResponse(res.data)
-            setResponse(res.data.map((item) => item.response))
-            //console.log(response.map((item) => item.response))
-            
+        console.log(onMount, "hi")
+            axios.get(`http://localhost:3000/reflection/1`).then(res => {
+                setResponse(res.data.map((item) => item.response))
+            })
 
-        })
-    }, [matrixData])
+            axios.get("http://localhost:3000/matrix/matrix").then(res => {
+                if (res.data.length !== 0) {
+                    const a = (res.data.map((item) => item.data)[0])
+                    setRows(a);
+                    console.log(a + "hi")
+                }
+                else {
+                    axios.post(`http://localhost:3000/matrix`, {
+                        name: "matrix",
+                        data: rows
+                    });
+                }
+            })
+    }, [])
     
+    axios.put(`http://localhost:3000/matrix/matrix`, {
+        name: "matrix",
+        data: rows
+    });
+
     const reflectionSave = event => {
         event.preventDefault();
-        console.log(response);
 
         axios.put("http://localhost:3000/reflection/1", {
             response: response
         })
     }
 
-    function displayKey(e) {
-        console.log(e)
+    const handleDeleteRow = (targetIndex) => {
+        console.log(rows)
+        setRows(rows.filter((_, idx) => idx !== targetIndex))       
+    }
+
+    console.log(rows)
+    const [rowToEdit, setRowToEdit] = useState(null);
+
+    const handleEditRow = (idx) => {
+        setRowToEdit(idx);
+        setModalOpen(true);
     }
     
+    const handleSubmit = (newRow) => {
+        rowToEdit === null ?  
+        setRows([...rows, newRow]) :
+        setRows(rows.map((currRow, idx) => {
+            if (idx !== rowToEdit) return currRow;
+             return newRow
+        }))
+    }
+
     return (
         <>
             <form onSubmit={reflectionSave}>
@@ -113,39 +155,19 @@ export function TestPageDatabase()
                 <input type="submit" value="Save" />
             </form>
             
-            <table className='kevin-table' id='skillMatrix'>
-                <tr>
-                    <th className='kevin-th'>ID</th>
-                    <th className='kevin-th'>Name</th>
-                    <th className='kevin-th'>Skills</th>
-                    <th className='kevin-th'>Past Experiences</th>
-                    <th className='kevin-th'>Areas for Growth</th>
-                </tr>
-            </table>
 
-                <table>
-                    {matrixData.map((item, i) => {
-                        return (
-                            <tr key={i}>
-                                <td>{item.id}</td>
-                                <td>{item.name}</td>
-                                <td>{item.skills}</td>
-                                <td>{item.pastExperiences}</td>
-                                <td>{item.areasForGrowth}</td>
-                                <td><button onClick={(e) => displayKey(e.key.value)}>-</button></td>
-                            </tr>
-                        )
-                    })}
-                </table>
-            
-            <form onSubmit={handleSubmit2}>
-                <input type="text" value={id} placeholder='id' onChange={(e) => setId(e.target.value)} />
-                <input type="text" value={name} placeholder='name' onChange={(e) => setName(e.target.value)} />
-                <input type="text" value={skills} placeholder='skills' onChange={(e) => setSkills(e.target.value)} />
-                <input type="text" value={pastExperiences} placeholder='past experiences' onChange={(e) => setPastExperiences(e.target.value)} />
-                <input type="text" value={areasForGrowth} placeholder='areas for growth' onChange={(e) => setAreasForGrowth(e.target.value)} />
-                <button type="submit">Add</button>
-            </form>
+            <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
+            <button onClick={() => setModalOpen(true)}>Add Entry</button>
+
+            {modalOpen && (
+                <Modal closeModal={() => {
+                    setModalOpen(false);
+                    setRowToEdit(null);
+                }}
+                onSubmit={handleSubmit}
+                defaultValue={rowToEdit !== null && rows[rowToEdit]}
+            />
+            )}
         </>
     )
 }

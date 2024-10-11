@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { SkillMatrixService } from './skill-matrix.service';
+import { MatrixService } from './matrix.service';
 
 describe('SkillMatrixService', () => {
-  let service: SkillMatrixService;
+  let service: MatrixService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [SkillMatrixService],
+      providers: [MatrixService],
     }).compile();
 
-    service = module.get<SkillMatrixService>(SkillMatrixService);
+    service = module.get<MatrixService>(MatrixService);
   });
 
   it('should be defined', () => {
