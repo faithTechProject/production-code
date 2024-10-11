@@ -4,7 +4,6 @@ import { Create } from './pages/create';
 import { Stories } from './pages/stories';
 import { Help } from './pages/help';
 import { Team } from './pages/team';
-import { Problem } from './pages/problem';
 import { Reflect } from './pages/reflect';
 import { Project} from './pages/project';
 import { Overview } from './pages/overview';
