@@ -1,4 +1,4 @@
-export function Teams() {
+export function DiscoverTeams() {
     return (
         <div class="hero_teams_container">
             <div class="hero_teams_header">

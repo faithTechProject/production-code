@@ -3,7 +3,7 @@ import { Home } from './pages/home';
 import { Create } from './pages/create';
 import { Stories } from './pages/stories';
 import { Help } from './pages/help';
-import { discoverTeams } from './pages/discover/teams';
+import { DiscoverTeams } from './pages/discover/teams';
 import { discoverLament } from './pages/discover/lament';
 import { DiscoverProjects } from './pages/discover/projects';
 import { Overview } from './pages/overview';
@@ -29,7 +29,7 @@ function App() {
               <Route path="/overview" element={<Overview />} />
               <Route path="/discover/overview" element={<DiscoverOverview />} />
               <Route path="/discover/projects" element={<DiscoverProjects />} />
-              <Route path="/discover/teams" element={<discoverTeams />} />
+              <Route path="/discover/teams" element={<DiscoverTeams />} />
               <Route path="/discover/lament" element={<discoverLament />} />
             </Routes>
           </div>
