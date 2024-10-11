@@ -3,7 +3,7 @@ export const overviewItems = [
   ];
 export const discoverItems = [
     { label: 'Overview', path: '/discover/overview' },
-    { label: 'Projects', path: '/discover/project' },
+    { label: 'Projects', path: '/discover/projects' },
     { label: 'Teams', path: '/discover/team' },
     { label: 'Problems', path: '/discover/problem' },
     { label: 'Lament', path: '/discover/lament'}

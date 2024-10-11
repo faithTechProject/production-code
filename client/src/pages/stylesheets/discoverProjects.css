@@ -1,0 +1,226 @@
+
+/*################
+##### GENERAL ####
+################*/
+
+:root {
+    --color-primary: #ea542c;
+    --color-secondary: #525860;
+    --color-primary-highlight: #ffb020;
+    --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {   
+    background-image: linear-gradient(rgb(192, 209, 219), white, rgb(192, 209, 219));
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1{
+    color: var(--color-primary);
+    margin: 0px;
+    text-align: center;
+    font-size: 30px;
+}
+
+h2{
+    color: #000;
+    margin: 0px;
+    text-align: center;
+    font-size: 26px;
+}
+
+p {
+    text-align: center;
+    width: 80%;
+    margin-left: 10%;
+}
+
+textarea {
+    width: 60%;
+    margin-left:20%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+  }
+
+/*###############
+##### HEADER ####
+###############*/
+
+.oTitle{
+    color: white;
+    padding: 50px;
+    margin: 0px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.oTitle sc{
+    color:var(--color-primary);
+}
+
+.op{
+    color: black;
+    margin: 0px;
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: 15px;
+    text-align: center;
+}
+
+.op2{
+    color: black;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    font-size: 15px;
+    display: block;
+}
+
+#oTopImage{
+	height: 200px;
+	width: 100%;
+	background-image: url(../images/network.jpeg);
+    background-size: cover;
+}
+
+#oArrowImage{
+    height: 50px;
+    width: 700px;
+    background-image: url(../images/4Dcycle.jpeg);
+    margin-left: auto;
+    margin-right: auto;
+    background-size: cover;
+}
+
+
+/*################
+###### CARDS #####
+################*/
+
+.infoDeck{	
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 20px;
+    color: black;
+}
+
+.infoDeck .card{	
+    --var-height: 450px;
+    width: 300px;
+    height: var(--var-height);
+	background-color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    --image-height: calc(var(--var-height)*.2);
+    --button-height: calc(var(--var-height)*.2);
+    border-radius: 5px;
+    border-color: #000;
+    border-style: solid;
+    margin: 10px;
+}
+
+.infoDeck .card .image{
+    height: var(--image-height);
+    background-image: linear-gradient(#000,#888);
+    border-radius: 3px 3px 0px 0px;
+}
+
+.infoDeck .card .cover{
+    height: calc(var(--var-height) - var(--image-height));
+	color: white;
+	background: var(--color-primary);
+    font-weight: bold;
+	transition: 1s;
+	cursor: pointer;
+    margin-top: auto;
+    border-radius: 0px 0px 3px 3px;
+    z-index: 2;
+    font-size: x-large;
+    border-style: none;
+}
+
+.infoDeck .card .content{
+    z-index: 1;
+    margin-top: auto;
+    transition: 1s;
+    position: absolute;
+    top: var(--image-height);
+    height: calc(var(--var-height) - var(--image-height) - var(--button-height));
+    overflow:hidden;
+    font-size: 14px;;
+}
+
+/*#####################
+### COMMUNITY NEEDS ###
+#####################*/
+
+.communityDeck{	
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 20px;
+    color: black;
+}
+
+.communityDeck .card{	
+    --var-height: 450px;
+    width: 300px;
+    height: var(--var-height);
+	background-color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    --image-height: calc(var(--var-height)*.2);
+    --button-height: calc(var(--var-height)*.2);
+    border-radius: 5px;
+    border-color: #000;
+    border-style: solid;
+    margin: 10px;
+}
+
+.communityDeck .title{
+    border-style: none;
+    border-bottom-style: solid;
+    border-radius: 0px;
+    border-color:#000;
+    width: 100%;
+    margin-left: 0px;
+    height: 10%;
+
+}
+
+.communityDeck .title:focus{
+    outline:none;
+    border-style: none;
+    border-bottom-style: solid;
+    border-radius: 0px;
+    border-color:#000;
+    width: 100%;
+    margin-left: 0px;
+    height: 10%;
+
+}
+
+.communityDeck .description{
+    border-style:none;
+    width: 100%;
+    margin-left: 0px;
+    height: 90%;
+}
+
+.communityDeck .description:focus{
+    outline:none;
+    border-style:none;
+    width: 100%;
+    margin-left: 0px;
+    height: 90%;
+}
