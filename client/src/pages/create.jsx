@@ -9,7 +9,7 @@ export function Create() {
             </div>
             <div class="body">
             <h1>Introduction</h1>
-            <p class="op">Welcome to the FaithTech Workbook! This guide is designed to help you building technology using the redemptive framework outlined in the FaithTech Playbook. Whether you're looking to glorify God by solving real-world problems as part of a FaithTech community, another community of Christ-followers, or just a couple of friends - this guide is for you!</p>
+            <p class="op">Welcome to the FaithTech Workbook! This guide is designed to help you build technology using the redemptive framework outlined in the FaithTech Playbook. Whether you're looking to glorify God by solving real-world problems as part of a FaithTech community, another community of Christ-followers, or just a couple of friends - this guide is for you!</p>
             </div>
             <div className="s4dcycle body">{/*This is the 4D cycle bar*/}
                 <h1>The 4D Cycle</h1>
