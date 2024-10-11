@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
-import './stylesheets/common.css';
-import './stylesheets/App.css';
-import './discover.css';
-export function Discover() {
+import '../stylesheets/common.css';
+import '../stylesheets/App.css';
+import '../stylesheets/discover.css';
+export function DiscoverOverview() {
     return (
         <>
             <div id="oDiscoverTopImage">

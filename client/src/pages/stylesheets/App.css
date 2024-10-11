@@ -48,22 +48,14 @@ body {
 #oTopImage{
 	height: 200px;
 	width: 100%;
-<<<<<<< HEAD
-	background-image: url(../network.jpeg);
-=======
 	background-image: url(../images/network.jpeg);
->>>>>>> origin
     background-size: cover;
 }
 
 #oArrowImage{
     height: 50px;
     width: 700px;
-<<<<<<< HEAD
-    background-image: url(../4Dcycle.jpeg);
-=======
     background-image: url(../images/4Dcycle.jpeg);
->>>>>>> origin
     margin-left: auto;
     margin-right: auto;
     background-size: cover;

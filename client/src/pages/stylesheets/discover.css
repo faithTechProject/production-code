@@ -51,7 +51,7 @@ body {
 #oDiscoverTopImage{
 	height: 200px;
 	width: 100%;
-	background-image: url(DiscoverPicture.png);
+	background-image: url(../images/DiscoverPicture.png);
     background-size: cover;
 }
 
@@ -76,7 +76,7 @@ body {
 #o4Ddiscover{
     height: 400px;
     width: 608px;
-    background-image: url(Discover 4D Cycle.png);
+    background-image: url(../images/Discover4DCycle.png);
     background-size: cover;
     padding: 20px;
     margin: auto;
