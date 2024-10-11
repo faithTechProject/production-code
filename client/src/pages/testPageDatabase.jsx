@@ -8,108 +8,38 @@ import { Modal } from './components/Modal';
 export function TestPageDatabase()
 {
     const[modalOpen, setModalOpen] = useState(false);
-    
-    const [reflection, setReflection] = useState([]);
     const [response, setResponse] = useState("");
-    
     const onMount = useRef(false);
-    
-    
-    function reactPost() {
-        axios.post("http://localhost:3000/polls", {
-            question: "What is your favorite color",
-            options: ["red", "blue", "green", "orange"]
-        })
-        console.log("here")
-    }
-
-    function reactGet() {
-        const data = axios.get("http://localhost:3000/polls")
-        console.log(data)
-    }
-
-    function submit() {
-        axios.post("http://localhost:3000/information", {
-            first_name: "What is your favorite color",
-            options: ["red", "blue", "green", "orange"]
-        })
-    }
-    const [informations, setInformations] = useState([])
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-
-    
-
-
-
-    function getInfo(value) {
-        axios.get(`http://localhost:3000/reflection/${value}`).then(res => {
-            setInformations(res.data)
-        })
-        
-
-    }
-
-    const [matrixData, setMatrixData] = useState([]);
-    const [id, setId] = useState("");
-    const [name, setName] = useState("");
-    const [skills, setSkills] = useState("");
-    const [pastExperiences, setPastExperiences] = useState("");
-    const [areasForGrowth, setAreasForGrowth] = useState("");
-
-
-    //function handleSubmit2() {
-        //axios.post(`http://localhost:3000/skill-matrix`, {
-        //    id: +id, // convert string to number.
-        //    name: name,
-        //    skills: skills,
-        //    past_experiences: pastExperiences,
-        //    areas_for_growth: areasForGrowth
-    //    }//)
-
-        //axios.get(`http://localhost:3000/skill-matrix/1`).then(res => {
-        //        //setResponse(res.data)
-        //        setMatrixData(res.data.map((item) => item))
-        //})
-    //}
-
-    
     const [rows, setRows] = useState([ 
+
         {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
         {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
         {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
         {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
         {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
     ]);
+    const [rowToEdit, setRowToEdit] = useState(null);
 
     useEffect(() => {
-        console.log(onMount, "hi")
-            axios.get(`http://localhost:3000/reflection/1`).then(res => {
-                setResponse(res.data.map((item) => item.response))
-            })
+        axios.get(`http://localhost:3000/reflection/1`).then(res => {
+            setResponse(res.data.map((item) => item.response))
+        })
 
-            axios.get("http://localhost:3000/matrix/matrix").then(res => {
-                if (res.data.length !== 0) {
-                    const a = (res.data.map((item) => item.data)[0])
-                    setRows(a);
-                    console.log(a + "hi")
-                }
-                else {
-                    axios.post(`http://localhost:3000/matrix`, {
-                        name: "matrix",
-                        data: rows
-                    });
-                }
-            })
+        axios.get("http://localhost:3000/matrix/matrix").then(res => {
+            if (res.data[0].data.length !== 0) {
+                setRows(res.data.map((item) => item.data)[0]);
+            }
+            else {
+                axios.put(`http://localhost:3000/matrix/matrix`, {
+                    name: "matrix",
+                    data: rows
+                });
+            }
+    
+        })
     }, [])
     
-    axios.put(`http://localhost:3000/matrix/matrix`, {
-        name: "matrix",
-        data: rows
-    });
-
+    // Reflection Code.
     const reflectionSave = event => {
         event.preventDefault();
 
@@ -118,13 +48,20 @@ export function TestPageDatabase()
         })
     }
 
-    const handleDeleteRow = (targetIndex) => {
-        console.log(rows)
-        setRows(rows.filter((_, idx) => idx !== targetIndex))       
-    }
+    // Matrix Code.
+    console.log("here")
+    
 
-    console.log(rows)
-    const [rowToEdit, setRowToEdit] = useState(null);
+
+    const handleDeleteRow = (targetIndex) => {
+        const data = rows.filter((_, idx) => idx !== targetIndex)
+        setRows(data)
+        
+        axios.put(`http://localhost:3000/matrix/matrix`, {
+            name: "matrix",
+            data: data
+        });       
+    }
 
     const handleEditRow = (idx) => {
         setRowToEdit(idx);
@@ -133,11 +70,30 @@ export function TestPageDatabase()
     
     const handleSubmit = (newRow) => {
         rowToEdit === null ?  
+        
         setRows([...rows, newRow]) :
+        
         setRows(rows.map((currRow, idx) => {
             if (idx !== rowToEdit) return currRow;
              return newRow
         }))
+        
+        let data = []
+        rowToEdit === null ?  
+        
+        data = [...rows, newRow]:
+        
+
+        data = (rows.map((currRow, idx) => {
+            if (idx !== rowToEdit) return currRow;
+             return newRow
+        }))
+
+        axios.put(`http://localhost:3000/matrix/matrix`, {
+            name: "matrix",
+            data: data
+        });
+
     }
 
     return (
