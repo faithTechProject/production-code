@@ -21,7 +21,7 @@
 /*new changes below*/
 .flex-container {
   display: flex;
-  /*background-color: rgb(30, 255, 30);*/
+
 }
 
 .problem .divbox{
@@ -33,16 +33,25 @@
   text-align: center;
   font-weight: bold;
   resize: none;
-  display:flex;
+  display: flex;
 }
 
 .problem .rotate-element {
   transform: rotate(45deg);
+  background-color: #ea542c;
+  margin: auto;
+  height: 150px;
+  width: 150px;
 }
 
 .problem .unrotate-element {
   transform: rotate(-45deg);
   background-color: none;
+  text-align: left;
+  font-weight: bold;
+  font-size: 25px;
+  color:white;
+  padding: 50px 20px;
 }
 
 .problem input[type=text] {

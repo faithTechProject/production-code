@@ -19,14 +19,16 @@ export function Problem() {
                 <p>Write a brief 2-3 sentence description of the
                 problem. Start with a challenge statement if you have one (ie. How might we...?)
                 Note, a challenge statement is not necessary at this stage of the project.</p>
-                <input type="text" id="probDesc" name="ProbDesc" placeholder="Problem Description..."></input>
-                {/*<div class="divbox">oh, look a strawberry</div>*/}
-                <h1>Groups Affected</h1>
-                {/*<div class="divbox"><div class="rotate-element"><div class="unrotate-element">problem there no is not</div></div></div>*/}
+                <input type="text" id="probDesc" name="probDesc" placeholder="Problem Description..."></input>
+                <h1>Groups Affected</h1>        
+                <br></br>     
+                <div class="rotate-element"><div class="unrotate-element">Problem</div></div>
+                <br></br>
+                <br></br>
                 <div class="flex-container">
-                <div class="divbox"><form>Group 1<textarea>text</textarea></form></div>
-                <div class="divbox"><form>Group 2<textarea>text</textarea></form></div>
-                <div class="divbox"><form>Group 3<textarea>text</textarea></form></div>
+                    <div class="divbox"><form>Group 1<textarea>text</textarea></form></div>
+                    <div class="divbox"><form>Group 2<textarea>text</textarea></form></div>
+                    <div class="divbox"><form>Group 3<textarea>text</textarea></form></div>
                 </div>
                 <p>In the boxes above enter the three groups of people who are most affected
                 by this problem. Feel free to add more than one group to a box if three isn't enough to cover
