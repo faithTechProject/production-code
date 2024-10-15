@@ -1,0 +1,88 @@
+body {   
+    background-image: linear-gradient(rgb(192, 209, 219), white, rgb(192, 209, 219));
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.o1Dh2{
+    color: black;
+    padding: 15px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.oTitle{
+    color: white;
+    padding: 50px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.o1Dp{
+    color: black;
+    padding-left: 400px;
+    padding-right: 400px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.o1Dp1{
+    text-align: left;
+    color: black;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: 15px;
+}
+
+.o1Dp2{
+    text-align: center;
+    color: black;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.oQuoteText{
+    color: white;
+    padding: 15px;
+    font-size: 15px;
+    border-left: 6px green;
+    height: 50px;
+}
+
+#oDiscoverTopImage{
+	height: 200px;
+	width: 100%;
+	background-image: url(../images/DiscoverPicture.png);
+    background-size: cover;
+}
+
+.oQuoteBox{
+    background-color: #ea542c;
+    width: 50%;
+    height: 150px;
+    border: #ea542c;
+    margin: auto; 
+    border-radius: 25px;
+}
+
+.oDiscoverBox{
+    width: 200px;
+    border: 3px solid black;
+    background-color: white;
+    margin-top: 15px;
+    margin-left: 750px;
+    padding: 5px;
+}
+
+#o4Ddiscover{
+    height: 400px;
+    width: 608px;
+    background-image: url(../images/Discover4DCycle.png);
+    background-size: cover;
+    padding: 20px;
+    margin: auto;
+}
+
+iframe {
+    display: block;
+    margin: auto;
+}
