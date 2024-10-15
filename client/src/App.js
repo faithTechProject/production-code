@@ -7,6 +7,7 @@ import { DiscoverTeams } from './pages/discover/teams';
 import { discoverLament } from './pages/discover/lament';
 import { DiscoverProjects } from './pages/discover/projects';
 import { Overview } from './pages/overview';
+import { Problem} from './pages/problem';
 import { DiscoverOverview } from './pages/discover/overview';
 import Navbar from './pages/common/navbar';
 import Table_of_contents from './pages/common/table_of_contents';
