@@ -22,58 +22,6 @@ textarea.projects {
     resize: none;
   }
 
-/*###############
-##### HEADER ####
-###############*/
-
-.oTitle{
-    color: white;
-    padding: 50px;
-    margin: 0px;
-    text-align: center;
-    font-size: 50px;
-}
-
-.oTitle sc{
-    color:var(--color-primary);
-}
-
-.op{
-    color: black;
-    margin: 0px;
-    margin-left: 10%;
-    margin-right: 10%;
-    font-size: 15px;
-    text-align: center;
-}
-
-.op2{
-    color: black;
-    margin-left: 10%;
-    margin-right: 10%;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    text-align: center;
-    font-size: 15px;
-    display: block;
-}
-
-#oTopImage{
-	height: 200px;
-	width: 100%;
-	background-image: url(../images/network.jpeg);
-    background-size: cover;
-}
-
-#oArrowImage{
-    height: 50px;
-    width: 700px;
-    background-image: url(../images/4Dcycle.jpeg);
-    margin-left: auto;
-    margin-right: auto;
-    background-size: cover;
-}
-
 
 /*################
 ###### CARDS #####
