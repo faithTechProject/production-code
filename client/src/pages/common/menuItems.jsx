@@ -9,6 +9,8 @@ export const discoverItems = [
     { label: 'Lament', path: '/discover/lament'}
   ];
 export const discernItems = [
+  { label: 'Overview', path: '/discern/overview' },
+  { label: 'Brainstorm', path: '/discern/brainstorm' }
   ];
 export const developItems = [
   ];

@@ -13,6 +13,27 @@ html, body {
     margin: 0px;
     padding: 0px;
     background-image: radial-gradient(#FFFFFF,#FFFFFF,#CCCCDD);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1{
+    color: var(--color-primary);
+    margin: 0px;
+    text-align: center;
+    font-size: 30px;
+}
+
+h2{
+    color: #000;
+    margin: 0px;
+    text-align: center;
+    font-size: 26px;
+}
+
+p {
+    text-align: center;
+    width: 80%;
+    margin-left: 10%;
 }
 
 /*--------------------------
