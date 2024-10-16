@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import "./testPageDatabase.css";
-import { Table } from "./components/Table"; 
+import { Table } from "./components/Table";
 import { Modal } from './components/Modal';
 
 export function TestPageDatabase()

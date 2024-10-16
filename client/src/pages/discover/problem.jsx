@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import './stylesheets/problem.css';
+import '../stylesheets/problem.css';
 
-export function Problem() {
+export function DiscoverProblem() {
     return (
         <>
             <h1>Problem Page</h1>
