@@ -5,7 +5,7 @@ import { Stories } from './pages/stories';
 import { Help } from './pages/help';
 import { Overview } from './pages/overview';
 import { DiscoverTeams } from './pages/discover/teams';
-import { discoverLament } from './pages/discover/lament';
+import { DiscoverLament } from './pages/discover/lament';
 import { DiscoverProjects } from './pages/discover/projects';
 import { DiscoverProblem} from './pages/discover/problem';
 import { DiscoverOverview } from './pages/discover/overview';
@@ -37,7 +37,7 @@ function App() {
               <Route path="/discover/projects" element={<DiscoverProjects />} />
               <Route path="/discover/teams" element={<DiscoverTeams />} />
               <Route path="/discover/problem" element={<DiscoverProblem />} />
-              <Route path="/discover/lament" element={<discoverLament />} />
+              <Route path="/discover/lament" element={<DiscoverLament />} />
               <Route path="/discern/overview" element={<DiscernOverview />} />
               <Route path="/discern/brainstorm" element={<DiscernBrainstorm />} />
               <Route path="/discern/analysis" element={<DiscernAnalysis />} />
