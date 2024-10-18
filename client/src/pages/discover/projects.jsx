@@ -67,7 +67,7 @@ export function DiscoverProjects() {
                 <h1>Host Ideation Session</h1>
                 <p>Use the box below to document all ideas from your idea session. Include a short list of potential projects.</p>
                 <h2>List of Ideas</h2>
-                <textarea className="inputText"></textarea>
+                <textarea className="inputText projects"></textarea>
             </div>
             <div className='body'>
                 <h1>Identifying Local Needs</h1>
@@ -77,16 +77,16 @@ export function DiscoverProjects() {
                 <h2>Community Needs</h2>
                 <div className='communityDeck'>
                     <div className='card'>
-                        <textarea className='title' placeholder='Title...'></textarea>
-                        <textarea className='description' placeholder='Description of challenges...'></textarea>
+                        <textarea className='title  projects' placeholder='Title...'></textarea>
+                        <textarea className='description projects' placeholder='Description of challenges...'></textarea>
                     </div>
                     <div className='card'>
-                        <textarea className='title' placeholder='Title...'></textarea>
-                        <textarea className='description' placeholder='Description of challenges...'></textarea>
+                        <textarea className='title  projects' placeholder='Title...'></textarea>
+                        <textarea className='description  projects' placeholder='Description of challenges...'></textarea>
                     </div>
                     <div className='card'>
-                        <textarea className='title' placeholder='Title...'></textarea>
-                        <textarea className='description' placeholder='Description of challenges...'></textarea>
+                        <textarea className='title  projects' placeholder='Title...'></textarea>
+                        <textarea className='description  projects' placeholder='Description of challenges...'></textarea>
                     </div>
                 </div>
             </div>
@@ -99,18 +99,18 @@ export function DiscoverProjects() {
                 <h1>Engage with Local Schools and Universities</h1>
                 <p>Use the template provided below to develop a proposal for a collaborative project or mentorship program with a local educational institution.</p>
                 <h2>Proposal Template</h2>
-                <textarea id='educationProposal'></textarea>
+                <textarea className='projects' id='educationProposal'></textarea>
             </div>
             <div className='body'>
                 <h1>Analyze Existing Technology</h1>
                 <p>Use the following boxes to highlight current uses, gaps, and opportunities for redemptive technology projects.</p>
                 <h2>Technology Use</h2>
                 <p>Technology Audit: Assess how technology is currently used.</p>
-                <textarea id='techAudit'></textarea>
+                <textarea className='projects' id='techAudit'></textarea>
                 <p>Technology Disparities: Identify gaps.</p>
-                <textarea id='techGaps'></textarea>
+                <textarea className='projects' id='techGaps'></textarea>
                 <p>Emerging Technology: Brainstorm opportunities.</p>
-                <textarea id='techOpportunities'></textarea>
+                <textarea className='projects' id='techOpportunities'></textarea>
             </div>
         </>
     )
