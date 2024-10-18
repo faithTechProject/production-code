@@ -4,7 +4,7 @@ import { Create } from './pages/create';
 import { Stories } from './pages/stories';
 import { Help } from './pages/help';
 import { discoverTeams } from './pages/discover/teams';
-import { discoverLament } from './pages/discover/lament';
+import { DiscoverLament } from './pages/discover/lament';
 import { DiscoverProjects } from './pages/discover/projects';
 import { Overview } from './pages/overview';
 import { DiscoverOverview } from './pages/discover/overview';
@@ -30,7 +30,7 @@ function App() {
               <Route path="/discover/overview" element={<DiscoverOverview />} />
               <Route path="/discover/projects" element={<DiscoverProjects />} />
               <Route path="/discover/teams" element={<discoverTeams />} />
-              <Route path="/discover/lament" element={<discoverLament />} />
+              <Route path="/discover/lament" element={<DiscoverLament />} />
             </Routes>
           </div>
         </div>
