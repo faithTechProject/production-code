@@ -12,7 +12,7 @@
 html, body {
     margin: 0px;
     padding: 0px;
-    background-image: radial-gradient(#FFFFFF,#FFFFFF,#CCCCDD);
+    background-image: radial-gradient(rgb(192, 209, 219),#FFFFFF,rgb(192, 209, 219));
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
