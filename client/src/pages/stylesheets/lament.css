@@ -1,0 +1,269 @@
+body {   
+    background-image: linear-gradient(rgb(192, 209, 219), white, rgb(192, 209, 219));
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.oLamenth1{
+    color: #ea542c;
+    padding: 15px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.oLamenth2{
+    color: black;
+    padding: 15px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.oTitle{
+    color: white;
+    padding: 50px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.oLamentp{
+    text-align: left;
+    color: black;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: 15px;
+}
+
+.oLamentp oBold{
+	color: #ea542c;
+}
+
+.oLamentp2{
+    text-align: left;
+    color: black;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.oLamentp2 num{
+    color: white;
+}
+
+.oQuoteText{
+    color: white;
+    padding: 15px;
+    font-size: 15px;
+    margin: auto;
+    text-align: left;
+}
+
+.lamentStepHeaderText{
+    color: white;
+    font-size: 18px;
+    padding: 20px;
+}
+
+.lamentStepText{
+    color: black;
+    font-size: 15px;
+}
+
+.oBibleQuoteBox{
+    background-color: #ea542c;
+    width: 50%;
+    height: 170px;
+    border: #ea542c;
+    border-radius: 25px;
+    margin: auto;
+}
+
+#oLamentTopImage{
+	height: 200px;
+	width: 100%;
+	background-image: url(../images/lamentPic.jpg);
+    background-size: cover;
+}
+
+.oScriptureBoxOne{
+	width: 70%;
+    background-color: white;
+    height: 70px;
+    border: 3px solid black;
+    margin-right: 15%; 
+    border-radius: 50px 50px 0px 50px;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.oScriptureBoxTwo{
+	width: 65%;
+    background-color: white;
+    height: 70px;
+    border: 3px solid black;
+    margin-right: 15%; 
+    border-radius: 50px 50px 0px 50px;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.oScriptureBoxThree{
+	width: 60%;
+    background-color: white;
+    height: 70px;
+    border: 3px solid black;
+    margin-right: 15%; 
+    border-radius: 50px 50px 0px 50px;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.oScriptureBoxFour{
+	width: 55%;
+    background-color: white;
+    height: 70px;
+    border: 3px solid black;
+    margin-right: 15%; 
+    border-radius: 50px 50px 0px 50px;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.oScriptureBoxFive{
+	width: 50%;
+    background-color: white;
+    height: 70px;
+    border: 3px solid black;
+    margin-right: 15%; 
+    border-radius: 50px 50px 0px 50px;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.oNumberBox{
+    width: 50px;
+    background-color: #ea542c;
+    height: 40px;
+    border: #ea542c;
+    border-radius: 40px 0px 0px 40px;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.oPhase1Box{
+    width: 250px;
+    border: 3px solid black;
+    background-color: white;
+    padding: 5px;
+	border-radius: 25px 25px 0px 25px;
+    display: inline-block;
+    height: 230px;
+    margin-left: 8%;
+}
+
+.oPhase2Box{
+    width: 250px;
+    border: 3px solid black;
+    background-color: #FDE064;
+    padding: 5px;
+	border-radius: 25px 25px 0px 25px;
+    display: inline-block;
+    height: 230px;
+    margin: 6%;
+}
+
+.oPhase3Box{
+    width: 250px;
+    border: 3px solid black;
+    background-color: #ea542c;
+    padding: 5px;
+	border-radius: 25px 25px 0px 25px;
+    display: inline-block;
+    height: 230px;
+    margin-right: 8%
+}
+
+.oInnerPhaseBox{
+    width: 230px;
+    border: 3px solid black;
+    background-color: black;
+    padding: 5px;
+    border-radius: 25px 25px 0px 25px;
+    height: 60px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.oPhaseTextp3{
+    color: white;
+    font-size: 15px;
+}
+
+.oPhaseTextp3 num{
+    font-size: 25px;
+    margin-left: 3px;
+    margin-right: 10px;
+}
+
+#oPhase1{
+	height: 150px;
+	width: 100px;
+	background-image: url(../images/Phase1.png);
+    background-size: cover;
+    margin-left: 70px;
+}
+
+#oPhase2{
+	height: 110px;
+	width: 150px;
+	background-image: url(../images/Phase2.png);
+    background-size: cover;
+    margin: auto;
+}
+
+#oPhase3{
+	height: 150px;
+	width: 150px;
+	background-image: url(../images/Phase3.png);
+    background-size: cover;
+    margin: auto;
+}
+
+.oLamentStep{
+    height: 175px;
+    width: 200px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 0px 50px 0px 50px;
+    display: inline-block;
+    margin-left: 11%;
+    margin-bottom: 5%;
+    margin-top: 15px;
+}
+
+.oLamentStepHeader{
+    height: 40px;
+    width: 96%;
+    background-color: #ea542c;
+    border-radius: 0px 50px 0px 50px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+table {
+    width: 90%;
+    border-spacing: 5%;
+    margin: auto;
+}
