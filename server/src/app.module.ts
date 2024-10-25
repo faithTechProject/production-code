@@ -2,13 +2,6 @@ import { Controller, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm'; // import typeorm for postgres connection.
-import { Poll } from './poll/poll.entity';
-import { PollService } from './poll/poll.service';
-import { PollController } from './poll/poll.controller';
-import { UsersModule } from './users/users.module';
-import { Info } from './info/info.entity';
-import { InfoController } from './info/info.controller';
-import { InfoService } from './info/info.service';
 import { ReflectionController } from './reflection/reflection.controller';
 import { Reflection } from './reflection/reflection.entity'
 import { ReflectionService } from './reflection/reflection.service';
@@ -16,6 +9,12 @@ import { MatrixModule } from './matrix/matrix.module';
 import { Matrix } from './matrix/matrix.entity';
 import { MatrixController } from './matrix/matrix.controller';
 import { MatrixService } from './matrix/matrix.service';
+import { ConfigService } from '@nestjs/config';
+import { TextAreaReflectionsModule } from './text.area.reflections/text.area.reflections.module';
+import { TextAreaReflectionsController } from './text.area.reflections/text.area.reflections.controller';
+import { TextAreaReflectionsService } from './text.area.reflections/text.area.reflections.service';
+import { TextAreaReflections } from './text.area.reflections/text.area.reflections.entity';
+
 
 @Module({
   imports: [
@@ -26,13 +25,13 @@ import { MatrixService } from './matrix/matrix.service';
       username: 'faithtech_user',
       password: 'faithtech_password',
       database: 'faithtech_create',
-      entities: [Poll, Info, Reflection, Matrix], // postgres database tables.
-      synchronize: true, // not for production builds.  Data loss posible.
-    }),
-    TypeOrmModule.forFeature([Poll, Info, Reflection, Matrix]),
-    UsersModule
+      synchronize: false,
+      entities: [Reflection, Matrix, TextAreaReflections] // postgres database tables.
+  }),
+    TypeOrmModule.forFeature([Reflection, Matrix, TextAreaReflections])
   ],
-  controllers: [ReflectionController, MatrixController, PollController],
-  providers: [ReflectionService, MatrixService, PollService],
+  controllers: [ReflectionController, MatrixController, TextAreaReflectionsController],
+  providers: [ReflectionService, MatrixService, TextAreaReflectionsService],
+
 })
 export class AppModule {}
