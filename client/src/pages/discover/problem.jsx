@@ -12,7 +12,7 @@ export function DiscoverProblem() {
                 <div className='body'>
                     <h1>Identify</h1>
                     <p>Now that you've identified impactful opportunities for redemptive technology in your community and have
-                    started to form your team it's time to choose a problem. Feel free to refer back to the <a href="/project#/project">Projects Page. </a> 
+                    started to form your team it's time to choose a problem. Feel free to refer back to the <a href="/#/discover/projects">Projects Page. </a> 
                     If you completed all the exercises on that page you should hopefully have numerous project
                     ideas. If you're still unsure take time to pray and ask God for direction. Ask your team to pray as
                     well and then gather together to discuss and decide on a problem you feel called
