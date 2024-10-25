@@ -1,0 +1,96 @@
+.obody1 {   
+    background-image: linear-gradient(rgb(192, 209, 219), white);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.obody2{
+    background-image: linear-gradient(white, rgb(192, 209, 219))
+}
+
+.discernBody{
+    background-color: white;
+}
+
+.o2Dh2{
+    color: black;
+    padding: 15px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.oTitle{
+    color: white;
+    padding: 50px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.o2Dp{
+    color: black;
+    padding-left: 400px;
+    padding-right: 400px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.o2Dp1{
+    text-align: left;
+    color: black;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: 15px;
+}
+
+.o2Dp2{
+    text-align: center;
+    color: black;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.oQuoteText{
+    color: white;
+    padding: 15px;
+    font-size: 15px;
+    border-left: 6px green;
+    height: 50px;
+}
+
+#oDiscernTopImage{
+	height: 200px;
+	width: 100%;
+	background-image: url(../images/DiscernPicture.png);
+    background-size: cover;
+}
+
+.oQuoteBox{
+    background-color: #ea542c;
+    width: 50%;
+    height: 150px;
+    border: #ea542c;
+    margin: auto; 
+    border-radius: 25px;
+}
+
+.oDiscernBox{
+    width: 200px;
+    border: 3px solid black;
+    margin-top: 15px;
+    margin-left: 70%;
+    padding: 5px;
+}
+
+#o4Ddiscern{
+    height: 380px;
+    width: 650px;
+    background-image: url(../images/Discern4DCycle.png);
+    background-size: cover;
+    padding: 20px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+iframe {
+    display: block;
+    margin: auto;
+}
