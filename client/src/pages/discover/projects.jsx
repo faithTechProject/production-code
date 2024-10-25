@@ -15,8 +15,6 @@ export function DiscoverProjects() {
                 <h3 class="oTitle">SOURCING <sc>CREATE</sc> PROJECTS</h3>
             </div>
             <div className="body">
-                <h1>The 4D Cycle</h1>
-                <p>To effectively lead projects using the 4D Cycle, it's crucial to have a deep understanding of each stage.</p>
                 <div class="infoDeck">
                     <div className= "card">
                         <div class="image"></div>
