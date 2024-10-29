@@ -1,4 +1,28 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 export function DiscoverTeams() {
+    
+    const[skills, setSkills] = useState([])
+    const[experience, setExperience] = useState([])
+
+    useEffect(()=> {
+        axios.get(`http://localhost:3000/text-area-reflections/Teams`).then(res => {
+            const teamsResponse = res.data;
+            teamsResponse.sort((a, b) => a.entry_pos - b.entry_pos);
+            setSkills(teamsResponse[0].reply);
+            setExperience(teamsResponse[1].reply)
+            console.log("here")
+        })
+    }, [])
+
+    const handleSubmit = (e, replyData) => {
+        e.preventDefault(); 
+        axios.patch(`http://localhost:3000/text-area-reflections/?page=Teams&entry_pos=${e.target.id}`, {
+            reply: replyData
+        })
+    }
+
     return (
         <div class="hero_teams_container">
             <div class="hero_teams_header">
@@ -17,13 +41,27 @@ export function DiscoverTeams() {
                             <div className="skills">
                                 <h3> skills </h3>
                                 <label>
-                                <textarea name="skills" rows={4} cols={40} />
+                                <form id='0' onSubmit={(e) => handleSubmit(e, skills)}>
+                                    <textarea name="skills" rows={4} cols={40}
+                                    placeholder="Enter text here..."
+                                    value={skills}
+                                    onChange={(e) => setSkills(e.target.value)}
+                                    />
+                                    <input type="submit" value="Save" />
+                                </form>
                                 </label>
                             </div>
                             <div className="Experience">
                                 <h3> Experience </h3>
                                 <label>
-                                <textarea name="skills" rows={4} cols={40} />
+                                <form id='1' onSubmit={(e) => handleSubmit(e, experience)}>
+                                    <textarea name="experience" rows={4} cols={40}
+                                    placeholder="Enter text here..."
+                                    value={experience}
+                                    onChange={(e) => setExperience(e.target.value)}
+                                    />
+                                    <input type="submit" value="Save" />
+                                </form>
                                 </label>
                             </div>
                         </div>

@@ -7,8 +7,8 @@ import { DataSource } from "typeorm";
 
 config();
 
-const configService = new ConfigService();
-
+//const configService = new ConfigService();
+ //create a typeorm DataSource object to store the database connection.
 export default new DataSource(
     {
     type: 'postgres',

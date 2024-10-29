@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import '../stylesheets/discoverProjects.css';
-import { Link, useActionData } from "react-router-dom";
 import axios from 'axios';
 export function DiscoverProjects() {
     
@@ -23,6 +22,7 @@ export function DiscoverProjects() {
     useEffect(() => {
         axios.get(`http://localhost:3000/text-area-reflections/Projects`).then(res => {
             const data = res.data.map((item) => item)
+            console.log(data)
             data.sort((a, b) => a.entry_pos - b.entry_pos); // sort by entry_pos in ascending order
             
             setListOfIdeas(data[0].reply)
@@ -54,7 +54,6 @@ export function DiscoverProjects() {
             title: titleData,
             reply: replyData
         })
-
     }
 
     function toggle(x) {

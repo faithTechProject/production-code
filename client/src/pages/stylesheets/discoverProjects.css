@@ -111,6 +111,7 @@ textarea.projects {
 }
 
 .communityDeck .title{
+    box-sizing: border-box;
     border-style: none;
     border-bottom-style: solid;
     border-radius: 0px;
@@ -134,6 +135,7 @@ textarea.projects {
 }
 
 .communityDeck .description{
+    box-sizing: border-box;
     border-style:none;
     width: 100%;
     margin-left: 0px;
