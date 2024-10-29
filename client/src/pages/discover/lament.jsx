@@ -138,7 +138,7 @@ export function DiscoverLament() {
 					Work on the lament as a team.
 					This lament becomes your team's prayer as you begin working on the project.
 				</p>
-				<table>
+				<table class="oTable">
 					<tr>
 						<td>
 							<div class="oLamentStep">
@@ -261,6 +261,7 @@ export function DiscoverLament() {
 				<p class="oLamentp">
 				Remember, the goal of this stage is to deeply understand the problem and its impact on people, viewing it through the compassionate lens of Christ.
 				</p>
+				<br></br>
 			</body>
         </>
     )

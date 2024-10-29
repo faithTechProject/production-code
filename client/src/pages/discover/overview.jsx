@@ -20,6 +20,7 @@ export function DiscoverOverview() {
             </div>
             <div class="discoverBody">
                 <div id="o4Ddiscover"></div>
+                <br></br>
             </div>
             <div class="obody2">
                 <h2 class="o1Dh2">What is Discover?</h2>

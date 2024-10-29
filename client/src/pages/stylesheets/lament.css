@@ -262,7 +262,7 @@ body {
     align-items: center;
 }
 
-table {
+.oTable {
     width: 90%;
     border-spacing: 5%;
     margin: auto;
