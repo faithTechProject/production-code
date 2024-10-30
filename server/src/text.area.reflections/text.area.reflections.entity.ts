@@ -6,15 +6,18 @@ export class TextAreaReflections {
     id: number;
 
     @Column()
+    category: string;
+
+    @Column()
     page: string;
     
     @Column()
     entry_pos: number;
 
-    @Column({nullable: true})
+    @Column()
     title: string;
 
-    @Column({nullable: true})
+    @Column()
     subtitle: string;
 
     @Column()

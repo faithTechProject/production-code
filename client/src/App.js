@@ -32,11 +32,13 @@ function App() {
               <Route path="/create" element={<Create />} />
               <Route path="/stories" element={<Stories />} />
               <Route path="/help" element={<Help />} />
+              <Route path="/data" element={<TestPageDatabase />} />
               <Route path="/overview" element={<Overview />} />
               <Route path="/discover/overview" element={<DiscoverOverview />} />
               <Route path="/discover/projects" element={<DiscoverProjects />} />
               <Route path="/discover/teams" element={< DiscoverTeams />} />
-              <Route path="/discover/lament" element={<discoverLament />} />
+              <Route path="/discover/problem" element={<DiscoverProblem />} />
+              <Route path="/discover/lament" element={<DiscoverLament />} />
               <Route path="/discern/analysis" element={< DiscernAnalysis />} />
             </Routes>
           </div>

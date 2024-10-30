@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Matrix } from './matrix.entity';
 import { Repository } from 'typeorm';
+import { UpdateMatrixDto } from './dto/update-matrix.dto';
 
 @Injectable()
 export class MatrixService {
@@ -10,27 +11,23 @@ export class MatrixService {
         private readonly matrixRepository: Repository<Matrix>
     ) {}
 
-    findOne(name: string) {
-        return this.matrixRepository.find({
-            where: {
-                name: name
-            }
-        })
+    findOne(page: string) {
+        return this.matrixRepository.find({where: { page: page }})
     }
 
     findAll() {
         return this.matrixRepository.find();
     }
 
-    createEntry(name: string, data: string[]) {
-        const entry = this.matrixRepository.create({ name, data });
+    createEntry(id: number, category, page, entry_pos: number, input: string[]) {
+        const entry = this.matrixRepository.create({ id, category, page, entry_pos, input });
         return this.matrixRepository.save(entry);
     }
 
-    replaceEntry(name: string, data: Partial<Matrix>) {
-        this.matrixRepository.update(name, data)
-        
-        return this.findOne(name)
+    async updateEntry(page: string, entry_pos: number, updateMatrixDto: UpdateMatrixDto): Promise<Matrix> {
+        const toUpdate = await this.matrixRepository.findOne({where: { entry_pos:entry_pos, page:page}});
+        const updated = Object.assign(toUpdate, updateMatrixDto);
+        return await this.matrixRepository.save(updated);
      }
 
     deleteOne( name: string) {

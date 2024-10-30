@@ -1,26 +1,44 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
-
-
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 export function DiscoverTeams() {
     
-    const[skills, setSkills] = useState([])
-    const[experience, setExperience] = useState([])
+    const[essentialRoles, setEssentialRoles] = useState([])
+    const[values, setValues] = useState([])
+    const[reflectionQuestion1, setReflectionQuestion1] = useState([])
+    const[reflectionQuestion2, setReflectionQuestion2] = useState([])
+    const[reflectionQuestion3, setReflectionQuestion3] = useState([])
+
+    const[modalOpen, setModalOpen] = useState(false);
+    const [rows, setRows] = useState([ 
+
+        {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
+        {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
+        {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
+    ]);
+    const [rowToEdit, setRowToEdit] = useState(null);
 
     useEffect(()=> {
         axios.get(`http://localhost:3000/text-area-reflections/Teams`).then(res => {
             const teamsResponse = res.data;
             teamsResponse.sort((a, b) => a.entry_pos - b.entry_pos);
-            setSkills(teamsResponse[0].reply);
-            setExperience(teamsResponse[1].reply)
-            console.log("here")
+            setEssentialRoles(teamsResponse[0].reply);
+            setValues(teamsResponse[1].reply)
+            setReflectionQuestion1(teamsResponse[2].reply)
+            setReflectionQuestion2(teamsResponse[3].reply)
+            setReflectionQuestion3(teamsResponse[4].reply)
+
+            axios.get("http://localhost:3000/matrix-reflections/Teams").then(res => {
+                if (res.data[0].input.length > 0) {
+                    setRows(res.data.map((item) => item.input)[0])
+                }
+            })
         })
     }, [])
 
-    const handleSubmit = (e, replyData) => {
+    const handleSubmit_database = (e, replyData) => {
         e.preventDefault(); 
         axios.patch(`http://localhost:3000/text-area-reflections/?page=Teams&entry_pos=${e.target.id}`, {
             reply: replyData
@@ -31,9 +49,11 @@ export function DiscoverTeams() {
     // State to hold tasks and roles
     const [tasks, setTasks] = useState(['']);
     const [roles, setRoles] = useState(['']);
+    console.log(roles)
  
     // State to hold form data, initialized with default values
     const [formData, setFormData] = useState({});
+    //console.log(formData)
 
     const handleFlip = (index) => {
         setFlippedCards((prevState) => ({
@@ -52,11 +72,13 @@ export function DiscoverTeams() {
     // Function to handle input changes in the form
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+        console.log(e.target.textContent);
         // Update formData state with the new value for the changed field
         setFormData({
         ...formData,
         [name]: value,
         });
+        
     };
 
     // Function to handle roles change
@@ -249,7 +271,14 @@ export function DiscoverTeams() {
                 <p> In the box below list the essential roles needed</p>
                 <p> Identify...</p>
                 <label>
-                    <textarea name="skills" rows={10} cols={20} />
+                    <form id='0' onSubmit={(e) => handleSubmit_database(e, essentialRoles)}>
+                        <textarea name="skills" rows={10} cols={20}
+                        placeholder="Enter text here..."
+                        value={essentialRoles}
+                        onChange={(e) => setEssentialRoles(e.target.value)}
+                        />
+                        <input type="submit" value="Save" />
+                    </form>
                 </label>
             
             </div>
@@ -362,6 +391,7 @@ export function DiscoverTeams() {
                             </tr>
                         </thead>
                         <tbody>
+                            {console.log("here")}
                             {tasks.map((task, rowIndex) => (
                             <tr key={rowIndex}>
                                 {/* Input field for task name */}
@@ -498,7 +528,14 @@ export function DiscoverTeams() {
                         <p>
                             Document yout values in the space provided below
                         </p>
-                        <textarea name="skills" rows={10} cols={20} />
+                        <form id='1' onSubmit={(e) => handleSubmit_database(e, values)}>
+                            <textarea name="values" rows={10} cols={20}
+                            placeholder="Enter text here..."
+                            value={values}
+                            onChange={(e) => setValues(e.target.value)}
+                            />
+                            <input type="submit" value="Save" />
+                        </form>
                     </label>
                 </div>
                 <div className='Reflection_questions'>
@@ -509,7 +546,14 @@ export function DiscoverTeams() {
                             <p className='exercise_paragraph'>
                                 Are we obedient to the Holy Spirit as we build out our teams?
                             </p>
-                            <textarea className='exercise_label' rows={10} cols={20} />
+                            <form id='2' onSubmit={(e) => handleSubmit_database(e, reflectionQuestion1)}>
+                                <textarea className='exercise_label' rows={10} cols={20}
+                                placeholder="Enter text here..."
+                                value={reflectionQuestion1}
+                                onChange={(e) => setReflectionQuestion1(e.target.value)}
+                                />
+                                <input type="submit" value="Save" />
+                            </form>
                         </label>
                     </div>
                     <div className='exercise'>
@@ -517,7 +561,15 @@ export function DiscoverTeams() {
                             <p className='exercise_paragraph' >
                                 Are we leveraging the diverse gifts and experiences God has given our communty memberrs?
                             </p>
-                            <textarea className='exercise_label' rows={10} cols={20} />
+                            
+                            <form id='3' onSubmit={(e) => handleSubmit_database(e, reflectionQuestion2)}>
+                                <textarea className='exercise_label' rows={10} cols={20}
+                                placeholder="Enter text here..."
+                                value={reflectionQuestion2}
+                                onChange={(e) => setReflectionQuestion2(e.target.value)}
+                                />
+                                <input type="submit" value="Save" />
+                            </form>
                         </label>
                     </div>
                     <div className='exercise'>
@@ -526,7 +578,15 @@ export function DiscoverTeams() {
                             <p className='exercise_paragraph'>  
                                 How can we ensure that every team member feels valued and has Oppiortunities to contribute meaningfully?      
                             </p>
-                            <textarea className='exercise_label' rows={10} cols={20} />
+                            <form id='4' onSubmit={(e) => handleSubmit_database(e, reflectionQuestion3)}>
+                                <textarea className='exercise_label' rows={10} cols={20}
+                                placeholder="Enter text here..."
+                                value={reflectionQuestion3}
+                                onChange={(e) => setReflectionQuestion3(e.target.value)}
+                                />
+                                <input type="submit" value="Save" />
+                            </form>
+                            
                         </label>
                     </div>
 

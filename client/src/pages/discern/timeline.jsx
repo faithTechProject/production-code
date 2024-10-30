@@ -1,6 +1,26 @@
 import { Link } from 'react-router-dom';
 import '../stylesheets/problem.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 export function DiscernTimeline() {
+    
+    const[communication, setCommunication] = useState([])
+
+    useEffect(()=> {
+        axios.get(`http://localhost:3000/text-area-reflections/Timeline`).then(res => {
+            const response = res.data;
+            response.sort((a, b) => a.entry_pos - b.entry_pos);
+            setCommunication(response[0].reply);
+        })
+    }, [])
+
+    const handleSubmit = (e, replyData) => {
+        e.preventDefault(); 
+        axios.patch(`http://localhost:3000/text-area-reflections/?page=Timeline&entry_pos=${e.target.id}`, {
+            reply: replyData
+        })
+    }
+    
     return (
         <>
             <div id="oTopImage">
@@ -46,7 +66,16 @@ export function DiscernTimeline() {
             <div className='body'>
                 <h1>Communication Plan</h1>
                 <p>Share your team's communication method, platforms, or plan.</p>
-                <div class="divbox"><form><textarea className='communication'>...</textarea></form></div>
+                <div class="divbox">
+                    <form id='0' onSubmit={(e) => handleSubmit(e, communication)}>
+						<textarea className='communication'
+						placeholder="Type here..." 
+						value={communication}
+						onChange={(e) => setCommunication(e.target.value)}
+						/>
+						<input type="submit" value="Save" />
+					</form>
+                </div>
             </div>
         </>
     )
