@@ -16,4 +16,13 @@ export class Matrix {
 
     @Column('jsonb')
     input: string[];
+
+    @Column('text', {array: true})
+    tasks_rows: string[];
+
+    @Column('text', {array: true})
+    roles_columns: string[];
+
+    @Column('jsonb')
+    rci_input: string[];
 }

@@ -18,9 +18,9 @@ export class MatrixController {
     }
 
     @Post()
-    createEntry(@Body() {id, category, page, entry_pos, input}:
-    {id: number, category: string, page: string, entry_pos: number, input: string[]}) {
-        return this.matrixService.createEntry(id, category, page, entry_pos, input)
+    createEntry(@Body() {id, category, page, entry_pos, input, tasks_rows, roles_columns, rci_input}:
+    {id: number, category: string, page: string, entry_pos: number, input: string[], tasks_rows: string[], roles_columns: string[], rci_input: string[]}) {
+        return this.matrixService.createEntry(id, category, page, entry_pos, input, tasks_rows, roles_columns, rci_input)
     }
 
     //@Put(':name')

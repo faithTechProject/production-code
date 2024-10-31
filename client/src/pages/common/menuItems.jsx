@@ -11,7 +11,9 @@ export const discoverItems = [
 export const discernItems = [
   { label: 'Overview', path: '/discern/overview' },
   { label: 'Brainstorm', path: '/discern/brainstorm' },
-  { label: 'Analysis', path: '/discern/analysis' }
+  { label: 'Analysis', path: '/discern/analysis' },
+  { label: 'Timeline', path: '/discern/timeline' }
+  
   ];
 export const developItems = [
     

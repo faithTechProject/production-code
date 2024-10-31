@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import { useEffect } from "react";
 import axios from "axios";
+import { Table } from '../components/SkillTable';
+import { Modal } from '../components/Modal';
 
 export function DiscoverTeams() {
     
@@ -20,6 +22,13 @@ export function DiscoverTeams() {
     ]);
     const [rowToEdit, setRowToEdit] = useState(null);
 
+    const [tasks, setTasks] = useState(['']);
+    const [roles, setRoles] = useState(['']);
+    const [otherForm, setOtherForm] = useState([])
+    console.log(tasks)
+    console.log(roles)
+    console.log(otherForm)
+
     useEffect(()=> {
         axios.get(`http://localhost:3000/text-area-reflections/Teams`).then(res => {
             const teamsResponse = res.data;
@@ -34,25 +43,72 @@ export function DiscoverTeams() {
                 if (res.data[0].input.length > 0) {
                     setRows(res.data.map((item) => item.input)[0])
                 }
+                console.log("text")
+                console.log(res.data)
+                setTasks(res.data[0].tasks_rows)
+                setRoles(res.data[0].roles_columns)
+                setOtherForm(res.data.map((item) => item.rci_input)[0])
             })
         })
     }, [])
 
     const handleSubmit_database = (e, replyData) => {
-        e.preventDefault(); 
+        e.preventDefault();
         axios.patch(`http://localhost:3000/text-area-reflections/?page=Teams&entry_pos=${e.target.id}`, {
             reply: replyData
+            
         })
+    }
+    const handleDeleteRow = (targetIndex) => {
+        const data = rows.filter((_, idx) => idx !== targetIndex)
+        setRows(data)
+        
+        axios.patch(`http://localhost:3000/matrix-reflections/?page=Teams&entry_pos=${0}`, {
+            input: data
+        });       
+    }
+
+    const handleEditRow = (idx) => {
+        setRowToEdit(idx);
+        setModalOpen(true);
+    }
+    
+    const handleSubmit_matrix = (newRow) => {
+        rowToEdit === null ?  
+        
+        setRows([...rows, newRow]) :
+        
+        setRows(rows.map((currRow, idx) => {
+            if (idx !== rowToEdit) return currRow;
+             return newRow
+        }))
+        
+        
+        let data = []
+        rowToEdit === null ?  
+        
+        data = [...rows, newRow]:
+        
+
+        data = (rows.map((currRow, idx) => {
+            if (idx !== rowToEdit) return currRow;
+             return newRow
+        }))
+
+        axios.patch(`http://localhost:3000/matrix-reflections/?page=Teams&entry_pos=${0}`, {
+            input: data
+        });
     }
 
     const [flippedCards, setFlippedCards] = useState({});
     // State to hold tasks and roles
-    const [tasks, setTasks] = useState(['']);
-    const [roles, setRoles] = useState(['']);
-    console.log(roles)
+
+    
  
     // State to hold form data, initialized with default values
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState([]);
+    //console.log(formData)
+
     //console.log(formData)
 
     const handleFlip = (index) => {
@@ -70,17 +126,41 @@ export function DiscoverTeams() {
     ];
 
     // Function to handle input changes in the form
-    const handleInputChange = (e) => {
+    const handleInputChange = (e, row, col) => {
+        console.log(e.target)
         const { name, value } = e.target;
         console.log(e.target.textContent);
         // Update formData state with the new value for the changed field
-        setFormData({
-        ...formData,
-        [name]: value,
-        });
-        
+        //setOtherForm([{name: "responsible"}])
+        //setFormData([{
+        //...formData,
+        //[name]: value,
+        //}]);
+        let canAdd = true;
+        for (let i = 0; i < otherForm.length; ++i)
+            if ((otherForm[i].row === row) && (otherForm[i].col === col)) {
+                canAdd = false;
+                otherForm[i].name = `${e.target.value}`;
+                setOtherForm([...otherForm])
+                break
+            }
+        if (canAdd) {
+            setOtherForm([...otherForm, {name: `${e.target.value}`, row: row, col: col}]);
+        }
+        else {
+            console.log("could not add")
+        }
     };
 
+    function getFormValue(row, col) {
+        for (let i = 0; i < otherForm.length; ++i) {
+            if ((otherForm[i].row === row) && (otherForm[i].col === col)) {
+                return otherForm[i].name;
+            }
+        }
+        setOtherForm([...otherForm, {name: "Responsible", row: row, col: col}])
+        console.log("no value")
+    }
     // Function to handle roles change
     const handleRolesChange = (index, value) => {
         const updatedRoles = [...roles];
@@ -105,6 +185,13 @@ export function DiscoverTeams() {
         if (roles.length === 1) return;
         
         setRoles(roles.filter((_, index) => index !== indexToRemove));
+        setOtherForm(otherForm.filter((item) => item.col !== indexToRemove))
+        for (let i = 0; i < otherForm.length; ++i) {
+            if (otherForm[i].col > indexToRemove)
+                --otherForm[i].col;
+        }
+
+
     };
 
     // Function to add a new task input field
@@ -115,8 +202,15 @@ export function DiscoverTeams() {
     const removeTask = (indexToRemove) => {
         // Don't remove if it's the last task
         if (tasks.length === 1) return;
-        
+        console.log(indexToRemove)
         setTasks(tasks.filter((_, index) => index !== indexToRemove));
+        setOtherForm(otherForm.filter((item) => item.row !== indexToRemove))
+        for (let i = 0; i < otherForm.length; ++i) {
+            if (otherForm[i].row > indexToRemove)
+                --otherForm[i].row;
+        }
+        //console.log(JSON.stringify(myVar) + "text");//.includes(`task${!index}`)) )
+        //console.log("text")
     };
 
     //close icon as SVG
@@ -135,9 +229,17 @@ export function DiscoverTeams() {
         <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
     );
-
-
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.patch(`http://localhost:3000/matrix-reflections/?page=Teams&entry_pos=${e.target.id}`, {
+            tasks_rows: tasks,
+            roles_columns: roles,
+            rci_input: otherForm
+        
+        })
+    }
     // Function to handle form submission
+    /*
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent the default form submission behavior
 
@@ -167,7 +269,7 @@ export function DiscoverTeams() {
         console.error('Error:', error); // Log any errors that occur during the fetch
         }
     };
-
+    */
     return (
         <div class="hero_teams_container">
             <div class="hero_teams_header">
@@ -213,26 +315,18 @@ export function DiscoverTeams() {
                         you create a well rounded team
                     </p>
                     <h1 className="skills_matrix_title"> Skills Matrix </h1>
-                    <div className="skills-matrix">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Skills</th>
-                                <th>Past Experiences</th>
-                                <th>Areas for Growth</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                <td>row</td>
-                                <td>skills</td>
-                                <td>past_experiences</td>
-                                <td>areas_for_growth</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
+                        <button onClick={() => setModalOpen(true)}>Add Entry</button>
+
+                        {modalOpen && (
+                            <Modal closeModal={() => {
+                                setModalOpen(false);
+                                setRowToEdit(null);
+                            }}
+                            onSubmit={handleSubmit_matrix}
+                            defaultValue={rowToEdit !== null && rows[rowToEdit]}
+                            />
+                    )}
                 </div>
                 <div className="hero_member_roles">
                     <h1 className = "member_roles_title"> Balance Technical and Non-Technical Roles </h1>
@@ -328,7 +422,7 @@ export function DiscoverTeams() {
                                 <div className="input-wrapper">
                                 <input
                                     type="text"
-                                    value={task}
+                                    value={task}// || formData[`task${index + 1}`]}
                                     onChange={(e) => handleTasksChange(index, e.target.value)}
                                     placeholder={`Task ${index + 1}`}
                                     className="input-field"
@@ -380,14 +474,12 @@ export function DiscoverTeams() {
                             </button>
                         </div>
                     </div>
-                    <form className='raci_matrix_form' onSubmit={handleSubmit} >
+                    <form id="0" className='raci_matrix_form' onSubmit={handleSubmit} >
                         <table className="matrix">
                         <thead>
                             <tr>
-                            <th>Task</th>
-                            {roles.map((role, index) => (
-                                <th key={index}>{role || `Role ${index + 1}`}</th>
-                            ))}
+                                <th>Task</th>
+                                {roles.map((role, index) => (<th key={index}>{role || `Role ${index + 1}`}</th> ))}
                             </tr>
                         </thead>
                         <tbody>
@@ -395,11 +487,13 @@ export function DiscoverTeams() {
                             {tasks.map((task, rowIndex) => (
                             <tr key={rowIndex}>
                                 {/* Input field for task name */}
-                                <td><input type="text" name={`task${rowIndex + 1}`} value={formData[`task${rowIndex + 1}`] || task} onChange={handleInputChange} placeholder="Enter task" /></td>
+                                {/*<td><input type="text" name={`task${rowIndex + 1}`} value={formData[`task${rowIndex + 1}`] || task} onChange={handleInputChange} placeholder="Enter task" /></td>*/}
+                                <td><input type="text" name={`task${rowIndex + 1}`} value={task} onChange={(e) => handleTasksChange(rowIndex, e.target.value)} placeholder="Enter task" /></td>
                                 {/* Dropdowns for each role responsibility */}
                                 {roles.map((_, roleIndex) => (
                                 <td key={roleIndex}>
-                                    <select name={`task${rowIndex + 1}_role${roleIndex + 1}`} value={formData[`task${rowIndex + 1}_role${roleIndex + 1}`] || 'Responsible'} onChange={handleInputChange}>
+                                    {/*<select name={`task${rowIndex + 1}_role${roleIndex + 1}`} value={formData[`task${rowIndex + 1}_role${roleIndex + 1}`] || 'Responsible'} onChange={handleInputChange}>*/}
+                                    <select name={`task${rowIndex + 1}_role${roleIndex + 1}`} onChange={(e) => handleInputChange(e, rowIndex, roleIndex)} value={getFormValue(rowIndex, roleIndex)}>
                                     <option value="Responsible">Responsible</option>
                                     <option value="Accountable">Accountable</option>
                                     <option value="Consulted">Consulted</option>

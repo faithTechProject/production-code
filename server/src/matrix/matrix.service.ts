@@ -19,8 +19,8 @@ export class MatrixService {
         return this.matrixRepository.find();
     }
 
-    createEntry(id: number, category, page, entry_pos: number, input: string[]) {
-        const entry = this.matrixRepository.create({ id, category, page, entry_pos, input });
+    createEntry(id: number, category, page, entry_pos: number, input: string[], tasks_rows: string[], roles_columns: string[], rci_input: string[]) {
+        const entry = this.matrixRepository.create({ id, category, page, entry_pos, input, tasks_rows, roles_columns, rci_input });
         return this.matrixRepository.save(entry);
     }
 

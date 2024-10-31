@@ -4,4 +4,7 @@ export class CreateMatrixDto {
     page: string;
     entry_pos: number;
     input: string[];
+    tasks_rows: string[];
+    roles_columns: string[];
+    rci_input: string[];
 }
