@@ -1,6 +1,4 @@
 import { Controller, Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm'; // import typeorm for postgres connection.
 import { ReflectionController } from './reflection/reflection.controller';
 import { Reflection } from './reflection/reflection.entity'

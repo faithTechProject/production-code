@@ -21,24 +21,18 @@ export function TestPageDatabase()
     const [rowToEdit, setRowToEdit] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/reflection/1`).then(res => {
+        axios.get(`http://localhost:3000/reflection`).then(res => {
             setResponse(res.data.map((item) => item.response))
         })
 
-        axios.get("http://localhost:3000/matrix/matrix").then(res => {
-            if (res.data[0].data.length !== 0) {
-                setRows(res.data.map((item) => item.data)[0]);
-            }
-            else {
-                axios.put(`http://localhost:3000/matrix/matrix`, {
-                    name: "matrix",
-                    data: rows
-                });
-            }
-    
+        axios.get("http://localhost:3000/matrix-reflections/Data").then(res => {
+            const value = res.data[0].input;
+            console.log(value)
+            setRows(res.data.map((item) => item.input)[0])
         })
-    }, [])
     
+    }, [])
+    console.log(rows + "rows")
     // Reflection Code.
     const reflectionSave = event => {
         event.preventDefault();
@@ -57,9 +51,8 @@ export function TestPageDatabase()
         const data = rows.filter((_, idx) => idx !== targetIndex)
         setRows(data)
         
-        axios.put(`http://localhost:3000/matrix/matrix`, {
-            name: "matrix",
-            data: data
+        axios.patch(`http://localhost:3000/matrix-reflections/?page=Data&entry_pos=${0}`, {
+            input: data
         });       
     }
 
@@ -89,11 +82,9 @@ export function TestPageDatabase()
              return newRow
         }))
 
-        axios.put(`http://localhost:3000/matrix/matrix`, {
-            name: "matrix",
-            data: data
+        axios.patch(`http://localhost:3000/matrix-reflections/?page=Data&entry_pos=${0}`, {
+            input: data
         });
-
     }
 
     return (

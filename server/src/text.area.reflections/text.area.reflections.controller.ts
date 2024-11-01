@@ -18,12 +18,12 @@ export class TextAreaReflectionsController {
     }
 
     @Post()
-    addPost(@Body() { id, page, entry_pos, title, subtitle, reply }: {id: number, page: string, entry_pos: number, title: string, subtitle: string, reply: string}) {
-        return this.textAreaReflectionService.addPost(id, page, entry_pos, title, subtitle, reply);
+    addPost(@Body() { id, category, page, entry_pos, title, subtitle, reply }: {id: number, category: string, page: string, entry_pos: number, title: string, subtitle: string, reply: string}) {
+        return this.textAreaReflectionService.addPost(id, category, page, entry_pos, title, subtitle, reply);
     }
 
     @Patch()
     update(@Query('page') page: string, @Query('entry_pos') entry_pos: number, @Body() updateUserDto: UpdateTextAreaReflectionsDto) {
-        return this.textAreaReflectionService.update(entry_pos, page, updateUserDto)
+        return this.textAreaReflectionService.update(page, entry_pos, updateUserDto)
     }
 }

@@ -20,13 +20,13 @@ export class TextAreaReflectionsService {
         })
     }
 
-    async addPost(id: number, page: string, entry_pos: number, title: string, subtitle: string, reply: string): Promise<TextAreaReflections> { 
-        const post = this.textAreasRepository.create({id, page, entry_pos, title, subtitle, reply}) // Add new entry
+    async addPost(id: number, category: string, page: string, entry_pos: number, title: string, subtitle: string, reply: string): Promise<TextAreaReflections> { 
+        const post = this.textAreasRepository.create({id, category, page, entry_pos, title, subtitle, reply}) // Add new entry
         return this.textAreasRepository.save(post)
     }
 
-    async update(entry_pos: number, page: string, updateTextAreaReflectionsDto: UpdateTextAreaReflectionsDto) {
-        const toUpdate = await this.textAreasRepository.findOne({where: { entry_pos:entry_pos, page:page } });
+    async update(page: string, entry_pos: number, updateTextAreaReflectionsDto: UpdateTextAreaReflectionsDto): Promise<TextAreaReflections>{
+        const toUpdate = await this.textAreasRepository.findOne({where: { page:page, entry_pos:entry_pos  } });
         const updated = Object.assign(toUpdate, updateTextAreaReflectionsDto);
         return await this.textAreasRepository.save(updated);
     }

@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import '../stylesheets/discoverProjects.css';
-import { Link, useActionData } from "react-router-dom";
 import axios from 'axios';
+import { Modal } from '../components/PartnershipModal';
+import { Table } from '../components/PartnershipMatrix';
+
+
 export function DiscoverProjects() {
     
     const[listOfIdeas, setListOfIdeas] = useState([])
@@ -20,6 +23,19 @@ export function DiscoverProjects() {
     const[technologyDisparities, setTechnologyDisparities] = useState([])
     const[technologyEmerging, setTechnologyEmerging] = useState([])
 
+    const[modalOpen, setModalOpen] = useState(false);
+    const [rows, setRows] = useState([ 
+
+        {partner: "", needs: "", project_idea: ""},
+        {partner: "", needs: "", project_idea: ""},
+        {partner: "", needs: "", project_idea: ""}
+    ]);
+    const [rowToEdit, setRowToEdit] = useState(null);
+    
+    console.log(rows + "row");
+    
+    //console.log(rowToEdit + "row to edit");
+    
     useEffect(() => {
         axios.get(`http://localhost:3000/text-area-reflections/Projects`).then(res => {
             const data = res.data.map((item) => item)
@@ -41,22 +57,63 @@ export function DiscoverProjects() {
             setTechnologyAudit(data[5].reply)
             setTechnologyDisparities(data[6].reply)
             setTechnologyEmerging(data[7].reply)
-
+        })
+        
+        axios.get("http://localhost:3000/matrix-reflections/Projects").then(res => {
+                if (res.data[0].input.length > 0) {
+                    setRows(res.data.map((item) => item.input)[0])
+                }
             })
     }, [])
 
     const handleSubmit = (e, titleData, replyData) => {
         e.preventDefault();
-        console.log(titleData)
-        console.log(typeof(titleData))
-        console.log(typeof(replyData))
         axios.patch(`http://localhost:3000/text-area-reflections/?page=Projects&entry_pos=${e.target.id}`, {
             title: titleData,
             reply: replyData
         })
-
+    }
+    const handleDeleteRow = (targetIndex) => {
+        const data = rows.filter((_, idx) => idx !== targetIndex)
+        setRows(data)
+        
+        axios.patch(`http://localhost:3000/matrix-reflections/?page=Projects&entry_pos=${0}`, {
+            input: data
+        });       
     }
 
+    const handleEditRow = (idx) => {
+        setRowToEdit(idx);
+        setModalOpen(true);
+    }
+    
+    const handleSubmit_matrix = (newRow) => {
+        rowToEdit === null ?  
+        
+        setRows([...rows, newRow]) :
+        
+        setRows(rows.map((currRow, idx) => {
+            if (idx !== rowToEdit) return currRow;
+             return newRow
+        }))
+        
+        
+        let data = []
+        rowToEdit === null ?  
+        
+        data = [...rows, newRow]:
+        
+
+        data = (rows.map((currRow, idx) => {
+            if (idx !== rowToEdit) return currRow;
+             return newRow
+        }))
+
+        axios.patch(`http://localhost:3000/matrix-reflections/?page=Projects&entry_pos=${0}`, {
+            input: data
+        });
+    }
+    
     function toggle(x) {
         console.log(getComputedStyle(document.getElementsByClassName('cover')[x]).getPropertyValue('height'))
         if (getComputedStyle(document.getElementsByClassName('cover')[x]).getPropertyValue('height') !== '90px') {
@@ -191,6 +248,20 @@ export function DiscoverProjects() {
                 <p>Use the matrix below to list potential non-profit and church partners, their needs, and potential project ideas.</p>
                 <h2>Partnership Matrix</h2>
             </div>
+            <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
+            <button onClick={() => setModalOpen(true)}>Add Entry</button>
+
+            {modalOpen && (
+                <Modal closeModal={() => {
+                    setModalOpen(false);
+                    setRowToEdit(null);
+                }}
+                onSubmit={handleSubmit_matrix}
+                defaultValue={rowToEdit !== null && rows[rowToEdit]}
+            />
+            )}
+
+
             <div className='body'>
                 <h1>Engage with Local Schools and Universities</h1>
                 <p>Use the template provided below to develop a proposal for a collaborative project or mentorship program with a local educational institution.</p>
