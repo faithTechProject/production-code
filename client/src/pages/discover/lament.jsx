@@ -1,8 +1,34 @@
 import { Link } from "react-router-dom"
 import '../stylesheets/common.css';
 import '../stylesheets/lament.css';
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 export function DiscoverLament() {
-    return (
+    
+	const[lament, setLament] = useState([])
+    const[Reflection1, setReflection1] = useState([])
+	const[Reflection2, setReflection2] = useState([])
+
+    useEffect(()=> {
+        axios.get(`http://localhost:3000/text-area-reflections/Lament`).then(res => {
+            const lamentData = res.data;
+            lamentData.sort((a, b) => a.entry_pos - b.entry_pos);
+            setLament(lamentData[0].reply);
+            setReflection1(lamentData[1].reply)
+			setReflection2(lamentData[2].reply)
+            console.log("here")
+        })
+    }, [])
+
+    const handleSubmit = (e, replyData) => {
+        e.preventDefault(); 
+        axios.patch(`http://localhost:3000/text-area-reflections/?page=Lament&entry_pos=${e.target.id}`, {
+            reply: replyData
+        })
+    }
+
+	return (
         <>
 			<body>
 				<div id="oLamentTopImage">
@@ -199,16 +225,38 @@ export function DiscoverLament() {
 					</tr>
 				</table>
 				<p class="oLamentp">
-					Enter box for team lament here
+					Team Lament
+					<form id='0' onSubmit={(e) => handleSubmit(e, lament)}>
+						<textarea name="Lament" rows={8} cols={40} 
+						placeholder="Type here..." 
+						value={lament}
+						onChange={(e) => setLament(e.target.value)}
+						/>
+						<input type="submit" value="Save" />
+					</form>
 				</p>
 				<h1 class="oLamenth1">Reflection Questions</h1>
 				<p class="oLamentp">
 					How did the process of lament change your perspective on the problem?
-					(enter text box)
+					<form id='1' onSubmit={(e) => handleSubmit(e, Reflection1)}>
+						<textarea name="Lament" rows={5} cols={40} 
+						placeholder="Type here..." 
+						value={Reflection1}
+						onChange={(e) => setReflection1(e.target.value)}
+						/>
+						<input type="submit" value="Save" />
+					</form>
 				</p>
 				<p class="oLamentp">
 					In what ways did you feel God's presence during this exercise?
-					(enter text box)
+					<form id='2' onSubmit={(e) => handleSubmit(e, Reflection2)}>
+						<textarea name="Lament" rows={5} cols={40}
+						placeholder="Type here..." 
+						value={Reflection2}
+						onChange={(e) => setReflection2(e.target.value)}
+						/>
+						<input type="submit" value="Save" />
+					</form>
 				</p>
 				<p class="oLamentp">
 				Remember, the goal of this stage is to deeply understand the problem and its impact on people, viewing it through the compassionate lens of Christ.

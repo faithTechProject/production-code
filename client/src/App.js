@@ -32,17 +32,16 @@ function App() {
               <Route path="/create" element={<Create />} />
               <Route path="/stories" element={<Stories />} />
               <Route path="/help" element={<Help />} />
+              <Route path="/testPageDatabase" element={<TestPageDatabase />} />
               <Route path="/overview" element={<Overview />} />
               <Route path="/discover/overview" element={<DiscoverOverview />} />
               <Route path="/discover/projects" element={<DiscoverProjects />} />
-              <Route path="/discover/teams" element={<DiscoverTeams />} />
+              <Route path="/discover/teams" element={< DiscoverTeams />} />
               <Route path="/discover/problem" element={<DiscoverProblem />} />
               <Route path="/discover/lament" element={<DiscoverLament />} />
-              <Route path="/discern/overview" element={<DiscernOverview />} />
-              <Route path="/discern/brainstorm" element={<DiscernBrainstorm />} />
-              <Route path="/discern/analysis" element={<DiscernAnalysis />} />
-              <Route path="/discern/timeline" element={<DiscernTimeline />} />
-              <Route path="/testPageDatabase" element={<TestPageDatabase />} />
+              <Route path="/discern/overview" element={< DiscernOverview />} />
+              <Route path="/discern/analysis" element={< DiscernAnalysis />} />
+              <Route path="/discern/timeline" element={< DiscernTimeline />} />
             </Routes>
           </div>
         </div>

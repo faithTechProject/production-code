@@ -13,8 +13,10 @@ export const discernItems = [
   { label: 'Brainstorm', path: '/discern/brainstorm' },
   { label: 'Analysis', path: '/discern/analysis' },
   { label: 'Timeline', path: '/discern/timeline' }
+  
   ];
 export const developItems = [
+    
   ];
   
   export const demonstrateItems = [
