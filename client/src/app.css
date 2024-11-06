@@ -13,7 +13,7 @@
   }
   
 .navbar {
-position: sticky;
+position: absolute;
 top: 0;
 z-index: 1000;
 background-color: white;
@@ -24,17 +24,6 @@ padding: 10px;
 .content-layout {
 display: flex;
 flex: 1;
-}
-
-.table-of-contents {
-width: 250px; /* Adjust as needed */
-min-width: 200px;
-padding: 20px;
-border-right: 1px solid #ddd;
-position: sticky;
-top: 60px; /* Adjust for navbar height */
-height: calc(100vh - 60px); /* Full height minus navbar height */
-overflow-y: auto;
 }
 
 .main-content {

@@ -15,7 +15,6 @@ export function DiscoverTeams() {
 
     const[modalOpen, setModalOpen] = useState(false);
     const [rows, setRows] = useState([ 
-
         {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
         {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
         {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
