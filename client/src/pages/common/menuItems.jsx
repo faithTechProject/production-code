@@ -1,5 +1,6 @@
 // menuItems.js
 export const overviewItems = [
+  { label: 'Create', path: '/create' },
   ];
 export const discoverItems = [
     { label: 'Overview', path: '/discover/overview' },

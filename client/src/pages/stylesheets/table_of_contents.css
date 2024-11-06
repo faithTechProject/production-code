@@ -2,22 +2,29 @@
   --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+.main-content {
+  margin-left: 220px;
+  padding: 20px;
+}
+
 .hero_Table_of_contents {
-  position: sticky;  
-  top: 0; 
+  position: fixed;  
+  z-index: 10;
   left: 0;  
-  width: 150px;
   height: 100vh;
   background-color: #e7e7e7;  
-  padding: 20px;
+  width: 200px;
+  padding: 15px;
   border-right: 2px solid #4f4f4f; 
-  overflow-y: auto;
   display: inline-block;
 }
 
 .hero_Table_of_contents .contents{
   position: fixed;
-  z-index: 1000;
+  max-height: calc(100% - 40px);
+  width: fit-content;
+  overflow-y: auto;
+  overflow-x: hidden;
 
 }
 
@@ -30,13 +37,7 @@
 }
 
 .hero_Table_of_contents li {
-  margin-bottom: 20px;
-  
-}
-
-
-.hero_Table_of_contents li a:hover {
-  color: #007bff;  
+  margin-bottom: 20px; 
 }
 
 .hero_Table_of_contents .toc_menu .dropdown_menu .menu-links{
@@ -44,6 +45,21 @@
 }
 
 /* Dropdown Menu */
+/* Styling for the links in the Table of Contents */
+
+.dropbtn:hover,
+.dropbtn.active {
+  color: #ea542c;
+  font-weight: bold;
+  border-bottom: 2px solid #ea542c;
+}
+
+.dropdown-item:hover,
+.dropdown-item.active {
+  background-color: #f1f1f1;
+  color: #ea542c; 
+}
+
 
 .toc-menu {
   list-style-type: none;
@@ -58,6 +74,7 @@
   position: relative;
   display: inline-block;
   text-align: left;
+  
 }
 
 .dropbtn {
@@ -73,6 +90,9 @@
 
 .dropbtn:focus {
   outline: none;
+  font-weight: bold;
+  color: #ea542c;
+  border-bottom: 2px solid #ea542c;
 }
 
 .dropdown-content {
@@ -84,8 +104,12 @@
   
 }
 
+.dropdown-content a.active {
+  color: #ea542c; 
+}
+
 .dropdown-content.show {
-  opacity: 1;
+  opacity: 100;
   visibility: visible;
 }
 
@@ -107,7 +131,6 @@
 /* teams page */
 .hero_teams_container {
   width: 100%;
-
   background-color: white;
 }
 
