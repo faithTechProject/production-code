@@ -1,2 +1,2 @@
-SELECT * FROM matrix
+SELECT * FROM text_area_reflections
 ORDER BY id;
