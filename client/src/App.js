@@ -10,11 +10,10 @@ import { DiscoverProjects } from './pages/discover/projects';
 import { DiscoverProblem} from './pages/discover/problem';
 import { DiscoverOverview } from './pages/discover/overview';
 import { DiscernOverview } from './pages/discern/overview';
-import { DiscernBrainstorm } from './pages/discern/brainstorm';
 import { DiscernAnalysis } from './pages/discern/analysis';
 import { DiscernTimeline } from './pages/discern/timeline';
 import Navbar from './pages/common/navbar';
-import Table_of_contents from './pages/common/table_of_contents';
+import TableOfContents from './pages/common/table_of_contents';
 import Footer from './pages/common/footer';
 import { TestPageDatabase } from './pages/testPageDatabase';
 import './app.css'; 
@@ -26,7 +25,7 @@ function App() {
       <Router>
         <Navbar className="navbar" />
         <div className="content-layout">
-          <Table_of_contents className="table-of-contents" />
+          <TableOfContents/>
           <div className="main-content">
             <Routes>
               <Route path="/" element={<Home />} />
