@@ -8,7 +8,7 @@ export function Table_of_contents() {
     <div className="hero_Table_of_contents">
         <ul className="contents">
         <li>
-            <Link to="/create" class="tocLink">Overview</Link>
+            <Link to="/" class="tocLink">Workbook</Link>
           </li>
           <li>
             <Dropdown title="Discover" items={discoverItems} />

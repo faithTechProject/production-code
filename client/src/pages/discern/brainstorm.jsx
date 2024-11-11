@@ -1,73 +1,87 @@
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import '../stylesheets/discernBrainstorm.css';
+import { useRef, useState } from 'react';
+import { useEffect } from 'react';
+import { Table } from './mindTable'; 
+import { Modal} from './mindModal';
 
 export function DiscernBrainstorm() {
-    /*var activateDraw = (ref) => {
-        const mctx = ref.getContext('2d');
-        var displayWidth = (window.innerWidth-250)*.8;
-        var displayHeight = window.innerHeight*.5;
-        ref.style.width = displayWidth + 'px';
-        ref.style.height = displayHeight + 'px';
-        ref.width = displayWidth * 2;
-        ref.height = displayHeight * 2;
-
-        mctx.beginPath();
-        mctx.font = '25px san serif';
-        mctx.fillText('How Might Jesus Address',ref.width*.5,ref.height*.5);
-        mctx.fillText('________?',ref.width*.5,ref.height*.5+25)
-        //mctx.rect(ref.width*.5-25,ref.height*.5-10,50,20);
-        //mctx.stroke();
-
-        mctx.strokeStyle = '#A00000';
-        mctx.lineJoin = 'round';
-        mctx.lineCap = 'round';
-        mctx.lineWidth = 100;
-
-        let isDrawing = false;
-        let lastX = 0;
-        let lastY = 0;
-        let hue = 0;
-        let direction = true;
-
+        const[modalOpen, setModalOpen] = useState(false);
+        const [response, setResponse] = useState("");
+        const onMount = useRef(false);
+        const [rows, setRows] = useState([ 
     
-        function draw(e) {
-        if (!isDrawing) return; // stop the fn from running when they are not moused down
-        console.log(e);
-        mctx.strokeStyle = `hsl(${hue%60}, 100%, 50%)`;
-        mctx.beginPath();
-        // start from
-        mctx.moveTo(lastX, lastY);
-        // go to
-        mctx.lineTo(e.offsetX, e.offsetY);
-        mctx.stroke();
-        [lastX, lastY] = [e.offsetX, e.offsetY];
+            {solution: ""},
+        ]);
+        const [rowToEdit, setRowToEdit] = useState(null);
     
-            hue++;
+        useEffect(() => {
+            axios.get(`http://localhost:3000/reflection`).then(res => {
+                setResponse(res.data.map((item) => item.response))
+            })
     
-        if (mctx.lineWidth >= 100 || mctx.lineWidth <= 10) {
-            direction = !direction;
+            axios.get("http://localhost:3000/matrix-reflections/Brainstorm").then(res => {
+                const value = res.data[0].input;
+                console.log(value)
+                setRows(res.data.map((item) => item.input)[0])
+            })
+        
+        }, [])
+        console.log(rows + "rows")
+        // Reflection Code.
+        const reflectionSave = event => {
+            event.preventDefault();
+    
+            axios.put("http://localhost:3000/reflection/1", {
+                response: response
+            })
         }
     
-        if(direction) {
-            mctx.lineWidth++;
-        } else {
-            mctx.lineWidth--;
+        // Matrix Code.
+        console.log("here")
+        
+    
+    
+        const handleDeleteRow = (targetIndex) => {
+            const data = rows.filter((_, idx) => idx !== targetIndex)
+            setRows(data)
+            
+            axios.patch(`http://localhost:3000/matrix-reflections/?page=Brainstorm&entry_pos=${0}`, {
+                input: data
+            });
         }
     
+        const handleEditRow = (idx) => {
+            setRowToEdit(idx);
+            setModalOpen(true);
         }
+        
+        const handleSubmit = (id, newRow) => {
+            rowToEdit === null ?  
+            
+            setRows([...rows, newRow]) :
+            
+            setRows(rows.map((currRow, idx) => {
+                if (idx !== rowToEdit) return currRow;
+                 return newRow
+            }))
+            
+            let data = []
+            rowToEdit === null ?  
+            
+            data = [...rows, newRow]:
+            
     
-        ref.addEventListener('mousedown', (e) => {
-        isDrawing = true;
-        [lastX, lastY] = [e.offsetX, e.offsetY];
-        });
+            data = (rows.map((currRow, idx) => {
+                if (idx !== rowToEdit) return currRow;
+                 return newRow
+            }))
     
-    
-        ref.addEventListener('mousemove', draw);
-        ref.addEventListener('mouseup', () => isDrawing = false);
-        ref.addEventListener('mouseout', () => isDrawing = false);
-    }
-    var activateCanvas = (<canvas id ='mindMap' ref={(e) => activateDraw(e)}></canvas>)*/
-
+            axios.patch(`http://localhost:3000/matrix-reflections/?page=Brainstorm&entry_pos=${id}`, {
+                input: data
+            });
+        }
 
     return (
         <>
@@ -75,8 +89,28 @@ export function DiscernBrainstorm() {
                 <h3 class="oTitle"><sc>BRAINSTORM</sc></h3>
             </div>
             <div className='body'>
-                {/*activateCanvas*/}
                 <h1>Generate Solutions</h1>
+                <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
+                <button onClick={() => setModalOpen(true)}>Add Entry</button>
+                <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
+                <button onClick={() => setModalOpen(true)}>Add Entry</button>
+                <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
+                <button onClick={() => setModalOpen(true)}>Add Entry</button>
+
+                {modalOpen && (
+                    <Modal closeModal={() => {
+                        setModalOpen(false);
+                        setRowToEdit(null);
+                    }}
+                    onSubmit={handleSubmit}
+                    defaultValue={rowToEdit !== null && rows[rowToEdit]}
+                    id={0}
+                />
+                )}
+            </div>
+            <div className='bottomLinks'>
+                <Link to="/discern/overview">Discern Overview</Link>
+                <Link to="/discern/analysis">Analysis</Link>
             </div>
         </>
     )

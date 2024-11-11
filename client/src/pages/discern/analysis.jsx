@@ -1,4 +1,5 @@
 import '../stylesheets/analysis.css';
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { DndContext } from '@dnd-kit/core';
 import { Draggable } from './draggable';
@@ -76,10 +77,10 @@ export function DiscernAnalysis() {
 
         <div className="three_rc_analysis">
           <h1>3RC Analysis</h1>
-          <p>
+          <h2>
             For each of your brainstormed solutions, categorize them into one of
             the four 3RC postures:
-          </p>
+          </h2>
           <ul>
             <li>
               <strong>Reject</strong>: the solution is not the answer
@@ -229,6 +230,10 @@ export function DiscernAnalysis() {
 
             </div>
           </DndContext>
+        </div>
+        <div className='bottomLinks'>
+          <Link to="/discern/brainstorm">Brainstorm</Link>
+          <Link to="/discern/timeline">Timeline</Link>
         </div>
       </div>
     </>

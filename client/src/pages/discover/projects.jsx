@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import '../stylesheets/discoverProjects.css';
 import axios from 'axios';
@@ -300,6 +301,10 @@ export function DiscoverProjects() {
                     </textarea>
                     <input type="submit" value="Save" />
                 </form>
+            </div>
+            <div className='bottomLinks'>
+                <Link to="/discover/overview">Discover Overview</Link>
+                <Link to="/discover/teams">Teams</Link>
             </div>
         </>
     )

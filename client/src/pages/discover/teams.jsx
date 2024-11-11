@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import { useEffect } from "react";
@@ -512,9 +513,9 @@ export function DiscoverTeams() {
             </div>
             <div className='hero_faith_integration'> 
                 <h1> Integrate Faith </h1>
-                <p> Here are some ideas to intergrate faith into your team dynamics:</p>
+                <h2> Here are some ideas to intergrate faith into your team dynamics:</h2>
                 <ul>
-                    <li> 1. Start meetings with praye ot devotional reflections </li>
+                    <li> 1. Start meetings with prayer to devotional reflections </li>
                     <li> 2. Emphasize that our work should always point to jesus </li>
                     <li> 3. Highlight the importance of being Spirit-led in decision making </li>
                     <li> 4. Encourage team members to share with and pray for each other </li>
@@ -690,6 +691,10 @@ export function DiscoverTeams() {
                      </p>
                 </div>
 
+            </div>
+            <div className='bottomLinks'>
+                <Link to="/discover/projects">Projecrs</Link>
+                <Link to="/discover/problem">Problems</Link>
             </div>
         </div>
     );

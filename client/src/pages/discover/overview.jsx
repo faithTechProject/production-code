@@ -46,6 +46,10 @@ export function DiscoverOverview() {
                 </p>
                 <iframe width="568" height="340" src="https://www.youtube.com/embed/HATvpvzLPcU" title="FaithTech Create 2023-Week 1 - Discover-1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 <br></br>
+                <div className='bottomLinks'>
+                    <Link to="/">Workbook</Link>
+                    <Link to="/discover/projects">Projects</Link>
+                </div>
             </div>
         </>
     )

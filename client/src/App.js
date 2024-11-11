@@ -1,6 +1,5 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import { Home } from './pages/home';
-import { Create } from './pages/create';
+import { Workbook } from './pages/workbook';
 import { Stories } from './pages/stories';
 import { Help } from './pages/help';
 import { Overview } from './pages/overview';
@@ -13,23 +12,25 @@ import { DiscernOverview } from './pages/discern/overview';
 import { DiscernBrainstorm } from './pages/discern/brainstorm';
 import { DiscernAnalysis } from './pages/discern/analysis';
 import { DiscernTimeline } from './pages/discern/timeline';
+import { DiscernBraintest } from './pages/discern/braintest';
 import Navbar from './pages/common/navbar';
 import Table_of_contents from './pages/common/table_of_contents';
 import Footer from './pages/common/footer';
 import { TestPageDatabase } from './pages/testPageDatabase';
 import './app.css'; 
+import { ScrollTop } from './scrollTop';
 
 function App() {
   return (
     <div className="hero_app-container">
       <Router>
+        <ScrollTop />
         <Navbar className="navbar" />
         <div className="content-layout">
           <Table_of_contents className="table-of-contents" />
           <div className="main-content">
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/create" element={<Create />} />
+              <Route path="/" element={<Workbook />} />
               <Route path="/stories" element={<Stories />} />
               <Route path="/help" element={<Help />} />
               <Route path="/testPageDatabase" element={<TestPageDatabase />} />
@@ -42,6 +43,8 @@ function App() {
               <Route path="/discern/overview" element={< DiscernOverview />} />
               <Route path="/discern/analysis" element={< DiscernAnalysis />} />
               <Route path="/discern/timeline" element={< DiscernTimeline />} />
+              <Route path="/discern/brainstorm" element={< DiscernBrainstorm />} />
+              <Route path="/discern/braintest" element={< DiscernBraintest />} />
             </Routes>
           </div>
         </div>
