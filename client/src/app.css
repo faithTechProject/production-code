@@ -12,24 +12,19 @@
     height: 100vh;
   }
   
-.navbar {
-position: absolute;
-top: 0;
-z-index: 1000;
-background-color: white;
-border-bottom: 1px solid #ddd;
-padding: 10px;
-}
 
 .content-layout {
-display: flex;
-flex: 1;
+  display: flex;
+  flex: 1;
+  width: 90%;
 }
 
 .main-content {
-flex: 1;
-padding: 0px;
-overflow-y: auto;
+  flex: 1;
+  padding: 0px;
+  overflow-y: auto;
+  margin-left: 220px;
+  
 }
 /*
 .main-content .body:nth-child(even) {
@@ -40,7 +35,7 @@ overflow-y: auto;
   background-image: linear-gradient(var(--body-color-blend),var(--body-color-odd) 30%,var(--body-color-odd) 70%,var(--body-color-blend));
 }*/
 
-.main-content .body {
+.body {
   background-color: transparent;
   padding: 0px;
   padding-top: 30px;

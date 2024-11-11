@@ -23,12 +23,12 @@ import { DevelopTickets } from './pages/develop/tickets';
 
 function App() {
   return (
-    <div className="hero_app-container">
+    <div className="hero_app_container">
       <Router>
         <ScrollTop />
         <Navbar className="navbar" />
         <div className="content-layout">
-          <TableOfContents/>
+          <TableOfContents className="table_of_contents"/>
           <div className="main-content">
             <Routes>
               <Route path="/" element={<Workbook />} />

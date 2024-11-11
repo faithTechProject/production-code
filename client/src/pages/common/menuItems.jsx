@@ -17,7 +17,7 @@ export const discernItems = [
   
   ];
 export const developItems = [
-  { label: 'Tickets', path: '/develop/tickets'}
+  { label: 'Tickets', path: '/develop/tickets'},
   { label: 'Co-Creation', path: '/develop/co_creation'},
     
   ];

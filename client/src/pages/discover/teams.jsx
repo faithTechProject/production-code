@@ -253,8 +253,9 @@ export function DiscoverTeams() {
                 <div class="hero_team_members">
                     <div class="members">
                         <pic class="member_image_placeholder"> stock img </pic>
-                        <h3> 1. Conduct skills inventory </h3>
+                        
                         <ul>
+                            <h3> <num className='decorate_list'> 1 </num> Conduct skills inventory </h3>
                             <li> Technical skills (e.g programming languages, design tools) </li>
                             <li>Soft skills (e.g communication, leadership, empathy)</li>
                             <li> Domain expertise revelant to the project </li>
@@ -262,8 +263,8 @@ export function DiscoverTeams() {
                     </div>
                     <div class="members">
                         <pic class="member_image_placeholder"> stock img </pic>
-                        <h3> 2. Consider past Experiences </h3>
                         <ul>
+                            <h3> <num className='decorate_list'> 2 </num> Consider past Experiences </h3>
                             <li> previous redemptive technology project </li>
                             <li> Volunteer work or community involvement </li>
                             <li> Professional background </li>
@@ -271,8 +272,8 @@ export function DiscoverTeams() {
                     </div>
                     <div class="members">
                         <pic class="member_image_placeholder"> stock img </pic>
-                        <h3> 3. Identify areas of growth </h3>
                         <ul>
+                            <h3> <num className='decorate_list'> 3 </num> Identify areas of growth </h3>
                             <li> Skills team members want to develop  </li>
                             <li> Oppiortunities for mentorship within the team  </li>
                         </ul>  
@@ -333,7 +334,7 @@ export function DiscoverTeams() {
             <div className="hero_roles_needed">
                 <p> In the box below list the essential roles needed</p>
                 <p> Identify...</p>
-                <label>
+                <label className='needed_skills'>
                     <form id='0' onSubmit={(e) => handleSubmit_database(e, essentialRoles)}>
                         <textarea name="skills" rows={10} cols={20}
                         placeholder="Enter text here..."
@@ -347,12 +348,12 @@ export function DiscoverTeams() {
             </div>
             <div className="roles_and_responsibility">
                 <h1> Define team Roles and Responsibilities </h1>
-                <p>  Clear roles help teams function smoothly</p>
+                <h2>  Clear roles help teams function smoothly</h2>
                 <ul>
-                    <li> 1. Define key responsibilities for each role </li>
-                    <li> 2. Establish decision-making process </li>
-                    <li> 3. Create a RACI (Responsible, Accountable, Consulted, informed) matrix for major projects task </li>
-                    <li> 4. Allow for flexibility as the project evolves</li>
+                    <li> <num className='decorate_list'> 1 </num> Define key responsibilities for each role </li>
+                    <li> <num className='decorate_list'> 2 </num>Establish decision-making process </li>
+                    <li> <num className='decorate_list'> 3 </num> Create a RACI (Responsible, Accountable, Consulted, informed) matrix for major projects task </li>
+                    <li> <num className='decorate_list'> 4 </num> Allow for flexibility as the project evolves</li>
                 </ul> 
             </div>
 
@@ -483,10 +484,10 @@ export function DiscoverTeams() {
                 <h1> Integrate Faith </h1>
                 <h2> Here are some ideas to intergrate faith into your team dynamics:</h2>
                 <ul>
-                    <li> 1. Start meetings with prayer to devotional reflections </li>
-                    <li> 2. Emphasize that our work should always point to jesus </li>
-                    <li> 3. Highlight the importance of being Spirit-led in decision making </li>
-                    <li> 4. Encourage team members to share with and pray for each other </li>
+                    <li>  <num className='decorate_list'> 1 </num>  Start meetings with prayer to devotional reflections </li>
+                    <li>  <num className='decorate_list'> 2 </num>  Emphasize that our work should always point to jesus </li>
+                    <li>  <num className='decorate_list'> 3 </num> Highlight the importance of being Spirit-led in decision making </li>
+                    <li>  <num className='decorate_list'> 4 </num> Encourage team members to share with and pray for each other </li>
                 </ul> 
             </div>
 
@@ -591,7 +592,7 @@ export function DiscoverTeams() {
                         <p>
                             Document yout values in the space provided below
                         </p>
-                        <form id='1' onSubmit={(e) => handleSubmit_database(e, values)}>
+                        <form className='exercise_form' id='1' onSubmit={(e) => handleSubmit_database(e, values)}>
                             <textarea name="values" rows={10} cols={20}
                             placeholder="Enter text here..."
                             value={values}
@@ -636,7 +637,6 @@ export function DiscoverTeams() {
                         </label>
                     </div>
                     <div className='exercise'>
-                        
                         <label>
                             <p className='exercise_paragraph'>  
                                 How can we ensure that every team member feels valued and has Oppiortunities to contribute meaningfully?      
@@ -652,7 +652,6 @@ export function DiscoverTeams() {
                             
                         </label>
                     </div>
-
                     <p> 
                         Remember, forming a team for a 4D cycle project is not just about assembling skills, but about bringing together
                         individuals who can collectively pursue technology development in a way that honors God and serves others.
