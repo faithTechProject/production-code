@@ -17,11 +17,11 @@ export const discernItems = [
   
   ];
 export const developItems = [
+  { label: 'Co-Creation', path: '/develop/co_creation'},
     
   ];
   
   export const demonstrateItems = [
     { label: 'Option 1', path: '/option1' },
-    { label: 'Option 2', path: '/option2' },
   ];
   

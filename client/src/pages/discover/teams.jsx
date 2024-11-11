@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
+import logo from '../images/logo.svg';
 import { useEffect } from "react";
 import axios from "axios";
 import { Table } from '../components/SkillTable';
@@ -237,38 +237,7 @@ export function DiscoverTeams() {
         
         })
     }
-    // Function to handle form submission
-    /*
-    const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent the default form submission behavior
-
-        // Client-side validation to ensure required fields are filled in
-        if (!formData.task1) {
-        alert('Please enter at least one task.');
-        return;
-        }
-
-        try {
-        // Send formData to the backend API endpoint
-        const response = await fetch('http://localhost:3000/matrix/submit', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json', // Specify that the request body is JSON
-            },
-            body: JSON.stringify(formData), // Convert formData to JSON string
-        });
-
-        // Check if the response is successful
-        if (response.ok) {
-            alert('Data submitted successfully!');
-        } else {
-            alert('Failed to submit data');
-        }
-        } catch (error) {
-        console.error('Error:', error); // Log any errors that occur during the fetch
-        }
-    };
-    */
+ 
     return (
         <div class="hero_teams_container">
             <div class="hero_teams_header">

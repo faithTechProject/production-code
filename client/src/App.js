@@ -12,6 +12,7 @@ import { DiscoverOverview } from './pages/discover/overview';
 import { DiscernOverview } from './pages/discern/overview';
 import { DiscernAnalysis } from './pages/discern/analysis';
 import { DiscernTimeline } from './pages/discern/timeline';
+import { CoCreation } from './pages/develop/co_creation'; 
 import Navbar from './pages/common/navbar';
 import TableOfContents from './pages/common/table_of_contents';
 import Footer from './pages/common/footer';
@@ -41,6 +42,7 @@ function App() {
               <Route path="/discern/overview" element={< DiscernOverview />} />
               <Route path="/discern/analysis" element={< DiscernAnalysis />} />
               <Route path="/discern/timeline" element={< DiscernTimeline />} />
+              <Route path="/develop/co_creation" element={< CoCreation />} />
             </Routes>
           </div>
         </div>

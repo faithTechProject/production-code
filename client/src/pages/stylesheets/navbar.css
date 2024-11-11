@@ -21,6 +21,31 @@
   .logo {
     margin-right: auto; 
   }
+
+  .nav_logo{
+    display: flex;
+    flex-direction: row ;
+    align-items: center;
+  }
+
+  .faith_tech_logo{
+    width: 4%;
+    height: 4%;
+  }
+
+  .nav_logo_name_fp{
+    width: fit-content;
+    color: rgb(6, 6, 6);
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .nav_logo_name_lp {
+    width: fit-content;
+    color: orangered;
+    font-size: 24px;
+    font-weight: bold;
+  }
   
   .logo a {
     text-decoration: none; 
