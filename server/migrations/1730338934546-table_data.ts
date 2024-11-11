@@ -17,6 +17,10 @@ export class TableData1730338934546 implements MigrationInterface {
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (5, 'Discover', 'Projects', 5, 'Technology Use', 'Technology Audit', 'Sample technology text 1.')`);
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (6, 'Discover', 'Projects', 6, 'Technology Use', 'Technology Disparities', 'Sample technology text 2.')`);
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (7, 'Discover', 'Projects', 7, 'Technology Use', 'Emerging Technology', 'Sample technology text 13.')`);
+        
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (0, 'Discern', 'Timeline', 0, 'List of Ideas', '', 'Ideas list text.')`);
+        
+
 
         // Discover: Teams Page Data
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (8, 'Discover', 'Teams', 0, 'Roles', '', '')`);

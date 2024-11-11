@@ -474,7 +474,7 @@ export function DiscoverTeams() {
                         </div>
                     </div>
                     <form id="0" className='raci_matrix_form' onSubmit={handleSubmit} >
-                        <table className="matrix">
+                        <table className="hero-matrix">
                         <thead>
                             <tr>
                                 <th>Task</th>

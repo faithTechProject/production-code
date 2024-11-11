@@ -87,7 +87,9 @@ export function DiscoverProjects() {
         setModalOpen(true);
     }
     
-    const handleSubmit_matrix = (newRow) => {
+    const handleSubmit_matrix = (number, e, newRow) => {
+        console.log(e)
+        console.log(number)
         rowToEdit === null ?  
         
         setRows([...rows, newRow]) :
@@ -258,6 +260,7 @@ export function DiscoverProjects() {
                 }}
                 onSubmit={handleSubmit_matrix}
                 defaultValue={rowToEdit !== null && rows[rowToEdit]}
+                id={1}
             />
             )}
 

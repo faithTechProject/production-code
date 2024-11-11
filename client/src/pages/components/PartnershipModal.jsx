@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./Modal.css";
 
 
-export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
+export const Modal = ({ closeModal, onSubmit, defaultValue, id }) => {
     const [formState, setFormState] = useState( defaultValue || {
         partner: "",
         needs: "",
@@ -20,7 +20,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit(formState);
+        onSubmit(id, e, formState);
         closeModal();
     }
 

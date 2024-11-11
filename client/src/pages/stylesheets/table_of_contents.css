@@ -246,26 +246,27 @@ textarea {
   margin: 20px auto;
 }
 
-table {
+
+.kevin-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
 }
 
-th, td {
+.kevin-th, .kevin-td {
   padding: 12px;
   border: 1px solid #ddd;
 }
 
-th {
+.kevin-th {
   background-color: #f2f2f2;
 }
 
-td {
+.kevin-td {
   background-color: #fff;
 }
 
-tr:nth-child(even) {
+.kevin-:nth-child(even) {
   background-color: #f9f9f9;
 }
 
@@ -493,28 +494,28 @@ ul li {
 .raci_matrix_form{
   margin: 2%;
 }
-.matrix {
+.hero-matrix {
   width: 100%;
   border-collapse: collapse;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.matrix th, .matrix td {
+.hero-matrix th, .hero-matrix td {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;
 }
 
-.matrix th {
+.hero-matrix th {
   background-color: #007bff;
   color: white;
 }
 
-.matrix tr:nth-child(even) {
+.hero-matrix tr:nth-child(even) {
   background-color: #f0f4f8;
 }
 
-.matrix tr:hover {
+.hero-matrix tr:hover {
   background-color: #e9ecef;
 }
 
@@ -526,25 +527,25 @@ ul li {
 }
 
 /*end input doc */
-.matrix {
+.hero-matrix {
   border-collapse: collapse;
   font-size: 1em;
   text-align: left;
 
 }
 
-.matrix th, .matrix td {
+.hero-matrix th, .hero-matrix td {
   border: 1px solid black;
   padding: 10px;
 }
 
-.matrix th {
+.hero-matrix th {
   background-color: orangered;
   font-weight: bold;
 }
 
-.matrix input[type="text"],
-.matrix select {
+.hero-matrix input[type="text"],
+.hero-matrix select {
   width: 100%;
   padding: 8px;
   margin: 4px 0;

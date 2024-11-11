@@ -1,0 +1,98 @@
+.kevin-ticket-component-ticket {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 3px solid #ea542c;
+}
+
+
+.kevin-ticket-component-ticket:not(:last-of-type) {
+    margin-bottom: 4rem;
+}
+
+.kevin-ticket-component-title-input {
+    color: white;
+    width: 60%;
+    background-color: #ea542c;
+    border: none;
+    text-align: center;
+    font-size: 24px;
+    
+}
+
+.kevin-ticket-component-title-input::placeholder {
+    color: white;
+    opacity: 1;
+}
+
+.kevin-ticket-component-textarea {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.kevin-ticket-component-ticket-input-align-left {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 5px;
+    box-sizing: border-box;
+    width: 40%;
+    float: left;
+}
+
+.kevin-ticket-component-ticket-input-align-right {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 5px;
+    box-sizing: border-box;
+    width: 40%;
+    float: right;
+}
+
+.kevin-ticket-component-title-content {
+    padding: 10px;
+    background-color: #ea542c;
+    text-align: center;
+}
+
+.kevin-ticket-component-body-content {
+    padding: 10px;
+}
+
+.kevin-ticket-component {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    width: 100%;
+    padding: 20px;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    touch-action: none;
+}
+
+.kevin-checkbox {
+    height: 20px;
+    width: 20px;
+}
+
+.kevin-button {
+    background-color: white;
+    border: 1px solid black;
+    padding: 8px 0px 8px 0px;
+    color: #ea542c;
+    margin: 16px;
+    font-size: large;
+    text-align: left;
+    
+}
+
+.kevin-button:hover {
+    background-color: whitesmoke;
+}
+
+.kevin-text p {
+    color: black;
+    padding: 16px;
+    font-size: large;
+    text-align: center;
+}
