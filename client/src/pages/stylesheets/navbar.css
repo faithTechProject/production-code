@@ -4,15 +4,15 @@
 }
 
 .hero_navbar {
-    
-    position: sticky; 
+    position: fixed; 
+    width: 100%;
     top: 0; 
     background-color: #ffffff; 
     color: white; 
     display: flex; 
     align-items: center;  
     padding: 10px 20px; 
-    z-index: 1000;
+    z-index: 100;
     border-bottom: 2px solid #ccc; 
     font-family: var(--font-main);
   }
@@ -35,10 +35,11 @@
     margin: 0; 
     padding: 0;  
     display: flex; 
+    margin-right: 40px;
   }
   
   .hero_navbar ul li {
-    margin-left: 20px;  
+    margin-left: 20px;
   }
   
   .hero_navbar ul li a {

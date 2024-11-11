@@ -1,5 +1,6 @@
 // menuItems.js
 export const overviewItems = [
+  { label: 'Create', path: '/create' },
   ];
 export const discoverItems = [
     { label: 'Overview', path: '/discover/overview' },
@@ -16,6 +17,7 @@ export const discernItems = [
   
   ];
 export const developItems = [
+  { label: 'Tickets', path: '/develop/tickets'}
     
   ];
   

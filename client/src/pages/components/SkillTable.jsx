@@ -4,25 +4,25 @@ import "./Table.css";
 export const Table = ({rows, deleteRow, editRow}) => {
     return (
     <div>
-        <table>
+        <table className="kevin-table">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Skills</th>
-                    <th>Past Experiences</th>
-                    <th>Areas for Growth</th>
-                    <th>Actions</th>
+                    <th className="kevin-th">Name</th>
+                    <th className="kevin-th">Skills</th>
+                    <th className="kevin-th">Past Experiences</th>
+                    <th className="kevin-th">Areas for Growth</th>
+                    <th className="kevin-th">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {
                     rows.map((row, idx) => {
                         return <tr key={idx}>
-                            <td>{row.name}</td>
-                            <td>{row.skills}</td>
-                            <td>{row.past_experiences}</td>
-                            <td>{row.areas_for_growth}</td>
-                            <td>
+                            <td className="kevin-td">{row.name}</td>
+                            <td className="kevin-td">{row.skills}</td>
+                            <td className="kevin-td">{row.past_experiences}</td>
+                            <td className="kevin-td">{row.areas_for_growth}</td>
+                            <td className="kevin-td">
                                 <button onClick={() => deleteRow(idx)}>delete</button>
                                 <button onClick={() => editRow(idx)}>edit</button>
                             </td>

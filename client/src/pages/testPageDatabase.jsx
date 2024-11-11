@@ -37,7 +37,7 @@ export function TestPageDatabase()
     const reflectionSave = event => {
         event.preventDefault();
 
-        axios.put("http://localhost:3000/reflection/1", {
+        axios.put("http://localhost:3000/reflection/0", {
             response: response
         })
     }

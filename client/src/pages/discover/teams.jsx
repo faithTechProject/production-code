@@ -16,7 +16,6 @@ export function DiscoverTeams() {
 
     const[modalOpen, setModalOpen] = useState(false);
     const [rows, setRows] = useState([ 
-
         {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
         {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
         {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
@@ -476,7 +475,7 @@ export function DiscoverTeams() {
                         </div>
                     </div>
                     <form id="0" className='raci_matrix_form' onSubmit={handleSubmit} >
-                        <table className="matrix">
+                        <table className="hero-matrix">
                         <thead>
                             <tr>
                                 <th>Task</th>
