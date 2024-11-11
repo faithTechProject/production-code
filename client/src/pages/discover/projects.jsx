@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import '../stylesheets/discoverProjects.css';
 import axios from 'axios';
@@ -131,8 +132,6 @@ export function DiscoverProjects() {
                 <h3 class="oTitle">SOURCING <sc>CREATE</sc> PROJECTS</h3>
             </div>
             <div className="body">
-                <h1>The 4D Cycle</h1>
-                <p>To effectively lead projects using the 4D Cycle, it's crucial to have a deep understanding of each stage.</p>
                 <div class="infoDeck">
                     <div className= "card">
                         <div class="image"></div>
@@ -305,6 +304,10 @@ export function DiscoverProjects() {
                     </textarea>
                     <input type="submit" value="Save" />
                 </form>
+            </div>
+            <div className='bottomLinks'>
+                <Link to="/discover/overview">Discover Overview</Link>
+                <Link to="/discover/teams">Teams</Link>
             </div>
         </>
     )

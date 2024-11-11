@@ -102,6 +102,10 @@ export function DiscoverProblem() {
                     the majority of those impacted by this issue</p>
                 </div>
             </div>
+            <div className='bottomLinks'>
+                <Link to="/discover/teams">Teams</Link>
+                <Link to="/discover/lament">Lament</Link>
+            </div>
         </>
     )
 }
