@@ -12,6 +12,7 @@ import { DiscernOverview } from './pages/discern/overview';
 import { DiscernAnalysis } from './pages/discern/analysis';
 import { DiscernTimeline } from './pages/discern/timeline';
 import { DiscernBrainstorm } from './pages/discern/brainstorm';
+import { CoCreation } from './pages/develop/co_creation'; 
 import Navbar from './pages/common/navbar';
 import TableOfContents from './pages/common/table_of_contents';
 import Footer from './pages/common/footer';
@@ -22,12 +23,12 @@ import { DevelopTickets } from './pages/develop/tickets';
 
 function App() {
   return (
-    <div className="hero_app-container">
+    <div className="hero_app_container">
       <Router>
         <ScrollTop />
         <Navbar className="navbar" />
         <div className="content-layout">
-          <TableOfContents/>
+          <TableOfContents className="table_of_contents"/>
           <div className="main-content">
             <Routes>
               <Route path="/" element={<Workbook />} />
@@ -43,8 +44,6 @@ function App() {
               <Route path="/discern/overview" element={< DiscernOverview />} />
               <Route path="/discern/analysis" element={< DiscernAnalysis />} />
               <Route path="/discern/timeline" element={< DiscernTimeline />} />
-              <Route path="/discern/brainstorm" element={< DiscernBrainstorm />} />
-              <Route path="/develop/tickets" element={< DevelopTickets />} />
             </Routes>
           </div>
         </div>
