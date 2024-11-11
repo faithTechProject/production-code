@@ -1,2 +1,0 @@
-SELECT * FROM matrix
-ORDER BY id;

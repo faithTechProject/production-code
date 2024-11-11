@@ -1,7 +1,7 @@
 /* General layout for the app */
 
 :root {
-  --body-color-odd: #d8f3ff;
+  --body-color-odd: #bce8f3;
   --body-color-even: #FFFFFF;
   --body-color-blend: color-mix(in srgb,var(--body-color-odd),var(--body-color-even))
 }
@@ -31,16 +31,17 @@ flex: 1;
 padding: 0px;
 overflow-y: auto;
 }
-
+/*
 .main-content .body:nth-child(even) {
-  background-image: linear-gradient(var(--body-color-blend),var(--body-color-even) 10%,var(--body-color-even) 90%,var(--body-color-blend));
+  background-image: linear-gradient(var(--body-color-blend),var(--body-color-even) 30%,var(--body-color-even) 70%,var(--body-color-blend));
 }
 
 .main-content .body:nth-child(odd) {
-  background-image: linear-gradient(var(--body-color-blend),var(--body-color-odd) 10%,var(--body-color-odd) 90%,var(--body-color-blend));
-}
+  background-image: linear-gradient(var(--body-color-blend),var(--body-color-odd) 30%,var(--body-color-odd) 70%,var(--body-color-blend));
+}*/
 
 .main-content .body {
+  background-color: transparent;
   padding: 0px;
   padding-top: 30px;
   padding-bottom: 30px;
