@@ -12,14 +12,14 @@ import { DiscernOverview } from './pages/discern/overview';
 import { DiscernAnalysis } from './pages/discern/analysis';
 import { DiscernTimeline } from './pages/discern/timeline';
 import { DiscernBrainstorm } from './pages/discern/brainstorm';
-import { CoCreation } from './pages/develop/co_creation'; 
+import { DevelopTickets } from './pages/develop/tickets';
+import { DevelopCoCreation } from './pages/develop/co_creation'; 
 import Navbar from './pages/common/navbar';
 import TableOfContents from './pages/common/table_of_contents';
 import Footer from './pages/common/footer';
 import { TestPageDatabase } from './pages/testPageDatabase';
 import './app.css'; 
 import { ScrollTop } from './scrollTop';
-import { DevelopTickets } from './pages/develop/tickets';
 
 function App() {
   return (
@@ -44,6 +44,9 @@ function App() {
               <Route path="/discern/overview" element={< DiscernOverview />} />
               <Route path="/discern/analysis" element={< DiscernAnalysis />} />
               <Route path="/discern/timeline" element={< DiscernTimeline />} />
+              <Route path="/discern/brainstorm" element={< DiscernBrainstorm />} />
+              <Route path="/develop/tickets" element={< DevelopTickets />} />
+              <Route path="/develop/co_creation" element={< DevelopCoCreation />} />
             </Routes>
           </div>
         </div>

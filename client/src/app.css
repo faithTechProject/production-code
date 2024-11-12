@@ -16,7 +16,6 @@
 .content-layout {
   display: flex;
   flex: 1;
-  width: 90%;
 }
 
 .main-content {

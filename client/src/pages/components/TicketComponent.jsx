@@ -126,9 +126,9 @@ export const DragNDrop = ({data, setData}) => {
                             </div>
                             {data[grp_index].tasks[item_index].isOpen && (
                             <div className="kevin-ticket-component-body-content">
-                                <textarea className="kevin-ticket-component-textarea" rows={3} placeholder="Discription:"
-                                    value={data[grp_index].tasks[item_index].discription}
-                                    onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'discription')}}
+                                <textarea className="kevin-ticket-component-textarea" rows={3} placeholder="Description:"
+                                    value={data[grp_index].tasks[item_index].description}
+                                    onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'description')}}
                                 />
                                 <div>
                                     <input className="kevin-ticket-component-ticket-input-align-left"
@@ -174,7 +174,7 @@ export const Ticket = ({ id, title }) => {
             </div>
         </div>
         <div className="kevin-ticket-component-body-content">
-            <textarea className="kevin-ticket-component-textarea" rows={4} placeholder="Discription:" />
+            <textarea className="kevin-ticket-component-textarea" rows={4} placeholder="Description:" />
             <div>
                 <input className="kevin-ticket-component-ticket-input-align-left" placeholder="Date Created:"/>
                 <input className="kevin-ticket-component-ticket-input-align-right" placeholder="Due Date:"/>
@@ -219,7 +219,7 @@ export const Ticket = ({ id, title }) => {
                                 </div>
                                 {isOpen && (
                                 <div className="kevin-ticket-component-body-content">
-                                    <textarea className="kevin-ticket-component-textarea" rows={3} placeholder="Discription:" />
+                                    <textarea className="kevin-ticket-component-textarea" rows={3} placeholder="Description:" />
                                     <div>
                                         <input className="kevin-ticket-component-ticket-input-align-left" placeholder="Date Created:"/>
                                         <input className="kevin-ticket-component-ticket-input-align-right" placeholder="Due Date:"/>
