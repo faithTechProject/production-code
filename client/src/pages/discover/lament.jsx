@@ -262,6 +262,10 @@ export function DiscoverLament() {
 				Remember, the goal of this stage is to deeply understand the problem and its impact on people, viewing it through the compassionate lens of Christ.
 				</p>
 				<br></br>
+				<div className='bottomLinks'>
+					<Link to="/discover/problem">Problem</Link>
+					<Link to="/discern/overview">Discern Overview</Link>
+				</div>
 			</body>
         </>
     )

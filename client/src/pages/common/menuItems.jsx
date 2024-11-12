@@ -1,6 +1,6 @@
 // menuItems.js
 export const overviewItems = [
-  { label: 'Create', path: '/create' },
+  { label: 'Workbook', path: '/' },
   ];
 export const discoverItems = [
     { label: 'Overview', path: '/discover/overview' },
@@ -17,12 +17,12 @@ export const discernItems = [
   
   ];
 export const developItems = [
-  { label: 'Tickets', path: '/develop/tickets'}
+  { label: 'Tickets', path: '/develop/tickets'},
+  { label: 'Co-Creation', path: '/develop/co_creation'},
     
   ];
   
   export const demonstrateItems = [
     { label: 'Option 1', path: '/option1' },
-    { label: 'Option 2', path: '/option2' },
   ];
   

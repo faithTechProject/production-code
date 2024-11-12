@@ -2,11 +2,6 @@
   --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.main-content {
-  margin-left: 220px;
-  padding: 20px;
-}
-
 .hero_Table_of_contents {
   position: fixed;  
   z-index: 10;
@@ -14,7 +9,7 @@
   height: 100vh;
   background-color: #e7e7e7;  
   width: 200px;
-  padding: 15px;
+  padding: 15px 0px 0px 20px;
   border-right: 2px solid #4f4f4f; 
   display: inline-block;
 }
@@ -203,8 +198,13 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
-
 }
+
+.members ul li{
+  list-style-type: circle;
+  margin-left: 15%;
+}
+
 
 .member_image_placeholder{
   width: 150px;
@@ -274,7 +274,7 @@ textarea {
 .hero_member_roles h1{
   text-align: center;
   font-size: 24px;
-  color: rgb(255, 186, 59);
+  color: orangered;
 }
 .roles-container {
   display: flex;
@@ -287,7 +287,7 @@ textarea {
 .role {
   width: 250px;
   height: 250px;
-  border: 4px solid #e66e4d; /* Orange border like in the image */
+  border: 4px solid #e66e4d;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
@@ -347,7 +347,9 @@ ul li {
   text-align: left;
 
 }
-
+.needed_skills{
+  text-align: center;
+}
 .title_circle h3{
   text-align: center;
 }
@@ -372,6 +374,19 @@ ul li {
   margin: 20px;
   margin-left: 10%;
    
+}
+
+.decorate_list {
+  color: black;
+  background-color: orangered;
+  font-weight: bold;
+  height: 40px; 
+  width: 40px;
+  display: inline-flex; 
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; 
+  font-size: 16px;
 }
 
 /* Flip Card */
@@ -663,6 +678,7 @@ label {
 .hero_faith_integration ul li{
   margin: 20px;
   font-size: 16px;
+  
 }
 
 /* faithtech pillars */
@@ -765,6 +781,10 @@ label {
   border: 1px solid orangered; 
   height: 100%; 
  
+}
+
+.exercise_form{
+  text-align: center;
 }
 
 .exercise_label{
