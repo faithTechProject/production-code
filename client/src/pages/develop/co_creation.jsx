@@ -1,7 +1,7 @@
 import '../stylesheets/co_creation.css';
 
 
-export function CoCreation() {
+export function DevelopCoCreation() {
     
    
     return (

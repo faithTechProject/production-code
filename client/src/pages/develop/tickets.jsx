@@ -6,9 +6,9 @@ import { DragNDrop } from '../components/TicketComponent';
 
 export function DevelopTickets() {
     const [data, setData] = useState([
-        {group: 'Not Started', tasks: [{id: 1, title: 'title1', discription: '', dateCreated: '', sprint: '', dateDue: '', pctComplete: 0, assignedTo: '', isOpen: true}, {id: 2, title: 'title2', discription: '', dateCreated: '', sprint: '', dateDue: '', pctComplete: 0, assignedTo: '', isOpen: true}]},
-        {group: 'In Progress', tasks: [{id: 3, title: 'title3', discription: '', dateCreated: '', sprint: '', dateDue: '', pctComplete: 0, assignedTo: '', isOpen: true}]},
-        {group: 'Completed', tasks: [{id: 4, title: 'title4', discription: '', dateCreated: '', sprint: '', dateDue: '', pctComplete: 0, assignedTo: '', isOpen: true}]}
+        {group: 'Not Started', tasks: [{id: 1, title: 'title1', description: '', dateCreated: '', sprint: '', dateDue: '', pctComplete: 0, assignedTo: '', isOpen: true}, {id: 2, title: 'title2', description: '', dateCreated: '', sprint: '', dateDue: '', pctComplete: 0, assignedTo: '', isOpen: true}]},
+        {group: 'In Progress', tasks: [{id: 3, title: 'title3', description: '', dateCreated: '', sprint: '', dateDue: '', pctComplete: 0, assignedTo: '', isOpen: true}]},
+        {group: 'Completed', tasks: [{id: 4, title: 'title4', description: '', dateCreated: '', sprint: '', dateDue: '', pctComplete: 0, assignedTo: '', isOpen: true}]}
     ])
     const addTask = (group) => {
         
@@ -22,7 +22,7 @@ export function DevelopTickets() {
         }
 
         let newList = JSON.parse(JSON.stringify(data))
-        newList[group].tasks = [...newList[group].tasks, {id: indexToAddAt + 1, title: 'title', discription: '', dateCreated: '', sprint: '', dateDue: '', pctComplete: 0, assignedTo: '', isOpen: true}];
+        newList[group].tasks = [...newList[group].tasks, {id: indexToAddAt + 1, title: 'title', description: '', dateCreated: '', sprint: '', dateDue: '', pctComplete: 0, assignedTo: '', isOpen: true}];
         console.log(newList);
         setData(newList)
     }
@@ -35,7 +35,7 @@ export function DevelopTickets() {
     <div class="kevin-text">    
         <strong><p>If you already created assignments on the co-creation page, tickets will automatically be added within this page.  
             You can also use this page to add new tickets and rearrange them into different categories depending on the status.
-            Creating ticket helps to track the assignments and progress team members are making.
+            Creating tickets helps to track the assignments and progress team members are making.
             Tickets can be deleted and minimized for convienince.
         </p></strong>
     </div>
@@ -43,7 +43,7 @@ export function DevelopTickets() {
     <div className="kevin-header">
         <div className="kevin-center kevin-text">
             <p><strong>Not Started</strong></p>
-            <p>I<strong>n Progress</strong></p>
+            <p><strong>In Progress</strong></p>
             <p><strong>Completed</strong></p>
         </div>
         <div className="kevin-center">

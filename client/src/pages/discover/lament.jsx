@@ -30,7 +30,6 @@ export function DiscoverLament() {
 
 	return (
         <>
-			<body>
 				<div id="oLamentTopImage">
 					<h3 class="oTitle">LAMENT</h3>
 				</div>
@@ -50,8 +49,6 @@ export function DiscoverLament() {
 						"Lord, the God of heaven, the great and awesome God, who keeps his covenant of love with those who love him and keep his commandments, let your ear be attentive and your eyes open to hear the prayer your servance is praying before you day and night for your servants, the people of Israel."
 					</p>
 				</div>
-			</body>
-			<body>
 				<h2 class="oLamenth2">Scripture Reflection</h2>
 				<div class="oScriptureBoxOne">
 					<div class="oNumberBox">
@@ -266,7 +263,6 @@ export function DiscoverLament() {
 					<Link to="/discover/problem">Problem</Link>
 					<Link to="/discern/overview">Discern Overview</Link>
 				</div>
-			</body>
         </>
     )
 }
