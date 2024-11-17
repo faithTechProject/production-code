@@ -1,4 +1,4 @@
-import '../stylesheets/table_of_contents.css'
+import './tableOfContents.css'
 import Dropdown from './dropdown';
 import {discoverItems, discernItems, developItems, demonstrateItems, overviewItems } from './menuItems';
 

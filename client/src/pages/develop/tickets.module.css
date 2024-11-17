@@ -1,5 +1,5 @@
 
-.kevin-bannar {
+.kevin_bannar {
     width: 100%;
     height: 200px;
     background-image: url("../images/ticketBanner.webp");
@@ -9,14 +9,14 @@
     line-height: 200px;   
 }
 
-.kevin-title {
+.kevin_title {
     font-size: 50px;
     color: white;
     margin: 0px;
     padding: 0px;
 }
 /*
-.kevin-ticket {
+.kevin_ticket {
 
 }
 
@@ -32,14 +32,14 @@
 }
 */
 
-.kevin-header {
+.kevin_header {
     /*background-color: #282c34;*/
     min-height: 100vh;
     font-size: calc(10px + 2vmin);
     color: white;
 }
 
-.kevin-center {
+.kevin_center {
     display: grid;
     padding: .5rem;
     display: grid;
@@ -52,7 +52,7 @@
 
 }
 
-.kevin-drag-n-drop {
+.kevin_drag_n_drop {
     padding: .5rem;
     display: grid;
     gap: 4rem;
@@ -63,13 +63,13 @@
     justify-content:space-around;
 }
 
-.kevin-dnd-group {
+.kevin_dnd_group {
     background-color: white;
     border-radius: 5px;
     padding: .5rem
 }
 
-.kevin-dnd-item {
+.kevin_dnd_item {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,23 +79,23 @@
     color: #282c34;
 }
 
-.kevin-dnd-item * {
+.kevin_dnd_item * {
     margin: 0;
 }
 
-.kevin-dnd-group-title * {
+.kevin_dnd_group_title * {
     text-align: left;
     margin-bottom: .5rem;
 }
 
-.kevin-dnd-item:not(:last-of-type) {
+.kevin_dnd_item:not(:last-of-type) {
     margin-bottom: 4rem;
 }
 
-.kevin-current {
+.kevin_current {
     background-color: #282c34;
 }
 
-.kevin-cursor {
+.kevin_cursor {
     cursor:grab;
 }

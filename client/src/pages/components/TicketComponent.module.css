@@ -1,4 +1,4 @@
-.kevin-ticket-component-ticket {
+.kevin_ticket_component_ticket {
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -6,11 +6,11 @@
 }
 
 
-.kevin-ticket-component-ticket:not(:last-of-type) {
+.kevin_ticket_component_ticket:not(:last-of-type) {
     margin-bottom: 4rem;
 }
 
-.kevin-ticket-component-title-input {
+.kevin_ticket_component_title_input {
     color: white;
     width: 60%;
     background-color: #ea542c;
@@ -20,17 +20,17 @@
     
 }
 
-.kevin-ticket-component-title-input::placeholder {
+.kevin_ticket_component_title_input::placeholder {
     color: white;
     opacity: 1;
 }
 
-.kevin-ticket-component-textarea {
+.kevin_ticket_component_textarea {
     box-sizing: border-box;
     width: 100%;
 }
 
-.kevin-ticket-component-ticket-input-align-left {
+.kevin_ticket_component_ticket_input_align_left {
     margin-top: 4px;
     margin-bottom: 4px;
     padding: 5px;
@@ -39,7 +39,7 @@
     float: left;
 }
 
-.kevin-ticket-component-ticket-input-align-right {
+.kevin_ticket_component_ticket_input_align_right {
     margin-top: 4px;
     margin-bottom: 4px;
     padding: 5px;
@@ -48,17 +48,17 @@
     float: right;
 }
 
-.kevin-ticket-component-title-content {
+.kevin_ticket_component_title_content {
     padding: 10px;
     background-color: #ea542c;
     text-align: center;
 }
 
-.kevin-ticket-component-body-content {
+.kevin_ticket_component_body_content {
     padding: 10px;
 }
 
-.kevin-ticket-component {
+.kevin_ticket_component {
     background-color: white;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -70,12 +70,12 @@
     touch-action: none;
 }
 
-.kevin-checkbox {
+.kevin_checkbox {
     height: 20px;
     width: 20px;
 }
 
-.kevin-button {
+.kevin_button {
     background-color: white;
     border: 1px solid black;
     padding: 8px 0px 8px 0px;
@@ -86,11 +86,11 @@
     
 }
 
-.kevin-button:hover {
+.kevin_button:hover {
     background-color: whitesmoke;
 }
 
-.kevin-text p {
+.kevin_text p {
     color: black;
     padding: 16px;
     font-size: large;
