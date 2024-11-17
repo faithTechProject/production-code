@@ -12,6 +12,10 @@ import { TextAreaReflectionsModule } from './text.area.reflections/text.area.ref
 import { TextAreaReflectionsController } from './text.area.reflections/text.area.reflections.controller';
 import { TextAreaReflectionsService } from './text.area.reflections/text.area.reflections.service';
 import { TextAreaReflections } from './text.area.reflections/text.area.reflections.entity';
+import { TicketsController } from './tickets/tickets.controller';
+import { TicketsModule } from './tickets/tickets.module';
+import { Tickets } from './tickets/tickets.entity';
+import { TicketsService } from './tickets/tickets.service';
 
 
 @Module({
@@ -24,12 +28,13 @@ import { TextAreaReflections } from './text.area.reflections/text.area.reflectio
       password: 'faithtech_password',
       database: 'faithtech_create',
       synchronize: false,
-      entities: [Reflection, Matrix, TextAreaReflections] // postgres database tables.
+      entities: [Reflection, Matrix, TextAreaReflections, Tickets] // postgres database tables.
   }),
-    TypeOrmModule.forFeature([Reflection, Matrix, TextAreaReflections])
+    TypeOrmModule.forFeature([Reflection, Matrix, TextAreaReflections, Tickets])
+    
   ],
-  controllers: [ReflectionController, MatrixController, TextAreaReflectionsController],
-  providers: [ReflectionService, MatrixService, TextAreaReflectionsService],
+  controllers: [ReflectionController, MatrixController, TextAreaReflectionsController, TicketsController],
+  providers: [ReflectionService, MatrixService, TextAreaReflectionsService, TicketsService],
 
 })
 export class AppModule {}

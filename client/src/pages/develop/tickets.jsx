@@ -1,15 +1,44 @@
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import '../stylesheets/tickets.css';
 import '../stylesheets/common.css'
 import { DragNDrop } from '../components/TicketComponent';
+import axios from 'axios';
 
 export function DevelopTickets() {
+    const isMounted = useRef(false)
     const [data, setData] = useState([
-        {group: 'Not Started', tasks: [{id: 1, title: 'title1', discription: '', dateCreated: '', sprint: '', dateDue: '', pctComplete: 0, assignedTo: '', isOpen: true}, {id: 2, title: 'title2', discription: '', dateCreated: '', sprint: '', dateDue: '', pctComplete: 0, assignedTo: '', isOpen: true}]},
-        {group: 'In Progress', tasks: [{id: 3, title: 'title3', discription: '', dateCreated: '', sprint: '', dateDue: '', pctComplete: 0, assignedTo: '', isOpen: true}]},
-        {group: 'Completed', tasks: [{id: 4, title: 'title4', discription: '', dateCreated: '', sprint: '', dateDue: '', pctComplete: 0, assignedTo: '', isOpen: true}]}
+        {group: 'not started', tasks: []},
+        {group: 'in progress', tasks: []},
+        {group: 'completed', tasks: []}
     ])
+    
+    useEffect(() => {
+        if (!isMounted.current){
+            axios.get(`http://localhost:3000/tickets`).then(res => {
+                for(let i=0; i<res.data.length; ++i) {
+                    
+                    if (res.data[i].status === 'not started') {
+                        data[0].tasks = [...data[0].tasks, res.data[i]]
+                    }
+                    
+                    if (res.data[i].status === 'in progress') {
+                        data[1].tasks = [...data[1].tasks, res.data[i]]
+                    }
+                    
+                    if (res.data[i].status === 'completed') {
+                        data[2].tasks = [...data[2].tasks, res.data[i]]
+                    }
+                }
+                
+                // A React "trick" needed to trigger a render.
+                let newList = JSON.parse(JSON.stringify(data))
+                setData(newList)
+            })
+            isMounted.current = true;      
+        }
+    }, [])
+
     const addTask = (group) => {
         
         let indexToAddAt = 0;
@@ -21,8 +50,23 @@ export function DevelopTickets() {
             }
         }
 
+        axios.post(`http://localhost:3000/tickets`,
+            {
+                id: indexToAddAt + 1,
+                status: data[group].group,
+                title: 'title',
+                description: '',
+                date_created: '',
+                sprint: 0,
+                date_due: '',
+                percent_complete: 0,
+                assigned_to: '',
+                is_open: true
+            }
+        )
+
         let newList = JSON.parse(JSON.stringify(data))
-        newList[group].tasks = [...newList[group].tasks, {id: indexToAddAt + 1, title: 'title', discription: '', dateCreated: '', sprint: '', dateDue: '', pctComplete: 0, assignedTo: '', isOpen: true}];
+        newList[group].tasks = [...newList[group].tasks, {id: indexToAddAt + 1, status: newList[group].group, title: 'title', description: '', date_created: '', sprint: 0, date_due: '', percent_complete: 0, assigned_to: '', is_open: true}];
         console.log(newList);
         setData(newList)
     }
@@ -43,7 +87,7 @@ export function DevelopTickets() {
     <div className="kevin-header">
         <div className="kevin-center kevin-text">
             <p><strong>Not Started</strong></p>
-            <p>I<strong>n Progress</strong></p>
+            <p><strong>In Progress</strong></p>
             <p><strong>Completed</strong></p>
         </div>
         <div className="kevin-center">
