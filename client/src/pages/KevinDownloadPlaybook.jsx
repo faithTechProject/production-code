@@ -1,4 +1,4 @@
-import "./stylesheets/kevinRedemptive.css";
+import styles from "./workbook.module.css";
 
 export function KevinDownloadPlaybook() {
 
@@ -14,7 +14,7 @@ export function KevinDownloadPlaybook() {
 
     return (
         <>
-            <button class="kevin-download-playbook-button"onClick={onButtonClick}> Download Playbook</button>
+            <button class={styles.kevinDownloadPlaybookButton} onClick={onButtonClick}> Download Playbook</button>
         </>
     );
 };

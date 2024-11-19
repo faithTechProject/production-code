@@ -1,6 +1,6 @@
 import React from "react";
-import "./Table.css";
-import "../stylesheets/table_of_contents.css"
+//import "./Table.css";
+//import "../stylesheets/table_of_contents.css"
 
 export const Table = ({rows, deleteRow, editRow}) => {
     return (

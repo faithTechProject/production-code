@@ -67,12 +67,12 @@ body{
 }
 
 
-.input-wrapper input{
+.input_wrapper input{
   margin: 2%;
   height: fit-content;
 
 }
-.input-wrapper textarea{
+.input_wrapper textarea{
   height: fit-content;
   margin: 2%;
 }
@@ -88,7 +88,7 @@ body{
   margin-left: 300px;
 }
 
-.unassigned-Solutions h2{
+.unassigned_Solutions h2{
   margin-top: 5%;
 }
 
