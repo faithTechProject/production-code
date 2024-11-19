@@ -8,6 +8,7 @@ export const DragNDrop = ({data, setData}) => {
     const [dragging, setDragging] = useState(false);
     const dragItem = useRef();
     const dragNode = useRef();
+    const oldState = useRef();
     const mouse = useRef()
 
     const handleDragStart = (e, params) => {
@@ -26,14 +27,22 @@ export const DragNDrop = ({data, setData}) => {
         
         const currentItem = dragItem.current;
         
-        console.log(currentItem)
         console.log("entering drag", params);
         document.body.style.cursor = 'default';
+       // oldState.current = params.item.status;
         setData(oldList => {
             let newList = JSON.parse(JSON.stringify(oldList))
             newList[params.grp_index].tasks.splice(params.item_index, 0, newList[currentItem.grp_index].tasks.splice(currentItem.item_index, 1)[0]);
-            dragItem.current = params;
             
+            
+            newList[params.grp_index].tasks[params.item_index].status = data[params.grp_index].group;
+            for (let i=0; i<newList.length; ++i) {
+                for (let j=0; j<newList[i].tasks.length; ++j) {
+                    newList[i].tasks[j].row_index = j;
+                }
+            }
+            console.log(newList)
+            dragItem.current = params;
             return newList;
         })
         
@@ -44,9 +53,15 @@ export const DragNDrop = ({data, setData}) => {
         //axios.patch(`http://localhost:3000/tickets/}`)
         
 
-        
         console.log("Ending drag");
         console.log(dragItem.current)
+        console.log(data)
+        axios.patch(`http://localhost:3000/tickets/?id=${dragItem.current.item.id}`, {
+            id: dragItem.current.item.id,
+            status: dragItem.current.item.status,
+            row_index: dragItem.current.item.row_index
+        })
+        console.log(data[dragItem.current.grp_index].tasks[dragItem.current.item_index].status)
         console.log("Ending drag");
         setDragging(false);
         dragNode.current.removeEventListener('dragend', handelDragEnd);
@@ -109,7 +124,7 @@ export const DragNDrop = ({data, setData}) => {
         setData(newList)
 
     }
-
+    
     return (
         <div className="kevin-drag-n-drop">
             

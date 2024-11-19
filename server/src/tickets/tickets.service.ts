@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { ListCollectionsCursor, MoreThan, Repository } from 'typeorm';
+import { And, ListCollectionsCursor, MoreThan, MoreThanOrEqual, Not, Repository } from 'typeorm';
 import { Tickets } from './tickets.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UpdateTicketsDto } from './dto/update-tickets.dto';
 import { CreateTicketsDto } from './dto/create-tickets-dto';
+import { NotContains, NotEquals } from 'class-validator';
 
 @Injectable()
 export class TicketsService {
@@ -38,18 +39,52 @@ export class TicketsService {
     }
 
 
-    async moveTicket(movedTicketId: number, movedTicketPosition: number, movedTicketNewStatus: number, updateTicketsDto: UpdateTicketsDto) {
-
-        console.log(updateTicketsDto.status)
-        console.log(updateTicketsDto.row_index)
-        const list = await this.findStatus('not started');
-
-        for (let i=0; i<list.length; ++i) {
-            if (list[i].row_index > position)
-        }
-        return list;
+    async ticketUpdateIndex(updateTicketsDto: UpdateTicketsDto) {
+        
 
     }
+
+    async moveTicket(id: number, updateTicketsDto: UpdateTicketsDto) {
+        const toUpdate = await this.ticketsRepository.findOneBy( { id } );
+        const oldStatus = toUpdate.status
+        console.log(updateTicketsDto)
+        console.log(toUpdate)
+        const updated = Object.assign(toUpdate, updateTicketsDto)
+        await this.ticketsRepository.save(updated);
+
+        
+        //console.log(updateTicketsDto.status)
+        
+        const tickets = await this.ticketsRepository.find({
+            where: {
+                row_index: MoreThanOrEqual(updateTicketsDto.row_index), 
+                status: updateTicketsDto.status,
+                id: Not(id) 
+                }
+            });
+
+        tickets.sort((a, b) => a.row_index - b.row_index);
+        for (let i=0; i<tickets.length; ++i) {
+            tickets[i].row_index = updateTicketsDto.row_index + 1 + i;
+            this.updateTicketIds(tickets[i].id, tickets[i])
+            
+        }
+        
+        console.log(oldStatus)
+        console.log(updateTicketsDto.status)
+        if (oldStatus != updateTicketsDto.status) {
+            const otherColumn = await this.ticketsRepository.find({ where: {status: oldStatus }});
+            //otherColumn.sort((a, b) => a.row_index - b.row_index);
+            console.log(otherColumn)
+            for (let i=0; i<otherColumn.length; ++i) {
+                otherColumn[i].row_index = i;
+                this.updateTicketIds(otherColumn[i].id, otherColumn[i])
+            }
+        }
+        
+        return tickets;
+    }
+
 
     async updateTicketIds(id: number, updateTicketsDto: UpdateTicketsDto) {
         

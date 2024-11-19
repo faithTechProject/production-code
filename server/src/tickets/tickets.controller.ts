@@ -23,7 +23,7 @@ export class TicketsController {
     }
 
     @Patch()
-        moveTicket(@Query('id') id: number, @Body() updateTicketsDto: UpdateTicketsDto) {
+        moveTicket(@Query('id') id: number, @Query('status') status: string, @Query('row_index') row_index: string, @Body() updateTicketsDto: UpdateTicketsDto) {
             return this.ticketsService.moveTicket(id, updateTicketsDto)
         }
 

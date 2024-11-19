@@ -30,6 +30,11 @@ export function DevelopTickets() {
                         data[2].tasks = [...data[2].tasks, res.data[i]]
                     }
                 }
+
+                //data[0].tasks.sort
+                data[0].tasks.sort((a, b) => a.row_index - b.row_index);
+                data[1].tasks.sort((a, b) => a.row_index - b.row_index);
+                data[2].tasks.sort((a, b) => a.row_index - b.row_index);
                 
                 // A React "trick" needed to trigger a render.
                 let newList = JSON.parse(JSON.stringify(data))
@@ -54,6 +59,7 @@ export function DevelopTickets() {
             {
                 id: indexToAddAt + 1,
                 status: data[group].group,
+                row_index: data[group].tasks.length,
                 title: 'title',
                 description: '',
                 date_created: '',
@@ -66,7 +72,7 @@ export function DevelopTickets() {
         )
 
         let newList = JSON.parse(JSON.stringify(data))
-        newList[group].tasks = [...newList[group].tasks, {id: indexToAddAt + 1, status: newList[group].group, title: 'title', description: '', date_created: '', sprint: 0, date_due: '', percent_complete: 0, assigned_to: '', is_open: true}];
+        newList[group].tasks = [...newList[group].tasks, {id: indexToAddAt + 1, status: newList[group].group, row_index: newList[group].tasks.length, title: 'title', description: '', date_created: '', sprint: '', date_due: '', percent_complete: '', assigned_to: '', is_open: true}];
         console.log(newList);
         setData(newList)
     }
