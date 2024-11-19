@@ -104,7 +104,7 @@ export function DiscoverProblem() {
             </div>
             <div className='bottomLinks'>
                 <Link to="/discover/teams">Teams</Link>
-                <Link to="/discover/lament">Lament</Link>
+                <Link className='next_page' to="/discover/lament">Lament</Link>
             </div>
         </>
     )

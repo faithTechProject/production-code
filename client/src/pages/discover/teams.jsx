@@ -591,8 +591,7 @@ export function DiscoverTeams() {
                     <label >
                         <p>
                             Document yout values in the space provided below
-                        </p>
-                        <form className='exercise_form' id='1' onSubmit={(e) => handleSubmit_database(e, values)}>
+                        </p>  <form className='exercise_form' id='1' onSubmit={(e) => handleSubmit_database(e, values)}>
                             <textarea name="values" rows={10} cols={20}
                             placeholder="Enter text here..."
                             value={values}
@@ -600,6 +599,7 @@ export function DiscoverTeams() {
                             />
                             <input type="submit" value="Save" />
                         </form>
+                      
                     </label>
                 </div>
                 <div className='Reflection_questions'>
@@ -660,8 +660,8 @@ export function DiscoverTeams() {
 
             </div>
             <div className='bottomLinks'>
-                <Link to="/discover/projects">Projecrs</Link>
-                <Link to="/discover/problem">Problems</Link>
+                <Link className="previous_page" to="/discover/projects">Projects</Link>
+                <Link className="next_page" to="/discover/problem">Problems</Link>
             </div>
         </div>
     );

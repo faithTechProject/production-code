@@ -264,7 +264,7 @@ export function DiscoverLament() {
 				<br></br>
 				<div className='bottomLinks'>
 					<Link to="/discover/problem">Problem</Link>
-					<Link to="/discern/overview">Discern Overview</Link>
+					<Link className='next_page' to="/discern/overview">Discern Overview</Link>
 				</div>
 			</body>
         </>

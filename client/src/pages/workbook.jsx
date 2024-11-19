@@ -67,7 +67,7 @@ export function Workbook() {
             </div>
             <div className='bottomLinks'>
                 <br></br>
-                <Link to="/discover/overview">Discover</Link>
+                <Link className='next_page' to="/discover/overview">Discover</Link>
             </div>
         </>
     )

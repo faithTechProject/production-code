@@ -307,7 +307,7 @@ export function DiscoverProjects() {
             </div>
             <div className='bottomLinks'>
                 <Link to="/discover/overview">Discover Overview</Link>
-                <Link to="/discover/teams">Teams</Link>
+                <Link className='next_page' to="/discover/teams">Teams</Link>
             </div>
         </>
     )

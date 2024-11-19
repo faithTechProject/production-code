@@ -233,7 +233,7 @@ export function DiscernAnalysis() {
         </div>
         <div className='bottomLinks'>
           <Link to="/discern/brainstorm">Brainstorm</Link>
-          <Link to="/discern/timeline">Timeline</Link>
+          <Link className='next_page' to="/discern/timeline">Timeline</Link>
         </div>
       </div>
     </>

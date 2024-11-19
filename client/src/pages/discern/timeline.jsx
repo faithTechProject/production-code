@@ -79,7 +79,7 @@ export function DiscernTimeline() {
             </div>
             <div className='bottomLinks'>
                 <Link to="/discern/analysis">Analysis</Link>
-                <Link to="/develop/overview">Develop Overview</Link>
+                <Link className='next_page' to="/develop/overview">Develop Overview</Link>
             </div>
         </>
     )

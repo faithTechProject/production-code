@@ -5,7 +5,7 @@
 
 .hero_navbar {
   position: fixed; 
-  width: calc(100% - 180px);
+  width: 100%;
   top: 0; 
   background-color: #ffffff; 
   color: white; 

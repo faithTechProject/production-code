@@ -48,7 +48,7 @@ export function DiscoverOverview() {
                 <br></br>
                 <div className='bottomLinks'>
                     <Link to="/">Workbook</Link>
-                    <Link to="/discover/projects">Projects</Link>
+                    <Link className='next_page' to="/discover/projects">Projects</Link>
                 </div>
             </div>
         </>

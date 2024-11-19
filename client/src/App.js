@@ -14,6 +14,7 @@ import { DiscernTimeline } from './pages/discern/timeline';
 import { DiscernBrainstorm } from './pages/discern/brainstorm';
 import { CoCreation } from './pages/develop/co_creation'; 
 import Navbar from './pages/common/navbar';
+import { Story } from './pages/demonstrate/story'
 import TableOfContents from './pages/common/table_of_contents';
 import Footer from './pages/common/footer';
 import { TestPageDatabase } from './pages/testPageDatabase';
@@ -44,6 +45,9 @@ function App() {
               <Route path="/discern/overview" element={< DiscernOverview />} />
               <Route path="/discern/analysis" element={< DiscernAnalysis />} />
               <Route path="/discern/timeline" element={< DiscernTimeline />} />
+              <Route path="/develop/co_creation" element={< CoCreation />} />
+              <Route path="/develop/tickets" element={< DevelopTickets />} />
+              <Route path="/demonstrate/story" element={< Story />} />
             </Routes>
           </div>
         </div>
