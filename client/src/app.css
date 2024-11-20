@@ -1,22 +1,14 @@
 /* General layout for the app */
 
-:root {
-  --body-color-odd: #bce8f3;
-  --body-color-even: #FFFFFF;
-  --body-color-blend: color-mix(in srgb,var(--body-color-odd),var(--body-color-even))
-}
-
 .hero_app-container {
     display: flex;
     flex-direction: column;
     height: 100vh;
   }
-  
 
 .content-layout {
   display: flex;
   flex: 1;
-  width: 90%;
 }
 
 .main-content {
@@ -24,21 +16,11 @@
   padding: 0px;
   overflow-y: auto;
   margin-left: 220px;
+  /*margin-top: 62px;*/
   
 }
-/*
-.main-content .body:nth-child(even) {
-  background-image: linear-gradient(var(--body-color-blend),var(--body-color-even) 30%,var(--body-color-even) 70%,var(--body-color-blend));
-}
-
-.main-content .body:nth-child(odd) {
-  background-image: linear-gradient(var(--body-color-blend),var(--body-color-odd) 30%,var(--body-color-odd) 70%,var(--body-color-blend));
-}*/
 
 .body {
   background-color: transparent;
-  padding: 0px;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  margin: 0px;
+  padding: 0% 5%;
 }

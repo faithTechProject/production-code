@@ -1,4 +1,4 @@
-import '../stylesheets/analysis.css';
+import styles from './analysis.module.css';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { DndContext } from '@dnd-kit/core';
@@ -67,15 +67,15 @@ export function DiscernAnalysis() {
 
   return (
     <>
-      <div className="hero_analysis_page">
-        <div className="hero_analysis_header">
+      <div className={styles.hero_analysis_page}>
+        <div className={styles.hero_analysis_header}>
           <h1>Analysis</h1>
-          <div className="image_placeholder">
+          <div className={styles.image_placeholder}>
             <p>Team pic</p>
           </div>
         </div>
 
-        <div className="three_rc_analysis">
+        <div className={styles.three_rc_analysis}>
           <h1>3RC Analysis</h1>
           <h2>
             For each of your brainstormed solutions, categorize them into one of
@@ -99,12 +99,12 @@ export function DiscernAnalysis() {
           </ul>
         </div>
 
-        <div className="hero_solutions">
-          <div className="solutions_input">
+        <div className={styles.hero_solutions}>
+          <div className={styles.solutions_input}>
             <label>Enter your solutions</label>
             {Solutions.map((solution, index) => (
-              <div key={solution.id} className="solutions_field">
-                <div className="input-wrapper">
+              <div key={solution.id} className={styles.solutions_field}>
+                <div className={styles.input_wrapper}>
                   <input
                     type="text"
                     value={solution.text}
@@ -112,7 +112,7 @@ export function DiscernAnalysis() {
                       handleSolutionsChange(index, 'text', e.target.value)
                     }
                     placeholder={`Solution ${index + 1}`}
-                    className="input-field"
+                    className={styles.input_field}
                   />
                   <textarea
                     value={solution.explanation}
@@ -120,13 +120,13 @@ export function DiscernAnalysis() {
                       handleSolutionsChange(index, 'explanation', e.target.value)
                     }
                     placeholder={`Explanation for Solution ${index + 1}`}
-                    className="input-field"
+                    className={styles.input_field}
                   />
                   {Solutions.length > 1 && (
                     <button
                       type="button"
                       onClick={() => removeSolutions(index)}
-                      className="remove-button"
+                      className={styles.remove_button}
                       aria-label="Remove Solution"
                     >
                       <CloseIcon />
@@ -135,18 +135,18 @@ export function DiscernAnalysis() {
                 </div>
               </div>
             ))}
-            <button type="button" onClick={addSolutions} className="add-button">
+            <button type="button" onClick={addSolutions} className={styles.add_button}>
               Enter Solution
             </button>
           </div>
 
           <DndContext onDragEnd={handleDragEnd}>
-            <div className="unassigned-Solutions">
+            <div className={styles.unassigned-Solutions}>
               <h2>Unassigned Solutions</h2>
               {Solutions.filter((solution) => solution.category === 'unassigned')
                 .map((solution) => (
                   <Draggable key={solution.id} id={solution.id}>
-                    <div className='solution_explanation' >
+                    <div className={styles.solution_explanation}>
                       <p1>{solution.text || 'Unnamed Solution'}</p1>
                       <p>{solution.explanation || 'No explanation provided.'}</p>
                     </div>
@@ -154,18 +154,18 @@ export function DiscernAnalysis() {
                 ))}
             </div>
 
-            <div className="solution_categories">
-                <div className='organize_solutions'>
+            <div className={styles.solution_categories}>
+                <div className={styles.organize_solutions}>
                     <Droppable id="Reject">
                         <h3>Reject</h3>
-                        <div className='explanation_solution_title'>
+                        <div className={styles.explanation_solution_title}>
                             <h4> Solution </h4>
                             <h4> Explanation</h4>
                         </div>
                         {Solutions.filter((solution) => solution.category === 'Reject')
                         .map((solution) => (
                             <Draggable key={solution.id} id={solution.id}>
-                            <div className='solution_explanation' >
+                            <div className={styles.solution_explanation}>
                                 <p1>{solution.text}</p1>
                                 <p>{solution.explanation}</p>
                             </div>
@@ -173,17 +173,17 @@ export function DiscernAnalysis() {
                         ))}
                     </Droppable>
                 </div>
-                <div className='organize_solutions'>
+                <div className={styles.organize_solutions}>
               <Droppable id="Receive">
                 <h3>Receive</h3>
-                <div className='explanation_solution_title'>
+                <div className={styles.explanation_solution_title}>
                     <h4> Solution </h4>
                     <h4> Explanation</h4>
                 </div>
                 {Solutions.filter((solution) => solution.category === 'Receive')
                   .map((solution) => (
                     <Draggable key={solution.id} id={solution.id}>
-                      <div className='solution_explanation' >
+                      <div className={styles.solution_explanation}>
                         <p1>{solution.text}</p1>
                         <p>{solution.explanation}</p>
                       </div>
@@ -191,17 +191,17 @@ export function DiscernAnalysis() {
                   ))}
               </Droppable>
               </div>
-              <div className='organize_solutions'>
+              <div className={styles.organize_solutions}>
               <Droppable id="Reimagine">
                 <h3>Reimagine</h3>
-                <div className='explanation_solution_title'>
+                <div className={styles.explanation_solution_title}>
                     <h4> Solution </h4>
                     <h4> Explanation</h4>
                 </div>
                 {Solutions.filter((solution) => solution.category === 'Reimagine')
                   .map((solution) => (
                     <Draggable key={solution.id} id={solution.id}>
-                      <div className='solution_explanation' >
+                      <div className={styles.solution_explanation}>
                         <p1>{solution.text}</p1>
                         <p>{solution.explanation}</p>
                       </div>
@@ -209,17 +209,17 @@ export function DiscernAnalysis() {
                   ))}
               </Droppable>
               </div>
-              <div className='organize_solutions'>
+              <div className={styles.organize_solutions}>
               <Droppable id="Create">
                 <h3>Create</h3>
-                <div className='explanation_solution_title'>
+                <div className={styles.explanation_solution_title}>
                     <h4> Solution </h4>
                     <h4> Explanation</h4>
                 </div>
                 {Solutions.filter((solution) => solution.category === 'Create')
                   .map((solution) => (
                     <Draggable key={solution.id} id={solution.id}>
-                      <div className='solution_explanation' >
+                      <div className={styles.solution_explanation}>
                         <p1>{solution.text}</p1>
                         <p>{solution.explanation}</p>
                       </div>

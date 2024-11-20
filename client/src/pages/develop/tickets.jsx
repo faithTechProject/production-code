@@ -79,27 +79,28 @@ export function DevelopTickets() {
 
     return (
     <>
-    <div className="kevin-bannar">
-        <h3 className="kevin-title">TICKETS</h3>
+    <div className={styles.kevin_bannar}>
+        <h3 className={styles.kevin_title}>TICKETS</h3>
     </div>
-    <div class="kevin-text">    
+    <div className={styles.kevin_text}>    
         <strong><p>If you already created assignments on the co-creation page, tickets will automatically be added within this page.  
             You can also use this page to add new tickets and rearrange them into different categories depending on the status.
-            Creating ticket helps to track the assignments and progress team members are making.
+            Creating tickets helps to track the assignments and progress team members are making.
             Tickets can be deleted and minimized for convienince.
         </p></strong>
     </div>
 
-    <div className="kevin-header">
-        <div className="kevin-center kevin-text">
+    <div className={styles.kevin_header}>
+        <div className={`${styles.kevin_center} ${styles.kevin_text}`}>
             <p><strong>Not Started</strong></p>
+            <p><strong>In Progress</strong></p>
             <p><strong>In Progress</strong></p>
             <p><strong>Completed</strong></p>
         </div>
-        <div className="kevin-center">
-            <button class="kevin-button" onClick={() => {addTask(0)}}>+ Add Task</button>
-            <button class="kevin-button" onClick={() => {addTask(1)}}>+ Add Task</button>
-            <button class="kevin-button" onClick={() => {addTask(2)}}>+ Add Task</button>
+        <div className={styles.kevin_center}>
+            <button className={styles.kevin_button} onClick={() => {addTask(0)}}>+ Add Task</button>
+            <button className={styles.kevin_button} onClick={() => {addTask(1)}}>+ Add Task</button>
+            <button className={styles.kevin_button} onClick={() => {addTask(2)}}>+ Add Task</button>
         </div>
 
             <DragNDrop data={data} setData={setData} />
