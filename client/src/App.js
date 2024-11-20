@@ -14,6 +14,7 @@ import { DiscernTimeline } from './pages/discern/timeline';
 import { DiscernBrainstorm } from './pages/discern/brainstorm';
 import { DevelopTickets } from './pages/develop/tickets';
 import { DevelopCoCreation } from './pages/develop/co_creation'; 
+import { DemonstrateImpact } from './pages/demonstrate/impact';
 import Navbar from './pages/common/navbar';
 import TableOfContents from './pages/common/table_of_contents';
 import Footer from './pages/common/footer';
@@ -47,6 +48,7 @@ function App() {
               <Route path="/discern/brainstorm" element={< DiscernBrainstorm />} />
               <Route path="/develop/tickets" element={< DevelopTickets />} />
               <Route path="/develop/co_creation" element={< DevelopCoCreation />} />
+              <Route path="/demonstrate/impact" element={< DemonstrateImpact />} />
             </Routes>
           </div>
         </div>
