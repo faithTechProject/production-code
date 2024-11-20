@@ -1,0 +1,55 @@
+.oTitle{
+    color: white;
+    padding: 50px;
+    text-align: center;
+    font-size: 50px;
+    margin: 0px;
+}
+
+#oDiscoverTopImage{
+	height: 200px;
+	width: 100%;
+	background-image: url(../images/DiscoverPicture.png);
+    background-size: cover;
+}
+
+.oQuoteBox{
+    background-color: #ea542c;
+    width: 50%;
+    height: auto;
+    margin: auto;
+    border-radius: 25px;
+}
+
+.oQuoteText{
+    color: white;
+    padding: 15px;
+    font-size: 15px;
+}
+
+.oDiscoverBox{
+    width: 200px;
+    border: 3px solid black;
+    margin-top: 15px;
+    margin-left: 70%;
+    padding: 5px;
+}
+
+#o4Ddiscover{
+    height: 400px;
+    width: 608px;
+    background-image: url(../images/Discover4DCycle.png);
+    background-size: cover;
+    padding: 20px;
+    margin: auto;
+    margin-bottom: 20px;
+    border-color: #ea542c;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 20px;
+}
+
+iframe {
+    display: block;
+    margin: auto;
+}

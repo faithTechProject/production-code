@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../stylesheets/problem.css';
+import styles from './problem.module.css';
 import { useEffect, useState } from 'react';
 import axios from "axios";
 
@@ -34,12 +34,13 @@ export function DiscoverProblem() {
     console.log(identify)
     return (
         <>
-            <div id="oTopImage">
-                <h3 class="oTitle"><sc>PROBLEM</sc></h3>
+            <div id={styles.oTopImage}>
+                <h3 className={styles.oTitle}><sc>PROBLEM</sc></h3>
             </div>
-            <div class="problem">
+            <div className='body'>
+            <div className={styles.problem}>
                 <h2></h2>
-                <div className='body'>
+                <div className={styles.section}>
                     <h1>Identify</h1>
                     <p>Now that you've identified impactful opportunities for redemptive technology in your community and have
                     started to form your team it's time to choose a problem. Feel free to refer back to the <a href="/#/discover/projects">Projects Page. </a> 
@@ -52,7 +53,7 @@ export function DiscoverProblem() {
                         <input type="submit" value="Save" />
                     </form>
                 </div>
-                <div className='body'>
+                <div className={styles.section}>
                     <h1>Describe</h1>
                     <p>Write a brief 2-3 sentence description of the
                     problem. Start with a challenge statement if you have one (ie. How might we...?)
@@ -62,34 +63,34 @@ export function DiscoverProblem() {
                         <input type="submit" value="Save" />
                     </form>
                 </div>
-                <div className='body'>
+                <div className={styles.section}>
                     <h1>Groups Affected</h1>        
                     <br></br>     
-                    <div class="rotate-element"><div class="unrotate-element">Problem</div></div>
+                    <div className={styles.rotate_element}><div className={styles.unrotate_element}>Problem</div></div>
                     <br></br>
                     <br></br>
-                    <div class="flex-container">
-                        <div class="divbox">
+                    <div className={styles.flex_container}>
+                        <div className={styles.divbox}>
                             <form id='2' onSubmit={(e) => handleSubmit(e, group1)}>Group 1
-                                <textarea className='groupsAffected'
+                                <textarea className={styles.groupsAffected}
                                     placeholder='type here...'
                                     value={group1}
                                     onChange={(e) => setGroup1(e.target.value)} />
                                     <input type="submit" value="Save" />
                             </form>
                         </div>
-                        <div class="divbox">
+                        <div className={styles.divbox}>
                             <form id='3' onSubmit={(e) => handleSubmit(e, group2)}>Group 2
-                                <textarea className='groupsAffected'
+                                <textarea className={styles.groupsAffected}
                                     placeholder='type here...'
                                     value={group2}
                                     onChange={(e) => setGroup2(e.target.value)} />
                                     <input type="submit" value="Save" />
                             </form>
                         </div>
-                        <div class="divbox">
+                        <div className={styles.divbox}>
                             <form id='4' onSubmit={(e) => handleSubmit(e, group3)}>Group 3
-                                <textarea className='groupsAffected'
+                                <textarea className={styles.groupsAffected}
                                     placeholder='type here...'
                                     value={group3}
                                     onChange={(e) => setGroup3(e.target.value)} />
@@ -105,6 +106,7 @@ export function DiscoverProblem() {
             <div className='bottomLinks'>
                 <Link to="/discover/teams">Teams</Link>
                 <Link to="/discover/lament">Lament</Link>
+            </div>
             </div>
         </>
     )

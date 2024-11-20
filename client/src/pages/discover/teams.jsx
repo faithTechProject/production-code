@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import styles from './teams.module.css';
 import React, { useState } from 'react';
 import logo from '../images/logo.svg';
 import { useEffect } from "react";
@@ -240,51 +241,49 @@ export function DiscoverTeams() {
     }
  
     return (
-        <div class="hero_teams_container">
-            <div class="hero_teams_header">
-                <h1>Forming Teams</h1>
-                <div class="image_placeholder">
-                    <p>Team pic</p>
-                </div>
+        <>
+            <div id={styles.oTopImage}>
+                <h3 className={styles.oTitle}>FORMING <sc>TEAMS</sc></h3>
             </div>
-            <div class="hero_teams_page">
+            <div className="body">
+            <div className={styles.hero_teams_page}>
                 <h1>Create Effective Teams</h1>
-                <h2 class="skills_title">Assess Skills and Experiences</h2>
-                <div class="hero_team_members">
-                    <div class="members">
-                        <pic class="member_image_placeholder"> stock img </pic>
+                <h2 className={styles.skills_title}>Assess Skills and Experiences</h2>
+                <div className={styles.hero_team_members}>
+                    <div className={styles.members}>
+                        <pic className={styles.member_image_placeholder}> stock img </pic>
                         
                         <ul>
-                            <h3> <num className='decorate_list'> 1 </num> Conduct skills inventory </h3>
+                            <h3> <num className={styles.decorate_list}> 1 </num> Conduct skills inventory </h3>
                             <li> Technical skills (e.g programming languages, design tools) </li>
                             <li>Soft skills (e.g communication, leadership, empathy)</li>
                             <li> Domain expertise revelant to the project </li>
                         </ul>  
                     </div>
-                    <div class="members">
-                        <pic class="member_image_placeholder"> stock img </pic>
+                    <div className={styles.members}>
+                        <pic className={styles.member_image_placeholder}> stock img </pic>
                         <ul>
-                            <h3> <num className='decorate_list'> 2 </num> Consider past Experiences </h3>
+                            <h3> <num className={styles.decorate_list}> 2 </num> Consider past Experiences </h3>
                             <li> previous redemptive technology project </li>
                             <li> Volunteer work or community involvement </li>
                             <li> Professional background </li>
                         </ul>  
                     </div>
-                    <div class="members">
-                        <pic class="member_image_placeholder"> stock img </pic>
+                    <div className={styles.members}>
+                        <pic className={styles.member_image_placeholder}> stock img </pic>
                         <ul>
-                            <h3> <num className='decorate_list'> 3 </num> Identify areas of growth </h3>
+                            <h3> <num className={styles.decorate_list}> 3 </num> Identify areas of growth </h3>
                             <li> Skills team members want to develop  </li>
                             <li> Oppiortunities for mentorship within the team  </li>
                         </ul>  
                     </div>
                 </div>
-                <div className="hero_skills_matrix">
+                <div className={styles.hero_skills_matrix}>
                     <p> Exersice: Use the table below to create a skills matrix for your
                         community mapping individuals to their strengths and areas for growth The goal of this exercise is to help
                         you create a well rounded team
                     </p>
-                    <h1 className="skills_matrix_title"> Skills Matrix </h1>
+                    <h1 className={styles.skills_matrix_title}> Skills Matrix </h1>
                     <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
                         <button onClick={() => setModalOpen(true)}>Add Entry</button>
 
@@ -298,14 +297,14 @@ export function DiscoverTeams() {
                             />
                     )}
                 </div>
-                <div className="hero_member_roles">
-                    <h1 className = "member_roles_title"> Balance Technical and Non-Technical Roles </h1>
+                <div className={styles.hero_member_role}>
+                    <h1 className={styles.member_roles_title}> Balance Technical and Non-Technical Roles </h1>
                     <p> Aim for a mix of roles such as ...</p>
              
-                    <div className="roles-container">
-                        <div className="title_circle">
+                    <div className={styles.roles_container}>
+                        <div className={styles.title_circle}>
                             <h3>Technical Roles</h3>
-                            <div className="role technical">
+                            <div className={styles.role}>
                                 
                             <ul>
                                 <li> Software developers </li>
@@ -315,10 +314,10 @@ export function DiscoverTeams() {
                             </ul>
                             </div>
                         </div>
-                        <div className="arrow"></div>
-                        <div className="title_circle">
+                        <div className={styles.arrow}></div>
+                        <div className={styles.title_circle}>
                             <h3>Non-technical Roles</h3>
-                            <div className="role non-technical">
+                            <div className={styles.role} >
                                 
                                 <ul>
                                     <li> Player leads </li>
@@ -331,10 +330,10 @@ export function DiscoverTeams() {
                     </div>
                 </div>
             </div>
-            <div className="hero_roles_needed">
+            <div className={styles.hero_roles_needed}>
                 <p> In the box below list the essential roles needed</p>
                 <p> Identify...</p>
-                <label className='needed_skills'>
+                <label className={styles.needed_skills}>
                     <form id='0' onSubmit={(e) => handleSubmit_database(e, essentialRoles)}>
                         <textarea name="skills" rows={10} cols={20}
                         placeholder="Enter text here..."
@@ -346,31 +345,31 @@ export function DiscoverTeams() {
                 </label>
             
             </div>
-            <div className="roles_and_responsibility">
+            <div className={styles.roles_and_responsibility}>
                 <h1> Define team Roles and Responsibilities </h1>
                 <h2>  Clear roles help teams function smoothly</h2>
                 <ul>
-                    <li> <num className='decorate_list'> 1 </num> Define key responsibilities for each role </li>
-                    <li> <num className='decorate_list'> 2 </num>Establish decision-making process </li>
-                    <li> <num className='decorate_list'> 3 </num> Create a RACI (Responsible, Accountable, Consulted, informed) matrix for major projects task </li>
-                    <li> <num className='decorate_list'> 4 </num> Allow for flexibility as the project evolves</li>
+                    <li> <num className={styles.decorate_list}> 1 </num> Define key responsibilities for each role </li>
+                    <li> <num className={styles.decorate_list}> 2 </num>Establish decision-making process </li>
+                    <li> <num className={styles.decorate_list}> 3 </num> Create a RACI (Responsible, Accountable, Consulted, informed) matrix for major projects task </li>
+                    <li> <num className={styles.decorate_list}> 4 </num> Allow for flexibility as the project evolves</li>
                 </ul> 
             </div>
 
-            <div className="hero_raci_matrix_container">
+            <div className={styles.hero_raci_matrix_container}>
                 <h1> RACI CHART </h1>
-                <p className="race_matrix_explanation">  
+                <p className={styles.race_matrix_explanation}>  
                  A RACI chart—also known as a responsibility assignment matrix—is a diagram used in project management to define team roles across 4 categories: Responsible, Accountable, Consulted, and Informed. It helps clarify who does the work, who calls the shots, whose opinion matters, and who needs to stay in the loop for each task, milestone, or decision.
                 </p>
 
-                <div className="raci_matrix">
+                <div className={styles.raci_matrix}>
                     {raci_roles.map((role, index) => (
                         <div key={index} className={`flip_card ${flippedCards[index] ? 'flipped' : ''}`} onClick={() => handleFlip(index)}>
-                            <div className="flip_card_inner">
-                                <div className="flip_card_front">
+                            <div className={styles.flip_card_inner}>
+                                <div className={styles.flip_card_front}>
                                     {role.letter}
                                 </div>
-                                <div className="flip_card_back">
+                                <div className={styles.flip_card_back}>
                                     <h3>{role.title}</h3>
                                     <p>{role.description}</p>
                                 </div>
@@ -378,30 +377,30 @@ export function DiscoverTeams() {
                         </div>
                     ))}
                 </div>
-                <div className="hero_download_raci_matrix">
+                <div className={styles.hero_download_raci_matrix}>
                     <p>Click to download an example </p>
                     <button> RACI Matrix </button>
                 </div>
 
-                <div class="hero_matrix_container">
-                    <div className="input_fields_container">
-                        <div className="task-input">
+                <div className={styles.hero_matrix_container}>
+                    <div className={styles.input_fields_container}>
+                        <div className={styles.task_input}>
                             <label>Enter tasks:</label>
                             {tasks.map((task, index) => (
-                            <div key={index} className="task-field">
-                                <div className="input-wrapper">
+                            <div key={index} className={styles.task_field}>
+                                <div className={styles.input_wrapper}>
                                 <input
                                     type="text"
                                     value={task}// || formData[`task${index + 1}`]}
                                     onChange={(e) => handleTasksChange(index, e.target.value)}
                                     placeholder={`Task ${index + 1}`}
-                                    className="input-field"
+                                    className={styles.input_field}
                                 />
                                 {tasks.length > 1 && (
                                     <button
                                     type="button"
                                     onClick={() => removeTask(index)}
-                                    className="remove-button"
+                                    className={styles.remove_button}
                                     aria-label="Remove task"
                                     >
                                     <CloseIcon />
@@ -410,27 +409,27 @@ export function DiscoverTeams() {
                                 </div>
                             </div>
                             ))}
-                            <button type="button" onClick={addTask} className="add-button">
+                            <button type="button" onClick={addTask} className={styles.add_button}>
                             Add Task
                             </button>
                         </div>
-                        <div className="role-input">
+                        <div className={styles.role_input}>
                             <label>Enter team roles:</label>
                             {roles.map((role, index) => (
-                            <div key={index} className="role-field">
-                                <div className="input-wrapper">
+                            <div key={index} className={styles.role_field}>
+                                <div className={styles.input_wrapper}>
                                 <input
                                     type="text"
                                     value={role}
                                     onChange={(e) => handleRolesChange(index, e.target.value)}
                                     placeholder={`Role ${index + 1}`}
-                                    className="input-field"
+                                    className={styles.input_field}
                                 />
                                 {roles.length > 1 && (
                                     <button
                                     type="button"
                                     onClick={() => removeRole(index)}
-                                    className="remove-button"
+                                    className={styles.remove_button}
                                     aria-label="Remove role"
                                     >
                                     <CloseIcon />
@@ -439,13 +438,13 @@ export function DiscoverTeams() {
                             </div>
                             </div>
                             ))}
-                            <button type="button" onClick={addRole} className="add-button">
+                            <button type="button" onClick={addRole} className={styles.add_button}>
                             Add Role
                             </button>
                         </div>
                     </div>
-                    <form id="0" className='raci_matrix_form' onSubmit={handleSubmit} >
-                        <table className="hero-matrix">
+                    <form id="0" className={styles.raci_matrix_form} onSubmit={handleSubmit} >
+                        <table className={styles.hero_matrix}>
                         <thead>
                             <tr>
                                 <th>Task</th>
@@ -480,119 +479,120 @@ export function DiscoverTeams() {
                     </form>
                 </div>             
             </div>
-            <div className='hero_faith_integration'> 
+            <div className={styles.hero_faith_integration}> 
                 <h1> Integrate Faith </h1>
                 <h2> Here are some ideas to intergrate faith into your team dynamics:</h2>
                 <ul>
-                    <li>  <num className='decorate_list'> 1 </num>  Start meetings with prayer to devotional reflections </li>
-                    <li>  <num className='decorate_list'> 2 </num>  Emphasize that our work should always point to jesus </li>
-                    <li>  <num className='decorate_list'> 3 </num> Highlight the importance of being Spirit-led in decision making </li>
-                    <li>  <num className='decorate_list'> 4 </num> Encourage team members to share with and pray for each other </li>
+                    <li>  <num className={styles.decorate_list}> 1 </num>  Start meetings with prayer to devotional reflections </li>
+                    <li>  <num className={styles.decorate_list}> 2 </num>  Emphasize that our work should always point to jesus </li>
+                    <li>  <num className={styles.decorate_list}> 3 </num> Highlight the importance of being Spirit-led in decision making </li>
+                    <li>  <num className={styles.decorate_list}> 4 </num> Encourage team members to share with and pray for each other </li>
                 </ul> 
             </div>
 
-            <div className='hero_faithtech_pillars'>
-                <div class="roof">
-                    <div className='name_logo'>
-                        <img className='logo' src={logo} alt="Logo" />
-                        <div className='logo_name_fp'>FAITH</div>
-                        <div className='logo_name_lp'>TECH</div>
+            <div className={styles.hero_faithtech_pillars}>
+                <div className={styles.roof}>
+                    <div className={styles.name_logo}>
+                        <img className={styles.logo} src={logo} alt="Logo" />
+                        <div className={styles.logo_name_fp}>FAITH</div>
+                        <div className={styles.logo_name_lp}>TECH</div>
                     </div>
                 </div>
-                    <div class="pillars">
-                        <div class="pillar">
-                            <div className='top_long_box'></div>
-                            <div className='top_short_box'> </div>
-                            <div className='middle_box'> 
-                            <div className='line_container'>
-                                    <div className='line'></div>
-                                    <div className='line'></div>
-                                    <div className='line'></div>
+                    <div className={styles.pillars}>
+                        <div className={styles.pillar}>
+                            <div className={styles.top_long_box}></div>
+                            <div className={styles.top_short_box}> </div>
+                            <div className={styles.middle_box}> 
+                            <div className={styles.line_container}>
+                                    <div className={styles.line}></div>
+                                    <div className={styles.line}></div>
+                                    <div className={styles.line}></div>
                                 </div>
                             </div>
-                            <div className='bottom_short_box'> </div>
-                            <div className='bottom_long_box'>
-                            <div class="text">It all points back to Jesus</div>   
+                            <div className={styles.bottom_short_box}> </div>
+                            <div className={styles.bottom_long_box}>
+                            <div className={styles.text}>It all points back to Jesus</div>   
                             </div>
                     
                         </div>
-                        <div class="pillar">
-                            <div className='top_long_box'></div>
-                            <div className='top_short_box'> </div>
-                            <div className='middle_box'> 
-                            <div className='line_container'>
-                                    <div className='line'></div>
-                                    <div className='line'></div>
-                                    <div className='line'></div>
+                        <div className={styles.pillar}>
+                            <div className={styles.top_long_box}></div>
+                            <div className={styles.top_short_box}> </div>
+                            <div className={styles.middle_box}> 
+                            <div className={styles.line_container}>
+                                    <div className={styles.line}></div>
+                                    <div className={styles.line}></div>
+                                    <div className={styles.line}></div>
                                 </div>
                             </div>
-                            <div className='bottom_short_box'> </div>
-                            <div className='bottom_long_box'>
-                                <div class="text">Led by the Spirit</div>    
+                            <div className={styles.bottom_short_box}> </div>
+                            <div className={styles.bottom_long_box}>
+                                <div className={styles.text}>Led by the Spirit</div>    
                             </div>
                             
                         </div>
-                        <div class="pillar">
-                        <div className='top_long_box'></div>
-                            <div className='top_short_box'> </div>
-                            <div className='middle_box'> 
-                                <div className='line_container'>
-                                    <div className='line'></div>
-                                    <div className='line'></div>
-                                    <div className='line'></div>
+                        <div className={styles.pillar}>
+                        <div className={styles.top_long_box}></div>
+                            <div className={styles.top_short_box}> </div>
+                            <div className={styles.middle_box}> 
+                                <div className={styles.line_container}>
+                                    <div className={styles.line}></div>
+                                    <div className={styles.line}></div>
+                                    <div className={styles.line}></div>
                                 </div>
                             </div>
-                            <div className='bottom_short_box'> </div>
-                            <div className='bottom_long_box'> 
-                                <div class="text">Take a sacrificial posture</div>
+                            <div className={styles.bottom_short_box}> </div>
+                            <div className={styles.bottom_long_box}> 
+                                <div className={styles.text}>Take a sacrificial posture</div>
                             </div>
                             
                         </div>
-                        <div class="pillar">
-                            <div className='top_long_box'></div>
-                            <div className='top_short_box'> </div>
-                            <div className='middle_box'> 
-                            <div className='line_container'>
-                                    <div className='line'></div>
-                                    <div className='line'></div>
-                                    <div className='line'></div>
+                        <div className={styles.pillar}>
+                        <div className={styles.top_long_box}></div>
+                            <div className={styles.top_short_box}> </div>
+                            <div className={styles.middle_box}> 
+                                <div className={styles.line_container}>
+                                    <div className={styles.line}></div>
+                                    <div className={styles.line}></div>
+                                    <div className={styles.line}></div>
                                 </div>
                             </div>
-                            <div className='bottom_short_box'> </div>
-                            <div className='bottom_long_box'> 
-                                <div class="text">People over Products</div>
+                            <div className={styles.bottom_short_box}> </div>
+                            <div className={styles.bottom_long_box}> 
+                                <div className={styles.text}>People over Products</div>
                             </div> 
                         </div>
-                        <div class="pillar">
-                            <div className='top_long_box'></div>
-                            <div className='top_short_box'> </div>
-                            <div className='middle_box'> 
-                            <div className='line_container'>
-                                    <div className='line'></div>
-                                    <div className='line'></div>
-                                    <div className='line'></div>
+                        <div className={styles.pillar}>
+                        <div className={styles.top_long_box}></div>
+                            <div className={styles.top_short_box}> </div>
+                            <div className={styles.middle_box}> 
+                                <div className={styles.line_container}>
+                                    <div className={styles.line}></div>
+                                    <div className={styles.line}></div>
+                                    <div className={styles.line}></div>
                                 </div>
                             </div>
-                            <div className='bottom_short_box'>
-                                <div class="text">Don't take ourselves </div>
+                            <div className={styles.bottom_short_box}> </div>
+                            <div className={styles.bottom_long_box}> 
+                                <div class={styles.text}>Don't take ourselves </div>
                             </div>
-                            <div className='bottom_long_box'> 
-                                <div class="text"> too seriously</div>
+                            <div className={styles.bottom_long_box}> 
+                                <div className={styles.text}> too seriously</div>
                             </div>
                         </div>
                     </div>
             </div>
 
-            <div className='hero_core_pillar_exercise'>
+            <div className={styles.hero_core_pillar_exercise}>
             <p> These are the core pillars that define everything we do at FaithTech. Develop values in addition 
                         to these that will guide your teams's work and decision making. 
                     </p>
-                <div className='exercise'>
+                <div className={styles.exercise}>
                     <label >
                         <p>
                             Document yout values in the space provided below
                         </p>
-                        <form className='exercise_form' id='1' onSubmit={(e) => handleSubmit_database(e, values)}>
+                        <form className={styles.exercise_form} id='1' onSubmit={(e) => handleSubmit_database(e, values)}>
                             <textarea name="values" rows={10} cols={20}
                             placeholder="Enter text here..."
                             value={values}
@@ -602,16 +602,16 @@ export function DiscoverTeams() {
                         </form>
                     </label>
                 </div>
-                <div className='Reflection_questions'>
+                <div className={styles.Reflection_questions}>
                     <h1> Reflection Questions </h1>
                     
-                    <div className='exercise'>
+                    <div className={styles.exercise}>
                         <label >
-                            <p className='exercise_paragraph'>
+                            <p className={styles.exercise_paragraph}>
                                 Are we obedient to the Holy Spirit as we build out our teams?
                             </p>
                             <form id='2' onSubmit={(e) => handleSubmit_database(e, reflectionQuestion1)}>
-                                <textarea className='exercise_label' rows={10} cols={20}
+                                <textarea className={styles.exercise_label} rows={10} cols={20}
                                 placeholder="Enter text here..."
                                 value={reflectionQuestion1}
                                 onChange={(e) => setReflectionQuestion1(e.target.value)}
@@ -620,14 +620,14 @@ export function DiscoverTeams() {
                             </form>
                         </label>
                     </div>
-                    <div className='exercise'>
+                    <div className={styles.exercise}>
                         <label>
-                            <p className='exercise_paragraph' >
+                            <p className={styles.exercise_paragraph} >
                                 Are we leveraging the diverse gifts and experiences God has given our communty memberrs?
                             </p>
                             
                             <form id='3' onSubmit={(e) => handleSubmit_database(e, reflectionQuestion2)}>
-                                <textarea className='exercise_label' rows={10} cols={20}
+                                <textarea className={styles.exercise_label} rows={10} cols={20}
                                 placeholder="Enter text here..."
                                 value={reflectionQuestion2}
                                 onChange={(e) => setReflectionQuestion2(e.target.value)}
@@ -636,13 +636,13 @@ export function DiscoverTeams() {
                             </form>
                         </label>
                     </div>
-                    <div className='exercise'>
+                    <div className={styles.exercise}>
                         <label>
-                            <p className='exercise_paragraph'>  
-                                How can we ensure that every team member feels valued and has Oppiortunities to contribute meaningfully?      
+                            <p className={styles.exercise_paragraph}>  
+                                How can we ensure that every team member feels valued and has Opportunities to contribute meaningfully?      
                             </p>
                             <form id='4' onSubmit={(e) => handleSubmit_database(e, reflectionQuestion3)}>
-                                <textarea className='exercise_label' rows={10} cols={20}
+                                <textarea className={styles.exercise_label} rows={10} cols={20}
                                 placeholder="Enter text here..."
                                 value={reflectionQuestion3}
                                 onChange={(e) => setReflectionQuestion3(e.target.value)}
@@ -660,10 +660,11 @@ export function DiscoverTeams() {
 
             </div>
             <div className='bottomLinks'>
-                <Link to="/discover/projects">Projecrs</Link>
+                <Link to="/discover/projects">Projects</Link>
                 <Link to="/discover/problem">Problems</Link>
             </div>
-        </div>
+            </div>
+        </>
     );
 }
 

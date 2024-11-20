@@ -10,32 +10,28 @@
     --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-html, body {
+body, html{
     margin: 0px;
     padding: 0px;
-    /*background-image: radial-gradient(rgb(161, 203, 227),#FFFFFF,rgb(192, 209, 219));*/
     background-image: linear-gradient(var(--color-back-alt), white, var(--color-back-alt));
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h1{
     color: var(--color-primary);
-    margin: 0px;
     text-align: center;
     font-size: 30px;
 }
 
 h2{
     color: #000;
-    margin: 0px;
     text-align: center;
     font-size: 26px;
+    margin: 0px;
 }
 
 p {
     text-align: center;
-    width: 80%;
-    margin-left: 10%;
 }
 
 /*--------------------------
@@ -86,25 +82,6 @@ footer p {
 .cListHeader {
     font-weight: bold;
     padding-bottom: 10px;
-}
-
-
-/*--------------------------
-------- SVG GRAPHICS -------
---------------------------*/
-
-.primaryColor {
-    fill: var(--color-primary);
-    transition: 0.25s;
-}
-
-.primaryColor:hover {
-    fill: var(--color-primary-highlight);
-    transition: 0.25s;
-}
-
-.secondaryColor {
-    fill: var(--color-secondary)
 }
 
 /*-----------------------

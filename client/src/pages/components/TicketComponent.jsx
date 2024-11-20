@@ -1,7 +1,7 @@
 
 import React, { useState, useRef } from "react";
-import "../stylesheets/tickets.css";
-import "./TicketComponent.css";
+import pageStyles from "../develop/tickets.module.css";
+import styles from "./TicketComponent.module.css";
 
 export const DragNDrop = ({data, setData}) => {
     const [dragging, setDragging] = useState(false);
@@ -89,23 +89,23 @@ export const DragNDrop = ({data, setData}) => {
     }
 
     return (
-        <div className="kevin-drag-n-drop">
+        <div className={pageStyles.kevin_drag_n_drop}>
             
             {data.map((grp, grp_index) => (
                 <div 
                 key={grp.group} 
-                className="kevin-dnd-group"
+                className={pageStyles.kevin_dnd_group}
                 onDragEnter={dragging && !grp.tasks.length ? (e) => handleDragEnter(e, {grp_index, item_index: 0}):null}>
                 
-                    <div className="kevin-dnd-group-title"></div>
+                    <div className={pageStyles.kevin_dnd_group_title}></div>
                     {grp.tasks.map((item, item_index) => (
                         <div
                         draggable 
                         onDragStart={((e) => {handleDragStart(e, {grp_index, item_index})})}
                         onDragEnter= {dragging ? (e) => {handleDragEnter(e, {grp_index, item_index})} : null}
                         key={item.id}
-                        //className="kevin-ticket-component-ticket"
-                        className= {dragging ? getStyles({grp_index, item_index}): "kevin-ticket-component-ticket"}
+                        //className={styles.kevin-ticket-component-ticket"
+                        className= {dragging ? getStyles({grp_index, item_index}): "kevin_ticket_component_ticket"}
                         
                         //style={{
                             
@@ -113,10 +113,10 @@ export const DragNDrop = ({data, setData}) => {
                         //}}                        
                         >
                             
-                            <div className="kevin-ticket-component-title-content">
+                            <div className={styles.kevin_ticket_component_title_content}>
                                 <div>
                                    <button onClick={() => {handleTaskChange(!data[grp_index].tasks[item_index].isOpen, grp_index, item_index, 'isOpen')}}>^</button>
-                                    <input className="kevin-ticket-component-title-input" type="text" maxLength="20" placeholder="Title"
+                                    <input className={styles.kevin_ticket_component_title_input} type="text" maxLength="20" placeholder="Title"
                                     value={data[grp_index].tasks[item_index].title}
                                     onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'title')}} 
                                     />
@@ -125,23 +125,23 @@ export const DragNDrop = ({data, setData}) => {
                                 </div>
                             </div>
                             {data[grp_index].tasks[item_index].isOpen && (
-                            <div className="kevin-ticket-component-body-content">
-                                <textarea className="kevin-ticket-component-textarea" rows={3} placeholder="Description:"
+                            <div className={styles.kevin_ticket_component_body_content}>
+                                <textarea className={styles.kevin_ticket_component_textarea} rows={3} placeholder="Description:"
                                     value={data[grp_index].tasks[item_index].description}
                                     onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'description')}}
                                 />
                                 <div>
-                                    <input className="kevin-ticket-component-ticket-input-align-left"
+                                    <input className={styles.kevin_ticket_component_ticket_input_align_left}
                                         placeholder="Date Created:"
                                         
                                         />
-                                    <input className="kevin-ticket-component-ticket-input-align-right" placeholder="Due Date:"/>
+                                    <input className={styles.kevin_ticket_component_ticket_input_align_right} placeholder="Due Date:"/>
                                 </div>
                                 <div>
-                                    <input className="kevin-ticket-component-ticket-input-align-left" placeholder="Sprint:"/>
-                                    <input className="kevin-ticket-component-ticket-input-align-right" placeholder="% Complete:"/>
+                                    <input className={styles.kevin_ticket_component_ticket_input_align_left} placeholder="Sprint:"/>
+                                    <input className={styles.kevin_ticket_component_ticket_input_align_right} placeholder="% Complete:"/>
                                 </div>
-                                <textarea className="kevin-ticket-component-textarea" rows={3} placeholder="Assigned to:" />
+                                <textarea className={styles.kevin_ticket_component_textarea} rows={3} placeholder="Assigned to:" />
                             </div>
                             )}
                         </div>
@@ -161,29 +161,29 @@ export const Ticket = ({ id, title }) => {
         transorm: CSS.Transform.toString(transform)
     }
     return (
-        <div ref={setNodeRef} {...attributes} {...listeners} style={{style}} className="kevin-ticket-component">
-            <input type="checkbox" className="kevin.checkbox" />;
+        <div ref={setNodeRef} {...attributes} {...listeners} style={{style}} className={styles.kevin-ticket-component}>
+            <input type="checkbox" className={styles.kevin.checkbox" />;
             {title}
         </div>
 
    
-   <div ref={setNodeRef} {...attributes} {...listeners} style={style} className="kevin-ticket-component-ticket">
-        <div className="kevin-ticket-component-title-content">
+   <div ref={setNodeRef} {...attributes} {...listeners} style={style} className={styles.kevin-ticket-component-ticket}>
+        <div className={styles.kevin-ticket-component-title-content}>
             <div>
-                <input className="kevin-ticket-component-title-input" type="text" maxLength="20" placeholder="Title" />
+                <input className={styles.kevin-ticket-component-title-input" type="text" maxLength="20" placeholder="Title" />
             </div>
         </div>
-        <div className="kevin-ticket-component-body-content">
-            <textarea className="kevin-ticket-component-textarea" rows={4} placeholder="Description:" />
+        <div className={styles.kevin-ticket-component-body-content}>
+            <textarea className={styles.kevin-ticket-component-textarea" rows={4} placeholder="Description:" />
             <div>
-                <input className="kevin-ticket-component-ticket-input-align-left" placeholder="Date Created:"/>
-                <input className="kevin-ticket-component-ticket-input-align-right" placeholder="Due Date:"/>
+                <input className={styles.kevin-ticket-component-ticket-input-align-left" placeholder="Date Created:"/>
+                <input className={styles.kevin-ticket-component-ticket-input-align-right" placeholder="Due Date:"/>
             </div>
             <div>
-                <input className="kevin-ticket-component-ticket-input-align-left" placeholder="Sprint:"/>
-                <input className="kevin-ticket-component-ticket-input-align-right" placeholder="% Complete:"/>
+                <input className={styles.kevin-ticket-component-ticket-input-align-left" placeholder="Sprint:"/>
+                <input className={styles.kevin-ticket-component-ticket-input-align-right" placeholder="% Complete:"/>
             </div>
-            <textarea className="kevin-ticket-component-textarea" rows={4} placeholder="Assigned to:" />
+            <textarea className={styles.kevin-ticket-component-textarea" rows={4} placeholder="Assigned to:" />
         </div>
     </div>
     
@@ -193,14 +193,14 @@ export const Ticket = ({ id, title }) => {
 
 /*
     return (
-        <div className="kevin-drag-n-drop">
+        <div className={styles.kevin-drag-n-drop}>
             {list.map((grp, grp_index) => (
                 <div 
                 key={grp.title} 
-                className="kevin-dnd-group"
+                className={styles.kevin-dnd-group"
                 onDragEnter={dragging && !grp.items.length ? (e) => handleDragEnter(e, {grp_index, item_index: 0}):null}>
                 
-                    <div className="kevin-dnd-group-title">{grp.title}</div>
+                    <div className={styles.kevin-dnd-group-title}>{grp.title}</div>
                     {grp.items.map((item, item_index) => (
                         <div
                         draggable 
@@ -209,26 +209,26 @@ export const Ticket = ({ id, title }) => {
                         key={item}
                         className= {dragging ? getStyles({grp_index, item_index}): "kevin-dnd-item"}
                         >
-                            <div className="kevin-ticket-component-ticket">
-                                <div className="kevin-ticket-component-title-content">
+                            <div className={styles.kevin-ticket-component-ticket}>
+                                <div className={styles.kevin-ticket-component-title-content}>
                                     <div>
                                         <button onClick={() => setIsOpen(!isOpen)}>^</button>
-                                        <input className="kevin-ticket-component-title-input" type="text" maxLength="20" placeholder="Title" />
+                                        <input className={styles.kevin-ticket-component-title-input" type="text" maxLength="20" placeholder="Title" />
                                         <button onClick={() => setIsOpen(!isOpen)}>X</button>
                                     </div>
                                 </div>
                                 {isOpen && (
-                                <div className="kevin-ticket-component-body-content">
-                                    <textarea className="kevin-ticket-component-textarea" rows={3} placeholder="Description:" />
+                                <div className={styles.kevin-ticket-component-body-content}>
+                                    <textarea className={styles.kevin-ticket-component-textarea" rows={3} placeholder="Description:" />
                                     <div>
-                                        <input className="kevin-ticket-component-ticket-input-align-left" placeholder="Date Created:"/>
-                                        <input className="kevin-ticket-component-ticket-input-align-right" placeholder="Due Date:"/>
+                                        <input className={styles.kevin-ticket-component-ticket-input-align-left" placeholder="Date Created:"/>
+                                        <input className={styles.kevin-ticket-component-ticket-input-align-right" placeholder="Due Date:"/>
                                     </div>
                                     <div>
-                                        <input className="kevin-ticket-component-ticket-input-align-left" placeholder="Sprint:"/>
-                                        <input className="kevin-ticket-component-ticket-input-align-right" placeholder="% Complete:"/>
+                                        <input className={styles.kevin-ticket-component-ticket-input-align-left" placeholder="Sprint:"/>
+                                        <input className={styles.kevin-ticket-component-ticket-input-align-right" placeholder="% Complete:"/>
                                     </div>
-                                    <textarea className="kevin-ticket-component-textarea" rows={3} placeholder="Assigned to:" />
+                                    <textarea className={styles.kevin-ticket-component-textarea" rows={3} placeholder="Assigned to:" />
                                 </div>
                                 )}
                             </div>

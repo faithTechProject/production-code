@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect} from 'react';
 import {fillTable, addRow} from '../dbTable';
-import '../stylesheets/discernBrainstorm.css';
+//import '../stylesheets/discernBrainstorm.css';
 
 export function DiscernBrainstorm() {
     // Creates global variables for brainstorm tables
