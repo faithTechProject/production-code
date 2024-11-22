@@ -23,6 +23,6 @@ export const developItems = [
   ];
   
   export const demonstrateItems = [
-    { label: 'Option 1', path: '/option1' },
+    { label: 'Story', path: '/demonstrate/story' },
   ];
   

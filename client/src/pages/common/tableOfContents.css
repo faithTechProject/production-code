@@ -6,6 +6,7 @@
 }
 
 .hero_Table_of_contents {
+  margin-top: 4%;
   position: fixed;  
   z-index: 10;
   left: 0;  
