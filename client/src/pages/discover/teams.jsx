@@ -242,10 +242,11 @@ export function DiscoverTeams() {
  
     return (
         <>
+            
+            <div className= {styles.body}>
             <div id={styles.oTopImage}>
                 <h3 className={styles.oTitle}>FORMING <sc>TEAMS</sc></h3>
             </div>
-            <div className="body">
             <div className={styles.hero_teams_page}>
                 <h1>Create Effective Teams</h1>
                 <h2 className={styles.skills_title}>Assess Skills and Experiences</h2>

@@ -1,18 +1,40 @@
 .hero_co_creatioin_container{
     text-align: center;
     padding-top: 12px;
+    margin-top: 4%;
 }
 
 .hero_co_creatoin_header{
+    border: 2px solid black;
+    color: white;
+    position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     align-items: center;
     background-color: black;
-}
+  }
+  
+  
+  .hero_co_creatoin_header h1{
+    font-size: 60px;
+    font-weight: bold;
+    margin-left: 25%;
+    color: white;
+  }
+  
+  .image_placeholder {
+    width: 150px;
+    height: 150px;
+    border: 2px solid black;
+    background-color: white;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    color: black;
+    border-radius: 80px;
+  
+  }
 
-.hero_co_creatoin_header h1{
-    margin-left: 10%;
-}
 
 .three_cs{
     display: flex;

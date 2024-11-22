@@ -1,39 +1,58 @@
-import React, { useState } from 'react';
-import '../stylesheets/story.css';
+import React from 'react';
+import styles from './story.module.css';
+import { useEffect, useState } from 'react';
+import axios from "axios";
 
 export function Story() {
-    const [formData, setFormData] = useState({
+    const [form_data, setform_data] = useState({
         name: '',
         email: '',
-        projectTitle: '',
-        projectDescription: '',
+        project_state:'',
         challenges: '',
-        milestones: '',
-        currentState: '',
-        comments: '',
+        project_status: '',
+        project_summary: '',
+        project_link: '',
+        project_images: '',
+        project_fulfillment: '',
+        additional_info: '',
+        share_info: '',
       });
+
+      const baseURL = "http://localhost:3000/co_creation/"
     
-      const handleChange = (e) => {
+    
+    const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-      };
+        setform_data({ ...form_data, [name]: value });
+    };
     
-      const handleSubmit = (e) => {
+    const submit_form = (e, form_data) => {
         e.preventDefault();
-        // Submit form data to your server or API
-        console.log('Form Submitted:', formData);
-      };
+        axios.patch(`${baseURL}?id=${e.target.id}`,{
+            data: form_data
+        })
+    };
+
+    /*useEffect (() => {
+        axios.get(`${baseURL}`).then(response => {
+            const data = response.data.map((item) => item)
+            setform_data(data.data)
+        })
+    } ,[])
+     */
+
+
     return (
         <>
-           <div className="hero_story">
-                <div className="hero_analysis_header">
+           <div className={styles.hero_story_container}>
+                <div className={styles.hero_analysis_header}>
                     <h1> Share Your Story </h1>
-                    <div className="image_placeholder">
+                    <div className={styles.image_placeholder}>
                         <p>Team pic</p>
                     </div>
                 </div>
 
-                <div>
+                <div className={styles.stories_instructions}>
                     <h1> Wher to share? </h1>
                     <p> Share your story with your FaithTech community. Share regularly at community gatherings or meetups. Consider sharing with local churches, schools, nonprofits, or whoever might benefit from hearing your solution. </p>
 
@@ -41,7 +60,7 @@ export function Story() {
                     <p> Pause and take time to share project challenges and celebrate key milestones. The Presentation Guide will walk you through some talking points you can cover when presenting your solution. Feel free to skip certain questions or add your own. These questions were created with the FaithTech community in mind as an audience. Consider how different audiences should impact your talking points. </p>
                 </div>
 
-                <div className="presentation_guide"> 
+                <div className={styles.presentation_guide}> 
                     <h1> Presentation Guide </h1>
                     <ul>
                         <li>Who are you? Tell them about your team.</li>
@@ -53,45 +72,45 @@ export function Story() {
                     </ul>
                 </div>
 
-                <div className="stories">
+                <div className={styles.stories}>
                     <h1> Stories</h1>
                     <p> Fill out the information below to apply to have your project featured in stories. Allowing us to share your story here is a great way to inspire FaithTech communities all over the world. </p>
-                    <div className="story_form">
-                    <form className="stories-form" onSubmit={handleSubmit}>
+                    <div className={styles.story_form}>
+                    <form className={styles.stories_form} id="1" onSubmit={(e) => submit_form(e, form_data)}>
                         <h1>Share Your Story</h1>
                         <p>Inspire FaithTech communities by sharing your project and reflections.</p>
 
-                        <div className="form-group">
+                        <div className={styles.form_group}>
                             <label htmlFor="name">Your Name:</label>
                             <input
                             type="text"
                             id="name"
                             name="name"
-                            value={formData.name}
+                            value={form_data.name}
                             onChange={handleChange}
                             required
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className={styles.form_group}>
                             <label htmlFor="email">Email Address:</label>
                             <input
                             type="email"
                             id="email"
                             name="email"
                             placeholder='Enter your email address'
-                            value={formData.email}
+                            value={form_data.email}
                             onChange={handleChange}
                             required
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className={styles.form_group}>
                             <label htmlFor="project_tate"> Are you running Create as part of a community? </label>
                             <textarea
                             id="project_state"
                             name="project_state"
-                            value={formData.project_state}
+                            value={form_data.project_state}
                             onChange={handleChange}
                             rows="4"
                             placeholder='Is this part of a local FaithTech community, please share the city name or Online if you are working online'
@@ -99,24 +118,24 @@ export function Story() {
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className={styles.form_group}>
                             <label htmlFor="project_name"> Which Project did you work on? </label>
                             <textarea
                             id="challenges"
                             name="challenges"
-                            value={formData.challenges}
+                            value={form_data.challenges}
                             onChange={handleChange}
                             rows="2"
                             placeholder="Enter you Answer"
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className={styles.form_group}>
                             <label htmlFor="projectStatus"> How would you describe your teams project status </label>
                             <textarea
                             id="projectStatus"
                             name="projectStatus"
-                            value={formData.projectStatus}
+                            value={form_data.project_status}
                             onChange={handleChange}
                             rows="2"
                             placeholder='inprogress, complete'
@@ -124,12 +143,12 @@ export function Story() {
                         </div>
 
 
-                        <div className="form-group">
+                        <div className={styles.form_group}>
                             <label htmlFor="project_summary"> Please share a quick summary of your project </label>
                             <textarea
                             id="project_summary"
                             name="project_summary"
-                            value={formData.project_summary}
+                            value={form_data.project_summary}
                             onChange={handleChange}
                             
                             rows="8"
@@ -138,12 +157,12 @@ export function Story() {
                         </div>
 
 
-                        <div className="form-group">
+                        <div className={styles.form_group}>
                             <label htmlFor="project_link"> Does you project have a live website is so share the link below</label>
                             <textarea
                             id="project_link"
                             name="project_link"
-                            value={formData.project_link}
+                            value={form_data.project_link}
                             onChange={handleChange}
                             
                             rows="4"
@@ -151,12 +170,12 @@ export function Story() {
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className={styles.form_group}>
                             <label htmlFor="challenges"> Do you have any photos of your team or screenshots you'd like to share? Please attach them below"</label>
                             <textarea
                             id="project_images"
                             name="project_images"
-                            value={formData.project_images}
+                            value={form_data.project_images}
                             onChange={handleChange}
                             
                             rows="4"
@@ -164,12 +183,12 @@ export function Story() {
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className={styles.form_group}>
                             <label htmlFor="project_fulfillment"> How has the FaithTech Create program impacted you personally </label>
                             <textarea
                             id="project_fulfillment"
                             name="project_fulfillment"
-                            value={formData.project_fulfillment}
+                            value={form_data.project_fulfillment}
                             onChange={handleChange}
                             
                             rows="4"
@@ -177,12 +196,12 @@ export function Story() {
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className={styles.form_group}>
                             <label htmlFor="additional_info"> Anything else you'd like to share  </label>
                             <textarea
                             id="additional_info"
                             name="additional_info"
-                            value={formData.additional_info}
+                            value={form_data.additional_info}
                             onChange={handleChange}
                             
                             rows="4"
@@ -190,29 +209,34 @@ export function Story() {
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className={styles.form_group}>
                             <label htmlFor="share_info"> May we share some of the information in our marketing </label>
                             <textarea
                             id="share_info"
                             name="share_info"
-                            value={formData.share_info}
+                            value={form_data.share_info}
                             onChange={handleChange}
                             
                             rows="4"
                             placeholder="We'd love to share impact on this project with our donors and communitu in things like reports and social media. We'll only use first names in nay personal refrencess"
                             />
                         </div>
-                        <button type="submit">Submit Your Story</button>
+                        <button  type="submit">Submit Your Story</button>
                         </form>
                     </div>
                 </div>
-                <div className='reflection_questions'>
+                <div className={styles.reflection_questions}>
                     <p> In what ways might this approach to demonstrating impact change your development process </p>
                     <form >
-                        <textarea name="skills" rows={10} cols={20}
-                        placeholder="Prayer...."
-                        >   
-                        </textarea>
+                         <textarea
+                            id="share_info"
+                            name="share_info"
+                            value={form_data.reflection}
+                            onChange={handleChange}
+                            
+                            rows="4"
+                            placeholder="Enter answer"
+                            />
                         <input type="submit" value="Save" />
                     </form>
                 </div>

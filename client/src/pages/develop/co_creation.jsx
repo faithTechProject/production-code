@@ -21,7 +21,6 @@ export function CoCreation() {
     }
 
     useEffect (() => {
-        console.log("Starting data fetching")
         axios.get(`${baseURL}`).then(response => {
 
             const data = response.data.map((item) => item)
@@ -83,16 +82,16 @@ export function CoCreation() {
                     </form>
                 </div>
 
-                <div className='Receive'>
+                <div className= {styles.Receive}>
                     <h> Receive </h>
                     <p> Spend 10 minutes in silence, listening for guidance </p>
-                    <div className='timer'>
-                        <p className='time_testing'> time </p>
+                    <div className= {styles.timer}>
+                        <p className= {styles.time_testing}> time </p>
                     </div>
-                    <div className='timer_controls'>
-                        <button > Start </button>
-                        <button > Pause </button>
-                        <button > Delete </button>
+                    <div className= {styles.timer_controls}>
+                        <button className= {styles.start} > Start </button>
+                        <button className= {styles.pause} > Pause </button>
+                        <button className= {styles.delete} > Delete </button>
                     </div>
                     <p> Note any thoughts, images or scriptures that come to mind in these 10 minutes here. Try to keep your notes brief, so the focus of this time can be to listen and recieve </p>
                     <form className='request_form' id='1' onSubmit={(e) => save(e,requestForm1)}>
@@ -105,14 +104,15 @@ export function CoCreation() {
                     </form>
                 </div>
 
-                <div className='review'>
+                <div className= {styles.review}>
                     <h> Review </h>
                     <p> Use this space to expand on the insights you recieved. Write down what God was telling you. Talk about the connections between the thoughts, images, and/or scriptures that come to mind. Write about how you can use these insights to guide you through the development stage </p>
-                    <form >
+                    <form className='request_form' id='2' onSubmit={(e) => save(e,requestForm2)}>
                         <textarea name="skills" rows={10} cols={20}
-                        placeholder="Prayer...."
-                        >   
-                        </textarea>
+                        placeholder="Review...."
+                        value={requestForm2}
+                        onChange={(e) => setRequestForm1(e.target.value)}
+                        />
                         <input type="submit" value="Save" />
                     </form>
                 </div>
@@ -128,21 +128,23 @@ export function CoCreation() {
 
             <div className='reflection_questions'>
                 <p> How did this process differ from your usual development approach? </p>
-                <form >
-                    <textarea name="skills" rows={10} cols={20}
-                    placeholder="Prayer...."
-                    >   
-                    </textarea>
-                    <input type="submit" value="Save" />
-                </form>
+                <form className='request_form' id='3' onSubmit={(e) => save(e,requestForm3)}>
+                        <textarea name="skills" rows={10} cols={20}
+                        placeholder="Request...."
+                        value={requestForm3}
+                        onChange={(e) => setRequestForm1(e.target.value)}
+                        />
+                        <input type="submit" value="Save" />
+                    </form>
                 <p> What challenges did you face trying to co-create with the holy spirit  hrcv</p>
-                <form >
-                    <textarea name="skills" rows={10} cols={20}
-                    placeholder="Prayer...."
-                    >   
-                    </textarea>
-                    <input type="submit" value="Save" />
-                </form>
+                <form className='request_form' id='4' onSubmit={(e) => save(e,requestForm4)}>
+                        <textarea name="skills" rows={10} cols={20}
+                        placeholder="Request...."
+                        value={requestForm4}
+                        onChange={(e) => setRequestForm1(e.target.value)}
+                        />
+                        <input type="submit" value="Save" />
+                    </form>
             </div>
             
         </div>
