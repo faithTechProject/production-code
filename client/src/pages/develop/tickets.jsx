@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import styles from './tickets.module.css';
+import pageStyles from '../components/TicketComponent.module.css'
 import { DragNDrop } from '../components/TicketComponent';
 
 export function DevelopTickets() {
@@ -40,7 +41,7 @@ export function DevelopTickets() {
     </div>
 
     <div className={styles.kevin_header}>
-        <div className={`${styles.kevin_center} ${styles.kevin_text}`}>
+        <div className={`${styles.kevin_center} ${pageStyles.kevin_text}`}>
             <p><strong>Not Started</strong></p>
             <p><strong>In Progress</strong></p>
             <p><strong>Completed</strong></p>

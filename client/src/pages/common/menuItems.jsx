@@ -24,5 +24,6 @@ export const developItems = [
   
   export const demonstrateItems = [
     { label: 'Option 1', path: '/option1' },
+    { label: 'Measure', path: '/demonstrate/measure'}
   ];
   

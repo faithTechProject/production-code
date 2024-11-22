@@ -1,13 +1,18 @@
 import axios from 'axios';
+import dbStyles from './dbTable.module.css';
 
 export function fillTable(id, data , pageName) {
-    document.getElementById(id).firstChild.lastChild.innerHTML = "";
+    var container = document.getElementById(id);
+    container.firstChild.lastChild.innerHTML = "";
+    container.firstChild.className = `${dbStyles.table}`;
     var tData = data[id].input; // The data grabbed from the database
     for (let i=0; i<tData.length; i++) { // loops through each row in the data
         var row = document.createElement("tr"); // Create a row element
         Object.keys(tData[i]).forEach(key => { // Add each entry to the row
             var keyData = document.createElement("td"); // Create data element
+            keyData.className = `${dbStyles.cell}`;
             var textbox = document.createElement("textarea");
+            textbox.className = `${dbStyles.textarea}`;
             textbox.value = tData[i][key];
             textbox.onchange = (e) => updateRow(e, id, i, key, data , pageName);
             keyData.appendChild(textbox);
@@ -15,14 +20,27 @@ export function fillTable(id, data , pageName) {
         })
         // Delete Buttons
         var buttonSlot = document.createElement("td");
-        var deleteButton = document.createElement("button");
-        deleteButton.onclick = () => deleteRow(id, i, data , pageName);
-        deleteButton.innerHTML = "Delete";
-        buttonSlot.appendChild(deleteButton);
+        buttonSlot.className = `${dbStyles.deleteRow}`;
+        buttonSlot.innerHTML = "DELETE";
+        buttonSlot.onclick = () => deleteRow(id, i, data, pageName);
         row.appendChild(buttonSlot);
 
-        document.getElementById(id).firstChild.lastChild.appendChild(row); // Add row to table
+        container.firstChild.lastChild.appendChild(row); // Add row to table
+
+        // Add Row Button
+        if (container.children.length>1) {
+            container.removeChild(container.lastElementChild);
+        }
+        var addButton = document.createElement("button");
+        addButton.className = `${dbStyles.addRow}`;
+        addButton.innerHTML = "ADD ROW";
+        addButton.onclick = () => addRow(id, data, pageName);
+        container.appendChild(addButton);
     }
+}
+
+export function test(button) {
+    console.log(button);
 }
 
 export function updateRow(e, tableID, row, column, data , pageName) { // Saves data when a row is edited
@@ -51,4 +69,9 @@ export function saveData(inputData, table , pageName) { // Saves data
     axios.patch(`http://localhost:3000/matrix-reflections/?page=${pageName}&entry_pos=${table}`, {
         input: inputData
     });
+}
+
+export function updateHeight(slot, id, row) {
+    console.log(getComputedStyle(document.getElementById(id).getElementsByClassName('deleteButton')[row]).getPropertyValue('height'));
+
 }

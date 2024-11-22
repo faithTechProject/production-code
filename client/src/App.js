@@ -13,12 +13,13 @@ import { DiscernTimeline } from './pages/discern/timeline';
 import { DiscernBrainstorm } from './pages/discern/brainstorm';
 import { DevelopTickets } from './pages/develop/tickets';
 import { DevelopCoCreation } from './pages/develop/co_creation'; 
+import { DemonstrateMeasure} from './pages/demonstrate/measure';
 import Navbar from './pages/common/navbar';
 import TableOfContents from './pages/common/tableOfContents';
 import Footer from './pages/common/footer';
 import { TestPageDatabase } from './pages/testPageDatabase';
-import './app.css'; 
 import { ScrollTop } from './scrollTop';
+import './app.css'; 
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
               <Route path="/discern/brainstorm" element={< DiscernBrainstorm />} />
               <Route path="/develop/tickets" element={< DevelopTickets />} />
               <Route path="/develop/co_creation" element={< DevelopCoCreation />} />
+              <Route path="/demonstrate/measure" element={< DemonstrateMeasure/>} />
             </Routes>
           </div>
         </div>
