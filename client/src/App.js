@@ -44,6 +44,7 @@ function App() {
               <Route path="/discern/timeline" element={< DiscernTimeline />} />
               <Route path="/demonstrate/story" element={< Story />} />
               <Route path="/develop/co_creation" element={< CoCreation />} />
+              <Route path="/develop/tickets" element={< DevelopTickets />} />
             </Routes>
           </div>
         </div>

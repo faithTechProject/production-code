@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import styles from './tickets.module.css';
 import { DragNDrop } from '../components/TicketComponent';
