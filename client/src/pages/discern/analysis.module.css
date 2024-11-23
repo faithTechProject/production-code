@@ -1,8 +1,7 @@
-body{
-  margin-top: 50px;
-}
 .hero_analysis_page{
   background-color: white;
+  margin-top: 5%;
+  
 }
 .hero_analysis_header{
     border: 2px solid black;

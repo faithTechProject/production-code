@@ -6,6 +6,9 @@ export class Reflection {
     id: number;
 
     @Column()
+    name: string;
+
+    @Column()
     response: string;
 
 }

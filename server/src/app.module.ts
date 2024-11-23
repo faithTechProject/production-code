@@ -16,21 +16,26 @@ import { TicketsController } from './tickets/tickets.controller';
 import { TicketsModule } from './tickets/tickets.module';
 import { Tickets } from './tickets/tickets.entity';
 import { TicketsService } from './tickets/tickets.service';
+import { CoCreationEntity } from './co_creation_page/request-form.entity';
+import { RequestFormModule } from './co_creation_page/request-form.module';
 
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: 'localhost', 
       port: 5432,
       username: 'faithtech_user',
       password: 'faithtech_password',
       database: 'faithtech_create',
       synchronize: false,
-      entities: [Reflection, Matrix, TextAreaReflections, Tickets] // postgres database tables.
+      entities: [Reflection, Matrix, TextAreaReflections, Tickets, CoCreationEntity] 
   }),
-    TypeOrmModule.forFeature([Reflection, Matrix, TextAreaReflections, Tickets])
+ 
+    TypeOrmModule.forFeature([Reflection, Matrix, TextAreaReflections, Tickets]),
+    RequestFormModule
+    
     
   ],
   controllers: [ReflectionController, MatrixController, TextAreaReflectionsController, TicketsController],

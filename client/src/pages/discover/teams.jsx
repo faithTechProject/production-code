@@ -242,10 +242,11 @@ export function DiscoverTeams() {
  
     return (
         <>
+            
+            <div className= {styles.body}>
             <div id={styles.oTopImage}>
                 <h3 className={styles.oTitle}>FORMING <sc>TEAMS</sc></h3>
             </div>
-            <div className="body">
             <div className={styles.hero_teams_page}>
                 <h1>Create Effective Teams</h1>
                 <h2 className={styles.skills_title}>Assess Skills and Experiences</h2>
@@ -600,6 +601,7 @@ export function DiscoverTeams() {
                             />
                             <input type="submit" value="Save" />
                         </form>
+                      
                     </label>
                 </div>
                 <div className={styles.Reflection_questions}>
@@ -660,8 +662,8 @@ export function DiscoverTeams() {
 
             </div>
             <div className='bottomLinks'>
-                <Link to="/discover/projects">Projects</Link>
-                <Link to="/discover/problem">Problems</Link>
+                <Link className="previous_page" to="/discover/projects">Projects</Link>
+                <Link className="next_page" to="/discover/problem">Problems</Link>
             </div>
             </div>
         </>
