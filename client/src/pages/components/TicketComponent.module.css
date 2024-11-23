@@ -90,9 +90,20 @@
     background-color: whitesmoke;
 }
 
-.kevin_text p {
+.kevin_text { 
     color: black;
-    padding: 16px;
+    width: 50%;
+    margin-left: 25%;
     font-size: large;
     text-align: center;
+    
+}
+
+
+.kevin_text_status { 
+    color: black;
+    font-size: large;
+    text-align: center;
+    
+    
 }

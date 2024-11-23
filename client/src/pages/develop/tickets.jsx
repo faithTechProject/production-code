@@ -1,9 +1,9 @@
 
 import { useEffect, useRef, useState } from 'react';
-import '../stylesheets/tickets.css';
-import '../stylesheets/common.css'
+import styles from './tickets.module.css';
 import { DragNDrop } from '../components/TicketComponent';
 import axios from 'axios';
+import pageStyles from '../components/TicketComponent.module.css';
 
 export function DevelopTickets() {
     const isMounted = useRef(false)
@@ -82,25 +82,25 @@ export function DevelopTickets() {
     <div className={styles.kevin_bannar}>
         <h3 className={styles.kevin_title}>TICKETS</h3>
     </div>
-    <div className={styles.kevin_text}>    
-        <strong><p>If you already created assignments on the co-creation page, tickets will automatically be added within this page.  
+    <div>    
+        <p className={pageStyles.kevin_text}>
+            If you already created assignments on the co-creation page, tickets will automatically be added within this page.  
             You can also use this page to add new tickets and rearrange them into different categories depending on the status.
             Creating tickets helps to track the assignments and progress team members are making.
             Tickets can be deleted and minimized for convienince.
-        </p></strong>
+        </p>
     </div>
 
     <div className={styles.kevin_header}>
-        <div className={`${styles.kevin_center} ${styles.kevin_text}`}>
+        <div className={`${styles.kevin_center} ${pageStyles.kevin_text_status}`}>
             <p><strong>Not Started</strong></p>
-            <p><strong>In Progress</strong></p>
             <p><strong>In Progress</strong></p>
             <p><strong>Completed</strong></p>
         </div>
         <div className={styles.kevin_center}>
-            <button className={styles.kevin_button} onClick={() => {addTask(0)}}>+ Add Task</button>
-            <button className={styles.kevin_button} onClick={() => {addTask(1)}}>+ Add Task</button>
-            <button className={styles.kevin_button} onClick={() => {addTask(2)}}>+ Add Task</button>
+            <button className={pageStyles.kevin_button} onClick={() => {addTask(0)}}>+ Add Task</button>
+            <button className={pageStyles.kevin_button} onClick={() => {addTask(1)}}>+ Add Task</button>
+            <button className={pageStyles.kevin_button} onClick={() => {addTask(2)}}>+ Add Task</button>
         </div>
 
             <DragNDrop data={data} setData={setData} />
