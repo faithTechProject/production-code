@@ -59,13 +59,13 @@ export class TableData1731808968193 implements MigrationInterface {
         
         // Develop: Tickets
         await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (1, 'not started', 0, 'Database', 'Previous page database', 'Kevin Ford', '11/12/2024', '11/17/2024', 5, 1, TRUE)`);
-        await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (2, 'not started', 1, 'Example2', 'Example2 description', 'Jason', '11/10/2024', '11/16/2024', 6, 20, False)`);
+        await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (2, 'not started', 1, 'Example2', 'Example2 description', 'Jason', '11/10/2024', '11/16/2024', 6, 20, TRUE)`);
         await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (3, 'not started', 2, 'Example3', 'Example3 description', 'Max', '11/13/2024', '11/23/2024', 7, 80, TRUE)`);
         await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (4, 'in progress', 0, 'Example4', 'Example4 description', 'Kathy', '11/09/2024', '11/14/2024', 4, 90, TRUE)`);
-        await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (5, 'in progress', 1, 'Example5', 'Example5 description', 'Jacob', '11/01/2024', '11/15/2024', 3, 23, False)`);
+        await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (5, 'in progress', 1, 'Example5', 'Example5 description', 'Jacob', '11/01/2024', '11/15/2024', 3, 23, TRUE)`);
         await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (6, 'completed', 0, 'Example6', 'Example6 description', 'Marten', '11/05/2024', '11/20/2024', 8, 46, TRUE)`);
         await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (7, 'completed', 1, 'Example7', 'Example7 description', 'Jesica', '11/04/2024', '11/19/2024', 10, 63, TRUE)`);
-        await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (8, 'completed', 2, 'Example8', 'Example8 description', 'Amanda', '11/08/2024', '11/18/2024', 9, 97, False)`); 
+        await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (8, 'completed', 2, 'Example8', 'Example8 description', 'Amanda', '11/08/2024', '11/18/2024', 9, 97, TRUE)`); 
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
