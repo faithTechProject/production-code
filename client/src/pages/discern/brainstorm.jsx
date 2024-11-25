@@ -107,6 +107,10 @@ export function DiscernBrainstorm() {
                         </div>
                     </div>
                 </div>
+                <div className='bottomLinks'>
+                    <Link to="/discern/overview">Discern Overview</Link>
+                    <Link className='next_page' to="/discern/analysis">Analysis</Link>
+                </div>
             </div>
         </>
     )

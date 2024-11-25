@@ -1,4 +1,3 @@
-/* Title */
 .oTitle{
   color: white;
   padding: 50px;
@@ -19,7 +18,6 @@ background-image: url(../images/network.jpeg);
 }
 
 /* teams page */
-  
   .hero_teams_header{
     border: 2px solid black;
     color: white;

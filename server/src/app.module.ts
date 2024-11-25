@@ -12,21 +12,26 @@ import { TextAreaReflectionsModule } from './text.area.reflections/text.area.ref
 import { TextAreaReflectionsController } from './text.area.reflections/text.area.reflections.controller';
 import { TextAreaReflectionsService } from './text.area.reflections/text.area.reflections.service';
 import { TextAreaReflections } from './text.area.reflections/text.area.reflections.entity';
+import { CoCreationEntity } from './co_creation_page/request-form.entity';
+import { RequestFormModule } from './co_creation_page/request-form.module';
 
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: 'localhost', 
       port: 5432,
       username: 'faithtech_user',
       password: 'faithtech_password',
       database: 'faithtech_create',
       synchronize: false,
-      entities: [Reflection, Matrix, TextAreaReflections] // postgres database tables.
+      entities: [Reflection, Matrix, TextAreaReflections, CoCreationEntity] 
   }),
-    TypeOrmModule.forFeature([Reflection, Matrix, TextAreaReflections])
+ 
+    TypeOrmModule.forFeature([Reflection, Matrix, TextAreaReflections]),
+    RequestFormModule
+    
   ],
   controllers: [ReflectionController, MatrixController, TextAreaReflectionsController],
   providers: [ReflectionService, MatrixService, TextAreaReflectionsService],

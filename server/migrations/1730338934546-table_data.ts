@@ -5,6 +5,7 @@ export class TableData1730338934546 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "text_area_reflections" ("id" integer NOT NULL, "category" character varying NOT NULL, "page" character varying NOT NULL, "entry_pos" integer NOT NULL, "title" character varying NOT NULL, "subtitle" character varying NOT NULL, "reply" character varying NOT NULL, CONSTRAINT "PK_2d40f7278c8e780efa9c2177a20" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "co_creation" ("id" integer NOT NULL, "category" character varying NOT NULL, "page" character varying NOT NULL, "data" character varying NOT NULL, CONSTRAINT "PK_95f2a5d8ad2f5bea45c6f87dced" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "reflection" ("id" integer NOT NULL, "response" character varying NOT NULL, CONSTRAINT "PK_0436416fb00a0944412935c919d" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "matrix" ("id" integer NOT NULL, "category" character varying NOT NULL, "page" character varying NOT NULL, "entry_pos" integer NOT NULL, "input" jsonb NOT NULL, "tasks_rows" text array NOT NULL, "roles_columns" text array NOT NULL, "rci_input" jsonb NOT NULL, CONSTRAINT "PK_2285b10a630de03f95a9c727a33" PRIMARY KEY ("id"))`);
 
@@ -17,9 +18,8 @@ export class TableData1730338934546 implements MigrationInterface {
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (5, 'Discover', 'Projects', 5, 'Technology Use', 'Technology Audit', 'Sample technology text 1.')`);
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (6, 'Discover', 'Projects', 6, 'Technology Use', 'Technology Disparities', 'Sample technology text 2.')`);
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (7, 'Discover', 'Projects', 7, 'Technology Use', 'Emerging Technology', 'Sample technology text 13.')`);
-        
-        //await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (0, 'Discern', 'Timeline', 0, 'List of Ideas', '', 'Ideas list text.')`);
-        
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (100, 'Discern', 'Timeline', 0, 'List of Ideas', '', 'Ideas list text.')`);
+
 
 
         // Discover: Teams Page Data
@@ -46,7 +46,7 @@ export class TableData1730338934546 implements MigrationInterface {
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (22, 'category', 'page', 0, 'Communication Plan', '', '')`);
         
         // Reflection Table
-        await queryRunner.query(`INSERT INTO reflection (id, response) VALUES (0, 'Test Data')`);
+        //await queryRunner.query(`INSERT INTO reflection (id, response) VALUES (0, 'Test Data')`);
 
         //Matrix:
         await queryRunner.query(`INSERT INTO matrix (id, category, page, entry_pos, input, tasks_rows, roles_columns, rci_input) VALUES (0, 'Discover', 'Data', 0, '[ {"name": "1", "skills": "2", "areas_for_growth": "3", "past_experiences": "4" } ]', ARRAY[''], ARRAY[''], '[{}]')`);
@@ -59,11 +59,19 @@ export class TableData1730338934546 implements MigrationInterface {
         await queryRunner.query(`INSERT INTO matrix (id, category, page, entry_pos, input, tasks_rows, roles_columns, rci_input) VALUES (4, 'Discern', 'Brainstorm', 1, '[ {"solution": "2"} ]', ARRAY[''], ARRAY[''], '[{}]')`);
         await queryRunner.query(`INSERT INTO matrix (id, category, page, entry_pos, input, tasks_rows, roles_columns, rci_input) VALUES (5, 'Discern', 'Brainstorm', 2, '[ {"solution": "3"} ]', ARRAY[''], ARRAY[''], '[{}]')`);
         await queryRunner.query(`INSERT INTO matrix (id, category, page, entry_pos, input, tasks_rows, roles_columns, rci_input) VALUES (6, 'Discern', 'Brainstorm', 3, '[ {"solution": "3"} ]', ARRAY[''], ARRAY[''], '[{}]')`);
-    }
 
+        //Develop: co-creation page data
+        await queryRunner.query(`INSERT INTO co_creation(id, category, page, data) VALUES (0, 'Develop', 'co_creation',  'This is the co_creation page 0')`);
+        await queryRunner.query(`INSERT INTO co_creation(id, category, page, data) VALUES (1, 'Develop', 'co_creation',  'This is the co_creation page 1')`);
+        await queryRunner.query(`INSERT INTO co_creation(id, category, page, data) VALUES (2, 'Develop', 'co_creation',  'This is the co_creation page 2')`);
+        await queryRunner.query(`INSERT INTO co_creation(id, category, page, data) VALUES (3, 'Develop', 'co_creation',  'This is the co_creation page 3')`);
+        await queryRunner.query(`INSERT INTO co_creation(id, category, page, data) VALUES (4, 'Develop', 'co_creation',  'This is the co_creation page 4')`);
+
+    }
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`DROP TABLE "matrix"`);
         await queryRunner.query(`DROP TABLE "reflection"`);
+        await queryRunner.query(`DROP TABLE "co_creation"`);
         await queryRunner.query(`DROP TABLE "text_area_reflections"`);
     }
 

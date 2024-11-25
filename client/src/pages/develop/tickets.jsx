@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import styles from './tickets.module.css';
 import pageStyles from '../components/TicketComponent.module.css'
@@ -53,6 +53,10 @@ export function DevelopTickets() {
         </div>
 
             <DragNDrop data={data} setData={setData} />
+    </div>
+    <div className='bottomLinks'>
+        <Link to="/develop/co_creation">Co-Creation</Link>
+        <Link className='next_page' to="/develop/"></Link>
     </div>
 </>
 )}

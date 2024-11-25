@@ -30,10 +30,6 @@ h2{
     margin: 0px;
 }
 
-p {
-    text-align: center;
-}
-
 /*--------------------------
 ---------- FOOTER ----------
 --------------------------*/
@@ -97,22 +93,33 @@ footer p {
     width: 80%;
     margin-left: 10%;
     background-color: transparent;
-    color: white;
+    color: white;    
 }
 .bottomLinks a {
+    align-content: center;
     text-decoration: none;
     font-weight: bold;
     color: var(--color-primary);
     transition: 0.25s;
+    width: 48%;
+    height: 50px;
+    border: 1px solid gray;
+    border-radius: 3px;
 }
+
+.next_page{
+    text-align: right;
+}
+
 .bottomLinks a:hover {
     color: var(--color-primary-highlight);
     transition: 0.25s;
+    border: 1px solid orangered;
 }
 
 .bottomLinks :nth-child(1)::before {
-    content: "<< ";
+    content: "< ";
 }
 .bottomLinks :nth-child(2)::after {
-    content: " >>";
+    content: " >";
 }
