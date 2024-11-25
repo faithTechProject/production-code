@@ -27,6 +27,7 @@ export function CoCreation() {
             const data = response.data.map((item) => item)
             data.sort((a,b) => a.id - b.id)
 
+
             const co_creation_response = data;
             setRequestForm0(co_creation_response[0].data);
             setRequestForm1(co_creation_response[1].data);

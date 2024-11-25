@@ -8,7 +8,8 @@ export class TableData1730338934546 implements MigrationInterface {
         await queryRunner.query(`CREATE TABLE "co_creation" ("id" integer NOT NULL, "category" character varying NOT NULL, "page" character varying NOT NULL, "data" character varying NOT NULL, CONSTRAINT "PK_95f2a5d8ad2f5bea45c6f87dced" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "reflection" ("id" integer NOT NULL, "response" character varying NOT NULL, CONSTRAINT "PK_0436416fb00a0944412935c919d" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "matrix" ("id" integer NOT NULL, "category" character varying NOT NULL, "page" character varying NOT NULL, "entry_pos" integer NOT NULL, "input" jsonb NOT NULL, "tasks_rows" text array NOT NULL, "roles_columns" text array NOT NULL, "rci_input" jsonb NOT NULL, CONSTRAINT "PK_2285b10a630de03f95a9c727a33" PRIMARY KEY ("id"))`);
-
+        await queryRunner.query(`CREATE TABLE "tickets" ("id" integer NOT NULL, "status" character varying NOT NULL, "row_index" integer NOT NULL, "title" character varying NOT NULL, "description" character varying NOT NULL, "assigned_to" character varying NOT NULL, "date_created" character varying NOT NULL, "date_due" character varying NOT NULL, "sprint" character varying NOT NULL, "percent_complete" character varying NOT NULL, "is_open" boolean NOT NULL, CONSTRAINT "PK_343bc942ae261cf7a1377f48fd0" PRIMARY KEY ("id"))`);
+        
         // Discover: Projects Page Data
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (0, 'Discover', 'Projects', 0, 'List of Ideas', '', 'Ideas list text.')`);
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (1, 'Discover', 'Projects', 1, 'Example Title 1', '', 'Example response text 1.')`);
@@ -67,12 +68,21 @@ export class TableData1730338934546 implements MigrationInterface {
         await queryRunner.query(`INSERT INTO co_creation(id, category, page, data) VALUES (3, 'Develop', 'co_creation',  'This is the co_creation page 3')`);
         await queryRunner.query(`INSERT INTO co_creation(id, category, page, data) VALUES (4, 'Develop', 'co_creation',  'This is the co_creation page 4')`);
 
+        // Develop: Tickets
+        await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (1, 'not started', 0, 'Database', 'Previous page database', 'Kevin Ford', '11/12/2024', '11/17/2024', 'Sprint #5', '100%', TRUE)`);
+        await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (2, 'not started', 1, 'Example2', 'Example2 description', 'Jason', '11/10/2024', '11/16/2024', 'Sprint #6', '20%', TRUE)`);
+        await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (3, 'not started', 2, 'Example3', 'Example3 description', 'Max', '11/13/2024', '11/23/2024', 'Sprint #7', '80%', TRUE)`);
+        await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (4, 'in progress', 0, 'Example4', 'Example4 description', 'Kathy', '11/09/2024', '11/14/2024', 'Sprint #4', '90%', TRUE)`);
+        await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (5, 'in progress', 1, 'Example5', 'Example5 description', 'Jacob', '11/01/2024', '11/15/2024', 'Sprint #3', '23%', TRUE)`);
+        await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (6, 'completed', 0, 'Example6', 'Example6 description', 'Martin', '11/05/2024', '11/20/2024', 'Sprint #8', '46%', TRUE)`);
+
     }
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`DROP TABLE "matrix"`);
         await queryRunner.query(`DROP TABLE "reflection"`);
         await queryRunner.query(`DROP TABLE "co_creation"`);
         await queryRunner.query(`DROP TABLE "text_area_reflections"`);
+        await queryRunner.query(`DROP TABLE "tickets"`);
     }
 
 }
