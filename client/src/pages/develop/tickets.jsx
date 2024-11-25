@@ -3,7 +3,6 @@ import styles from './tickets.module.css';
 import pageStyles from '../components/TicketComponent.module.css'
 import { DragNDrop } from '../components/TicketComponent';
 import axios from 'axios';
-import pageStyles from '../components/TicketComponent.module.css';
 
 export function DevelopTickets() {
     const isMounted = useRef(false)
