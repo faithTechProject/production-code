@@ -39,10 +39,12 @@ function App() {
               <Route path="/discover/problem" element={< DiscoverProblem />} />
               <Route path="/discover/lament" element={< DiscoverLament />} />
               <Route path="/discern/overview" element={< DiscernOverview />} />
+              <Route path="/discern/brainstorm" element={< DiscernBrainstorm />} />
               <Route path="/discern/analysis" element={< DiscernAnalysis />} />
               <Route path="/discern/timeline" element={< DiscernTimeline />} />
               <Route path="/demonstrate/story" element={< Story />} />
               <Route path="/develop/co_creation" element={< CoCreation />} />
+              <Route path="/develop/tickets" element={< DevelopTickets />} />
             </Routes>
           </div>
         </div>
