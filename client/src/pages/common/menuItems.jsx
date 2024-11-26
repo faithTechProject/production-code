@@ -14,18 +14,17 @@ export const discernItems = [
   { label: 'Brainstorm', path: '/discern/brainstorm' },
   { label: 'Analysis', path: '/discern/analysis' },
   { label: 'Timeline', path: '/discern/timeline' }
-  
   ];
 export const developItems = [
   { label: 'Overview', path: '/develop/overview'},
   { label: 'Tickets', path: '/develop/tickets'},
   { label: 'Co-Creation', path: '/develop/co_creation'},
-    
   ];
   
   export const demonstrateItems = [
     { label: 'Overview', path: '/demonstrate/overview'},
     { label: 'Story', path: '/demonstrate/story' },
     { label: 'Conclusion', path: '/demonstrate/conclusion' }
+    { label: 'Measure', path: '/demonstrate/measure'}
   ];
   

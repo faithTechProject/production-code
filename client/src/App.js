@@ -14,14 +14,15 @@ import { DevelopOverview } from './pages/develop/overview';
 import { DevelopTickets } from './pages/develop/tickets';
 import { DemonstrateOverview } from './pages/demonstrate/overview';
 import { CoCreation } from './pages/develop/co_creation'; 
+import { DemonstrateMeasure} from './pages/demonstrate/measure';
 import Navbar from './pages/common/navbar';
 import { Story } from './pages/demonstrate/story'
 import { Conclusion } from './pages/demonstrate/conclusion';
 import TableOfContents from './pages/common/tableOfContents';
 import Footer from './pages/common/footer';
 import { TestPageDatabase } from './pages/testPageDatabase';
-import './app.css'; 
 import { ScrollTop } from './scrollTop';
+import './app.css'; 
 
 function App() {
   return (
@@ -51,6 +52,9 @@ function App() {
               <Route path="/demonstrate/conclusion" element={< Conclusion />} />
               <Route path="/develop/co_creation" element={< CoCreation />} />
               <Route path="/develop/tickets" element={< DevelopTickets />} />
+              <Route path="/develop/co_creation" element={< CoCreation />} />
+              <Route path="/demonstrate/story" element={< Story />} />
+              <Route path="/demonstrate/measure" element={< DemonstrateMeasure/>} />
             </Routes>
           </div>
         </div>
