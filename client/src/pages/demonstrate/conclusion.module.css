@@ -7,11 +7,18 @@
     background-image: linear-gradient(white, #e6f2fc)
 }
 
-.discernBody{
+.demonstrateBody{
     background-color: white;
 }
 
-.o2Dh2{
+.oh1{
+    color: #ea542c;
+    padding: 15px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.oh2{
     color: black;
     padding: 15px;
     text-align: center;
@@ -21,20 +28,11 @@
 .oTitle{
     color: white;
     padding: 50px;
-    margin: 0px;
     text-align: center;
     font-size: 50px;
 }
 
-.o2Dp{
-    color: black;
-    padding-left: 400px;
-    padding-right: 400px;
-    text-align: center;
-    font-size: 15px;
-}
-
-.o2Dp1{
+.op1{
     text-align: left;
     color: black;
     padding-left: 25px;
@@ -42,7 +40,7 @@
     font-size: 15px;
 }
 
-.o2Dp2{
+.op2{
     text-align: center;
     color: black;
     padding: 5px;
@@ -51,14 +49,16 @@
 
 .oQuoteText{
     color: white;
-    padding: 15px;
+    padding: auto;
+    padding-left: 15px;
+    padding-right: 15px;
     font-size: 15px;
-    border-left: 6px green;
+    border-left: 6px;
     height: 50px;
     text-align: left;
 }
 
-#oDiscernTopImage{
+#oConclusionTopImage{
 	height: 200px;
 	width: 100%;
 	background-image: url(../images/DiscernPicture.png);
@@ -68,31 +68,20 @@
 .oQuoteBox{
     background-color: #ea542c;
     width: 50%;
-    height: 150px;
+    height: 100px;
     border: #ea542c;
     margin: auto; 
     border-radius: 25px;
+    resize: vertical;
+    overflow: auto;
 }
 
-.oDiscernBox{
-    width: 200px;
-    border: 3px solid black;
-    margin-top: 15px;
-    margin-left: 70%;
-    padding: 5px;
-}
-
-#o4Ddiscern{
-    height: 380px;
+#o4D{
+    height: 400px;
     width: 650px;
-    background-image: url(../images/Discern4DCycle.png);
+    background-image: url(../images/4DCycle.png);
     background-size: cover;
     padding: 20px;
     margin: auto;
     margin-bottom: 20px;
-}
-
-iframe {
-    display: block;
-    margin: auto;
 }
