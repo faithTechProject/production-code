@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';import { useEffect, useRef, useState } from 'react';
 import styles from './tickets.module.css';
+import pageStyles from '../components/TicketComponent.module.css'
 import { DragNDrop } from '../components/TicketComponent';
 import axios from 'axios';
-import pageStyles from '../components/TicketComponent.module.css';
 
 export function DevelopTickets() {
     const isMounted = useRef(false)
@@ -103,6 +103,10 @@ export function DevelopTickets() {
         </div>
 
             <DragNDrop data={data} setData={setData} />
+    </div>
+    <div className='bottomLinks'>
+        <Link to="/develop/co_creation">Co-Creation</Link>
+        <Link className='next_page' to="/develop/"></Link>
     </div>
 </>
 )}

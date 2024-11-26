@@ -1,5 +1,4 @@
 .hero_story_container {
-  margin-top: 5%;
   font-family: 'Arial', sans-serif;
   color: #333;
   background: #f9f9f9;
@@ -71,7 +70,7 @@
   font-weight: bold;
 }
 
-input, textarea {
+.stories input, .stories textarea {
   width: 100%;
   padding: 10px;
   margin-top: 5px;

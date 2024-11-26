@@ -17,12 +17,13 @@ export const discernItems = [
   
   ];
 export const developItems = [
-  { label: 'Tickets', path: '/develop/tickets'},
   { label: 'Co-Creation', path: '/develop/co_creation'},
+  { label: 'Tickets', path: '/develop/tickets'},
     
   ];
   
   export const demonstrateItems = [
     { label: 'Story', path: '/demonstrate/story' },
+    { label: 'Measure', path: '/demonstrate/measure'}
   ];
   
