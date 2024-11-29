@@ -42,9 +42,6 @@ export class RequestFormService {
     console.log(updated)
   }
 
-
-
-
   // Delete a row by ID
   async delete(id: number): Promise<void> {
     await this.coCreationRepository.delete(id);

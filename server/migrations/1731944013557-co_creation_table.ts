@@ -8,7 +8,9 @@ export class CoCreationTable1731944013557 implements MigrationInterface {
         await queryRunner.query(`CREATE TABLE "co_creation" ("id" integer NOT NULL, "category" character varying NOT NULL, "page" character varying NOT NULL, "data" character varying NOT NULL, CONSTRAINT "PK_95f2a5d8ad2f5bea45c6f87dced" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "reflection" ("id" integer NOT NULL, "name" character varying NOT NULL, "response" character varying NOT NULL, CONSTRAINT "PK_0436416fb00a0944412935c919d" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "matrix" ("id" integer NOT NULL, "category" character varying NOT NULL, "page" character varying NOT NULL, "entry_pos" integer NOT NULL, "input" jsonb NOT NULL, "tasks_rows" text array NOT NULL, "roles_columns" text array NOT NULL, "rci_input" jsonb NOT NULL, CONSTRAINT "PK_2285b10a630de03f95a9c727a33" PRIMARY KEY ("id"))`);
-        
+        await queryRunner.query(`CREATE TABLE "story" ("id" SERIAL NOT NULL, "user_name" character varying NOT NULL, "email" character varying NOT NULL, "project_state" character varying, "challenges" character varying, "project_status" character varying, "project_summary" text, "project_link" character varying, "project_images" character varying, "project_fulfillment" character varying, "additional_info" text, "share_info" character varying, "reflection" text, CONSTRAINT "PK_28fce6873d61e2cace70a0f3361" PRIMARY KEY ("id"))`);
+
+
           // Discover: Projects Page Data
           await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (0, 'Discover', 'Projects', 0, 'List of Ideas', '', 'Ideas list text.')`);
           await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (1, 'Discover', 'Projects', 1, 'Example Title 1', '', 'Example response text 1.')`);
@@ -65,6 +67,16 @@ export class CoCreationTable1731944013557 implements MigrationInterface {
           await queryRunner.query(`INSERT INTO co_creation(id, category, page, data) VALUES (3, 'Develop', 'co_creation',  'This is the co_creation page 3')`);
           await queryRunner.query(`INSERT INTO co_creation(id, category, page, data) VALUES (4, 'Develop', 'co_creation',  'This is the co_creation page 4')`);
 
+          //Demonstrate: story page
+          await queryRunner.query(`INSERT INTO story(id, user_name, email, project_state, challenges, project_status, project_summary, project_link, project_images, project_fulfillment, additional_info, share_info, reflection) VALUES 
+        (1, 'Alice Johnson', 'alice.johnson@example.com', 'Initial Planning', 'Difficulty in gathering initial resources and stakeholder commitment', 'In Progress', 'This project focuses on developing an AI-powered tool for personalized education.', 'https://example.com/project/ai-tool', 'https://example.com/images/ai-tool1.jpg, https://example.com/images/ai-tool2.jpg', 'The program provided initial funding and mentorship that helped kickstart the project.', 'Looking forward to a beta release within three months.', 'Yes', 'The process so far has been rewarding, especially in building a network of experts.')`);
+
+        await queryRunner.query(`INSERT INTO story(id, user_name, email, project_state, challenges, project_status, project_summary, project_link, project_images, project_fulfillment, additional_info, share_info, reflection) VALUES 
+        (2, 'Bob Martinez', 'bob.martinez@example.com', 'Implementation', 'Technical issues and delays in receiving hardware components', 'Completed', 'A community-driven weather prediction system using IoT devices.', 'https://example.com/project/weather-prediction', 'https://example.com/images/weather1.jpg, https://example.com/images/weather2.jpg', 'The program helped establish connections with local communities to gather data.', 'Planning to expand the system to cover more regions.', 'No', 'It was a challenging but fulfilling journey. We’ve received positive feedback from users.')`);
+
+        await queryRunner.query(`INSERT INTO story(id, user_name, email, project_state, challenges, project_status, project_summary, project_link, project_images, project_fulfillment, additional_info, share_info, reflection) VALUES 
+        (3, 'Charlie Kim', 'charlie.kim@example.com', 'Launch', 'Balancing project demands with personal responsibilities', 'Launched', 'A mobile app that connects volunteers with non-profit organizations.', 'https://example.com/project/volunteer-app', NULL, 'This program provided critical feedback during the development phase.', 'Future updates will focus on expanding language support.', 'Yes', 'The feedback from early adopters has been incredibly motivating.')`);
+         
     }
 
 
@@ -74,6 +86,7 @@ export class CoCreationTable1731944013557 implements MigrationInterface {
         await queryRunner.query(`DROP TABLE "reflection"`);
         await queryRunner.query(`DROP TABLE "co_creation"`);
         await queryRunner.query(`DROP TABLE "text_area_reflections"`);
+        await queryRunner.query(`DROP TABLE "story"`);
     }
 
 }
