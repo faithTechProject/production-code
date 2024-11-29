@@ -118,11 +118,11 @@ export function DiscoverProjects() {
     }
     
     function toggle(x) {
-        console.log(getComputedStyle(document.getElementsByClassName('cover')[x]).getPropertyValue('height'))
-        if (getComputedStyle(document.getElementsByClassName('cover')[x]).getPropertyValue('height') !== '90px') {
-            document.getElementsByClassName('cover')[x].style.setProperty('height','var(--button-height)')
+        console.log(getComputedStyle(document.getElementsByClassName(styles.iCardCover)[x]).getPropertyValue('height'))
+        if (getComputedStyle(document.getElementsByClassName(styles.iCardCover)[x]).getPropertyValue('height') !== '90px') {
+            document.getElementsByClassName(styles.iCardCover)[x].style.setProperty('height','var(--button-height)')
         } else {
-            document.getElementsByClassName('cover')[x].style.setProperty('height','calc(var(--var-height) - var(--image-height))')
+            document.getElementsByClassName(styles.iCardCover)[x].style.setProperty('height','calc(var(--var-height) - var(--image-height))')
         }
     }
 
