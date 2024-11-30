@@ -33,7 +33,6 @@
     grid-template-columns: repeat(3, 400px);
     align-items: start;
     justify-content:space-around;
-
 }
 
 .kevin_drag_n_drop {

@@ -83,10 +83,10 @@
 
 .kevin_text { 
     color: black;
-    width: 50%;
-    margin-left: 25%;
+    width: 75%;
+    margin: 5%;
     font-size: large;
-    text-align: center;
+    text-align: left;
     
 }
 
@@ -94,7 +94,7 @@
 .kevin_text_status { 
     color: black;
     font-size: large;
-    text-align: center;
+
 }
 
 .small_Text { 
