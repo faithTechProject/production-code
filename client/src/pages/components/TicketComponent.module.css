@@ -2,9 +2,8 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    border: 3px solid #ea542c;
+    border: 3px solid var(--color-primary);
 }
-
 
 .kevin_ticket_component_ticket:not(:last-of-type) {
     margin-bottom: 4rem;
@@ -13,10 +12,11 @@
 .kevin_ticket_component_title_input {
     color: white;
     width: 60%;
-    background-color: #ea542c;
+    background-color: var(--color-primary);
     border: none;
     text-align: center;
     font-size: 24px;
+    box-shadow: none;
     
 }
 
@@ -26,31 +26,25 @@
 }
 
 .kevin_ticket_component_textarea {
+    margin: 5px;
     box-sizing: border-box;
     width: 100%;
 }
 
-.kevin_ticket_component_ticket_input_align_left {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    padding: 5px;
-    box-sizing: border-box;
-    width: 40%;
-    float: left;
+.flex_container {
+    display: flex;
+    justify-content: space-between;
 }
 
-.kevin_ticket_component_ticket_input_align_right {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    padding: 5px;
+.dual_textareas {
+    margin: 5px;
     box-sizing: border-box;
-    width: 40%;
-    float: right;
+    width: 45%
 }
 
 .kevin_ticket_component_title_content {
     padding: 10px;
-    background-color: #ea542c;
+    background-color: var(--color-primary);
     text-align: center;
 }
 
@@ -70,19 +64,16 @@
     touch-action: none;
 }
 
-.kevin_checkbox {
-    height: 20px;
-    width: 20px;
-}
-
 .kevin_button {
     background-color: white;
     border: 1px solid black;
-    padding: 8px 0px 8px 0px;
-    color: #ea542c;
+    padding: 8px 16px 8px 16px;
+    color: var(--color-primary);
     margin: 16px;
-    font-size: large;
+    font-size: 20px;
     text-align: left;
+    cursor: pointer;
+    height: 70px;
     
 }
 
@@ -104,6 +95,27 @@
     color: black;
     font-size: large;
     text-align: center;
-    
-    
+}
+
+.small_Text { 
+    margin: 0;
+    font-size: small;
+    color: black;
+    text-align: left;
+}
+
+.remove_button{
+    padding: 8px 12px;
+    font-size: 0.9em;
+    background-color: #a71d2a;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+
+.remove_button:active {
+    background-color: var(--color-primary);
 }

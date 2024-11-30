@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './tickets.module.css';
 import { DragNDrop } from '../components/TicketComponent';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import pageStyles from '../components/TicketComponent.module.css';
 
 export function DevelopTickets() {
@@ -30,7 +31,6 @@ export function DevelopTickets() {
                     }
                 }
 
-                //data[0].tasks.sort
                 data[0].tasks.sort((a, b) => a.row_index - b.row_index);
                 data[1].tasks.sort((a, b) => a.row_index - b.row_index);
                 data[2].tasks.sort((a, b) => a.row_index - b.row_index);
@@ -62,16 +62,15 @@ export function DevelopTickets() {
                 title: 'title',
                 description: '',
                 date_created: '',
-                sprint: 0,
+                sprint: '',
                 date_due: '',
-                percent_complete: 0,
-                assigned_to: '',
-                is_open: true
+                percent_complete: '',
+                assigned_to: ''
             }
         )
 
         let newList = JSON.parse(JSON.stringify(data))
-        newList[group].tasks = [...newList[group].tasks, {id: indexToAddAt + 1, status: newList[group].group, row_index: newList[group].tasks.length, title: 'title', description: '', date_created: '', sprint: '', date_due: '', percent_complete: '', assigned_to: '', is_open: true}];
+        newList[group].tasks = [...newList[group].tasks, {id: indexToAddAt + 1, status: newList[group].group, row_index: newList[group].tasks.length, title: 'title', description: '', date_created: '', sprint: '', date_due: '', percent_complete: '', assigned_to: ''}];
         console.log(newList);
         setData(newList)
     }
@@ -101,8 +100,11 @@ export function DevelopTickets() {
             <button className={pageStyles.kevin_button} onClick={() => {addTask(1)}}>+ Add Task</button>
             <button className={pageStyles.kevin_button} onClick={() => {addTask(2)}}>+ Add Task</button>
         </div>
-
             <DragNDrop data={data} setData={setData} />
+            <div className="bottomLinks">
+                <Link to="/develop/co_creation">Co-Creation</Link>
+                <Link className='next_page' to="/demonstrate/story">Story</Link>
+            </div>
     </div>
 </>
 )}

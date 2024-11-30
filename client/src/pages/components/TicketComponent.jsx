@@ -5,6 +5,23 @@ import styles from '../develop/tickets.module.css';
 import pageStyles from './TicketComponent.module.css';
 
 export const DragNDrop = ({data, setData}) => {
+    
+    const CloseIcon = () => (
+        <svg 
+        viewBox="0 0 24 24" 
+        width="16" 
+        height="16" 
+        stroke="currentColor" 
+        strokeWidth="2" 
+        fill="none" 
+        strokeLinecap="round" 
+        strokeLinejoin="round"
+        >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+    );
+    
     const [dragging, setDragging] = useState(false);
     const dragItem = useRef();
     const dragNode = useRef();
@@ -14,24 +31,13 @@ export const DragNDrop = ({data, setData}) => {
         dragItem.current = params;
         dragNode.current = e.target;
         dragNode.current.addEventListener('dragend', handelDragEnd);
-        //dragNode.current.addEventListener('dragover', (e) => {e.preventDefault()})
-        
-        
+
         setDragging(true);
     }
 
     const handleDragEnter = (e ,params) => {
         
         const currentItem = dragItem.current;
-        //console.log(e.target)
-        //dragNode.current = e.target;
-        //dragNode.current.addEventListener('dragend', handelDragEnd);
-        //dragNode.current.addEventListener('dragover', (e) => {e.preventDefault()})
-        //console.log(dragNode.current);
-
-        //console.log("entering drag", params);
-        //console.log(dragItem)
-       // oldState.current = params.item.status;
         setData(oldList => {
             let newList = JSON.parse(JSON.stringify(oldList))
             newList[params.grp_index].tasks.splice(params.item_index, 0, newList[currentItem.grp_index].tasks.splice(currentItem.item_index, 1)[0]);
@@ -50,9 +56,7 @@ export const DragNDrop = ({data, setData}) => {
         
     }
     
-    const handelDragEnd = () => {
-
-        //console.log("Ending drag");
+    const handelDragEnd = () => {        
         axios.patch(`http://localhost:3000/tickets/?id=${dragItem.current.item.id}`, {
             id: dragItem.current.item.id,
             status: dragItem.current.item.status,
@@ -60,7 +64,6 @@ export const DragNDrop = ({data, setData}) => {
         })
         setDragging(false);
         dragNode.current.removeEventListener('dragend', handelDragEnd);
-        //dragNode.current.removeEventListener('dragover', handelDragEnd);
         dragItem.current = null;
         dragNode.current = null;
     }
@@ -75,17 +78,14 @@ export const DragNDrop = ({data, setData}) => {
         
 
     }
-    // element is the name of the ticket property that needs to be changed
     const handleTaskChange = (value, grp_index, item_index, element) => {
         let newList = JSON.parse(JSON.stringify(data))
         newList[grp_index].tasks[item_index][element] = value;
         
 
-        axios.patch(`http://localhost:3000/tickets/?id=${data[grp_index].tasks[item_index].id}`, {
+        axios.patch(`http://localhost:3000/tickets/update?id=${data[grp_index].tasks[item_index].id}`, {
             [element]: value
         })
-        //console.log(value)
-        console.log(value)
         setData(newList)
     }
 
@@ -109,8 +109,6 @@ export const DragNDrop = ({data, setData}) => {
         }
         console.log(newList)
         setData(newList)
-        //<button onClick={() => {handleTaskChange(!data[grp_index].tasks[item_index].is_open, grp_index, item_index, 'is_open')}}>^</button>
-        //{data[grp_index].tasks[item_index].is_open && (
     }
     
     return (
@@ -120,185 +118,81 @@ export const DragNDrop = ({data, setData}) => {
                 key={grp.group} 
                 className={styles.kevin_dnd_group}
                 onDragEnter={dragging && !grp.tasks.length ? (e) => handleDragEnter(e, {grp_index, item_index: 0}):null}>
-                
-                    <div className={styles.kevin_dnd_group_title}></div>
-                    
-                    {grp.tasks.map((item, item_index) => (
-                        <div
-                        draggable
-                        onDragStart={((e) => {handleDragStart(e, {grp_index, item_index, item})})}
-                        onDragEnter= {dragging ? (e) => {handleDragEnter(e, {grp_index, item_index, item})} : null}
-                        key={item.id}
-                        className= {dragging ? getStyles({grp_index, item_index}): pageStyles.kevin_ticket_component_ticket}>
-                            
-                            
-                                <div className={pageStyles.kevin_ticket_component_title_content}>
-                                    <div>
-                                        
-                                   
-                                        <input className={pageStyles.kevin_ticket_component_title_input} type="text" maxLength="20" placeholder="Title"
-                                        value={data[grp_index].tasks[item_index].title}
-                                        onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'title')}} 
-                                        />
-                                        
-                                        <button onClick={() => {handleTaskDelete(grp_index, item_index, item)}}>X</button>
-                                    </div>
-                                </div>
-                                
-                                <div className={pageStyles.kevin_ticket_component_body_content}>
-                                    <textarea className={pageStyles.kevin_ticket_component_textarea} rows={3} placeholder="Description:"
-                                        value={data[grp_index].tasks[item_index].description}
-                                        onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'description')}}
-                                    />
-                                    <div>
-                                        <input className={pageStyles.kevin_ticket_component_ticket_input_align_left}
-                                            placeholder="Date Created:"
-                                            value={data[grp_index].tasks[item_index].date_created}
-                                            onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'date_created')}}
-                                            
-                                            />
-                                        <input className={pageStyles.kevin_ticket_component_ticket_input_align_right}
-                                            placeholder="Due Date:"
-                                            value={data[grp_index].tasks[item_index].date_due}
-                                            onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'date_due')}}
-                                            />
-                                    </div>
-                                    <div>
-                                        <input className={pageStyles.kevin_ticket_component_ticket_input_align_left}
-                                            placeholder="Sprint:"
-                                            value={data[grp_index].tasks[item_index].sprint}
-                                            onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'sprint')}}
-                                            />
-                                        <input className={pageStyles.kevin_ticket_component_ticket_input_align_right} 
-                                            placeholder="% Complete:"
-                                            value={data[grp_index].tasks[item_index].percent_complete}
-                                            onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'percent_complete')}}
-                                            />
-                                    </div>
-                                    <textarea className={pageStyles.kevin_ticket_component_textarea} rows={3} 
-                                        placeholder="Assigned to:" 
-                                        value={data[grp_index].tasks[item_index].assigned_to}
-                                        onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'assigned_to')}}
-                                        />
-                                    </div>
-                                
-                            
+                {grp.tasks.map((item, item_index) => (
+                    <div
+                    draggable
+                    onDragStart={((e) => {handleDragStart(e, {grp_index, item_index, item})})}
+                    onDragEnter= {dragging ? (e) => {handleDragEnter(e, {grp_index, item_index, item})} : null}
+                    key={item.id}
+                    className= {dragging ? getStyles({grp_index, item_index}): pageStyles.kevin_ticket_component_ticket}>
+                        
+                        
+                    <div className={pageStyles.kevin_ticket_component_title_content}>
+                        <div>
+                            <input className={pageStyles.kevin_ticket_component_title_input}
+                            type="text"
+                            maxLength="20"
+                            placeholder="Title"
+                            value={data[grp_index].tasks[item_index].title}
+                            onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'title')}} 
+                            />
+                            <button className={pageStyles.remove_button} onClick={() => {handleTaskDelete(grp_index, item_index, item)}}><CloseIcon /></button>
                         </div>
-                    ))}
-                </div>
-            ))}
-        </div>
-    )
-}
-
-
-/*
-export const Ticket = ({ id, title }) => {
-    const {attributes, listeners, setNodeRef, transform, transition} = useDraggable({id})
-    const style = {
-        transition,
-        transorm: CSS.Transform.toString(transform)
-    }
-    return (
-        <div ref={setNodeRef} {...attributes} {...listeners} style={{style}} className={styles.kevin-ticket-component}>
-            <input type="checkbox" className={styles.kevin.checkbox" />;
-        <div ref={setNodeRef} {...attributes} {...listeners} style={{style}} className={styles.kevin-ticket-component}>
-            <input type="checkbox" className={styles.kevin.checkbox" />;
-            {title}
-        </div>
-
-   
-   <div ref={setNodeRef} {...attributes} {...listeners} style={style} className={styles.kevin-ticket-component-ticket}>
-        <div className={styles.kevin-ticket-component-title-content}>
-   <div ref={setNodeRef} {...attributes} {...listeners} style={style} className={styles.kevin-ticket-component-ticket}>
-        <div className={styles.kevin-ticket-component-title-content}>
-            <div>
-                <input className={styles.kevin-ticket-component-title-input" type="text" maxLength="20" placeholder="Title" />
-                <input className={styles.kevin-ticket-component-title-input" type="text" maxLength="20" placeholder="Title" />
-            </div>
-        </div>
-        <div className={styles.kevin-ticket-component-body-content}>
-            <textarea className={styles.kevin-ticket-component-textarea" rows={4} placeholder="Description:" />
-        <div className={styles.kevin-ticket-component-body-content}>
-            <textarea className={styles.kevin-ticket-component-textarea" rows={4} placeholder="Description:" />
-            <div>
-                <input className={styles.kevin-ticket-component-ticket-input-align-left" placeholder="Date Created:"/>
-                <input className={styles.kevin-ticket-component-ticket-input-align-right" placeholder="Due Date:"/>
-                <input className={styles.kevin-ticket-component-ticket-input-align-left" placeholder="Date Created:"/>
-                <input className={styles.kevin-ticket-component-ticket-input-align-right" placeholder="Due Date:"/>
-            </div>
-            <div>
-                <input className={styles.kevin-ticket-component-ticket-input-align-left" placeholder="Sprint:"/>
-                <input className={styles.kevin-ticket-component-ticket-input-align-right" placeholder="% Complete:"/>
-                <input className={styles.kevin-ticket-component-ticket-input-align-left" placeholder="Sprint:"/>
-                <input className={styles.kevin-ticket-component-ticket-input-align-right" placeholder="% Complete:"/>
-            </div>
-            <textarea className={styles.kevin-ticket-component-textarea" rows={4} placeholder="Assigned to:" />
-            <textarea className={styles.kevin-ticket-component-textarea" rows={4} placeholder="Assigned to:" />
-        </div>
-    </div>
-    
-    )
-}
-*/
-
-/*
-    return (
-        <div className={styles.kevin-drag-n-drop}>
-        <div className={styles.kevin-drag-n-drop}>
-            {list.map((grp, grp_index) => (
-                <div 
-                key={grp.title} 
-                className={styles.kevin-dnd-group"
-                className={styles.kevin-dnd-group"
-                onDragEnter={dragging && !grp.items.length ? (e) => handleDragEnter(e, {grp_index, item_index: 0}):null}>
-                
-                    <div className={styles.kevin-dnd-group-title}>{grp.title}</div>
-                    <div className={styles.kevin-dnd-group-title}>{grp.title}</div>
-                    {grp.items.map((item, item_index) => (
-                        <div
-                        draggable 
-                        onDragStart={((e) => {handleDragStart(e, {grp_index, item_index})})}
-                        onDragEnter= {dragging ? (e) => {handleDragEnter(e, {grp_index, item_index})} : null}
-                        key={item}
-                        className= {dragging ? getStyles({grp_index, item_index}): "kevin-dnd-item"}
-                        >
-                            <div className={styles.kevin-ticket-component-ticket}>
-                                <div className={styles.kevin-ticket-component-title-content}>
-                            <div className={styles.kevin-ticket-component-ticket}>
-                                <div className={styles.kevin-ticket-component-title-content}>
-                                    <div>
-                                        <button onClick={() => setIsOpen(!isOpen)}>^</button>
-                                        <input className={styles.kevin-ticket-component-title-input" type="text" maxLength="20" placeholder="Title" />
-                                        <input className={styles.kevin-ticket-component-title-input" type="text" maxLength="20" placeholder="Title" />
-                                        <button onClick={() => setIsOpen(!isOpen)}>X</button>
-                                    </div>
-                                </div>
-                                {isOpen && (
-                                <div className={styles.kevin-ticket-component-body-content}>
-                                    <textarea className={styles.kevin-ticket-component-textarea" rows={3} placeholder="Description:" />
-                                <div className={styles.kevin-ticket-component-body-content}>
-                                    <textarea className={styles.kevin-ticket-component-textarea" rows={3} placeholder="Description:" />
-                                    <div>
-                                        <input className={styles.kevin-ticket-component-ticket-input-align-left" placeholder="Date Created:"/>
-                                        <input className={styles.kevin-ticket-component-ticket-input-align-right" placeholder="Due Date:"/>
-                                        <input className={styles.kevin-ticket-component-ticket-input-align-left" placeholder="Date Created:"/>
-                                        <input className={styles.kevin-ticket-component-ticket-input-align-right" placeholder="Due Date:"/>
-                                    </div>
-                                    <div>
-                                        <input className={styles.kevin-ticket-component-ticket-input-align-left" placeholder="Sprint:"/>
-                                        <input className={styles.kevin-ticket-component-ticket-input-align-right" placeholder="% Complete:"/>
-                                        <input className={styles.kevin-ticket-component-ticket-input-align-left" placeholder="Sprint:"/>
-                                        <input className={styles.kevin-ticket-component-ticket-input-align-right" placeholder="% Complete:"/>
-                                    </div>
-                                    <textarea className={styles.kevin-ticket-component-textarea" rows={3} placeholder="Assigned to:" />
-                                    <textarea className={styles.kevin-ticket-component-textarea" rows={3} placeholder="Assigned to:" />
-                                </div>
-                                )}
+                    </div>
+                    
+                    <div className={pageStyles.kevin_ticket_component_body_content}>
+                        <p className={pageStyles.small_Text}>Description:</p>
+                        <textarea className={pageStyles.kevin_ticket_component_textarea}
+                            rows={3}
+                            value={data[grp_index].tasks[item_index].description}
+                            onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'description')}}
+                        />
+                        <div>
+                            <div className={pageStyles.flex_container}>
+                                <p className={pageStyles.small_Text}>Date Created:</p>
+                                <p className={pageStyles.small_Text}>Due Date:</p>
+                            </div>
+                            <div className={pageStyles.flex_container}>
+                                <textarea className={pageStyles.dual_textareas}
+                                    rows={1}
+                                    value={data[grp_index].tasks[item_index].date_created}
+                                    onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'date_created')}}
+                                    />
+                                <textarea className={pageStyles.dual_textareas}
+                                    rows={1}
+                                    value={data[grp_index].tasks[item_index].date_due}
+                                    onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'date_due')}}
+                                    />
                             </div>
                         </div>
-                    ))}
+                        <div>
+                            <div className={pageStyles.flex_container}>
+                                <p className={pageStyles.small_Text}>Sprint #:</p>
+                                <p className={pageStyles.small_Text}>Completed %:</p>
+                            </div>
+                            <div className={pageStyles.flex_container}>
+                                <textarea className={pageStyles.dual_textareas}
+                                    rows={1}
+                                    value={data[grp_index].tasks[item_index].sprint}
+                                    onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'sprint')}}
+                                    />
+                                <textarea className={pageStyles.dual_textareas} 
+                                    rows={1}
+                                    value={data[grp_index].tasks[item_index].percent_complete}
+                                    onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'percent_complete')}}
+                                    />
+                            </div>
+                        </div>
+                        <p className={pageStyles.small_Text}>Assigned To:</p>
+                        <textarea className={pageStyles.kevin_ticket_component_textarea} rows={3} 
+                            value={data[grp_index].tasks[item_index].assigned_to}
+                            onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'assigned_to')}}
+                            />
+                        </div>
+                    </div>
+                ))}
                 </div>
             ))}
         </div>
-        */
+    )
+}

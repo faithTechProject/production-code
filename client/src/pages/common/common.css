@@ -122,8 +122,8 @@ footer p {
 }
 
 .bottomLinks :nth-child(1)::before {
-    content: "< ";
+    content: "<< ";
 }
 .bottomLinks :nth-child(2)::after {
-    content: " >";
+    content: " >>";
 }
