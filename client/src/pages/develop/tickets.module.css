@@ -23,6 +23,34 @@
     color: white;
 }
 
+.kevin_text_status { 
+    color: black;
+    font-size: large;
+
+}
+
+.kevin_text { 
+    color: black;
+    width: 75%;
+    margin: 5%;
+    font-size: large;
+    text-align: left;
+    
+}
+
+.kevin_button {
+    background-color: white;
+    border: 1px solid black;
+    padding: 8px 16px 8px 16px;
+    color: var(--color-primary);
+    margin: 16px;
+    font-size: 20px;
+    text-align: left;
+    cursor: pointer;
+    height: 70px;
+    
+}
+
 .kevin_center {
     display: grid;
     padding: .5rem;
