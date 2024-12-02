@@ -1,0 +1,173 @@
+/*----------------------
+--------- TITLE --------
+----------------------*/
+
+.oTitle{
+    color: white;
+    padding: 50px;
+    margin: 0px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.oTitle sc{
+    color:var(--color-primary);
+}
+
+#oTopImage{
+	height: 200px;
+	width: 100%;
+	background-image: url(../images/network.jpeg);
+    background-size: cover;
+}
+
+/*--------------------
+----- INFO CARDS -----
+--------------------*/
+
+.iDeck{	
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 20px;
+    color: black;
+}
+
+.iCard{
+    --var-height: 450px;
+    width: 300px;
+    height: var(--var-height);
+	background-color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    --image-height: calc(var(--var-height)*.15);
+    --button-height: calc(var(--var-height)*.2);
+    border-radius: 5px;
+    border-color: #000;
+    border-style: solid;
+    margin: 10px;
+}
+
+.iCardImg{
+    height: var(--image-height);
+    background-image: linear-gradient(#000,#888);
+    border-radius: 3px 3px 0px 0px;
+}
+
+.iCardCover{
+    height: calc(var(--var-height) - var(--image-height));
+	color: white;
+	background: var(--color-primary);
+    font-weight: bold;
+	transition: 1s;
+	cursor: pointer;
+    margin-top: auto;
+    border-radius: 0px 0px 3px 3px;
+    z-index: 2;
+    font-size: x-large;
+    border-style: none;
+}
+
+.iCardContent{
+    z-index: 1;
+    margin-top: auto;
+    transition: 1s;
+    position: absolute;
+    top: calc(var(--image-height) + 10px);
+    height: calc(var(--var-height) - var(--image-height) - var(--button-height));
+    overflow:hidden;
+    font-size: 14px;;
+}
+
+/*--------------------
+----- FLOW CHART -----
+--------------------*/
+
+.solution {
+    color: white;
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.alignChart {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 20px;;
+}
+
+.column {
+    width: 30%;
+    min-width: 200px;
+}
+
+.column h3 {
+    text-align: center;
+    color: white;
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.relationship {
+    text-align: center;
+    color: white;
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.relationshipTitle {
+    font-weight: bold;
+}
+
+.percentage {
+    display: flex;
+    justify-content: center;
+    height: 30px;
+}
+
+.percentage p {
+    font-weight: bold;
+    width:fit-content;
+    margin: 0px;
+}
+
+.relationship input {
+    background-color: transparent;
+    border-style: none;
+    border-bottom-style: solid;
+    border-color: white;
+    color: white;
+    caret-color: white;
+    font-weight: bold;
+    font-size: 20px;
+    width: 34px;
+    height: 20px;
+}
+
+.relationship input:focus {
+    outline: none;
+}
+
+.arrow {
+    width: 100px;
+    height: 4px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 15px;
+    position: relative;
+    background-color: #e66e4d;
+}
+
+.arrow::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 15px solid #e66e4d;
+}

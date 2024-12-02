@@ -57,7 +57,7 @@ export function DiscernOverview() {
                 <br></br>
                 <div className='bottomLinks'>
                     <Link to="/discover/lament">Lament</Link>
-                    <Link className='next_page' to="/discern/brainstorm">Brainstorm</Link>
+                    <Link to="/discern/brainstorm">Brainstorm</Link>
                 </div>
             </div>
         </>

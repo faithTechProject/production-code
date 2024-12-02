@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from "axios";
 import styles from './co_creation.module.css';
 import {closestCorners, DndContext} from "@dnd-kit/core"
@@ -277,7 +278,11 @@ export function CoCreation() {
                         />
                         <input type="submit" value="Save" />
                     </form>
-            </div>  
+            </div>
+            <div className='bottomLinks'>
+                <Link to="/develop/overview">Develop Overview</Link>
+                <Link className='next_page' to="/develop/tickets">Tickets</Link>
+            </div>
         </div>
     )
 }

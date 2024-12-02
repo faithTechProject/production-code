@@ -122,5 +122,9 @@ export function DevelopTickets() {
                 <Link className='next_page' to="/demonstrate/story">Story</Link>
             </div>
     </div>
+    <div className='bottomLinks'>
+        <Link to="/develop/co_creation">Co-Creation</Link>
+        <Link className='next_page' to="/develop/"></Link>
+    </div>
 </>
 )}

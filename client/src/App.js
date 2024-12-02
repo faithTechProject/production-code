@@ -10,15 +10,19 @@ import { DiscernOverview } from './pages/discern/overview';
 import { DiscernAnalysis } from './pages/discern/analysis';
 import { DiscernTimeline } from './pages/discern/timeline';
 import { DiscernBrainstorm } from './pages/discern/brainstorm';
+import { DevelopOverview } from './pages/develop/overview';
 import { DevelopTickets } from './pages/develop/tickets';
+import { DemonstrateOverview } from './pages/demonstrate/overview';
 import { CoCreation } from './pages/develop/co_creation'; 
+import { DemonstrateMeasure} from './pages/demonstrate/measure';
 import Navbar from './pages/common/navbar';
 import { Story } from './pages/demonstrate/story'
+import { Conclusion } from './pages/demonstrate/conclusion';
 import TableOfContents from './pages/common/tableOfContents';
 import Footer from './pages/common/footer';
 import { TestPageDatabase } from './pages/testPageDatabase';
-import './app.css'; 
 import { ScrollTop } from './scrollTop';
+import './app.css'; 
 
 function App() {
   return (
@@ -40,11 +44,17 @@ function App() {
               <Route path="/discover/lament" element={< DiscoverLament />} />
               <Route path="/discern/overview" element={< DiscernOverview />} />
               <Route path="/discern/brainstorm" element={< DiscernBrainstorm />} />
+              <Route path="/develop/overview" element={< DevelopOverview />} />
               <Route path="/discern/analysis" element={< DiscernAnalysis />} />
               <Route path="/discern/timeline" element={< DiscernTimeline />} />
+              <Route path="/demonstrate/overview" element={< DemonstrateOverview />} />
               <Route path="/demonstrate/story" element={< Story />} />
+              <Route path="/demonstrate/conclusion" element={< Conclusion />} />
               <Route path="/develop/co_creation" element={< CoCreation />} />
               <Route path="/develop/tickets" element={< DevelopTickets />} />
+              <Route path="/develop/co_creation" element={< CoCreation />} />
+              <Route path="/demonstrate/story" element={< Story />} />
+              <Route path="/demonstrate/measure" element={< DemonstrateMeasure/>} />
             </Routes>
           </div>
         </div>
