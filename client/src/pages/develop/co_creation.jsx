@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import styles from './co_creation.module.css';
@@ -25,6 +26,7 @@ export function CoCreation() {
 
             const data = response.data.map((item) => item)
             data.sort((a,b) => a.id - b.id)
+
 
             const co_creation_response = data;
             setRequestForm0(co_creation_response[0].data);
@@ -146,7 +148,10 @@ export function CoCreation() {
                         <input type="submit" value="Save" />
                     </form>
             </div>
-            
+            <div className='bottomLinks'>
+                <Link to="/develop/overview">Develop Overview</Link>
+                <Link className='next_page' to="/develop/tickets">Tickets</Link>
+            </div>
         </div>
     )
 }

@@ -12,6 +12,10 @@ import { TextAreaReflectionsModule } from './text.area.reflections/text.area.ref
 import { TextAreaReflectionsController } from './text.area.reflections/text.area.reflections.controller';
 import { TextAreaReflectionsService } from './text.area.reflections/text.area.reflections.service';
 import { TextAreaReflections } from './text.area.reflections/text.area.reflections.entity';
+import { TicketsController } from './tickets/tickets.controller';
+import { TicketsModule } from './tickets/tickets.module';
+import { Tickets } from './tickets/tickets.entity';
+import { TicketsService } from './tickets/tickets.service';
 import { CoCreationEntity } from './co_creation_page/request-form.entity';
 import { RequestFormModule } from './co_creation_page/request-form.module';
 
@@ -26,15 +30,16 @@ import { RequestFormModule } from './co_creation_page/request-form.module';
       password: 'faithtech_password',
       database: 'faithtech_create',
       synchronize: false,
-      entities: [Reflection, Matrix, TextAreaReflections, CoCreationEntity] 
+      entities: [Reflection, Matrix, TextAreaReflections, Tickets, CoCreationEntity] 
   }),
  
-    TypeOrmModule.forFeature([Reflection, Matrix, TextAreaReflections]),
+    TypeOrmModule.forFeature([Reflection, Matrix, TextAreaReflections, Tickets]),
     RequestFormModule
     
+    
   ],
-  controllers: [ReflectionController, MatrixController, TextAreaReflectionsController],
-  providers: [ReflectionService, MatrixService, TextAreaReflectionsService],
+  controllers: [ReflectionController, MatrixController, TextAreaReflectionsController, TicketsController],
+  providers: [ReflectionService, MatrixService, TextAreaReflectionsService, TicketsService],
 
 })
 export class AppModule {}
