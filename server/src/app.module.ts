@@ -18,6 +18,9 @@ import { Tickets } from './tickets/tickets.entity';
 import { TicketsService } from './tickets/tickets.service';
 import { CoCreationEntity } from './co_creation_page/request-form.entity';
 import { RequestFormModule } from './co_creation_page/request-form.module';
+import { Story } from './story_page/story.entity';
+import { StoryModule } from './story_page/story.module';
+
 
 
 @Module({
@@ -30,11 +33,11 @@ import { RequestFormModule } from './co_creation_page/request-form.module';
       password: 'faithtech_password',
       database: 'faithtech_create',
       synchronize: false,
-      entities: [Reflection, Matrix, TextAreaReflections, Tickets, CoCreationEntity] 
+      entities: [Reflection, Matrix, TextAreaReflections, CoCreationEntity] 
   }),
  
     TypeOrmModule.forFeature([Reflection, Matrix, TextAreaReflections, Tickets]),
-    RequestFormModule
+    RequestFormModule, StoryModule
     
     
   ],

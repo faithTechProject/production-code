@@ -1,7 +1,8 @@
 //import './workbook.scss';
 import { Link } from 'react-router-dom';
-import { KevinDownloadPlaybook } from "./KevinDownloadPlaybook";
+import { DownloadButton } from "./KevinDownloadPlaybook";
 import styles from './workbook.module.css';
+
 export function Workbook() {
     
     return (
@@ -57,7 +58,11 @@ export function Workbook() {
                         </div>
                         <div class={styles.kevinFlexItem_2}>
                             <p>At FaithTech, we believe there is a way of building technology that redemptively changes the world while transforming those who build it. Our community has developed a uniquely Jesus-centered way to build that is laid out in the FaithTech Playbook. Check it out by clicking the link below (it's a quick read).</p>
-                            <KevinDownloadPlaybook className={styles.kevinDownloadPlaybookButton}></KevinDownloadPlaybook>
+                            <DownloadButton 
+                            fileName="FaithTech Playbook.pdf"
+                            displayName="Download Playbook"
+                            filePath="/The-FaithTech-Playbook.pdf"
+                            />
                         </div>
                     </div>
                 </div>
