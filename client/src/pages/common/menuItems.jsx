@@ -24,7 +24,7 @@ export const developItems = [
   export const demonstrateItems = [
     { label: 'Overview', path: '/demonstrate/overview'},
     { label: 'Story', path: '/demonstrate/story' },
-    { label: 'Conclusion', path: '/demonstrate/conclusion' }
+    { label: 'Conclusion', path: '/demonstrate/conclusion' },
     { label: 'Measure', path: '/demonstrate/measure'}
   ];
   
