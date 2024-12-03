@@ -9,7 +9,7 @@ export function Workbook() {
             <div className={styles.oTopImage}>
                 <h3 className={styles.oTitle}>FAITH<sc>TECH</sc> WORKBOOK</h3>
             </div>
-            <div className={styles.body}>
+            <div className='body'>
                 <div className={styles.section}>
                     <h1>Introduction</h1>
                     <p class={styles.op}>Welcome to the FaithTech Workbook! This guide is designed to help you build technology using the redemptive framework outlined in the FaithTech Playbook. Whether you're looking to glorify God by solving real-world problems as part of a FaithTech community, another community of Christ-followers, or just a couple of friends - this guide is for you!</p>
@@ -69,7 +69,10 @@ export function Workbook() {
                 </div>
                 <div className='bottomLinks'>
                     <br></br>
-                    <Link to="/discover/overview">Discover</Link>
+                    <div>
+                        <p>Next</p>
+                        <Link to="/discover/overview">Discover</Link>
+                    </div>
                 </div>
             </div>
         </>

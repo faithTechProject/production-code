@@ -232,9 +232,15 @@ export function DiscernAnalysis() {
           </DndContext>
         </div>
         <div className='bottomLinks'>
-          <Link to="/discern/brainstorm">Brainstorm</Link>
-          <Link className='next_page' to="/discern/timeline">Timeline</Link>
-        </div>
+                    <div>
+                        <p>Previous</p>
+                        <Link to="/discern/brainstorm">Brainstorm</Link>
+                    </div>
+                    <div>
+                        <p>Next</p>
+                        <Link to="/discern/timeline">Timeline</Link>
+                    </div>
+                </div>
       </div>
     </>
   );

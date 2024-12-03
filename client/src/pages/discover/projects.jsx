@@ -1,129 +1,41 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styles from './projects.module.css';
 import axios from 'axios';
-import { Modal } from '../components/PartnershipModal';
-import { Table } from '../components/PartnershipMatrix';
+import {fillTable} from '../dbTable';
 
 
 export function DiscoverProjects() {
-    
-    const[listOfIdeas, setListOfIdeas] = useState([])
-
-    const[textAreaTitle1, setTextAreaTitle1] = useState([]);
-    const[textAreaTitle2, setTextAreaTitle2] = useState([]);
-    const[textAreaTitle3, setTextAreaTitle3] = useState([]);
-    
-    const[textAreaReply1, setTextAreaReply1] = useState([]); 
-    const[textAreaReply2, setTextAreaReply2] = useState([]); 
-    const[textAreaReply3, setTextAreaReply3] = useState([]); 
-
-    const[proposalTemplate, setPropasalTemplate] = useState([])
-
-    const[technologyAudit, setTechnologyAudit] = useState([])
-    const[technologyDisparities, setTechnologyDisparities] = useState([])
-    const[technologyEmerging, setTechnologyEmerging] = useState([])
-
-    const[modalOpen, setModalOpen] = useState(false);
-    const [rows, setRows] = useState([ 
-
-        {partner: "", needs: "", project_idea: ""},
-        {partner: "", needs: "", project_idea: ""},
-        {partner: "", needs: "", project_idea: ""}
-    ]);
-    const [rowToEdit, setRowToEdit] = useState(null);
-    
-    console.log(rows + "row");
-    
-    //console.log(rowToEdit + "row to edit");
-    
+    var pageName = 'Projects';
     useEffect(() => {
-        axios.get(`http://localhost:3000/text-area-reflections/Projects`).then(res => {
-            const data = res.data.map((item) => item)
-            data.sort((a, b) => a.entry_pos - b.entry_pos); // sort by entry_pos in ascending order
-            
-            setListOfIdeas(data[0].reply)
-
-            setTextAreaTitle1(data[1].title)
-            setTextAreaReply1(data[1].reply)
-
-            setTextAreaTitle2(data[2].title)
-            setTextAreaReply2(data[2].reply)
-
-            setTextAreaTitle3(data[3].title)
-            setTextAreaReply3(data[3].reply)
-
-            setPropasalTemplate(data[4].reply)
-
-            setTechnologyAudit(data[5].reply)
-            setTechnologyDisparities(data[6].reply)
-            setTechnologyEmerging(data[7].reply)
+        axios.get(`http://localhost:3000/matrix-reflections/${pageName}`).then(res => {
+            var tableData = res.data;
+            tableData.sort((a, b) => a.entry_pos - b.entry_pos); // orders data by entry_pos
+            for (let i in tableData) {
+                fillTable(i, tableData, pageName);
+            }
         })
-        
-        axios.get("http://localhost:3000/matrix-reflections/Projects").then(res => {
-                if (res.data[0].input.length > 0) {
-                    setRows(res.data.map((item) => item.input)[0])
-                }
-            })
+
+        axios.get(`http://localhost:3000/text-area-reflections/Projects`).then(res => { // Grab and load textarea(s) from db
+            var dbData = res.data;
+            dbData.sort((a, b) => a.entry_pos - b.entry_pos); // orders data by entry_pos
+            for (let response of dbData) {
+                document.getElementById('textarea'+response.entry_pos).value = response.reply;
+            }
+        })
     }, [])
-
-    const handleSubmit = (e, titleData, replyData) => {
-        e.preventDefault();
-        axios.patch(`http://localhost:3000/text-area-reflections/?page=Projects&entry_pos=${e.target.id}`, {
-            title: titleData,
-            reply: replyData
-        })
-    }
-    const handleDeleteRow = (targetIndex) => {
-        const data = rows.filter((_, idx) => idx !== targetIndex)
-        setRows(data)
-        
-        axios.patch(`http://localhost:3000/matrix-reflections/?page=Projects&entry_pos=${0}`, {
-            input: data
-        });       
-    }
-
-    const handleEditRow = (idx) => {
-        setRowToEdit(idx);
-        setModalOpen(true);
-    }
-    
-    const handleSubmit_matrix = (number, e, newRow) => {
-        console.log(e)
-        console.log(number)
-        rowToEdit === null ?  
-        
-        setRows([...rows, newRow]) :
-        
-        setRows(rows.map((currRow, idx) => {
-            if (idx !== rowToEdit) return currRow;
-             return newRow
-        }))
-        
-        
-        let data = []
-        rowToEdit === null ?  
-        
-        data = [...rows, newRow]:
-        
-
-        data = (rows.map((currRow, idx) => {
-            if (idx !== rowToEdit) return currRow;
-             return newRow
-        }))
-
-        axios.patch(`http://localhost:3000/matrix-reflections/?page=Projects&entry_pos=${0}`, {
-            input: data
-        });
-    }
     
     function toggle(x) {
-        console.log(getComputedStyle(document.getElementsByClassName(styles.iCardCover)[x]).getPropertyValue('height'))
         if (getComputedStyle(document.getElementsByClassName(styles.iCardCover)[x]).getPropertyValue('height') !== '90px') {
             document.getElementsByClassName(styles.iCardCover)[x].style.setProperty('height','var(--button-height)')
         } else {
             document.getElementsByClassName(styles.iCardCover)[x].style.setProperty('height','calc(var(--var-height) - var(--image-height))')
         }
+    }
+    function saveData(textarea) {
+        axios.patch(`http://localhost:3000/text-area-reflections/?page=Projects&entry_pos=${textarea.target.id.substr(8)}`, {
+            reply: textarea.target.value
+        });
     }
 
     return (
@@ -132,6 +44,7 @@ export function DiscoverProjects() {
                 <h3 className={styles.oTitle}>SOURCING <sc>CREATE</sc> PROJECTS</h3>
             </div>
             <div className="body">
+                <p className={styles.instructions}>Click on the cards below to learn about the different exercises.</p>
                 <div className={styles.iDeck}>
                     <div className={styles.iCard}>
                         <div className={styles.iCardImg}></div>
@@ -156,7 +69,7 @@ export function DiscoverProjects() {
                                 <li>Connect with churches who often have insights into community needs and may have their own technological challenges.</li>
                                 <li>Attend charity events to learn about ongoing projects that need technical support.</li>
                             </ul>
-                        <button id="cover" className={styles.iCardCover} onClick={() => toggle(2)}>Partner with Non-Profits/Churches</button>
+                        <button id="cover" className={styles.iCardCover} onClick={() => toggle(2)}>Partner with Non-Profits/ Churches</button>
                     </div>
                     <div className={styles.iCard}>
                         <div className={styles.iCardImg}></div>
@@ -178,136 +91,95 @@ export function DiscoverProjects() {
                     </div>
                 </div>
             <div className={styles.section}>
-                <h1>Host Ideation Session</h1>
+                <h1 className={styles.projects}>Host Ideation Session</h1>
                 <p>Use the box below to document all ideas from your idea session. Include a short list of potential projects.</p>
-                <h2>List of Ideas</h2>
-                <form id='0' onSubmit={(e) => handleSubmit(e, "List of Ideas", listOfIdeas)}>
-                    <textarea className={styles.inputText}
-                        value={listOfIdeas}
-                        onChange={(e) => setListOfIdeas(e.target.value)}>
-                    </textarea>
-                    <input type="submit" value="Save" />
-                </form>
+                <h2 className={styles.projects}>List of Ideas</h2>
+                <textarea id='textarea0' className={styles.response} onChange={(e) => saveData(e)}></textarea>
             </div>
             <div className={styles.section}>
-                <h1>Identifying Local Needs</h1>
+                <h1 className={styles.projects}>Identifying Local Needs</h1>
                 <p>Highlight three areas in your community where technology could address local challenges. 
                     Label the area of your community in the "Title" section, and use the space below it to note technological challenges or issues that technology could address.
                 </p>
-                <h2>Community Needs</h2>
+                <h2 className={styles.projects}>Community Needs</h2>
                 <div className={styles.cDeck}>
-                    <div>
-                        <form className={styles.cCard} id='1' onSubmit={(e) => handleSubmit(e, textAreaTitle1, textAreaReply1)}>
-                            <textarea className={styles.cCardTitle} 
-                                placeholder='Title...'
-                                value={textAreaTitle1}
-                                onChange={(e) => setTextAreaTitle1(e.target.value)}>
-                            </textarea>
-                            <textarea className={styles.cCardDescription}
-                                placeholder='Description of challenges...'
-                                value={textAreaReply1}
-                                onChange={(e) => setTextAreaReply1(e.target.value)}>
-                            </textarea>
-                            <input type="submit" value="Save" />
-                        </form>
+                    <div className={styles.cCard}>
+                        <textarea id='textarea1' className={styles.cCardTitle}
+                            placeholder='Title...'
+                            onChange={(e) => saveData(e)}>
+                        </textarea>
+                        <textarea id='textarea2' className={styles.cCardDescription}
+                            placeholder='Description of challenges...'
+                            onChange={(e) => saveData(e)}>
+                        </textarea>
                     </div>
-                    <div>
-                        <form className={styles.cCard} id='2' onSubmit={(e) => handleSubmit(e, textAreaTitle2, textAreaReply2)}>
-                            <textarea className={styles.cCardTitle}
-                                placeholder='Title...'
-                                value={textAreaTitle2}
-                                onChange={(e) => setTextAreaTitle2(e.target.value)}>
-                            </textarea>
-                            <textarea className={styles.cCardDescription}
-                                placeholder='Description of challenges...'
-                                value={textAreaReply2}
-                                onChange={(e) => setTextAreaReply2(e.target.value)}>
-                            </textarea>
-                            <input type="submit" value="Save" />
-                        </form>
+                    <div className={styles.cCard}>
+                        <textarea id='textarea3' className={styles.cCardTitle}
+                            placeholder='Title...'
+                            onChange={(e) => saveData(e)}>
+                        </textarea>
+                        <textarea id='textarea4' className={styles.cCardDescription}
+                            placeholder='Description of challenges...'
+                            onChange={(e) => saveData(e)}>
+                        </textarea>
                     </div>
-                    <div>
-                        <form className={styles.cCard} id='3' onSubmit={(e) => handleSubmit(e, textAreaTitle3, textAreaReply3)}>
-                            <textarea className={styles.cCardTitle}
-                                placeholder='Title...'
-                                value={textAreaTitle3}
-                                onChange={(e) => setTextAreaTitle3(e.target.value)}>
-                            </textarea>
-                            <textarea className={styles.cCardDescription}
-                                placeholder='Description of challenges...'
-                                value={textAreaReply3}
-                                onChange={(e) => setTextAreaReply3(e.target.value)}>
-                            </textarea>
-                            <input type="submit" value="Save" />
-                        </form>
+                    <div className={styles.cCard}>
+                        <textarea id='textarea5' className={styles.cCardTitle}
+                            placeholder='Title...'
+                            onChange={(e) => saveData(e)}>
+                        </textarea>
+                        <textarea id='textarea6' className={styles.cCardDescription}
+                            placeholder='Description of challenges...'
+                            onChange={(e) => saveData(e)}>
+                        </textarea>
                     </div>
                 </div>
             </div>
             <div className={styles.section}>
-                <h1>Partnering with Non-Profits/Churches</h1>
+                <h1 className={styles.projects}>Partnering with Non-Profits/Churches</h1>
                 <p>Use the matrix below to list potential non-profit and church partners, their needs, and potential project ideas.</p>
-                <h2>Partnership Matrix</h2>
+                <h2 className={styles.projects}>Partnership Matrix</h2>
+                <div className={styles.tableBox}>
+                    <div id="table0" className={styles.solutionTable}>
+                    <table>
+                        <th>Organization Name</th>
+                        <th>Organization Needs</th>
+                        <th>Project Ideas</th>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
             </div>
-            <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
-            <button onClick={() => setModalOpen(true)}>Add Entry</button>
-
-            {modalOpen && (
-                <Modal closeModal={() => {
-                    setModalOpen(false);
-                    setRowToEdit(null);
-                }}
-                onSubmit={handleSubmit_matrix}
-                defaultValue={rowToEdit !== null && rows[rowToEdit]}
-                id={1}
-            />
-            )}
 
 
             <div className={styles.section}>
-                <h1>Engage with Local Schools and Universities</h1>
+                <h1 className={styles.projects}>Engage with Local Schools and Universities</h1>
                 <p>Use the template provided below to develop a proposal for a collaborative project or mentorship program with a local educational institution.</p>
-                <h2>Proposal Template</h2>
-                <form id='4' onSubmit={(e) => handleSubmit(e, "Proposal Template", proposalTemplate)}>
-                    <textarea className={styles.inputText}
-                        value={proposalTemplate}
-                        onChange={(e) => setPropasalTemplate(e.target.value)}>
-                    </textarea>
-                    <input type="submit" value="Save" />
-                </form>
+                <h2 className={styles.projects}>Proposal Template</h2>
+                <textarea id='textarea7' className={styles.response} onChange={(e) => saveData(e)}></textarea>
             </div>
             <div className={styles.section}>
-                <h1>Analyze Existing Technology</h1>
+                <h1 className={styles.projects}>Analyze Existing Technology</h1>
                 <p>Use the following boxes to highlight current uses, gaps, and opportunities for redemptive technology projects.</p>
-                <h2>Technology Use</h2>
+                <h2 className={styles.projects}>Technology Use</h2>
                 <p>Technology Audit: Assess how technology is currently used.</p>
-                <form id='5' onSubmit={(e) => handleSubmit(e, "Technology Use", technologyAudit)}>
-                    <textarea className={styles.inputText}
-                        value={technologyAudit}
-                        onChange={(e) => setTechnologyAudit(e.target.value)}>
-                    </textarea>
-                    <input type="submit" value="Save" />
-                </form>
+                <textarea id='textarea8' className={styles.response} onChange={(e) => saveData(e)}></textarea>
                 <p>Technology Disparities: Identify gaps.</p>
-                <form id='6' onSubmit={(e) => handleSubmit(e, "Technology Use", technologyDisparities)}>
-                    <textarea className={styles.inputText}
-                        value={technologyDisparities}
-                        onChange={(e) => setTechnologyDisparities(e.target.value)}>
-                    </textarea>
-                    <input type="submit" value="Save" />
-                </form>
+                <textarea id='textarea9' className={styles.response} onChange={(e) => saveData(e)}></textarea>
                 <p>Emerging Technology: Brainstorm opportunities.</p>
-                <form id='7' onSubmit={(e) => handleSubmit(e, "Technology Use", technologyEmerging)}>
-                    <textarea className={styles.inputText}
-                        value={technologyEmerging}
-                        onChange={(e) => setTechnologyEmerging(e.target.value)}>
-                    </textarea>
-                    <input type="submit" value="Save" />
-                </form>
+                <textarea id='textarea10' className={styles.response} onChange={(e) => saveData(e)}></textarea>
             </div>
-            <div className="bottomLinks">
-                <Link to="/discover/overview">Discover Overview</Link>
-                <Link className='next_page' to="/discover/teams">Teams</Link>
-            </div>
+            <div className='bottomLinks'>
+                    <div>
+                        <p>Previous</p>
+                        <Link to="/discover/overview">Discover Overview</Link>
+                    </div>
+                    <div>
+                        <p>Next</p>
+                        <Link to="/discover/teams">Teams</Link>
+                    </div>
+                </div>
             </div>
         </>
     )

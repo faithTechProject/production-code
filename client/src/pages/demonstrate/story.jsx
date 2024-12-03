@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React from 'react';
 import styles from './story.module.css';
 import { useEffect, useState } from 'react';
@@ -244,6 +245,16 @@ export function Story() {
                 <p> In the Demonstrate stage, we focus on the relational and spiritual impact of our work. Remember that true redemptive impact often takes time and is measured in transformed lives and communities. </p>
 
            </div>
+           <div className='bottomLinks'>
+                    <div>
+                        <p>Previous</p>
+                        <Link to="/demonstrate/measure">Measure</Link>
+                    </div>
+                    <div>
+                        <p>Next</p>
+                        <Link to="/demonstrate/conclusion">Conclusion</Link>
+                    </div>
+                </div>
         </>
     )
 }

@@ -153,6 +153,13 @@ export function Conclusion() {
                 <h2 className={styles.oh2}>Thank you for Choosing Redemptive Technology over Reckless!</h2>
                 <br></br>
             </div>
+            <div className='bottomLinks'>
+                    <div>
+                        <p>Previous</p>
+                        <Link to="/demonstrate/story">Story</Link>
+                    </div>
+                    <br></br>
+                </div>
         </>
     )
 }

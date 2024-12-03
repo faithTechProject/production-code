@@ -2,7 +2,7 @@ import axios from 'axios';
 import dbStyles from './dbTable.module.css';
 
 export function fillTable(id, data , pageName) {
-    var container = document.getElementById(id);
+    var container = document.getElementById('table'+id);
     container.firstChild.lastChild.innerHTML = "";
     container.firstChild.className = `${dbStyles.table}`;
     var tData = data[id].input; // The data grabbed from the database
@@ -39,10 +39,6 @@ export function fillTable(id, data , pageName) {
     }
 }
 
-export function test(button) {
-    console.log(button);
-}
-
 export function updateRow(e, tableID, row, column, data , pageName) { // Saves data when a row is edited
     data[tableID].input[row][column] = e.target.value;
     saveData(data[tableID].input,tableID, pageName);
@@ -72,6 +68,6 @@ export function saveData(inputData, table , pageName) { // Saves data
 }
 
 export function updateHeight(slot, id, row) {
-    console.log(getComputedStyle(document.getElementById(id).getElementsByClassName('deleteButton')[row]).getPropertyValue('height'));
+    console.log(getComputedStyle(document.getElementById('table'+id).getElementsByClassName('deleteButton')[row]).getPropertyValue('height'));
 
 }
