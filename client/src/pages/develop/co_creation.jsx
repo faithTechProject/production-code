@@ -149,9 +149,15 @@ export function DevelopCoCreation() {
                     </form>
             </div>
             <div className='bottomLinks'>
-                <Link to="/develop/overview">Develop Overview</Link>
-                <Link className='next_page' to="/develop/tickets">Tickets</Link>
-            </div>
+                    <div>
+                        <p>Previous</p>
+                        <Link to="/develop/overview">Develop Overview</Link>
+                    </div>
+                    <div>
+                        <p>Next</p>
+                        <Link to="/develop/tickets">Tickets</Link>
+                    </div>
+                </div>
         </div>
     )
 }

@@ -105,8 +105,14 @@ export function DevelopTickets() {
             <DragNDrop data={data} setData={setData} />
     </div>
     <div className='bottomLinks'>
-        <Link to="/develop/co_creation">Co-Creation</Link>
-        <Link className='next_page' to="/develop/"></Link>
-    </div>
+                    <div>
+                        <p>Previous</p>
+                        <Link to="/develop/co_creation">Co-Creation</Link>
+                    </div>
+                    <div>
+                        <p>Next</p>
+                        <Link to="/demonstrate/overview">Demonstrate Overview</Link>
+                    </div>
+                </div>
 </>
 )}

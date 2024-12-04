@@ -9,17 +9,19 @@ export class TableData1730338934546 implements MigrationInterface {
         await queryRunner.query(`CREATE TABLE "reflection" ("id" integer NOT NULL, "response" character varying NOT NULL, CONSTRAINT "PK_0436416fb00a0944412935c919d" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "matrix" ("id" integer NOT NULL, "category" character varying NOT NULL, "page" character varying NOT NULL, "entry_pos" integer NOT NULL, "input" jsonb NOT NULL, "tasks_rows" text array NOT NULL, "roles_columns" text array NOT NULL, "rci_input" jsonb NOT NULL, CONSTRAINT "PK_2285b10a630de03f95a9c727a33" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "tickets" ("id" integer NOT NULL, "status" character varying NOT NULL, "row_index" integer NOT NULL, "title" character varying NOT NULL, "description" character varying NOT NULL, "assigned_to" character varying NOT NULL, "date_created" character varying NOT NULL, "date_due" character varying NOT NULL, "sprint" character varying NOT NULL, "percent_complete" character varying NOT NULL, "is_open" boolean NOT NULL, CONSTRAINT "PK_343bc942ae261cf7a1377f48fd0" PRIMARY KEY ("id"))`);
-        
+        await queryRunner.query(`CREATE TABLE "story" ("id" SERIAL NOT NULL, "user_name" character varying NOT NULL, "email" character varying NOT NULL, "project_state" character varying, "challenges" character varying, "project_status" character varying, "project_summary" text, "project_link" character varying, "project_images" character varying, "project_fulfillment" character varying, "additional_info" text, "share_info" character varying, "reflection" text, CONSTRAINT "PK_28fce6873d61e2cace70a0f3361" PRIMARY KEY ("id"))`);
+
         // Discover: Projects Page Data
-        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (0, 'Discover', 'Projects', 0, 'List of Ideas', '', 'Ideas list text.')`);
-        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (1, 'Discover', 'Projects', 1, 'Example Title 1', '', 'Example response text 1.')`);
-        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (2, 'Discover', 'Projects', 2, 'Example Title 2', '', 'Example response text 2.')`);
-        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (3, 'Discover', 'Projects', 3, 'Example Title 3', '', 'Example response text 3.')`);
-        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (4, 'Discover', 'Projects', 4, 'Proposal Templete', '', 'Proposal Template text.')`);
-        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (5, 'Discover', 'Projects', 5, 'Technology Use', 'Technology Audit', 'Sample technology text 1.')`);
-        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (6, 'Discover', 'Projects', 6, 'Technology Use', 'Technology Disparities', 'Sample technology text 2.')`);
-        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (7, 'Discover', 'Projects', 7, 'Technology Use', 'Emerging Technology', 'Sample technology text 13.')`);
-        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (100, 'Discern', 'Timeline', 0, 'List of Ideas', '', 'Ideas list text.')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (0, 'Discover', 'Projects', 0, 'List of Ideas', '', '0')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (1, 'Discover', 'Projects', 1, 'Example Title 1', '', '1')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (2, 'Discover', 'Projects', 2, 'Example Title 2', '', '2')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (3, 'Discover', 'Projects', 3, 'Example Title 3', '', '3')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (4, 'Discover', 'Projects', 4, 'Proposal Templete', '', '4')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (5, 'Discover', 'Projects', 5, 'Technology Use', '', '5')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (6, 'Discover', 'Projects', 6, 'Technology Use', '', '6')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (7, 'Discover', 'Projects', 7, 'Technology Use', '', '7')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (24, 'Discover', 'Projects', 8, 'List of Ideas', '', '8')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (25, 'Discover', 'Projects', 9, 'List of Ideas', '', '9')`);
 
 
 
@@ -76,13 +78,24 @@ export class TableData1730338934546 implements MigrationInterface {
         await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (5, 'in progress', 1, 'Example5', 'Example5 description', 'Jacob', '11/01/2024', '11/15/2024', 'Sprint #3', '23%', TRUE)`);
         await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete, is_open) VALUES (6, 'completed', 0, 'Example6', 'Example6 description', 'Martin', '11/05/2024', '11/20/2024', 'Sprint #8', '46%', TRUE)`);
 
-    }
+        //Demonstrate: story page
+        await queryRunner.query(`INSERT INTO story(id, user_name, email, project_state, challenges, project_status, project_summary, project_link, project_images, project_fulfillment, additional_info, share_info, reflection) VALUES 
+    (1, 'Alice Johnson', 'alice.johnson@example.com', 'Initial Planning', 'Difficulty in gathering initial resources and stakeholder commitment', 'In Progress', 'This project focuses on developing an AI-powered tool for personalized education.', 'https://example.com/project/ai-tool', 'https://example.com/images/ai-tool1.jpg, https://example.com/images/ai-tool2.jpg', 'The program provided initial funding and mentorship that helped kickstart the project.', 'Looking forward to a beta release within three months.', 'Yes', 'The process so far has been rewarding, especially in building a network of experts.')`);
+
+    await queryRunner.query(`INSERT INTO story(id, user_name, email, project_state, challenges, project_status, project_summary, project_link, project_images, project_fulfillment, additional_info, share_info, reflection) VALUES 
+    (2, 'Bob Martinez', 'bob.martinez@example.com', 'Implementation', 'Technical issues and delays in receiving hardware components', 'Completed', 'A community-driven weather prediction system using IoT devices.', 'https://example.com/project/weather-prediction', 'https://example.com/images/weather1.jpg, https://example.com/images/weather2.jpg', 'The program helped establish connections with local communities to gather data.', 'Planning to expand the system to cover more regions.', 'No', 'It was a challenging but fulfilling journey. We’ve received positive feedback from users.')`);
+
+    await queryRunner.query(`INSERT INTO story(id, user_name, email, project_state, challenges, project_status, project_summary, project_link, project_images, project_fulfillment, additional_info, share_info, reflection) VALUES 
+    (3, 'Charlie Kim', 'charlie.kim@example.com', 'Launch', 'Balancing project demands with personal responsibilities', 'Launched', 'A mobile app that connects volunteers with non-profit organizations.', 'https://example.com/project/volunteer-app', NULL, 'This program provided critical feedback during the development phase.', 'Future updates will focus on expanding language support.', 'Yes', 'The feedback from early adopters has been incredibly motivating.')`);
+     
+}
+
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`DROP TABLE "matrix"`);
         await queryRunner.query(`DROP TABLE "reflection"`);
         await queryRunner.query(`DROP TABLE "co_creation"`);
         await queryRunner.query(`DROP TABLE "text_area_reflections"`);
         await queryRunner.query(`DROP TABLE "tickets"`);
+        await queryRunner.query(`DROP TABLE "story"`);
     }
-
 }

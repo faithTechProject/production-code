@@ -6,19 +6,15 @@ import styles from './brainstorm.module.css';
 
 export function DiscernBrainstorm() {
     // Creates global variables for brainstorm tables
-    var brainstormData;
     var pageName = "Brainstorm";
     useEffect(() => {
        // Get page related tables
         axios.get(`http://localhost:3000/matrix-reflections/${pageName}`).then(res => {
-            brainstormData = res.data;
-            brainstormData.sort(function(a,b) { // Sort tables based on entry_pos
-                return parseInt(a.entry_pos) - parseInt(b.entry_pos)
-            });
-            fillTable(0, brainstormData, pageName);
-            fillTable(1, brainstormData, pageName);
-            fillTable(2, brainstormData, pageName);
-            fillTable(3, brainstormData, pageName);
+            var tableData = res.data;
+            tableData.sort((a, b) => a.entry_pos - b.entry_pos); // orders data by entry_pos
+            for (let i in tableData) {
+                fillTable(i, tableData, pageName);
+            }
         })
         axios.get(`http://localhost:3000/text-area-reflections/Lament`).then(res => {
             res.data.sort(function(a,b) { // Sort tables based on entry_pos
@@ -72,7 +68,7 @@ export function DiscernBrainstorm() {
                 <div className={styles.solutions}>
                     <div className={styles.tableBox}>
                         <p id='group1' className={styles.tableHeader}>Solutions</p>
-                        <div id="0" className={styles.solutionTable}>
+                        <div id="table0" className={styles.solutionTable}>
                         <table>
                             <tbody>
                             </tbody>
@@ -81,7 +77,7 @@ export function DiscernBrainstorm() {
                     </div>
                     <div className={styles.tableBox}>
                         <p id='group2' className={styles.tableHeader}>Solutions</p>
-                        <div id="1" className={styles.solutionTable}>
+                        <div id="table1" className={styles.solutionTable}>
                         <table>
                             <tbody>
                             </tbody>
@@ -90,7 +86,7 @@ export function DiscernBrainstorm() {
                     </div>
                     <div className={styles.tableBox}>
                         <p id='group3' className={styles.tableHeader}>Solutions</p>
-                        <div id="2" className={styles.solutionTable}>
+                        <div id="table2" className={styles.solutionTable}>
                         <table>
                             <tbody>
                             </tbody>
@@ -99,7 +95,7 @@ export function DiscernBrainstorm() {
                     </div>
                     <div className={styles.tableBox}>
                         <p id='group4' className={styles.tableHeader}>How can we help others?</p>
-                        <div id="3" className={styles.solutionTable}>
+                        <div id="table3" className={styles.solutionTable}>
                         <table>
                             <tbody>
                             </tbody>
@@ -108,8 +104,14 @@ export function DiscernBrainstorm() {
                     </div>
                 </div>
                 <div className='bottomLinks'>
-                    <Link to="/discern/overview">Discern Overview</Link>
-                    <Link className='next_page' to="/discern/analysis">Analysis</Link>
+                    <div>
+                        <p>Previous</p>
+                        <Link to="/discern/overview">Discern Overview</Link>
+                    </div>
+                    <div>
+                        <p>Next</p>
+                        <Link to="/discern/analysis">Analysis</Link>
+                    </div>
                 </div>
             </div>
         </>

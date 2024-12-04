@@ -1,20 +1,27 @@
+import React from 'react';
 import styles from "./workbook.module.css";
 
-export function KevinDownloadPlaybook() {
+export function DownloadButton({
+  fileName,
+  displayName,
+  filePath,
+  className
+}) {
+  function onButtonClick() {
+    const link = document.createElement("a");
+    link.href = filePath;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 
-    function onButtonClick() {
-        const pdf = "The-FaithTech-Playbook.pdf";
-        const link = document.createElement("a")
-        link.href = pdf;
-        link.download = "FaithTech Playbook.pdf";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-
-    return (
-        <>
-            <button class={styles.kevinDownloadPlaybookButton} onClick={onButtonClick}> Download Playbook</button>
-        </>
-    );
-};
+  return (
+    <button
+      className={`${styles.kevinDownloadPlaybookButton} ${className || ''}`}
+      onClick={onButtonClick}
+    >
+      {displayName}
+    </button>
+  );
+}

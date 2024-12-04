@@ -88,6 +88,16 @@ export function DemonstrateOverview() {
                 <iframe width="568" height="340" src="https://www.youtube.com/embed/qftWe7rriso" title="FaithTech Create 2023-Week 4 - Demonstrate-4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 <br></br>
             </div>
+            <div className='bottomLinks'>
+                    <div>
+                        <p>Previous</p>
+                        <Link to="/develop/tickets">Tickets</Link>
+                    </div>
+                    <div>
+                        <p>Next</p>
+                        <Link to="/demonstrate/impact">Impact</Link>
+                    </div>
+                </div>
         </>
     )
 }
