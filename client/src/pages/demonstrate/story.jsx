@@ -1,9 +1,9 @@
+import { Link } from "react-router-dom";
 import React from 'react';
 import styles from './story.module.css';
 import { useEffect, useState } from 'react';
 import axios from "axios";
-import team_pic from '../images/hostIdeaSessions.jpg';
-import { Link } from 'react-router-dom';
+import team_pic from '../images/hostIdeaSessions.jpg';  
 
 export function Story() {
     const [form_data, setform_data] = useState({
@@ -311,6 +311,16 @@ export function Story() {
             </div>
 
            </div>
+           <div className='bottomLinks'>
+                    <div>
+                        <p>Previous</p>
+                        <Link to="/demonstrate/measure">Measure</Link>
+                    </div>
+                    <div>
+                        <p>Next</p>
+                        <Link to="/demonstrate/conclusion">Conclusion</Link>
+                    </div>
+                </div>
         </>
     )
 }

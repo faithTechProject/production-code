@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from './measure.module.css'
 
 function toggle(x) {
@@ -100,6 +101,16 @@ export function DemonstrateMeasure() {
                     </div>
                 </div>
             </div>
+            <div className='bottomLinks'>
+                    <div>
+                        <p>Previous</p>
+                        <Link to="/demonstrate/impact">Impact</Link>
+                    </div>
+                    <div>
+                        <p>Next</p>
+                        <Link to="/demonstrate/story">Story</Link>
+                    </div>
+                </div>
         </>
     )
 }
