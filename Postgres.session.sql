@@ -1,2 +1,2 @@
-SELECT * FROM co_creation
+SELECT * FROM analysis
 ORDER BY id;

@@ -26,6 +26,10 @@ export class TicketsController {
         moveTicket(@Query('id') id: number, @Body() updateTicketsDto: UpdateTicketsDto) {
             return this.ticketsService.moveTicket(id, updateTicketsDto)
         }
+    @Patch('update')
+        updateTicketIds(@Query('id') id: number, @Body() updateTicketsDto: UpdateTicketsDto) {
+            return this.ticketsService.updateTicketIds(id, updateTicketsDto)
+        }
 
     @Post()
         createTicket(@Body() createTicketsDto: CreateTicketsDto) {

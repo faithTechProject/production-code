@@ -5,6 +5,7 @@ export function Droppable({ id, children }) {
   const { isOver, setNodeRef } = useDroppable({
     id,
   });
+  //console.log(isOver)
   const style = {
     backgroundColor: isOver ? 'lightblue' : '#fafafa',
     padding: '16px',

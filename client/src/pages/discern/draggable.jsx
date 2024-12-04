@@ -16,7 +16,7 @@ export function Draggable({ id, children }) {
     cursor: 'grab',
   };
 
-  console.log(children)
+  //console.log(children)
   return (
     <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
       {children}
