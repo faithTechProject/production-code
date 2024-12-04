@@ -5,6 +5,14 @@
     margin: 0px;
   }
 
+h1{
+    color: var(--color-primary);
+    margin: 0px;
+    text-align: center;
+    font-size: 30px;
+    padding: 20px;
+}
+
 .oTitle{
     color: white;
     padding: 50px;
@@ -23,7 +31,7 @@
     margin-left: 10%;
     margin-right: 10%;
     font-size: 15px;
-    text-align: center;
+    text-align: left;
 }
 
 .op2{
@@ -32,7 +40,7 @@
     margin-right: 10%;
     padding-top: 15px;
     padding-bottom: 15px;
-    text-align: center;
+    text-align: left;
     font-size: 15px;
     display: block;
 }
@@ -40,17 +48,29 @@
 .oTopImage{
 	height: 200px;
 	width: 100%;
-	background-image: url(./images/network.jpeg);
+	background-image: url(./images/workbookTitle.jpg);
     background-size: cover;
+    background-position-y: -190px;
 }
 
-.oArrowImage{
+.oArrows{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    margin: 5%;
+    text-align: center;
+    font-size: 30px;
+}
+
+.oArrows b {
+    margin: 0 10px;
+}
+
+.oArrows svg{
+    margin: 0 10px;
     height: 50px;
-    width: 700px;
-    background-image: url(./images/4Dcycle.jpeg);
-    margin-left: auto;
-    margin-right: auto;
-    background-size: cover;
+    width: auto;
 }
 
 .s4dcycle{
@@ -80,12 +100,12 @@
 
 .p1{
 	font-size:medium;
-    text-align: center;
+    text-align: left;
 }
 
 .p2{
     text-align: left;
-    padding: 0px 10px;
+    padding: 0 10px;
 }
 
 .button1{

@@ -1,7 +1,8 @@
 //import './workbook.scss';
 import { Link } from 'react-router-dom';
-import { KevinDownloadPlaybook } from "./KevinDownloadPlaybook";
+import { DownloadButton } from "./KevinDownloadPlaybook";
 import styles from './workbook.module.css';
+
 export function Workbook() {
     
     return (
@@ -16,7 +17,7 @@ export function Workbook() {
                 </div>
                 <div className={styles.s4dcycle-styles.section}>{/*This is the 4D cycle bar*/}
                     <h1>The 4D Cycle</h1>
-                    <p>To effectively lead projects using the 4D Cycle, it's crucial to have a deep understanding of each stage.</p>
+                    <p className={styles.op}>To effectively lead projects using the 4D Cycle, it's crucial to have a deep understanding of each stage.</p>
                     <div class={styles.galleryDiv}>
                         <div className= {styles.gallery}>
                             <p1 className={styles.p1}>Discover</p1>
@@ -57,14 +58,32 @@ export function Workbook() {
                         </div>
                         <div class={styles.kevinFlexItem_2}>
                             <p>At FaithTech, we believe there is a way of building technology that redemptively changes the world while transforming those who build it. Our community has developed a uniquely Jesus-centered way to build that is laid out in the FaithTech Playbook. Check it out by clicking the link below (it's a quick read).</p>
-                            <KevinDownloadPlaybook className={styles.kevinDownloadPlaybookButton}></KevinDownloadPlaybook>
+                            <DownloadButton 
+                            fileName="FaithTech Playbook.pdf"
+                            displayName="Download Playbook"
+                            filePath="/The-FaithTech-Playbook.pdf"
+                            />
                         </div>
                     </div>
                 </div>
                 <div className={styles.section}>
                     <h1>How to Use This Workbook</h1>
                     <p2 class={styles.op2}>Each section of this workbook corresponds to a stage in the 4D Cycle. Work through each section in order, completing the exercises and reflecting on the questions provided. Feel free to revisit sections as needed and adapt the exercises to your specific context.</p2>
-                    <div className={styles.oArrowImage}></div>
+                    <div className={styles.oArrows}>
+                        <b>Discover</b>
+                        <svg width="150px" height="100px" viewBox="0 0 100 100" fill="black">
+                            <path d="M 1,35 75,35 75,25 99,50 75,75 75,65 1,65z" />	
+                        </svg>
+                        <b>Discern</b>
+                        <svg width="150px" height="100px" viewBox="0 0 100 100" fill="black">
+                            <path d="M 1,35 75,35 75,25 99,50 75,75 75,65 1,65z" />	
+                        </svg>
+                        <b>Develop</b>
+                        <svg width="150px" height="100px" viewBox="0 0 100 100" fill="black">
+                            <path d="M 1,35 75,35 75,25 99,50 75,75 75,65 1,65z" />	
+                        </svg>
+                        <b>Demonstrate</b>
+                    </div>
                     <p2 class={styles.op2}>As you progress through the workbook, remember that practicing redemptive technology is an ongoing journey. Continue to apply these principles in your work, always seeking to build technology that helps humanity become persons who love God and love others more deeply. Let's begin our journey towards redemptive technology!</p2>
                 </div>
                 <div className='bottomLinks'>
