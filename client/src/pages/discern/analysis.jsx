@@ -1,6 +1,7 @@
 import styles from './analysis.module.css';
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DndContext } from '@dnd-kit/core';
 import { Draggable } from './draggable';
 import { Droppable } from './droppable';
@@ -67,7 +68,19 @@ export function DiscernAnalysis() {
   // Function to remove a specific Solutions
   const removeSolutions = (idToRemove) => {
     if (Solutions.length === 1) return;
-    setSolutions(Solutions.filter((_, index) => index !== indexToRemove));
+    console.log(idToRemove)
+    //setSolutions(Solutions.filter((_, index) => index !== indexToRemove));
+
+    let newList = JSON.parse(JSON.stringify(Solutions))
+    newList = newList.filter((item) => item.id !== idToRemove);
+    
+    for(let i=0; i<newList.length; ++i) {
+      if(newList[i].id > idToRemove)
+        --newList[i].id;
+    }
+    console.log(newList)
+    setSolutions(newList);
+    axios.delete(`http://localhost:3000/analysis/?id=${idToRemove}`)
   };
 
   // Close icon as SVG
@@ -186,7 +199,7 @@ export function DiscernAnalysis() {
           </div>
           </div>
           <DndContext onDragEnd={handleDragEnd}>
-            <div className={styles.unassigned_solutions}>
+            <div className={styles.unassigned_Solutions}>
               <h2>Unassigned Solutions</h2>
               {Solutions.filter((solution) => solution.category === 'unassigned')
                 .map((solution) => (
