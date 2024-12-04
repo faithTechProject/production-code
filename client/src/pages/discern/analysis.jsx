@@ -33,9 +33,6 @@ export function DiscernAnalysis() {
       }
     }
     
-    console.log(id)
-    console.log(index)
-    
     updatedSolutions[index][field] = value;
     setSolutions(updatedSolutions);
 

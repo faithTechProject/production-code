@@ -10,10 +10,10 @@ export const CoCreationTable = ({tasks, setTasks}) => {
     <table className={style.table}>
         <thead>
             <tr>
-                <td className={style.th}>Step</td>
+                <td className={style.th}>Steps</td>
                 <td className={style.th}>Description</td>
+                <td className={style.th}>Progress</td>
                 <td className={style.th}>Responsible</td>
-                <td className={style.th}></td>
                 <td className={style.th}></td>
             </tr>
         </thead>

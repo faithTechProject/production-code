@@ -24,8 +24,7 @@ export function DevelopTickets() {
             axios.get(`http://localhost:3000/tickets`).then(res => {
                 
                 // Placing the tickets in the correct groups.
-                for(let i=0; i<res.data.length; ++i) {
-                    
+                for(let i=0; i<res.data.length; ++i) {              
                     if (res.data[i].status === 'not started') {
                         data[0].tasks = [...data[0].tasks, res.data[i]]
                     }
@@ -33,7 +32,7 @@ export function DevelopTickets() {
                     if (res.data[i].status === 'in progress') {
                         data[1].tasks = [...data[1].tasks, res.data[i]]
                     }
-                    
+
                     if (res.data[i].status === 'completed') {
                         data[2].tasks = [...data[2].tasks, res.data[i]]
                     }
@@ -93,15 +92,15 @@ export function DevelopTickets() {
 
     return (
     <>
-    <div className={styles.kevin_bannar}>
+    <div className={styles.kevin_banner}>
         <h3 className={styles.kevin_title}>TICKETS</h3>
     </div>
     <div>    
         <p className={styles.kevin_text}>
-            If you already created assignments on the co-creation page, tickets will automatically be added within this page.  
-            You can also use this page to add new tickets and rearrange them into different categories depending on the status.
-            Creating tickets helps to track the assignments and progress team members are making.
-            Tickets can be deleted and minimized for convienince.
+            Tasks added on the co-creation page will be automatically displayed here in ticket format.  
+            You can add additional ticket tasks on this page and the co-creation page will reflect the changes. Tickets can be rearranged into different categories depending on the status and can be edited or deleted.  
+            There are more text areas for input than on the co-creation page, allowing more details to be added about tasks.
+            Creating tickets helps to track and organize assignments and progress that team members are making on a project.   
         </p>
     </div>
 
@@ -117,14 +116,10 @@ export function DevelopTickets() {
             <button className={styles.kevin_button} onClick={() => {addTask(2)}}>+ Add Task</button>
         </div>
             <DragNDrop data={data} setData={setData} />
-            <div className="bottomLinks">
-                <Link to="/develop/co_creation">Co-Creation</Link>
-                <Link className='next_page' to="/demonstrate/story">Story</Link>
-            </div>
     </div>
     <div className='bottomLinks'>
         <Link to="/develop/co_creation">Co-Creation</Link>
-        <Link className='next_page' to="/develop/"></Link>
+        <Link className='next_page' to="/demonstrate/overview">Demonstrate Overview</Link>
     </div>
 </>
 )}

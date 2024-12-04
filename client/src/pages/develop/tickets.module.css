@@ -1,13 +1,15 @@
 
-.kevin_bannar {
+/*/////////////////////////////////
+
+/////////////////////////////////*/
+.kevin_banner {
     width: 100%;
     height: 200px;
     background-image: url("../images/Network 6.jpg");
     background-size: cover;
-    background-position-x: -200px;
-    background-position-y: -300px;
+    background-position-y: -240px;
     text-align: center;
-    line-height: 200px;   
+    line-height: 200px;
 }
 
 .kevin_title {
@@ -30,9 +32,10 @@
 }
 
 .kevin_text { 
+    
     color: black;
-    width: 75%;
-    margin: 5%;
+    width: 50%;
+    margin-left: 25%;
     font-size: large;
     text-align: left;
     
@@ -58,7 +61,7 @@
     gap: 4rem;
     width: 100%;
     height: 100%;
-    grid-template-columns: repeat(3, 400px);
+    grid-template-columns: repeat(3, 375px);
     align-items: start;
     justify-content:space-around;
 }
@@ -69,7 +72,7 @@
     gap: 4rem;
     width: 100%;
     height: 100%;
-    grid-template-columns: repeat(3, 400px);
+    grid-template-columns: repeat(3, 375px);
     align-items: start;
     justify-content:space-around;
 }

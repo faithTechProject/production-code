@@ -6,6 +6,7 @@ import pageStyles from './TicketComponent.module.css';
 
 export const DragNDrop = ({data, setData}) => {
     
+    // the delete icon on the tickets.
     const CloseIcon = () => (
         <svg 
         viewBox="0 0 24 24" 
@@ -25,6 +26,8 @@ export const DragNDrop = ({data, setData}) => {
     const [dragging, setDragging] = useState(false);
     const dragItem = useRef();
     const dragNode = useRef();
+
+
 
     const handleDragStart = (e, params) => {
         console.log('drag starting');
@@ -89,6 +92,8 @@ export const DragNDrop = ({data, setData}) => {
         setData(newList)
     }
 
+    // This function handles deleting a ticket.  It reassigns the remaining tickets with ascending id values.
+    // It also adjusts the order position values to for ording the tickets.
     const handleTaskDelete = (grp_index, item_index, item) => {
         let newList = JSON.parse(JSON.stringify(data)) // copy data
         const deletedTaskId = newList[grp_index].tasks[item_index].id;
@@ -148,28 +153,28 @@ export const DragNDrop = ({data, setData}) => {
                             onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'description')}}
                         />
                         <div>
-                            <div className={pageStyles.flex_container}>
-                                <p className={pageStyles.small_Text}>Date Created:</p>
-                                <p className={pageStyles.small_Text}>Due Date:</p>
-                            </div>
-                            <div className={pageStyles.flex_container}>
+                            <p className={pageStyles.small_Text}>Date Created:</p>
+                            <p className={pageStyles.small_Text2}>Due Date:</p>
+                        </div> 
+                        <div className={pageStyles.flex_container}>   
                                 <textarea className={pageStyles.dual_textareas}
                                     rows={1}
                                     value={data[grp_index].tasks[item_index].date_created}
                                     onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'date_created')}}
                                     />
+                                    
+
                                 <textarea className={pageStyles.dual_textareas}
                                     rows={1}
                                     value={data[grp_index].tasks[item_index].date_due}
                                     onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'date_due')}}
                                     />
                             </div>
-                        </div>
+                        
                         <div>
-                            <div className={pageStyles.flex_container}>
-                                <p className={pageStyles.small_Text}>Sprint #:</p>
-                                <p className={pageStyles.small_Text}>Completed %:</p>
-                            </div>
+                            <p className={pageStyles.small_Text}>Sprint #:</p>
+                            <p className={pageStyles.small_Text2}>Completed %:</p>
+                        </div>
                             <div className={pageStyles.flex_container}>
                                 <textarea className={pageStyles.dual_textareas}
                                     rows={1}
@@ -182,7 +187,7 @@ export const DragNDrop = ({data, setData}) => {
                                     onChange={(e) => {handleTaskChange(e.target.value, grp_index, item_index, 'percent_complete')}}
                                     />
                             </div>
-                        </div>
+                        
                         <p className={pageStyles.small_Text}>Assigned To:</p>
                         <textarea className={pageStyles.kevin_ticket_component_textarea} rows={3} 
                             value={data[grp_index].tasks[item_index].assigned_to}

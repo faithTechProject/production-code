@@ -16,15 +16,9 @@ export const discernItems = [
   { label: 'Timeline', path: '/discern/timeline' }
   ];
 export const developItems = [
-<<<<<<< HEAD
-  { label: 'Co-Creation', path: '/develop/co_creation'},
-  { label: 'Tickets', path: '/develop/tickets'}
-    
-=======
   { label: 'Overview', path: '/develop/overview'},
-  { label: 'Tickets', path: '/develop/tickets'},
   { label: 'Co-Creation', path: '/develop/co_creation'},
->>>>>>> d480570f035c2ce668c55936f949d2130d5ea546
+  { label: 'Tickets', path: '/develop/tickets'},
   ];
   
   export const demonstrateItems = [

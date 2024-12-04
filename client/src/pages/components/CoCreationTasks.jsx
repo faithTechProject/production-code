@@ -176,11 +176,6 @@ export const Task = ({
         //e.preventDefault();
     //}
 
-    const handleDropdownClick = (e) => {
-        setIsDropdownClicked((prevState) => !prevState)
-        setIsDropdownOpen((prevState) => !prevState);
-        console.log("button clicked")
-    }
 
     const handleDragEnd = () => {
         setIsDropdownClicked(false)
@@ -213,6 +208,21 @@ export const Task = ({
     
     return (
         <tr className={style.task}>
+
+            <td className={style.td}>
+                <textarea className={style.input}
+                    placeholder="Enter text here..."
+                    value={title}
+                    onChange={(e) => handleTaskChange(e.target.value, id, 'title')}/>
+                </td>
+            
+            <td className={style.td}>
+                <textarea className={style.input} name="skills"
+                    placeholder="Enter text here..."
+                    value={description}
+                    onChange={(e) => handleTaskChange(e.target.value, id, 'description')}
+                    /></td>
+
             <td className={style.td}>
                 <select className={style.select} value={status} onChange={(e) => handleTaskChangeDropDown(e.target.value, id, 'status')}>
                     
@@ -222,14 +232,7 @@ export const Task = ({
                 </select>
                 
             </td>
-            <td className={style.td}>
-                <textarea className={style.input} name="skills"
-                    placeholder="Enter text here..."
-                    value={description}
-                    onChange={(e) => handleTaskChange(e.target.value, id, 'description')}
-                    /></td>
             <td className={style.td}>        
-                
                     <textarea className={style.input} name="skills"
                     placeholder="Enter text here..."
                     value={assigned_to}
@@ -237,7 +240,7 @@ export const Task = ({
                     />
 
                 </td>
-            <td ref={setNodeRef} {...attributes} {...listeners} style={style2} className={isDragging? '': style.td}>move</td>
+            
             <td>
                 <button
                     type="button"
