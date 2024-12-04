@@ -4,7 +4,7 @@ import axios from "axios";
 import styles from './co_creation.module.css';
 
 
-export function CoCreation() {
+export function DevelopCoCreation() {
     const[requestForm0, setRequestForm0] = useState([])
     const[requestForm1, setRequestForm1] = useState([])
     const[requestForm2, setRequestForm2] = useState([])
