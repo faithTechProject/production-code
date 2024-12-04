@@ -1,3 +1,26 @@
+.oTitle{
+    color: white;
+    padding: 50px;
+    margin: 0px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.oTitle sc{
+    color:var(--color-primary);
+}
+
+#oTopImage{
+    height: 200px;
+    width: 100%;
+	background-image: url(../images/network.jpeg);
+    background-size: cover;
+}
+
+.textbody{
+    margin: 10px 50px ;
+}
+
 .divbox{
     margin: auto;
     height: 100px;
@@ -22,40 +45,49 @@
     padding: 1px;
     margin: auto;
     height: 50px;
-    width: 300px;
+    width: 600px;
+    font-size: x-large;
 }
-.rel-text{
+/*.rel-text{
     color: white;
     background-color: #ea542c;
     padding: 10px;
     width:200px;
     margin: 10px auto;
-}
+}*/
 .userTextInputRelationship{
     box-sizing: border-box;/*
     margin: 5px 0px;
     height: 230px;*/
-    width: 100%;
+    width : 100%;
     background-color: #ea542c;
     color: white;
     border:none;
+    font-size: large;
+    resize: none;
 }
 .userTextInputRelationship::placeholder {
     color: white;
 }
 
+.hexagonfirst{
+    display: inline-block;
+    unicode-bidi: isolate;
+    width: 400px;
+    float: left;
+    /*margin-right: -50px;*/
+    margin-bottom: -100px;
+}
 .hexagon{
     display: inline-block;
     unicode-bidi: isolate;
     /*float: left; */
     width: 400px;
     float: left;
-    /*margin-right: -50px;
-    margin-bottom: -100px;*/
+    /*margin-right: -50px;*/
+    margin-top: -100px;
 }
 .hexagonEven{
-    /*margin-top: 53px;
-    margin-left:100px;*/
     float: left;
     margin-top: 200px;
 }
@@ -65,6 +97,7 @@
     border-right: 90px solid #ea542c;
     border-top: 156px solid transparent;
     border-bottom: 156px solid transparent;
+
 }
 /* 
 border-right: 30px solid #ea542c;
@@ -76,6 +109,7 @@ border-right: 30px solid #ea542c;
     width: 220px;
     height: 312px;
     background-color: #ea542c;
+
 }
 /*float: left;
 width: 60px;
@@ -83,7 +117,7 @@ height: 104px;
 background-color: #ea542c;
 */
 .hex-tri2 {
-    /*float: left;*/
+    float: left;
     display: inline-block;
     border-left: 90px solid #ea542c;
     border-top: 156px solid transparent;

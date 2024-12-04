@@ -52,10 +52,10 @@ function App() {
               <Route path="/demonstrate/overview" element={< DemonstrateOverview />} />
               <Route path="/develop/tickets" element={< DevelopTickets />} />
               <Route path="/demonstrate/conclusion" element={< Conclusion />} />
-              <Route path="/develop/co_creation" element={< CoCreation />} />
-              <Route path="/develop/tickets" element={< DevelopTickets />} />
               <Route path="/develop/co_creation" element={< DevelopCoCreation />} />
+              <Route path="/develop/tickets" element={< DevelopTickets />} />
               <Route path="/demonstrate/story" element={< Story />} />
+              <Route path="/demonstrate/impact" element= {< DemonstrateImpact/>} />
               <Route path="/demonstrate/measure" element={< DemonstrateMeasure/>} />
             </Routes>
           </div>
