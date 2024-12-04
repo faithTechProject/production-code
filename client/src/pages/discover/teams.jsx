@@ -388,7 +388,7 @@ export function DiscoverTeams() {
                     <DownloadButton 
                         fileName="RACI Matrix"
                         displayName="Download RACI Matrix"
-                        filePath="./pages/RACI_Matrix.pdf"
+                        filePath="/raci_matrix.png"
                     />
 
                 </div>

@@ -67,9 +67,6 @@ export function Story() {
            <div className={styles.hero_story_container}>
                 <div className={styles.hero_story_header}>
                     <h1> Share Your Story </h1>
-                    <div className={styles.image_placeholder}>
-                        <img className={styles.image_placeholder} src={team_pic} alt="Logo" />
-                    </div>
                 </div>
 
                 <div className={styles.stories_instructions}>
@@ -292,7 +289,7 @@ export function Story() {
                 </div>
                 <div className={styles.reflection_questions}>
                     <p> In what ways might this approach to demonstrating impact change your development process </p>
-                    <form >
+                    <form className={styles.reflection_questions_field}>
                          <textarea
                             id="share_info"
                             name="share_info"

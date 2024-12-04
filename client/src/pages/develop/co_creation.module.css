@@ -1,26 +1,25 @@
 .hero_co_creatioin_container{
     text-align: center;
-    padding-top: 12px;
 }
 
 .hero_co_creatoin_header{
-    border: 2px solid #005f73;
-    color: white;
-    position: relative;
+    height: 200px;
+	width: 100%;
+	background-image: url(../images/DiscernPicture.png);
+    background-size: cover;
+    align-items: center; 
+    justify-content: center; 
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: black;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   }
+
+.hero_solutions p{
+    text-align: left;
+}
   
   
   .hero_co_creatoin_header h1{
     font-size: 60px;
     font-weight: bold;
-    margin-left: 25%;
     color: white;
   }
   
@@ -102,3 +101,6 @@
     border-radius: 20px;
 }
 
+.co_creation_cycle p {
+    text-align: left;
+}

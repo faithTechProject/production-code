@@ -82,6 +82,10 @@
     justify-content: center;
     margin-top: 20px;
   }
+
+  .member_roles_title{
+    text-align: center;
+  }
   
   .member_skills{
     text-align: left;  
@@ -182,7 +186,7 @@
   }
   
   /* Team Member Roles */
-  .hero_member_roles h1{
+  .hero_member_role h1{
     text-align: center;
     font-size: 24px;
     color: orangered;

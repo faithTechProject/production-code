@@ -61,7 +61,7 @@ export function Workbook() {
                             <DownloadButton 
                             fileName="FaithTech Playbook.pdf"
                             displayName="Download Playbook"
-                            filePath="/The-FaithTech-Playbook.pdf"
+                            filePath="The-FaithTech-Playbook.pdf"
                             />
                         </div>
                     </div>

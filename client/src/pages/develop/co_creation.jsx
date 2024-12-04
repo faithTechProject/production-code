@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import styles from './co_creation.module.css';
-import { Link } from 'react-router-dom';
 
 
 export function CoCreation() {
@@ -42,9 +41,6 @@ export function CoCreation() {
         <div className={styles.hero_co_creatioin_container}>
             <div className={styles.hero_co_creatoin_header}>
                 <h1> Co-Creation </h1>
-                <div className={styles.image_placeholder}>
-                    <p>Team pic</p>
-                </div>
             </div>
 
             <div className={styles.hero_solutions}>
@@ -86,7 +82,7 @@ export function CoCreation() {
                 </div>
 
                 <div className= {styles.Receive}>
-                    <h> Receive </h>
+                    <h2> Receive </h2>
                     <p> Spend 10 minutes in silence, listening for guidance </p>
                     <div className= {styles.timer}>
                         <p className= {styles.time_testing}> time </p>
@@ -108,7 +104,7 @@ export function CoCreation() {
                 </div>
 
                 <div className= {styles.review}>
-                    <h> Review </h>
+                    <h2> Review </h2>
                     <p> Use this space to expand on the insights you recieved. Write down what God was telling you. Talk about the connections between the thoughts, images, and/or scriptures that come to mind. Write about how you can use these insights to guide you through the development stage </p>
                     <form className='request_form' id='2' onSubmit={(e) => save(e,requestForm2)}>
                         <textarea name="skills" rows={10} cols={20}
@@ -121,7 +117,7 @@ export function CoCreation() {
                 </div>
 
                 <div className='render'>
-                    <h> Render </h>
+                    <h2> Render </h2>
                     <p> Outline the next steps for implementing these insights. Focus on what can be accomplished in the upcoming or current sprint. Each 'step' is a task, similar to what you entered in your RACI Matrix, except more specific. For example, let's say 3 of the tasks on your matrix were design features, develop features, and test features. Here, it'd be the same, except for a specific feature for each task. It could even just be part of a feature if you think it'll take more than one sprint to accomplish. In the table below, enter the step, a description of it, and which person or people are responsible for it.</p>
                     <div className='render_table '>
                         <button> add step </button>

@@ -20,6 +20,8 @@ import { CoCreationEntity } from './co_creation_page/request-form.entity';
 import { RequestFormModule } from './co_creation_page/request-form.module';
 import { Story } from './story_page/story.entity';
 import { StoryModule } from './story_page/story.module';
+import { StoryService } from './story_page/story.service'
+import { StoryController } from './story_page/story.controller';
 
 
 
@@ -33,7 +35,7 @@ import { StoryModule } from './story_page/story.module';
       password: 'faithtech_password',
       database: 'faithtech_create',
       synchronize: false,
-      entities: [Reflection, Matrix, TextAreaReflections, CoCreationEntity] 
+      entities: [Reflection, Matrix, TextAreaReflections, CoCreationEntity, Story] 
   }),
  
     TypeOrmModule.forFeature([Reflection, Matrix, TextAreaReflections, Tickets]),
