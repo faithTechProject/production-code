@@ -4,49 +4,115 @@ import React, { useState } from 'react';
 import logo from '../images/logo.svg';
 import { useEffect } from "react";
 import axios from "axios";
+import { Table } from '../components/SkillTable';
+import { Modal } from '../components/Modal';
 import team_pic from '../images/hostIdeaSessions.jpg';
 import { DownloadButton } from "../KevinDownloadPlaybook";
-import { fillTable } from '../dbTable';
 
 
 
 export function DiscoverTeams() {
+    
+    const[essentialRoles, setEssentialRoles] = useState([])
+    const[values, setValues] = useState([])
+    const[reflectionQuestion1, setReflectionQuestion1] = useState([])
+    const[reflectionQuestion2, setReflectionQuestion2] = useState([])
+    const[reflectionQuestion3, setReflectionQuestion3] = useState([])
+
+    const[modalOpen, setModalOpen] = useState(false);
+    const [rows, setRows] = useState([ 
+        {name: "", skills: "", past_experiences: "", areas_for_growth: ""}
+    ]);
+    const [rowToEdit, setRowToEdit] = useState(null);
 
     const [tasks, setTasks] = useState(['']);
     const [roles, setRoles] = useState(['']);
     const [otherForm, setOtherForm] = useState([])
+    console.log(tasks)
+    console.log(roles)
+    console.log(otherForm)
 
-    var pageName = 'Teams';
     useEffect(()=> {
-        // Grab and load textarea(s) from db
-        axios.get(`http://localhost:3000/text-area-reflections/${pageName}`).then(res => {
-            var dbData = res.data;
-            dbData.sort((a, b) => a.entry_pos - b.entry_pos); // orders data by entry_pos
-            for (let response of dbData) {
-                document.getElementById('textarea'+response.entry_pos).value = response.reply;
-            }
-        })
-        // Grab and load table(s) from db
-        axios.get(`http://localhost:3000/matrix-reflections/${pageName}`).then(res => {
-            var tableData = res.data;
-            tableData.sort((a, b) => a.entry_pos - b.entry_pos); // orders data by entry_pos
-            for (let i in tableData) {
-                fillTable(i, tableData, pageName);
-            }
-            setTasks(res.data[0].tasks_rows)
-            setRoles(res.data[0].roles_columns)
-            setOtherForm(res.data.map((item) => item.rci_input)[0])
+        axios.get(`http://localhost:3000/text-area-reflections/Teams`).then(res => {
+            const teamsResponse = res.data;
+            teamsResponse.sort((a, b) => a.entry_pos - b.entry_pos);
+            setEssentialRoles(teamsResponse[0].reply);
+            setValues(teamsResponse[1].reply)
+            setReflectionQuestion1(teamsResponse[2].reply)
+            setReflectionQuestion2(teamsResponse[3].reply)
+            setReflectionQuestion3(teamsResponse[4].reply)
+
+            axios.get("http://localhost:3000/matrix-reflections/Teams").then(res => {
+                if (res.data[0].input.length > 0) {
+                    setRows(res.data.map((item) => item.input)[0])
+                }
+                console.log("text")
+                console.log(res.data)
+                setTasks(res.data[0].tasks_rows)
+                setRoles(res.data[0].roles_columns)
+                setOtherForm(res.data.map((item) => item.rci_input)[0])
+            })
         })
     }, [])
 
-    function saveData(textarea) {
-        axios.patch(`http://localhost:3000/text-area-reflections/?page=Teams&entry_pos=${textarea.target.id.substr(8)}`, {
-            reply: textarea.target.value
+    const handleSubmit_database = (e, replyData) => {
+        e.preventDefault();
+        axios.patch(`http://localhost:3000/text-area-reflections/?page=Teams&entry_pos=${e.target.id}`, {
+            reply: replyData
+            
+        })
+    }
+    const handleDeleteRow = (targetIndex) => {
+        const data = rows.filter((_, idx) => idx !== targetIndex)
+        setRows(data)
+        
+        axios.patch(`http://localhost:3000/matrix-reflections/?page=Teams&entry_pos=${0}`, {
+            input: data
+        });       
+    }
+
+    const handleEditRow = (idx) => {
+        setRowToEdit(idx);
+        setModalOpen(true);
+    }
+    
+    const handleSubmit_matrix = (newRow) => {
+        rowToEdit === null ?  
+        
+        setRows([...rows, newRow]) :
+        
+        setRows(rows.map((currRow, idx) => {
+            if (idx !== rowToEdit) return currRow;
+             return newRow
+        }))
+        
+        
+        let data = []
+        rowToEdit === null ?  
+        
+        data = [...rows, newRow]:
+        
+
+        data = (rows.map((currRow, idx) => {
+            if (idx !== rowToEdit) return currRow;
+             return newRow
+        }))
+
+        axios.patch(`http://localhost:3000/matrix-reflections/?page=Teams&entry_pos=${0}`, {
+            input: data
         });
     }
 
     const [flippedCards, setFlippedCards] = useState({});
     // State to hold tasks and roles
+
+    
+ 
+    // State to hold form data, initialized with default values
+    const [formData, setFormData] = useState([]);
+    //console.log(formData)
+
+    //console.log(formData)
 
     const handleFlip = (index) => {
         setFlippedCards((prevState) => ({
@@ -64,6 +130,15 @@ export function DiscoverTeams() {
 
     // Function to handle input changes in the form
     const handleInputChange = (e, row, col) => {
+        console.log(e.target)
+        const { name, value } = e.target;
+        console.log(e.target.textContent);
+        // Update formData state with the new value for the changed field
+        //setOtherForm([{name: "responsible"}])
+        //setFormData([{
+        //...formData,
+        //[name]: value,
+        //}]);
         let canAdd = true;
         for (let i = 0; i < otherForm.length; ++i)
             if ((otherForm[i].row === row) && (otherForm[i].col === col)) {
@@ -214,17 +289,19 @@ export function DiscoverTeams() {
                         you create a well rounded team
                     </p>
                     <h1 className={styles.skills_matrix_title}> Skills Matrix </h1>
-                    <div className={styles.tableBox}>
-                        <div id="table0" className={styles.solutionTable}>
-                        <table>
-                            <th>Name</th>
-                            <th>Skills</th>
-                            <th>Areas for Growth</th>
-                            <th>Past Experiences</th>
-                            <tbody>
-                            </tbody>
-                        </table>
-                        </div>
+                    <div  className={styles.skills_table}>
+                        <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
+                            <button onClick={() => setModalOpen(true)}>Add Entry</button>
+
+                            {modalOpen && (
+                                <Modal closeModal={() => {
+                                    setModalOpen(false);
+                                    setRowToEdit(null);
+                                }}
+                                onSubmit={handleSubmit_matrix}
+                                defaultValue={rowToEdit !== null && rows[rowToEdit]}
+                                />
+                        )}
                     </div>
                 </div>
                 <div className={styles.hero_member_role}>
@@ -263,7 +340,16 @@ export function DiscoverTeams() {
             <div className={styles.hero_roles_needed}>
                 <p> In the box below list the essential roles needed</p>
                 <p> Identify...</p>
-                <textarea id='textarea0' onChange={(e) => saveData(e)} placeholder='Enter text here...'></textarea>
+                <label className={styles.needed_skills}>
+                    <form id='0' onSubmit={(e) => handleSubmit_database(e, essentialRoles)}>
+                        <textarea name="skills" rows={10} cols={20}
+                        placeholder="Enter text here..."
+                        value={essentialRoles}
+                        onChange={(e) => setEssentialRoles(e.target.value)}
+                        />
+                        <input type="submit" value="Save" />
+                    </form>
+                </label>
             
             </div>
             <div className={styles.roles_and_responsibility}>
@@ -516,8 +602,18 @@ export function DiscoverTeams() {
                     </p>
                 <div className={styles.exercise}>
                     <label >
-                        <p>Document yout values in the space provided below</p>
-                        <textarea className={styles.exercise_form} id='textarea1' placeholder="Enter text here..." onChange={(e) => saveData(e)}></textarea>
+                        <p>
+                            Document yout values in the space provided below
+                        </p>
+                        <form className={styles.exercise_form} id='1' onSubmit={(e) => handleSubmit_database(e, values)}>
+                            <textarea name="values" rows={10} cols={20}
+                            placeholder="Enter text here..."
+                            value={values}
+                            onChange={(e) => setValues(e.target.value)}
+                            />
+                            <input type="submit" value="Save" />
+                        </form>
+                      
                     </label>
                 </div>
                 <div className={styles.Reflection_questions}>
@@ -525,20 +621,48 @@ export function DiscoverTeams() {
                     
                     <div className={styles.exercise}>
                         <label >
-                            <p className={styles.exercise_paragraph}>Are we obedient to the Holy Spirit as we build out our teams?</p>
-                            <textarea className={styles.exercise_label} id='textarea2' placeholder="Enter text here..." onChange={(e) => saveData(e)}></textarea>
+                            <p className={styles.exercise_paragraph}>
+                                Are we obedient to the Holy Spirit as we build out our teams?
+                            </p>
+                            <form id='2' onSubmit={(e) => handleSubmit_database(e, reflectionQuestion1)}>
+                                <textarea className={styles.exercise_label} rows={10} cols={20}
+                                placeholder="Enter text here..."
+                                value={reflectionQuestion1}
+                                onChange={(e) => setReflectionQuestion1(e.target.value)}
+                                />
+                                <input type="submit" value="Save" />
+                            </form>
                         </label>
                     </div>
                     <div className={styles.exercise}>
                         <label>
-                            <p className={styles.exercise_paragraph}>Are we leveraging the diverse gifts and experiences God has given our communty memberrs?</p>
-                            <textarea className={styles.exercise_label} id='textarea3' placeholder="Enter text here..." onChange={(e) => saveData(e)}></textarea>
+                            <p className={styles.exercise_paragraph} >
+                                Are we leveraging the diverse gifts and experiences God has given our communty memberrs?
+                            </p>
+                            
+                            <form id='3' onSubmit={(e) => handleSubmit_database(e, reflectionQuestion2)}>
+                                <textarea className={styles.exercise_label} rows={10} cols={20}
+                                placeholder="Enter text here..."
+                                value={reflectionQuestion2}
+                                onChange={(e) => setReflectionQuestion2(e.target.value)}
+                                />
+                                <input type="submit" value="Save" />
+                            </form>
                         </label>
                     </div>
                     <div className={styles.exercise}>
                         <label>
-                            <p className={styles.exercise_paragraph}>How can we ensure that every team member feels valued and has Opportunities to contribute meaningfully?</p>
-                            <textarea className={styles.exercise_label} id='textarea4' placeholder="Enter text here..." onChange={(e) => saveData(e)}></textarea>
+                            <p className={styles.exercise_paragraph}>  
+                                How can we ensure that every team member feels valued and has Opportunities to contribute meaningfully?      
+                            </p>
+                            <form id='4' onSubmit={(e) => handleSubmit_database(e, reflectionQuestion3)}>
+                                <textarea className={styles.exercise_label} rows={10} cols={20}
+                                placeholder="Enter text here..."
+                                value={reflectionQuestion3}
+                                onChange={(e) => setReflectionQuestion3(e.target.value)}
+                                />
+                                <input type="submit" value="Save" />
+                            </form>
                             
                         </label>
                     </div>
