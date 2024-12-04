@@ -3,8 +3,7 @@ import React from 'react';
 import styles from './story.module.css';
 import { useEffect, useState } from 'react';
 import axios from "axios";
-import team_pic from '../images/hostIdeaSessions.jpg';
-import { Link } from 'react-router-dom';
+import team_pic from '../images/hostIdeaSessions.jpg';  
 
 export function Story() {
     const [form_data, setform_data] = useState({

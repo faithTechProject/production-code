@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import styles from './projects.module.css';
 import axios from 'axios';
 import {fillTable} from '../dbTable';
+import { DownloadButton } from "../KevinDownloadPlaybook";
 
 
 export function DiscoverProjects() {
@@ -157,18 +158,22 @@ export function DiscoverProjects() {
                 <h1 className={styles.projects}>Engage with Local Schools and Universities</h1>
                 <p>Use the template provided below to develop a proposal for a collaborative project or mentorship program with a local educational institution.</p>
                 <h2 className={styles.projects}>Proposal Template</h2>
-                <textarea id='textarea7' className={styles.response} onChange={(e) => saveData(e)}></textarea>
+                <DownloadButton 
+                    fileName="Proposal-Template.docx"
+                    displayName="Download Proposal Template"
+                    filePath="/Proposal-Template.docx"
+                />
             </div>
             <div className={styles.section}>
                 <h1 className={styles.projects}>Analyze Existing Technology</h1>
                 <p>Use the following boxes to highlight current uses, gaps, and opportunities for redemptive technology projects.</p>
                 <h2 className={styles.projects}>Technology Use</h2>
                 <p>Technology Audit: Assess how technology is currently used.</p>
-                <textarea id='textarea8' className={styles.response} onChange={(e) => saveData(e)}></textarea>
+                <textarea id='textarea7' className={styles.response} onChange={(e) => saveData(e)}></textarea>
                 <p>Technology Disparities: Identify gaps.</p>
-                <textarea id='textarea9' className={styles.response} onChange={(e) => saveData(e)}></textarea>
+                <textarea id='textarea8' className={styles.response} onChange={(e) => saveData(e)}></textarea>
                 <p>Emerging Technology: Brainstorm opportunities.</p>
-                <textarea id='textarea10' className={styles.response} onChange={(e) => saveData(e)}></textarea>
+                <textarea id='textarea9' className={styles.response} onChange={(e) => saveData(e)}></textarea>
             </div>
             <div className='bottomLinks'>
                     <div>
