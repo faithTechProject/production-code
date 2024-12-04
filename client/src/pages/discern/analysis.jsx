@@ -1,35 +1,85 @@
 import styles from './analysis.module.css';
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DndContext } from '@dnd-kit/core';
 import { Draggable } from './draggable';
 import { Droppable } from './droppable';
 import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
+
 
 export function DiscernAnalysis() {
   const [Solutions, setSolutions] = useState([
-    { id: uuidv4(), text: '', explanation: '', category: 'unassigned' },
+    //{ id: 1, solution: '', explanation: '', category: 'unassigned' }
   ]);
-
+  
+  useEffect(() => {
+    axios.get(`http://localhost:3000/analysis`).then(res => {
+      res.data.sort((a, b) => a.id - b.id);
+      setSolutions(res.data.map((item) => item))
+      })
+    }, [])
   // Function to handle Solutions change
-  const handleSolutionsChange = (index, field, value) => {
+  const handleSolutionsChange = (id, field, value) => {
+    //console.log(id)
+    //console.log(field)
+    //console.log(value)
     const updatedSolutions = [...Solutions];
+    let index = 0;
+    for(let i=0; i<Solutions.length; ++i) {
+      if(Solutions[i].id === id) {
+        index = i;
+        break;
+      }
+    }
+    
     updatedSolutions[index][field] = value;
     setSolutions(updatedSolutions);
+
+    axios.patch(`http://localhost:3000/analysis/?id=${id}`, {
+      [field]: value
+  })
   };
 
   // Function to add a new Solutions input field
   const addSolutions = () => {
+    //for (let i=0; i<Solutions.length; ++i) {
+
+    //}
+    const id = Solutions.length + 1;
+    
     setSolutions([
       ...Solutions,
-      { id: uuidv4(), text: '', explanation: '', category: 'unassigned' },
+      { id: id, page_type: 'Discern', page_name: 'Analysis', solution: '', explanation: '', category: 'unassigned' },
     ]);
+
+    axios.post(`http://localhost:3000/analysis`, {
+      id: id,
+      page_type: 'discern',
+      page_name: 'analysis',
+      solution: '',
+      explanation: '',
+      category: 'unassigned'
+  })
+    //console.log(Solutions)
   };
 
   // Function to remove a specific Solutions
-  const removeSolutions = (indexToRemove) => {
+  const removeSolutions = (idToRemove) => {
     if (Solutions.length === 1) return;
-    setSolutions(Solutions.filter((_, index) => index !== indexToRemove));
+    console.log(idToRemove)
+    //setSolutions(Solutions.filter((_, index) => index !== indexToRemove));
+
+    let newList = JSON.parse(JSON.stringify(Solutions))
+    newList = newList.filter((item) => item.id !== idToRemove);
+    
+    for(let i=0; i<newList.length; ++i) {
+      if(newList[i].id > idToRemove)
+        --newList[i].id;
+    }
+    console.log(newList)
+    setSolutions(newList);
+    axios.delete(`http://localhost:3000/analysis/?id=${idToRemove}`)
   };
 
   // Close icon as SVG
@@ -52,14 +102,22 @@ export function DiscernAnalysis() {
   // Handle drag end event
   const handleDragEnd = (event) => {
     const { active, over } = event;
+    
 
     // If the Solutions was dropped over a droppable area
     if (over) {
+      axios.patch(`http://localhost:3000/analysis/?id=${active.id}`, {
+        category: over.id 
+    })
+      //console.log(active.id);
+      //console.log(over.id);
       setSolutions((prevSolutions) =>
         prevSolutions.map((solution) =>
+          
           solution.id === active.id
             ? { ...solution, category: over.id }
             : solution
+            
         )
       );
     }
@@ -100,13 +158,15 @@ export function DiscernAnalysis() {
           <div className={styles.solutions_input}>
             <label>Enter your solutions</label>
             {Solutions.map((solution, index) => (
+              
               <div key={solution.id} className={styles.solutions_field}>
+                {solution.id}
                 <div className={styles.input_wrapper}>
                   <input
                     type="text"
-                    value={solution.text}
+                    value={solution.solution}
                     onChange={(e) =>
-                      handleSolutionsChange(index, 'text', e.target.value)
+                      handleSolutionsChange(solution.id, 'solution', e.target.value)
                     }
                     placeholder={`Solution ${index + 1}`}
                     className={styles.input_field}
@@ -114,7 +174,7 @@ export function DiscernAnalysis() {
                   <textarea
                     value={solution.explanation}
                     onChange={(e) =>
-                      handleSolutionsChange(index, 'explanation', e.target.value)
+                      handleSolutionsChange(solution.id, 'explanation', e.target.value)
                     }
                     placeholder={`Explanation for Solution ${index + 1}`}
                     className={styles.input_field}
@@ -122,7 +182,7 @@ export function DiscernAnalysis() {
                   {Solutions.length > 1 && (
                     <button
                       type="button"
-                      onClick={() => removeSolutions(index)}
+                      onClick={() => removeSolutions(solution.id)}
                       className={styles.remove_button}
                       aria-label="Remove Solution"
                     >
@@ -136,15 +196,16 @@ export function DiscernAnalysis() {
               Enter Solution
             </button>
           </div>
-
+          </div>
           <DndContext onDragEnd={handleDragEnd}>
-            <div className={styles.unassigned-Solutions}>
+            <div className={styles.unassigned_Solutions}>
               <h2>Unassigned Solutions</h2>
               {Solutions.filter((solution) => solution.category === 'unassigned')
                 .map((solution) => (
                   <Draggable key={solution.id} id={solution.id}>
                     <div className={styles.solution_explanation}>
-                      <p1>{solution.text || 'Unnamed Solution'}</p1>
+                    {solution.id + "hi"}
+                      <p1>{solution.solution || 'Unnamed Solution'}</p1>
                       <p>{solution.explanation || 'No explanation provided.'}</p>
                     </div>
                   </Draggable>
@@ -163,7 +224,7 @@ export function DiscernAnalysis() {
                         .map((solution) => (
                             <Draggable key={solution.id} id={solution.id}>
                             <div className={styles.solution_explanation}>
-                                <p1>{solution.text}</p1>
+                                <p1>{solution.solution}</p1>
                                 <p>{solution.explanation}</p>
                             </div>
                             </Draggable>
@@ -181,7 +242,7 @@ export function DiscernAnalysis() {
                   .map((solution) => (
                     <Draggable key={solution.id} id={solution.id}>
                       <div className={styles.solution_explanation}>
-                        <p1>{solution.text}</p1>
+                        <p1>{solution.solution}</p1>
                         <p>{solution.explanation}</p>
                       </div>
                     </Draggable>
@@ -199,7 +260,7 @@ export function DiscernAnalysis() {
                   .map((solution) => (
                     <Draggable key={solution.id} id={solution.id}>
                       <div className={styles.solution_explanation}>
-                        <p1>{solution.text}</p1>
+                        <p1>{solution.solution}</p1>
                         <p>{solution.explanation}</p>
                       </div>
                     </Draggable>
@@ -217,7 +278,7 @@ export function DiscernAnalysis() {
                   .map((solution) => (
                     <Draggable key={solution.id} id={solution.id}>
                       <div className={styles.solution_explanation}>
-                        <p1>{solution.text}</p1>
+                        <p1>{solution.solution}</p1>
                         <p>{solution.explanation}</p>
                       </div>
                     </Draggable>
@@ -227,7 +288,7 @@ export function DiscernAnalysis() {
 
             </div>
           </DndContext>
-        </div>
+        
         <div className='bottomLinks'>
                     <div>
                         <p>Previous</p>
