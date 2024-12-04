@@ -1,10 +1,12 @@
 import styles from './analysis.module.css';
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React from 'react';
 import { DndContext } from '@dnd-kit/core';
 import { Draggable } from './draggable';
 import { Droppable } from './droppable';
 import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useState } from 'react';
+import axios from "axios";
 
 export function DiscernAnalysis() {
   const [Solutions, setSolutions] = useState([
@@ -32,6 +34,7 @@ export function DiscernAnalysis() {
     setSolutions(Solutions.filter((_, index) => index !== indexToRemove));
   };
 
+  
   // Close icon as SVG
   const CloseIcon = () => (
     <svg
@@ -138,7 +141,7 @@ export function DiscernAnalysis() {
           </div>
 
           <DndContext onDragEnd={handleDragEnd}>
-            <div className={styles.unassigned-Solutions}>
+            <div className={styles.unassigned_solutions}>
               <h2>Unassigned Solutions</h2>
               {Solutions.filter((solution) => solution.category === 'unassigned')
                 .map((solution) => (

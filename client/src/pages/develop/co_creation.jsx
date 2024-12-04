@@ -42,7 +42,8 @@ export function CoCreation() {
             <div className={styles.hero_co_creatoin_header}>
                 <h1> Co-Creation </h1>
             </div>
-
+            
+            <div className='body'>
             <div className={styles.hero_solutions}>
                 <p> Before starting the co-creation cycle choose one of your solutions from the discern stage  </p>
                 <p> click on one of the solutions below </p>
@@ -155,6 +156,7 @@ export function CoCreation() {
                         <Link to="/develop/tickets">Tickets</Link>
                     </div>
                 </div>
+        </div>
         </div>
     )
 }

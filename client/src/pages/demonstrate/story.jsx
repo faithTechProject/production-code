@@ -68,7 +68,7 @@ export function Story() {
                 <div className={styles.hero_story_header}>
                     <h1> Share Your Story </h1>
                 </div>
-
+                <div className="body">
                 <div className={styles.stories_instructions}>
                     <h1> Wher to share? </h1>
                     <p> Share your story with your FaithTech community. Share regularly at community gatherings or meetups. Consider sharing with local churches, schools, nonprofits, or whoever might benefit from hearing your solution. </p>
@@ -321,6 +321,8 @@ export function Story() {
                         <Link to="/demonstrate/conclusion">Conclusion</Link>
                     </div>
                 </div>
+
+        </div>
         </>
     )
 }
