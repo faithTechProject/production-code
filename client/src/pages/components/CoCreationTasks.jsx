@@ -35,12 +35,6 @@ export const Task = ({
         </svg>
     );
 
-    const [isDragging, setIsDragging] = useState(false);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-    const [isDropdownClicked, setIsDropdownClicked] = useState(false)
-    const {attributes, listeners, setNodeRef, transform, isDragging: dragging, transition} = useSortable({id})
-    //const {attributes, listeners, setNodeRef, transform, isDragging: dragging, transition} = useSortable({id, disabled: isDropdownClicked})
-
     const handleTaskChange = (value, id, property) => {
         console.log(tasks);
         let newList = JSON.parse(JSON.stringify(tasks))
@@ -49,22 +43,14 @@ export const Task = ({
         axios.patch(`http://localhost:3000/tickets/update?id=${id}`, {
             [property]: value
         })
-        //axios.patch(`http://localhost:3000/tickets/?id=${data[grp_index].tasks[item_index].id}`, {
-        //    [element]: value
-        //})
-        console.log(id)
-        //console.log(value)
+
         setTasks(newList)
     }
 
     const removeTask = (id) => {
-        //let newList = JSON.parse(JSON.stringify(tasks))
         axios.delete(`http://localhost:3000/tickets/${id}`)
         const taskIndex = tasks.findIndex(tasks => tasks.id === id)
-        console.log(taskIndex)
         const status = tasks[taskIndex].status;
-        
-        //setRoles(roles.filter((_, index) => index !== indexToRemove));
 
         let newTasks = tasks.filter((_, index) => index !== taskIndex)
 
@@ -84,19 +70,6 @@ export const Task = ({
 
 
         setTasks(newTasks)
-        //status = newList[taskIndex].status;
-        //newList.splice(taskIndex, 1)
-        //console.log(newList);
-        //for (let i=0; i<newList.length; ++i) {
-        //    if (newList[i].id > id) {
-        //        --newList[i].id
-        //    }
-        //}
-        //newList = updateRowIndecies(status, status, newList)
-        //console.log(status)
-        //console.log(taskIndex)
-        //console.log(newList);
-        //setTasks(newList);
     }
 
     const updateRowIndecies = (status1, status2, list) => {
@@ -119,11 +92,7 @@ export const Task = ({
     const handleTaskChangeDropDown = (value, id, property) => {
         const index = tasks.findIndex(tasks => tasks.id === id)
         const status = tasks[index].status;
-        console.log(index)
-        console.log(status)
-        console.log(value)
         if (value !== status) {
-            console.log("here")
             let newList = JSON.parse(JSON.stringify(tasks))
 
             let replaceIndex = 0;
@@ -133,22 +102,15 @@ export const Task = ({
                     break;
                 }
             }
-            console.log(replaceIndex)
 
             newList[index][property] = value;
             
-            console.log(index)
-            console.log(replaceIndex)
             if (index >= replaceIndex) {
                 newList.splice(replaceIndex, 0, newList.splice(index, 1)[0])
             }
             else {
                 newList.splice(replaceIndex - 1, 0, newList.splice(index, 1)[0])
             }
-                //newList.splice()
-            //newList.splice(index, 1)
-            console.log(newList)
-
 
             newList = updateRowIndecies(status, value, newList)
             axios.patch(`http://localhost:3000/tickets/?id=${id}`, {
@@ -156,54 +118,8 @@ export const Task = ({
                 status: value,
                 row_index: 0
             })
-        //axios.patch(`http://localhost:3000/tickets/?id=${data[grp_index].tasks[item_index].id}`, {
-        //    [element]: value
-        //})
-        //console.log(id)
-        //console.log(value)
             setTasks(newList)
         }
-    }
-
-    //console.log(isDropdownOpen + "open")
-    //console.log(isDropdownClicked + "clicked")
-    
-    //const handlePointerDown = (e) => {
-    //    if (isDropdownClicked) {
-    //        e.stopPropagation();
-      //  }
-        //console.log("here")
-        //e.preventDefault();
-    //}
-
-
-    const handleDragEnd = () => {
-        setIsDropdownClicked(false)
-        setIsDropdownOpen(false)
-    }
-
-    //console.log(dragging)
-   
-
-
-    const style2 = {
-        transition,
-        transform: CSS.Transform.toString(transform),
-        //borderCollapse: 'collapse',
-        //display: isDragging ? 'inline-bock': '',
-        //backgroundColor: 'white',
-        //border: '1px solid #ea542c',
-        //boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
-        //width: '100%'
-        
-        //flexDirection: isDragging ? 'row': ''
-        //align-items: center
-        //justify-content: flex-start;
-        //gap: 20px;*/
-        //touchAction: 'none',
-        //<button onClick={handleDropdownClick} className={style.button}>
-        //{isDropdownOpen ? 'Close' : 'Open'} Dropdown
-    //</button>
     }
     
     return (

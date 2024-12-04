@@ -32,7 +32,7 @@ export function CoCreation() {
                 let inProgress = []
                 for(let i=0; i<res.data.length; ++i) {
                     if (res.data[i].status === 'in progress') {
-                        notStarted = [...notStarted, res.data[i]]
+                        inProgress = [...inProgress, res.data[i]]
                     }
                 }
                 inProgress.sort((a, b) => a.row_index - b.row_index);
@@ -40,7 +40,7 @@ export function CoCreation() {
                 let completed = []
                 for(let i=0; i<res.data.length; ++i) {
                     if (res.data[i].status === 'completed') {
-                        notStarted = [...notStarted, res.data[i]]
+                        completed = [...completed, res.data[i]]
                     }
                 }
                 completed.sort((a, b) => a.row_index - b.row_index);
@@ -247,16 +247,13 @@ export function CoCreation() {
                 <div className='render'>
                     <h> Render </h>
                     <p> Outline the next steps for implementing these insights. Focus on what can be accomplished in the upcoming or current sprint. Each 'step' is a task, similar to what you entered in your RACI Matrix, except more specific. For example, let's say 3 of the tasks on your matrix were design features, develop features, and test features. Here, it'd be the same, except for a specific feature for each task. It could even just be part of a feature if you think it'll take more than one sprint to accomplish. In the table below, enter the step, a description of it, and which person or people are responsible for it.</p>
-                    <div className='render_table '>
-                        <button> add step </button>
-                    </div>
                 </div>
             </div>
             <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
                 <CoCreationTable tasks={tasks} setTasks={setTasks}/>
             </DndContext>
             <button type="button" onClick={handleAddTask} className={style.add_button}>
-                Add Role
+                + Add Step
             </button>
 
             <div className='reflection_questions'>

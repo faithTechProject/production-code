@@ -1,2 +1,2 @@
-SELECT * FROM analysis
+SELECT * FROM tickets
 ORDER BY id;
