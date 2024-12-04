@@ -67,6 +67,16 @@ export function DevelopOverview() {
                 <iframe width="568" height="340" src="https://www.youtube.com/embed/xTo2p8wMH6s" title="FaithTech Create 2023-Week 3 - Develop-3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 <br></br>
             </div>
+            <div className='bottomLinks'>
+                    <div>
+                        <p>Previous</p>
+                        <Link to="/discern/timeline">Timeline</Link>
+                    </div>
+                    <div>
+                        <p>Next</p>
+                        <Link to="/develop/co_creation">Co-Creation</Link>
+                    </div>
+                </div>
         </>
     )
 }

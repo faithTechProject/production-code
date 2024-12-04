@@ -18,12 +18,16 @@ import { Tickets } from './tickets/tickets.entity';
 import { TicketsService } from './tickets/tickets.service';
 import { CoCreationEntity } from './co_creation_page/request-form.entity';
 import { RequestFormModule } from './co_creation_page/request-form.module';
-import { AnalysisDndController } from './analysis.dnd/analysis.dnd.controller';
-import { AnalysisDndService } from './analysis.dnd/analysis.dnd.service';
-import { AnalysisDndModule } from './analysis.dnd/analysis.dnd.module';
-import { Analysis } from './analysis.dnd/analysis.dnd.entity';
 import { RequestFormController } from './co_creation_page/request-form.controller';
 import { RequestFormService } from './co_creation_page/request-form.service';
+import { AnalysisDndController } from './analysis.dnd/analysis.dnd.controller';
+import { AnalysisDndService } from './analysis.dnd/analysis.dnd.service';
+import { Story } from './story_page/story.entity';
+import { StoryModule } from './story_page/story.module';
+import { Analysis } from './analysis.dnd/analysis.dnd.entity';
+import { StoryController } from './story_page/story.controller';
+import { StoryService } from './story_page/story.service';
+
 
 
 @Module({
@@ -36,15 +40,15 @@ import { RequestFormService } from './co_creation_page/request-form.service';
       password: 'faithtech_password',
       database: 'faithtech_create',
       synchronize: false,
-      entities: [Reflection, Matrix, TextAreaReflections, Tickets, CoCreationEntity, Analysis] 
+      entities: [Analysis, CoCreationEntity, Matrix, Reflection, Story, TextAreaReflections, Tickets] 
   }),
  
-    TypeOrmModule.forFeature([Reflection, Matrix, TextAreaReflections, Tickets, CoCreationEntity, Analysis])
+    TypeOrmModule.forFeature([Analysis, CoCreationEntity, Matrix, Reflection, Story, TextAreaReflections, Tickets]),
     
     
   ],
-  controllers: [ReflectionController, MatrixController, TextAreaReflectionsController, TicketsController, RequestFormController, AnalysisDndController],
-  providers: [ReflectionService, MatrixService, TextAreaReflectionsService, TicketsService, RequestFormService, AnalysisDndService],
+  controllers: [AnalysisDndController, RequestFormController, MatrixController, ReflectionController, StoryController, TextAreaReflectionsController, TicketsController],
+  providers: [AnalysisDndService, RequestFormService, MatrixService, ReflectionService, StoryService, TextAreaReflectionsService, TicketsService],
 
 })
 export class AppModule {}

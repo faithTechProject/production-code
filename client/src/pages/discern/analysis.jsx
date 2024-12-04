@@ -128,17 +128,14 @@ export function DiscernAnalysis() {
       <div className={styles.hero_analysis_page}>
         <div className={styles.hero_analysis_header}>
           <h1>Analysis</h1>
-          <div className={styles.image_placeholder}>
-            <p>Team pic</p>
-          </div>
         </div>
 
         <div className={styles.three_rc_analysis}>
           <h1>3RC Analysis</h1>
-          <h2>
+          <p>
             For each of your brainstormed solutions, categorize them into one of
             the four 3RC postures:
-          </h2>
+          </p>
           <ul>
             <li>
               <strong>Reject</strong>: the solution is not the answer
@@ -293,9 +290,15 @@ export function DiscernAnalysis() {
           </DndContext>
         
         <div className='bottomLinks'>
-          <Link to="/discern/brainstorm">Brainstorm</Link>
-          <Link className='next_page' to="/discern/timeline">Timeline</Link>
-        </div>
+                    <div>
+                        <p>Previous</p>
+                        <Link to="/discern/brainstorm">Brainstorm</Link>
+                    </div>
+                    <div>
+                        <p>Next</p>
+                        <Link to="/discern/timeline">Timeline</Link>
+                    </div>
+                </div>
       </div>
     </>
   );

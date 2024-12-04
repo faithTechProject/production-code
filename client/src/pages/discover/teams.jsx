@@ -6,6 +6,10 @@ import { useEffect } from "react";
 import axios from "axios";
 import { Table } from '../components/SkillTable';
 import { Modal } from '../components/Modal';
+import team_pic from '../images/hostIdeaSessions.jpg';
+import { DownloadButton } from "../KevinDownloadPlaybook";
+
+
 
 export function DiscoverTeams() {
     
@@ -17,9 +21,7 @@ export function DiscoverTeams() {
 
     const[modalOpen, setModalOpen] = useState(false);
     const [rows, setRows] = useState([ 
-        {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
-        {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
-        {name: "", skills: "", past_experiences: "", areas_for_growth: ""},
+        {name: "", skills: "", past_experiences: "", areas_for_growth: ""}
     ]);
     const [rowToEdit, setRowToEdit] = useState(null);
 
@@ -248,11 +250,11 @@ export function DiscoverTeams() {
                 <h3 className={styles.oTitle}>FORMING <sc>TEAMS</sc></h3>
             </div>
             <div className={styles.hero_teams_page}>
-                <h1>Create Effective Teams</h1>
+                <p>Creating effective teams is crucial for the success of your Create projects. This guide will help you form balanced, diverse, and collaborative teams that embody redemptive technology principles.</p>
                 <h2 className={styles.skills_title}>Assess Skills and Experiences</h2>
                 <div className={styles.hero_team_members}>
                     <div className={styles.members}>
-                        <pic className={styles.member_image_placeholder}> stock img </pic>
+                    <img className={styles.member_image_placeholder} src={team_pic} alt="Conduct Skill Inventory" />
                         
                         <ul>
                             <h3> <num className={styles.decorate_list}> 1 </num> Conduct skills inventory </h3>
@@ -262,7 +264,7 @@ export function DiscoverTeams() {
                         </ul>  
                     </div>
                     <div className={styles.members}>
-                        <pic className={styles.member_image_placeholder}> stock img </pic>
+                    <img className={styles.member_image_placeholder} src={team_pic} alt="Conduct Skill Inventory" />
                         <ul>
                             <h3> <num className={styles.decorate_list}> 2 </num> Consider past Experiences </h3>
                             <li> previous redemptive technology project </li>
@@ -271,7 +273,8 @@ export function DiscoverTeams() {
                         </ul>  
                     </div>
                     <div className={styles.members}>
-                        <pic className={styles.member_image_placeholder}> stock img </pic>
+                    <img className={styles.member_image_placeholder} src={team_pic} alt="Conduct Skill Inventory" />
+
                         <ul>
                             <h3> <num className={styles.decorate_list}> 3 </num> Identify areas of growth </h3>
                             <li> Skills team members want to develop  </li>
@@ -285,18 +288,20 @@ export function DiscoverTeams() {
                         you create a well rounded team
                     </p>
                     <h1 className={styles.skills_matrix_title}> Skills Matrix </h1>
-                    <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
-                        <button onClick={() => setModalOpen(true)}>Add Entry</button>
+                    <div  className={styles.skills_table}>
+                        <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
+                            <button onClick={() => setModalOpen(true)}>Add Entry</button>
 
-                        {modalOpen && (
-                            <Modal closeModal={() => {
-                                setModalOpen(false);
-                                setRowToEdit(null);
-                            }}
-                            onSubmit={handleSubmit_matrix}
-                            defaultValue={rowToEdit !== null && rows[rowToEdit]}
-                            />
-                    )}
+                            {modalOpen && (
+                                <Modal closeModal={() => {
+                                    setModalOpen(false);
+                                    setRowToEdit(null);
+                                }}
+                                onSubmit={handleSubmit_matrix}
+                                defaultValue={rowToEdit !== null && rows[rowToEdit]}
+                                />
+                        )}
+                    </div>
                 </div>
                 <div className={styles.hero_member_role}>
                     <h1 className={styles.member_roles_title}> Balance Technical and Non-Technical Roles </h1>
@@ -348,7 +353,7 @@ export function DiscoverTeams() {
             </div>
             <div className={styles.roles_and_responsibility}>
                 <h1> Define team Roles and Responsibilities </h1>
-                <h2>  Clear roles help teams function smoothly</h2>
+                <p>  Clear roles help teams function smoothly</p>
                 <ul>
                     <li> <num className={styles.decorate_list}> 1 </num> Define key responsibilities for each role </li>
                     <li> <num className={styles.decorate_list}> 2 </num>Establish decision-making process </li>
@@ -365,7 +370,7 @@ export function DiscoverTeams() {
 
                 <div className={styles.raci_matrix}>
                     {raci_roles.map((role, index) => (
-                        <div key={index} className={`flip_card ${flippedCards[index] ? 'flipped' : ''}`} onClick={() => handleFlip(index)}>
+                        <div key={index} className={`${styles.flip_card} ${flippedCards[index] ? styles.flipped : ''}`} onClick={() => handleFlip(index)}>
                             <div className={styles.flip_card_inner}>
                                 <div className={styles.flip_card_front}>
                                     {role.letter}
@@ -380,7 +385,12 @@ export function DiscoverTeams() {
                 </div>
                 <div className={styles.hero_download_raci_matrix}>
                     <p>Click to download an example </p>
-                    <button> RACI Matrix </button>
+                    <DownloadButton 
+                        fileName="RACI Matrix"
+                        displayName="Download RACI Matrix"
+                        filePath="./pages/RACI_Matrix.pdf"
+                    />
+
                 </div>
 
                 <div className={styles.hero_matrix_container}>
@@ -482,7 +492,7 @@ export function DiscoverTeams() {
             </div>
             <div className={styles.hero_faith_integration}> 
                 <h1> Integrate Faith </h1>
-                <h2> Here are some ideas to intergrate faith into your team dynamics:</h2>
+                <p> Here are some ideas to intergrate faith into your team dynamics:</p>
                 <ul>
                     <li>  <num className={styles.decorate_list}> 1 </num>  Start meetings with prayer to devotional reflections </li>
                     <li>  <num className={styles.decorate_list}> 2 </num>  Emphasize that our work should always point to jesus </li>
@@ -499,6 +509,7 @@ export function DiscoverTeams() {
                         <div className={styles.logo_name_lp}>TECH</div>
                     </div>
                 </div>
+
                     <div className={styles.pillars}>
                         <div className={styles.pillar}>
                             <div className={styles.top_long_box}></div>
@@ -578,7 +589,7 @@ export function DiscoverTeams() {
                                 <div class={styles.text}>Don't take ourselves </div>
                             </div>
                             <div className={styles.bottom_long_box}> 
-                                <div className={styles.text}> too seriously</div>
+                                <div className={styles.text}> "too seriously" </div>
                             </div>
                         </div>
                     </div>
@@ -662,9 +673,15 @@ export function DiscoverTeams() {
 
             </div>
             <div className='bottomLinks'>
-                <Link className="previous_page" to="/discover/projects">Projects</Link>
-                <Link className="next_page" to="/discover/problem">Problems</Link>
-            </div>
+                    <div>
+                        <p>Previous</p>
+                        <Link to="/discover/projects">Projects</Link>
+                    </div>
+                    <div>
+                        <p>Next</p>
+                        <Link to="/discover/problem">Problems</Link>
+                    </div>
+                </div>
             </div>
         </>
     );
