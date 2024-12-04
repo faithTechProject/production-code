@@ -14,12 +14,12 @@
 }
   
   
-.hero_analysis_header h1{
-  font-size: 60px;
-  font-weight: bold;
-  color: white;
-}
-
+  .hero_analysis_header h1{
+    font-size: 60px;
+    font-weight: bold;
+    margin-left: 25%;
+    color: white;
+  }
   
 
 .three_rc_analysis p{

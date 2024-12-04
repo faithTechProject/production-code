@@ -29,10 +29,9 @@ export function Conclusion() {
         })
     }, [])
 
-    const handleSubmit = (e, replyData) => {
-        e.preventDefault(); 
-        axios.patch(`http://localhost:3000/text-area-reflections/?page=Conclusion&entry_pos=${e.target.id}`, {
-            reply: replyData
+    const handleSubmit = (e, id) => {
+        axios.patch(`http://localhost:3000/text-area-reflections/?page=Conclusion&entry_pos=${id}`, {
+            reply: e.target.value
         })
     }
 
@@ -57,22 +56,20 @@ export function Conclusion() {
                     <br></br>
                     <br></br>
                     How has this process changed your approach to technology development?
-					<form id='0' onSubmit={(e) => handleSubmit(e, Reflection1)}>
+					<form id='0'>
 						<textarea name="Conclusion" rows={5} cols={40} 
 						placeholder="Type here..." 
 						value={Reflection1}
-						onChange={(e) => setReflection1(e.target.value)}
+						onChange={(e) => {setReflection1(e.target.value); handleSubmit(e, 0)}}
 						/>
-						<input type="submit" value="Save" />
 					</form>
                     What new insights have you gained about integrating your faith with your work?
-					<form id='1' onSubmit={(e) => handleSubmit(e, Reflection2)}>
+					<form id='1'>
 						<textarea name="Conclusion" rows={5} cols={40} 
 						placeholder="Type here..." 
 						value={Reflection2}
-						onChange={(e) => setReflection2(e.target.value)}
+						onChange={(e) => {setReflection2(e.target.value); handleSubmit(e, 1)}}
 						/>
-						<input type="submit" value="Save" />
 					</form>
                     <br></br>
                     <br></br>
@@ -90,13 +87,12 @@ export function Conclusion() {
                     <br></br>
                     <br></br>
                     What would future work on this project look like?
-					<form id='2' onSubmit={(e) => handleSubmit(e, Reflection3)}>
+					<form id='2'>
 						<textarea name="Conclusion" rows={5} cols={40} 
 						placeholder="Type here..." 
 						value={Reflection3}
-						onChange={(e) => setReflection3(e.target.value)}
+						onChange={(e) => {setReflection3(e.target.value); handleSubmit(e, 2)}}
 						/>
-						<input type="submit" value="Save" />
 					</form>
                 </p>
                 <p className={styles.op1}>
@@ -107,40 +103,36 @@ export function Conclusion() {
                     <br></br>
                     <br></br>
                     How might you use the Discover Phase in your future work?
-					<form id='3' onSubmit={(e) => handleSubmit(e, Reflection4)}>
+					<form id='3'>
 						<textarea name="Conclusion" rows={5} cols={40} 
 						placeholder="Type here..." 
 						value={Reflection4}
-						onChange={(e) => setReflection4(e.target.value)}
+						onChange={(e) => {setReflection4(e.target.value); handleSubmit(e, 3)}}
 						/>
-						<input type="submit" value="Save" />
 					</form>
                     How might you use the Discern Phase in your future work?
-                    <form id='4' onSubmit={(e) => handleSubmit(e, Reflection5)}>
+                    <form id='4'>
 						<textarea name="Conclusion" rows={5} cols={40} 
 						placeholder="Type here..." 
 						value={Reflection5}
-						onChange={(e) => setReflection5(e.target.value)}
+						onChange={(e) => {setReflection5(e.target.value); handleSubmit(e, 4)}}
 						/>
-						<input type="submit" value="Save" />
 					</form>
                     How might you use the Develop Phase in your future work?
-                    <form id='5' onSubmit={(e) => handleSubmit(e, Reflection6)}>
+                    <form id='5'>
 						<textarea name="Conclusion" rows={5} cols={40} 
 						placeholder="Type here..." 
 						value={Reflection6}
-						onChange={(e) => setReflection6(e.target.value)}
+						onChange={(e) => {setReflection6(e.target.value); handleSubmit(e, 5)}}
 						/>
-						<input type="submit" value="Save" />
 					</form>
                     How might you use the Demonstrate Phase in your future work?
-                    <form id='6' onSubmit={(e) => handleSubmit(e, Reflection7)}>
+                    <form id='6'>
 						<textarea name="Conclusion" rows={5} cols={40} 
 						placeholder="Type here..." 
 						value={Reflection7}
-						onChange={(e) => setReflection7(e.target.value)}
+						onChange={(e) => {setReflection7(e.target.value); handleSubmit(e, 6)}}
 						/>
-						<input type="submit" value="Save" />
 					</form>
                 </p>
                 <div className={styles.oQuoteBox}>

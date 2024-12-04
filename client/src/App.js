@@ -13,8 +13,9 @@ import { DiscernBrainstorm } from './pages/discern/brainstorm';
 import { DevelopOverview } from './pages/develop/overview';
 import { DevelopTickets } from './pages/develop/tickets';
 import { DemonstrateOverview } from './pages/demonstrate/overview';
-import { CoCreation } from './pages/develop/co_creation'; 
+import { DevelopCoCreation } from './pages/develop/co_creation'; 
 import { DemonstrateMeasure} from './pages/demonstrate/measure';
+import { DemonstrateImpact } from './pages/demonstrate/impact';
 import Navbar from './pages/common/navbar';
 import { Story } from './pages/demonstrate/story'
 import { Conclusion } from './pages/demonstrate/conclusion';
@@ -47,13 +48,14 @@ function App() {
               <Route path="/develop/overview" element={< DevelopOverview />} />
               <Route path="/discern/analysis" element={< DiscernAnalysis />} />
               <Route path="/discern/timeline" element={< DiscernTimeline />} />
+              <Route path="/discern/brainstorm" element={< DiscernBrainstorm />} />
               <Route path="/demonstrate/overview" element={< DemonstrateOverview />} />
-              <Route path="/demonstrate/story" element={< Story />} />
-              <Route path="/demonstrate/conclusion" element={< Conclusion />} />
-              <Route path="/develop/co_creation" element={< CoCreation />} />
               <Route path="/develop/tickets" element={< DevelopTickets />} />
-              <Route path="/develop/co_creation" element={< CoCreation />} />
+              <Route path="/demonstrate/conclusion" element={< Conclusion />} />
+              <Route path="/develop/co_creation" element={< DevelopCoCreation />} />
+              <Route path="/develop/tickets" element={< DevelopTickets />} />
               <Route path="/demonstrate/story" element={< Story />} />
+              <Route path="/demonstrate/impact" element= {< DemonstrateImpact/>} />
               <Route path="/demonstrate/measure" element={< DemonstrateMeasure/>} />
             </Routes>
           </div>

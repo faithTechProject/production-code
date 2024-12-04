@@ -1,16 +1,141 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import axios from "axios";
 import styles from './co_creation.module.css';
+import {closestCorners, DndContext} from "@dnd-kit/core"
+import { CoCreationTable } from '../components/CoCreationTable';
+import { arrayMove } from '@dnd-kit/sortable';
+import style from "../components/CoCreationTable.module.css";
 
 
-export function CoCreation() {
+export function DevelopCoCreation() {
     const[requestForm0, setRequestForm0] = useState([])
     const[requestForm1, setRequestForm1] = useState([])
     const[requestForm2, setRequestForm2] = useState([])
     const[requestForm3, setRequestForm3] = useState([])
     const[requestForm4, setRequestForm4] = useState([])
 
+    const isMounted = useRef(false)
+    const[tasks, setTasks] = useState([])
+
+    useEffect(() => {
+        if (!isMounted.current){
+            axios.get(`http://localhost:3000/tickets`).then(res => {
+                let notStarted = []
+                for(let i=0; i<res.data.length; ++i) {
+                    if (res.data[i].status === 'not started') {
+                        notStarted = [...notStarted, res.data[i]]
+                    }
+                }
+                notStarted.sort((a, b) => a.row_index - b.row_index);
+                
+                let inProgress = []
+                for(let i=0; i<res.data.length; ++i) {
+                    if (res.data[i].status === 'in progress') {
+                        inProgress = [...inProgress, res.data[i]]
+                    }
+                }
+                inProgress.sort((a, b) => a.row_index - b.row_index);
+
+                let completed = []
+                for(let i=0; i<res.data.length; ++i) {
+                    if (res.data[i].status === 'completed') {
+                        completed = [...completed, res.data[i]]
+                    }
+                }
+                completed.sort((a, b) => a.row_index - b.row_index);
+
+                setTasks([...notStarted, ...inProgress, ...completed]);
+            })
+            isMounted.current = true;      
+        }
+    }, [])
+
+    const getTaskPos = id => tasks.findIndex(tasks => tasks.id === id)
+    const updateRowIndecies = (status1, status2, list) => {
+        let row_index1 = 0;
+        let row_index2 = 0;
+        
+        for (let i=0; i<list.length; ++i) {
+            if (list[i].status === status1) {
+                list[i].row_index = row_index1;
+                ++row_index1
+            }
+            if (list[i].status === status2) {
+                list[i].row_index = row_index2;
+                ++row_index2
+            }
+        }
+        return list;
+    }
+
+    const handleAddTask = () => {
+        let newList = JSON.parse(JSON.stringify(tasks))
+        let ticket_index = 0;
+        let row_index = 0;
+            
+        for (let i=0; i<newList.length; ++i) {
+            if (newList[i].status === 'not started') {
+                ++row_index
+                console.log(i)
+                ticket_index = i + 1;
+            }
+        }
+
+        axios.post(`http://localhost:3000/tickets`,
+            {
+                id: newList.length + 1,
+                status: 'not started',
+                row_index: row_index,
+                title: 'title',
+                description: '',
+                date_created: '',
+                sprint: '',
+                date_due: '',
+                percent_complete: '',
+                assigned_to: ''
+            }
+        )
+
+        newList.splice(ticket_index, 0, {id: newList.length + 1, status: 'not started', row_index: row_index, title: '', description: '', assigned_to: '', date_created: '', date_due: '', sprint: '', percent_complete: ''})
+        setTasks(newList)
+        
+    }
+    const handleDragEnd = (event) => {
+        
+        console.log("on drag end")
+        console.log(event)
+        const { active, over } = event;
+        if(over === null) return;
+        if(active.id === over.id) return;
+        setTasks(tasks => {
+            const originalPos = getTaskPos(active.id)
+            const newPos = getTaskPos(over.id);
+            const status1 = tasks[originalPos].status
+            const status2 = tasks[newPos].status
+            console.log(tasks[originalPos])
+            console.log(tasks[newPos])
+            tasks[originalPos].status = tasks[newPos].status;
+            //tasks[originalPos].row_index = tasks[newPos].row_index;
+            let newTasks = arrayMove(tasks, originalPos, newPos)
+            newTasks = updateRowIndecies(status1, status2, newTasks)
+            
+            console.log(active.id)
+            console.log(newTasks[originalPos].status)
+            console.log(newTasks[newPos].row_index)
+
+            axios.patch(`http://localhost:3000/tickets/?id=${active.id}`, {
+                id: active.id,
+                status: newTasks[newPos].status,
+                row_index: newTasks[newPos].row_index
+            })
+
+            return newTasks;
+        })
+
+        console.log(tasks)
+    }
+    
     const baseURL = "http://localhost:3000/co_creation/"
 
     
@@ -120,11 +245,14 @@ export function CoCreation() {
                 <div className='render'>
                     <h2> Render </h2>
                     <p> Outline the next steps for implementing these insights. Focus on what can be accomplished in the upcoming or current sprint. Each 'step' is a task, similar to what you entered in your RACI Matrix, except more specific. For example, let's say 3 of the tasks on your matrix were design features, develop features, and test features. Here, it'd be the same, except for a specific feature for each task. It could even just be part of a feature if you think it'll take more than one sprint to accomplish. In the table below, enter the step, a description of it, and which person or people are responsible for it.</p>
-                    <div className='render_table '>
-                        <button> add step </button>
-                    </div>
                 </div>
             </div>
+            <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                <CoCreationTable tasks={tasks} setTasks={setTasks}/>
+            </DndContext>
+            <button type="button" onClick={handleAddTask} className={style.add_button}>
+                + Add Step
+            </button>
 
             <div className='reflection_questions'>
                 <p> How did this process differ from your usual development approach? </p>

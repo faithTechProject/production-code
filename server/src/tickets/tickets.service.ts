@@ -45,16 +45,17 @@ export class TicketsService {
     }
 
     async moveTicket(id: number, updateTicketsDto: UpdateTicketsDto) {
-        const toUpdate = await this.ticketsRepository.findOneBy( { id } );
-        const oldStatus = toUpdate.status
-        const updated = Object.assign(toUpdate, updateTicketsDto)
-        await this.ticketsRepository.save(updated);
+        //const toUpdate = await this.ticketsRepository.findOneBy( { id } );
+        //const oldStatus = toUpdate.status
+        //const updated = Object.assign(toUpdate, updateTicketsDto)
+        //await this.ticketsRepository.save(updated);
         //console.log(updated)
 
         
         //console.log(updateTicketsDto.status)
         
-        if (oldStatus == updateTicketsDto.status) {
+        //if (oldStatus == updateTicketsDto.status) {
+            /*
             const tickets = await this.ticketsRepository.find({
                 where: {
                     row_index: MoreThanOrEqual(updateTicketsDto.row_index), 
@@ -62,15 +63,43 @@ export class TicketsService {
                     id: Not(id) 
                     }
                 });
-
-            tickets.sort((a, b) => a.row_index - b.row_index);
-            for (let i=0; i<tickets.length; ++i) {
-                tickets[i].row_index = i + 1 + updateTicketsDto.row_index;
-                await this.updateTicketIds(tickets[i].id, tickets[i])
+            */
+            //await this.updateTicketIds(id, {status: updateTicketsDto.status})
+            const oldTicket = await this.ticketsRepository.findOneBy({ id });
+            if (oldTicket.status == updateTicketsDto.status){
+                
+                const tickets = await this.ticketsRepository.find({ where: { status: updateTicketsDto.status }});
+                tickets.sort((a, b) => a.row_index - b.row_index);
+                tickets.splice(updateTicketsDto.row_index, 0, tickets.splice(tickets.findIndex(item => item.id == id), 1)[0]);
+                for (let i=0; i<tickets.length; ++i) {
+                    await this.updateTicketIds(tickets[i].id, {row_index: i})
+                }
             }
-        }
+            else {
+                const tickets = await this.ticketsRepository.find({ where: { status: updateTicketsDto.status }});
+                tickets.sort((a, b) => a.row_index - b.row_index);
+                tickets.splice(updateTicketsDto.row_index, 0, await(this.ticketsRepository.findOneBy({ id })));
+                console.log(tickets)
+                for (let i=0; i<tickets.length; ++i) {
+                    await this.updateTicketIds(tickets[i].id, {status: updateTicketsDto.status, row_index: i})
+                }
+
+                const otherColumn = await this.ticketsRepository.find({ where: { status: oldTicket.status }});
+                otherColumn.sort((a, b) => a.row_index - b.row_index);
+                for (let i=0; i<otherColumn.length; ++i) {
+                    await this.updateTicketIds(otherColumn[i].id, { row_index: i })
+                }
+            }
+/*
+            const tickets = await this.ticketsRepository.find({ where: { status: updateTicketsDto.status }});
+            tickets.sort((a, b) => a.row_index - b.row_index);
+            tickets.splice(updateTicketsDto.row_index, 0, tickets.splice(tickets.findIndex(item => item.id == id), 1)[0]);
+            for (let i=0; i<tickets.length; ++i) {
+                await this.updateTicketIds(tickets[i].id, {row_index: i})
+            }
+                */
         
-        
+        /*
         //console.log(oldStatus)
         //console.log(updateTicketsDto.status)
         if (oldStatus != updateTicketsDto.status) {
@@ -99,7 +128,7 @@ export class TicketsService {
             }
             //console.log(otherColumn2)
         }
-        
+        */
         return this.findAll();
     }
 
