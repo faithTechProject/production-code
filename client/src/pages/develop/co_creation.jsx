@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import styles from './co_creation.module.css';
-import { Link } from 'react-router-dom';
 
 
 export function CoCreation() {
@@ -150,9 +149,15 @@ export function CoCreation() {
                     </form>
             </div>
             <div className='bottomLinks'>
-                <Link to="/develop/overview">Develop Overview</Link>
-                <Link className='next_page' to="/develop/tickets">Tickets</Link>
-            </div>
+                    <div>
+                        <p>Previous</p>
+                        <Link to="/develop/overview">Develop Overview</Link>
+                    </div>
+                    <div>
+                        <p>Next</p>
+                        <Link to="/develop/tickets">Tickets</Link>
+                    </div>
+                </div>
         </div>
     )
 }
