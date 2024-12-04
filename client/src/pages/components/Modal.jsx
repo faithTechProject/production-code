@@ -51,7 +51,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
                     <label htmlFor="areas_for_growth">Areas For Growth</label>
                     <textarea name="areas_for_growth" value={formState.areas_for_growth} onChange={handleChange} />
                 </div>
-                <button type="submit" onClick={handleSubmit}>Add Entry</button>
+                <button type="submit" onClick={handleSubmit}>Submit Entry</button>
             </form>
         </div>
     </div>
