@@ -73,7 +73,7 @@ export function Story() {
                 </div>
 
                 <div className={styles.stories_instructions}>
-                    <h1> Wher to share? </h1>
+                    <h1> Where to share? </h1>
                     <p> Share your story with your FaithTech community. Share regularly at community gatherings or meetups. Consider sharing with local churches, schools, nonprofits, or whoever might benefit from hearing your solution. </p>
 
                     <h1> How to Share?</h1>

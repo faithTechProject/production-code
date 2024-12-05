@@ -4,21 +4,20 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 export function DiscernTimeline() {
     
-    const[communication, setCommunication] = useState([])
-
-    useEffect(()=> {
-        axios.get(`http://localhost:3000/text-area-reflections/Timeline`).then(res => {
-            const response = res.data;
-            response.sort((a, b) => a.entry_pos - b.entry_pos);
-            setCommunication(response[0].reply);
+    useEffect(() => {
+        axios.get(`http://localhost:3000/text-area-reflections/Timeline`).then(res => { // Grab and load textarea(s) from db
+            var dbData = res.data;
+            dbData.sort((a, b) => a.entry_pos - b.entry_pos); // orders data by entry_pos
+            for (let response of dbData) {
+                document.getElementById('textarea'+response.entry_pos).value = response.reply;
+            }
         })
     }, [])
 
-    const handleSubmit = (e, replyData) => {
-        e.preventDefault(); 
-        axios.patch(`http://localhost:3000/text-area-reflections/?page=Timeline&entry_pos=${e.target.id}`, {
-            reply: replyData
-        })
+    function saveData(textarea) {
+        axios.patch(`http://localhost:3000/text-area-reflections/?page=Timeline&entry_pos=${textarea.target.id.substr(8)}`, {
+            reply: textarea.target.value
+        });
     }
     
     return (
@@ -68,14 +67,7 @@ export function DiscernTimeline() {
                     <h1>Communication Plan</h1>
                     <p>Share your team's communication method, platforms, or plan.</p>
                     <div className={styles.divbox}>
-                        <form id='0' onSubmit={(e) => handleSubmit(e, communication)}>
-                            <textarea className={styles.communication}
-                            placeholder="Type here..." 
-                            value={communication}
-                            onChange={(e) => setCommunication(e.target.value)}
-                            />
-                            <input type="submit" value="Save" />
-                        </form>
+                        <textarea id='textarea0' placeholder="Type here..." className={styles.communication} onChange={(e) => saveData(e)}></textarea>
                     </div>
                 </div>
                 <div className='bottomLinks'>

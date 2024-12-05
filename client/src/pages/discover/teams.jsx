@@ -169,8 +169,6 @@ export function DiscoverTeams() {
  
     return (
         <>
-            
-            <div className= {styles.body}>
             <div id={styles.oTopImage}>
                 <h3 className={styles.oTitle}>FORMING <sc>TEAMS</sc></h3>
             </div>
@@ -559,7 +557,6 @@ export function DiscoverTeams() {
                         <Link to="/discover/problem">Problems</Link>
                     </div>
                 </div>
-            </div>
             </div>
         </>
     );

@@ -48,6 +48,12 @@ background-image: url(../images/network.jpeg);
   font-weight: bold;
   resize: none;
   display: flex;
+  flex-wrap: wrap;
+}
+
+.problem .divbox p {
+  width: 100%;
+  margin: 5px 0px;
 }
 
 .problem .rotate_element {

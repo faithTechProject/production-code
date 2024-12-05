@@ -7,23 +7,14 @@ export function DiscernOverview() {
                 <div id={styles.oDiscernTopImage}>
                     <h3 className={styles.oTitle}>DISCERN</h3>
                 </div>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
             </div>
-            <div className={styles.discernBody}>
+            <div className={styles.highlight4D}>
                 <div id={styles.o4Ddiscern}></div>
                 <div className={styles.oDiscernBox}>
-                    <p className={styles.o2Dp2}>
-                        <b>Discern</b>
-                    </p>
-                    <p className={styles.o2Dp2}>
-                        Involve the wisdom of God through the Holy Spirit, testing and refining our approach continually
-                    </p>
+                    <h3>Discern</h3>
+                    <p>Involve the wisdom of God through the Holy Spirit, testing and refining our approach continually</p>
                 </div>
             </div>
-            <div className={styles.obody2}>
                 <h2 className={styles.o2Dh2}>What is Discern?</h2>
                 <p className={styles.o2Dp1}>
                     We involve the wisdom of God, testing and refining our approach continually. 
@@ -65,7 +56,6 @@ export function DiscernOverview() {
                         <Link to="/discern/brainstorm">Brainstorm</Link>
                     </div>
                 </div>
-            </div>
         </>
     )
 }

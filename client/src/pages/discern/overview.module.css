@@ -74,12 +74,29 @@
     border-radius: 25px;
 }
 
+.highlight4D {
+    border: var(--color-primary) solid 3px;
+    border-radius: 20px;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 120px;
+    margin-top: 20px;
+    background-color: white;
+    position: relative;
+}
+
 .oDiscernBox{
     width: 200px;
     border: 3px solid black;
-    margin-top: 15px;
-    margin-left: 70%;
     padding: 5px;
+    background-color: white;
+    position: absolute;
+    bottom: -75px;
+    right: -100px;
+}
+
+.oDiscernBox h3 {
+    text-align: center;
 }
 
 #o4Ddiscern{
@@ -90,6 +107,7 @@
     padding: 20px;
     margin: auto;
     margin-bottom: 20px;
+    border-radius: 20px;
 }
 
 iframe {

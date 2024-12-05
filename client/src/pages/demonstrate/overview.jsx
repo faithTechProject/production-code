@@ -6,24 +6,16 @@ import styles from './overview.module.css';
 export function DemonstrateOverview() {
     return (
         <>
-            <div className={styles.obody1}>
                 <div id={styles.oDemonstrateTopImage}>
                         <h3 className={styles.oTitle}>DEMONSTRATE</h3>
                 </div>
+                <div className={styles.highlight4D}>
                 <div className={styles.oDemonstrateBox}>
-                    <p className={styles.o4Dp2}>
-                        <b>Demonstrate</b>
-                    </p>
-                    <p className={styles.o4Dp2}>
-                        Redefine impact as friendship compounded by time and measure and demonstrate our impact redemptively
-                    </p>
+                    <h3>Demonstrate</h3>
+                    <p>Redefine impact as friendship compounded by time and measure and demonstrate our impact redemptively</p>
                 </div>
-            </div>
-            <div className={styles.demonstrateBody}>
                 <div id={styles.o4Ddemonstrate}></div>
-                <br></br>
             </div>
-            <div className={styles.obody2}>
                 <h2 className={styles.o4Dh2}>What is Demonstrate?</h2>
                 <p className={styles.o4Dp1}>In this final stage of the 4D Cycle, we redine impact from the greatest amount of force in the shortest amount of time to friendship compounded by time. 
                     Using this new equation, we measure and demonstrate our impact redemptively.
@@ -86,8 +78,6 @@ export function DemonstrateOverview() {
                     <br></br>
                 </p>
                 <iframe width="568" height="340" src="https://www.youtube.com/embed/qftWe7rriso" title="FaithTech Create 2023-Week 4 - Demonstrate-4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <br></br>
-            </div>
             <div className='bottomLinks'>
                     <div>
                         <p>Previous</p>
