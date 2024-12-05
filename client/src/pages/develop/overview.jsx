@@ -7,24 +7,15 @@ export function DevelopOverview() {
                 <div id={styles.oDevelopTopImage}>
                         <h3 className={styles.oTitle}>DEVELOP</h3>
                 </div>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
             </div>
-            <div className={styles.developBody}>
+            <div className='body'>
+            <div className={styles.highlight4D}>
                 <div id={styles.o4Ddevelop}></div>
-                <div className={styles.oDevelopBox}>
-                    <p className={styles.o3Dp2}>
-                        <b>Develop</b>
-                    </p>
-                    <p className={styles.o3Dp2}>
-                        Recognize that God establishes our steps to develop the solution, and co-develop with the Holy Spirit
-                    </p>
+                    <div className={styles.oDevelopBox}>
+                        <h3>Develop</h3>
+                        <p>Recognize that God establishes our steps to develop the solution, and co-develop with the Holy Spirit</p>
+                    </div>
                 </div>
-                <br></br>
-            </div>
-            <div className={styles.obody2}>
                 <h2 className={styles.o3Dh2}>What is Develop?</h2>
                 <p className={styles.o3Dp1}>In coming to a build decision, we have set our course. 
                     But we recognize that God establishes our steps to develop the solution.
@@ -66,7 +57,6 @@ export function DevelopOverview() {
                 </p>
                 <iframe width="568" height="340" src="https://www.youtube.com/embed/xTo2p8wMH6s" title="FaithTech Create 2023-Week 3 - Develop-3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 <br></br>
-            </div>
             <div className='bottomLinks'>
                     <div>
                         <p>Previous</p>
@@ -77,6 +67,7 @@ export function DevelopOverview() {
                         <Link to="/develop/co_creation">Co-Creation</Link>
                     </div>
                 </div>
+            </div>
         </>
     )
 }
