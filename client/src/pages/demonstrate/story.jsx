@@ -1,9 +1,9 @@
+import { Link } from "react-router-dom";
 import React from 'react';
 import styles from './story.module.css';
 import { useEffect, useState } from 'react';
 import axios from "axios";
-import team_pic from '../images/hostIdeaSessions.jpg';
-import { Link } from 'react-router-dom';
+import team_pic from '../images/hostIdeaSessions.jpg';  
 
 export function Story() {
     const [form_data, setform_data] = useState({
@@ -67,11 +67,8 @@ export function Story() {
            <div className={styles.hero_story_container}>
                 <div className={styles.hero_story_header}>
                     <h1> Share Your Story </h1>
-                    <div className={styles.image_placeholder}>
-                        <img className={styles.image_placeholder} src={team_pic} alt="Logo" />
-                    </div>
                 </div>
-
+                <div className="body">
                 <div className={styles.stories_instructions}>
                     <h1> Wher to share? </h1>
                     <p> Share your story with your FaithTech community. Share regularly at community gatherings or meetups. Consider sharing with local churches, schools, nonprofits, or whoever might benefit from hearing your solution. </p>
@@ -292,7 +289,7 @@ export function Story() {
                 </div>
                 <div className={styles.reflection_questions}>
                     <p> In what ways might this approach to demonstrating impact change your development process </p>
-                    <form >
+                    <form className={styles.reflection_questions_field}>
                          <textarea
                             id="share_info"
                             name="share_info"
@@ -314,6 +311,18 @@ export function Story() {
             </div>
 
            </div>
+           <div className='bottomLinks'>
+                    <div>
+                        <p>Previous</p>
+                        <Link to="/demonstrate/measure">Measure</Link>
+                    </div>
+                    <div>
+                        <p>Next</p>
+                        <Link to="/demonstrate/conclusion">Conclusion</Link>
+                    </div>
+                </div>
+
+        </div>
         </>
     )
 }

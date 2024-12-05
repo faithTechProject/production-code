@@ -1,0 +1,84 @@
+
+.th {
+    background-color: #ea542c;
+    padding: 30px;
+    color:white;
+    font-size: 28px;
+
+}
+.td {
+    border: 1px solid #ea542c;
+    padding: 4px;
+}
+.table {
+    border-collapse: collapse;
+    background-color: #f2f2f3;
+    border-radius: 5px;
+    border: 1px solid #ea542c;
+    width: 100%;
+    /*display: flex;
+    flex-direction: column;
+    gap: 15px;*/
+}
+
+
+
+.task {
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #ea542c;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    width: 100%;
+    
+    /*display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;*/
+    touch-action: none;
+}
+
+.select {
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    box-sizing: border-box;
+}
+
+.input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    
+}
+.add_button{
+    padding: 8px 12px;
+    font-size: 0.9em;
+    float:left;
+    background-color: #ea542c;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .remove_button{
+    padding: 8px 12px;
+    font-size: 0.9em;
+    background-color: #ea542c;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+.add_button:active {
+    background-color: #a71d2a;
+}
+
+.remove_button:active {
+    background-color: #a71d2a;
+}

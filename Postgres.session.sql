@@ -1,2 +1,1 @@
-SELECT * FROM co_creation
-ORDER BY id;
+SELECT * FROM migrations

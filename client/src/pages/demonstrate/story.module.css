@@ -2,20 +2,17 @@
   font-family: 'Arial', sans-serif;
   color: #333;
   background: #f9f9f9;
-  padding: 2%;
   border-radius: 10px;
 }
 
 .hero_story_header {
-  color: white;
-  position: relative;
+  height: 200px;
+	width: 100%;
+	background-image: url(../images/DiscernPicture.png);
+  background-size: cover;
+  align-items: center; 
+  justify-content: center; 
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: black;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .hero_story_header h1 {
@@ -25,25 +22,11 @@
   color: #ffffff;
 }
 
-.image_placeholder {
-  width: 150px;
-  height: 150px;
-
-  background-color: white; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #333;
-  border-radius: 50%;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  object-fit: cover;
-}
 
 .stories_instructions{
   border: 2px solid black;
   margin: 40px 0;
   padding: 20px;
-  background:  #ffbba0;; 
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -84,7 +67,7 @@
   width: 50%;
   padding: 15px;
   margin: 20px auto;
-  background: #ffbba0;;
+  background: rgb(255, 98, 36);
   color: white;
   border: none;
   border-radius: 8px;
@@ -125,7 +108,7 @@
 }
 
 .stories {
-  background: #ffbba0;; 
+ 
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -140,14 +123,20 @@
 .reflection_questions {
   margin-top: 10px;
   padding: 30px;
-  background: #ffbba0;
   border-radius: 10px;
   color: white;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
   color: black;
+  
+  
 }
-
+.reflection_questions_field
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .reflection_questions p {
   font-size: 20px;
   font-weight: bold;
@@ -159,6 +148,7 @@
   margin-top: 20px;
   border-radius: 10px;
   padding: 10px;
+  width: 80%;
 }
 
 .reflection_questions input[type="submit"] {

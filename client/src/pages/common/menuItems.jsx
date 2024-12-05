@@ -6,7 +6,7 @@ export const discoverItems = [
     { label: 'Overview', path: '/discover/overview' },
     { label: 'Projects', path: '/discover/projects' },
     { label: 'Teams', path: '/discover/teams' },
-    { label: 'Problems', path: '/discover/problem' },
+    { label: 'Problem', path: '/discover/problem' },
     { label: 'Lament', path: '/discover/lament'}
   ];
 export const discernItems = [
@@ -24,8 +24,10 @@ export const developItems = [
   
   export const demonstrateItems = [
     { label: 'Overview', path: '/demonstrate/overview'},
+    { label: 'Impact', path: '/demonstrate/impact'},
+    { label: 'Measure', path: '/demonstrate/measure'},
     { label: 'Story', path: '/demonstrate/story' },
     { label: 'Conclusion', path: '/demonstrate/conclusion' },
-    { label: 'Measure', path: '/demonstrate/measure'}
+
   ];
   

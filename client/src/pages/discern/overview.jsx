@@ -56,8 +56,14 @@ export function DiscernOverview() {
                 <iframe width="568" height="340" src="https://www.youtube.com/embed/0GSfhbMIeAE" title="FaithTech Create 2023-Week 2 - Discern" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 <br></br>
                 <div className='bottomLinks'>
-                    <Link to="/discover/lament">Lament</Link>
-                    <Link to="/discern/brainstorm">Brainstorm</Link>
+                    <div>
+                        <p>Previous</p>
+                        <Link to="/discover/lament">Lament</Link>
+                    </div>
+                    <div>
+                        <p>Next</p>
+                        <Link to="/discern/brainstorm">Brainstorm</Link>
+                    </div>
                 </div>
             </div>
         </>

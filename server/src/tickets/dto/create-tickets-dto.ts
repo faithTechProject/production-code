@@ -9,5 +9,4 @@ export class CreateTicketsDto {
     date_due: string;
     sprint: string;
     percent_complete: string;
-    is_open: boolean;
 }

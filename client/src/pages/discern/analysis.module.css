@@ -1,22 +1,16 @@
 .hero_analysis_page{
-  margin-top: 5%;
   font-family: 'Arial', sans-serif;
   color: #333;
   background: #f9f9f9;
 }
 .hero_analysis_header{
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: black;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   height: 200px;
 	width: 100%;
 	background-image: url(../images/DiscernPicture.png);
   background-size: cover;
+  align-items: center; 
+  justify-content: center; 
+  display: flex;
 }
   
   
@@ -26,7 +20,6 @@
     margin-left: 25%;
     color: white;
   }
-  
   
 
 .three_rc_analysis p{
@@ -43,7 +36,9 @@
 }
 .three_rc_analysis ul{
     margin-left: 4%;
-    text-align: center;  
+    text-align: center; 
+    list-style-type: none;
+  
     
 }
 .three_rc_analysis li{
@@ -68,28 +63,29 @@
 
 .input_wrapper input{
   margin: 2%;
-  height: fit-content;
-
-
+  height:40px;
+  width: 45%;
 }
+
 .input_wrapper textarea{
-  height: fit-content;
+  height: 40px;
   margin: 2%;
+  width: 45%;
 }
 
 .solutions_field{
   height: 100px;
 }
 
-.unassigned_Solutions{
-  margin: 2%; 
+.unassigned_solutions{
+  margin: 2%;
   display: flex;
   flex-direction: column;
-  margin-left: 300px;
+  text-align: center;
 }
 
 .unassigned_Solutions h2{
-  margin-top: 5%;
+  margin: 2%;
 }
 
 .solution_explanation{
