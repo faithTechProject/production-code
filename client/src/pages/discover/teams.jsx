@@ -303,7 +303,7 @@ export function DiscoverTeams() {
                     <DownloadButton 
                         fileName="RACI Matrix"
                         displayName="Download RACI Matrix"
-                        filePath="./pages/RACI_Matrix.pdf"
+                        filePath="/raci_matrix.png"
                     />
 
                 </div>
@@ -436,9 +436,11 @@ export function DiscoverTeams() {
                                     <div className={styles.line}></div>
                                 </div>
                             </div>
-                            <div className={styles.bottom_short_box}> </div>
+                            <div className={styles.bottom_short_box}> 
+                                <div className={styles.text}>It all points </div>
+                            </div>
                             <div className={styles.bottom_long_box}>
-                            <div className={styles.text}>It all points back to Jesus</div>   
+                            <div className={styles.text}> back to Jesus</div>   
                             </div>
                     
                         </div>
@@ -452,9 +454,11 @@ export function DiscoverTeams() {
                                     <div className={styles.line}></div>
                                 </div>
                             </div>
-                            <div className={styles.bottom_short_box}> </div>
+                            <div className={styles.bottom_short_box}>
+                                <div className={styles.text}>Led  by </div>
+                             </div>
                             <div className={styles.bottom_long_box}>
-                                <div className={styles.text}>Led by the Spirit</div>    
+                                <div className={styles.text}>the Spirit</div>    
                             </div>
                             
                         </div>
@@ -468,9 +472,11 @@ export function DiscoverTeams() {
                                     <div className={styles.line}></div>
                                 </div>
                             </div>
-                            <div className={styles.bottom_short_box}> </div>
+                            <div className={styles.bottom_short_box}> 
+                            <div className={styles.text}>Take a sacrificial </div>
+                            </div>
                             <div className={styles.bottom_long_box}> 
-                                <div className={styles.text}>Take a sacrificial posture</div>
+                                <div className={styles.text}> posture</div>
                             </div>
                             
                         </div>
@@ -484,9 +490,11 @@ export function DiscoverTeams() {
                                     <div className={styles.line}></div>
                                 </div>
                             </div>
-                            <div className={styles.bottom_short_box}> </div>
+                            <div className={styles.bottom_short_box}> 
+                            <div className={styles.text}>People</div>
+                            </div>
                             <div className={styles.bottom_long_box}> 
-                                <div className={styles.text}>People over Products</div>
+                                <div className={styles.text}> over Products</div>
                             </div> 
                         </div>
                         <div className={styles.pillar}>
@@ -499,8 +507,7 @@ export function DiscoverTeams() {
                                     <div className={styles.line}></div>
                                 </div>
                             </div>
-                            <div className={styles.bottom_short_box}> </div>
-                            <div className={styles.bottom_long_box}> 
+                            <div className={styles.top_short_box}>
                                 <div class={styles.text}>Don't take ourselves </div>
                             </div>
                             <div className={styles.bottom_long_box}> 

@@ -18,6 +18,14 @@ export function DevelopCoCreation() {
     const isMounted = useRef(false)
     const[tasks, setTasks] = useState([])
 
+    const [solutions, set_solutions] = useState({
+        reimagine: [],
+        receive: [],
+        create: [],
+    })
+
+    
+
     useEffect(() => {
         if (!isMounted.current){
             axios.get(`http://localhost:3000/tickets`).then(res => {
@@ -151,8 +159,6 @@ export function DevelopCoCreation() {
 
             const data = response.data.map((item) => item)
             data.sort((a,b) => a.id - b.id)
-
-
             const co_creation_response = data;
             setRequestForm0(co_creation_response[0].data);
             setRequestForm1(co_creation_response[1].data);
@@ -160,17 +166,103 @@ export function DevelopCoCreation() {
             setRequestForm3(co_creation_response[3].data);
             setRequestForm4(co_creation_response[4].data);
         })
+
+        axios
+              .get("http://localhost:3000/analysis")
+
+              
+              .then(response => {
+                // Assuming fetchedData is the object containing your data
+                const fetchedData = response.data
+                
+                // Assuming each object has a `category` field
+                const reimagineSolutions = fetchedData
+                .filter(item => item.category === "Reimagine")
+                .map(item => item.solution);
+                
+                const receiveSolutions = fetchedData
+                .filter(item => item.category === "Receive")
+                .map(item => item.solution);
+
+                const createSolutions = fetchedData
+                .filter(item => item.category === "Create")
+                .map(item => item.solution);
+
+                set_solutions(prevSolutions => ({
+                    ...prevSolutions, // Keep existing state
+                    receive: receiveSolutions,
+                    reimagine: reimagineSolutions,
+                    create: createSolutions,
+                  }));
+              })
+
+              
     } ,[])
+
+    //Timer
+    let timerInterval;
+    let timeRemaining = 600;
+    let isRunning = false;
+
+
+    const startButton = document.getElementById('startButton');
+    if (startButton) {
+        startButton.addEventListener('click', startTimer);
+    }
+
+    const pauseButton = document.getElementById('pauseButton');
+    if (pauseButton) {
+        pauseButton.addEventListener('click', pauseTimer);
+    }
+
+    const resetButton = document.getElementById('resetButton');
+    if (resetButton){
+        resetButton.addEventListener('click', resetTimer);
+    }
+
+    const timerDisplay = document.getElementById('timerDisplay')
+    
+    function startTimer() {
+        if (!isRunning) {
+            timerInterval = setInterval(() => {
+            timeRemaining--;
+            updateDisplay();
+            }, 1000);
+            isRunning = true;
+        }
+    }
+
+    function pauseTimer() {
+        if (isRunning) {
+            clearInterval(timerInterval);
+            isRunning = false;
+        }
+    }
+
+    function resetTimer() {
+        clearInterval(timerInterval);
+        timeRemaining = 600;
+        isRunning = false;
+        updateDisplay();
+    }
+
+    function updateDisplay() {
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        timerDisplay.textContent = `${pad(minutes)}:${pad(seconds)}`;
+    }
+
+    function pad(number) {
+        return (number < 10 ? '0' : '') + number;
+    }
 
     return (
         <div className={styles.hero_co_creatioin_container}>
             <div className={styles.hero_co_creatoin_header}>
                 <h1> Co-Creation </h1>
-                <div className={styles.image_placeholder}>
-                    <p>Team pic</p>
-                </div>
             </div>
-
+            
+            <div className='body'>
             <div className={styles.hero_solutions}>
                 <p> Before starting the co-creation cycle choose one of your solutions from the discern stage  </p>
                 <p> click on one of the solutions below </p>
@@ -179,17 +271,29 @@ export function DevelopCoCreation() {
                     <div className={styles.three_cs}>
                         <div className={styles.solutions}>
                             <h1> Reimagine </h1>
-                            <p> some text </p>
+                            {solutions.reimagine.map((item, index) => (
+                            <div key={index} className={styles.solution_item}>
+                                {item}
+                            </div>
+                            ))}
                         </div>
                         <div className={styles.solutions}>
-                            <h1> Recieve </h1>
-                            <p> some text </p>
+                            <h1> Receive </h1>
+                            {solutions.receive.map((item, index) => (
+                            <div key={index} className={styles.solution_item}>
+                                {item}
+                            </div>
+                            ))}
                         </div>
                         <div className={styles.solutions}>
                             <h1> Create </h1>
-                            <p> some text </p>
+                            {solutions.create.map((item, index) => (
+                            <div key={index} className={styles.solution_item}>
+                                {item}
+                            </div>
+                            ))}
                         </div>
-                    </div>
+                     </div>
                 </div>
             </div>
 
@@ -210,15 +314,15 @@ export function DevelopCoCreation() {
                 </div>
 
                 <div className= {styles.Receive}>
-                    <h> Receive </h>
+                    <h2> Receive </h2>
                     <p> Spend 10 minutes in silence, listening for guidance </p>
                     <div className= {styles.timer}>
-                        <p className= {styles.time_testing}> time </p>
+                        <p className= {styles.time_testing} id="timerDisplay"> 10:00 </p>
                     </div>
                     <div className= {styles.timer_controls}>
-                        <button className= {styles.start} > Start </button>
-                        <button className= {styles.pause} > Pause </button>
-                        <button className= {styles.delete} > Delete </button>
+                        <button id='startButton' className= {styles.start} > Start </button>
+                        <button id='pauseButton' className= {styles.pause} > Pause </button>
+                        <button id='resetButton' className= {styles.delete} > Delete </button>
                     </div>
                     <p> Note any thoughts, images or scriptures that come to mind in these 10 minutes here. Try to keep your notes brief, so the focus of this time can be to listen and recieve </p>
                     <form className='request_form' id='1' onSubmit={(e) => save(e,requestForm1)}>
@@ -232,7 +336,7 @@ export function DevelopCoCreation() {
                 </div>
 
                 <div className= {styles.review}>
-                    <h> Review </h>
+                    <h2> Review </h2>
                     <p> Use this space to expand on the insights you recieved. Write down what God was telling you. Talk about the connections between the thoughts, images, and/or scriptures that come to mind. Write about how you can use these insights to guide you through the development stage </p>
                     <form className='request_form' id='2' onSubmit={(e) => save(e,requestForm2)}>
                         <textarea name="skills" rows={10} cols={20}
@@ -245,7 +349,7 @@ export function DevelopCoCreation() {
                 </div>
 
                 <div className='render'>
-                    <h> Render </h>
+                    <h2> Render </h2>
                     <p> Outline the next steps for implementing these insights. Focus on what can be accomplished in the upcoming or current sprint. Each 'step' is a task, similar to what you entered in your RACI Matrix, except more specific. For example, let's say 3 of the tasks on your matrix were design features, develop features, and test features. Here, it'd be the same, except for a specific feature for each task. It could even just be part of a feature if you think it'll take more than one sprint to accomplish. In the table below, enter the step, a description of it, and which person or people are responsible for it.</p>
                 </div>
             </div>
@@ -286,6 +390,7 @@ export function DevelopCoCreation() {
                         <Link to="/develop/tickets">Tickets</Link>
                     </div>
                 </div>
+        </div>
         </div>
     )
 }
