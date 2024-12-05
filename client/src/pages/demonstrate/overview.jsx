@@ -9,6 +9,7 @@ export function DemonstrateOverview() {
                 <div id={styles.oDemonstrateTopImage}>
                         <h3 className={styles.oTitle}>DEMONSTRATE</h3>
                 </div>
+                <div className='body'>
                 <div className={styles.highlight4D}>
                 <div className={styles.oDemonstrateBox}>
                     <h3>Demonstrate</h3>
@@ -88,6 +89,7 @@ export function DemonstrateOverview() {
                         <Link to="/demonstrate/impact">Impact</Link>
                     </div>
                 </div>
+            </div>
         </>
     )
 }

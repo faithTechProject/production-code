@@ -6,7 +6,7 @@ export function DiscoverOverview() {
                 <div id={styles.oDiscoverTopImage}>
                         <h3 class={styles.oTitle}>DISCOVER</h3>
                 </div> 
-                <div className={styles.body}>
+                <div className='body'>
                 <div className={styles.highlight4D}>
                     <div class={styles.oDiscoverBox}>
                         <h3>Discover</h3>

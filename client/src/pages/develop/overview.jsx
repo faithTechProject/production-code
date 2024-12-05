@@ -8,6 +8,7 @@ export function DevelopOverview() {
                         <h3 className={styles.oTitle}>DEVELOP</h3>
                 </div>
             </div>
+            <div className='body'>
             <div className={styles.highlight4D}>
                 <div id={styles.o4Ddevelop}></div>
                     <div className={styles.oDevelopBox}>
@@ -66,6 +67,7 @@ export function DevelopOverview() {
                         <Link to="/develop/co_creation">Co-Creation</Link>
                     </div>
                 </div>
+            </div>
         </>
     )
 }

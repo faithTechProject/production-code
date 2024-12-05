@@ -8,6 +8,7 @@ export function DiscernOverview() {
                     <h3 className={styles.oTitle}>DISCERN</h3>
                 </div>
             </div>
+            <div className='body'>
             <div className={styles.highlight4D}>
                 <div id={styles.o4Ddiscern}></div>
                 <div className={styles.oDiscernBox}>
@@ -56,6 +57,7 @@ export function DiscernOverview() {
                         <Link to="/discern/brainstorm">Brainstorm</Link>
                     </div>
                 </div>
+            </div>
         </>
     )
 }
