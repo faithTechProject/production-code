@@ -1,7 +1,6 @@
 import styles from './analysis.module.css';
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import React, { useEffect, useState } from 'react';
 import { DndContext } from '@dnd-kit/core';
 import { Draggable } from './draggable';
 import { Droppable } from './droppable';
@@ -82,6 +81,7 @@ export function DiscernAnalysis() {
     setSolutions(newList);
     axios.delete(`http://localhost:3000/analysis/?id=${idToRemove}`)
   };
+
 
   // Close icon as SVG
   const CloseIcon = () => (
