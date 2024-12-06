@@ -1,23 +1,7 @@
-import style from "./CoCreationTable.module.css"
 import axios from "axios";
-import { useSortable } from "@dnd-kit/sortable"
-import { CoCreation } from "../develop/co_creation";
-import  {CSS} from "@dnd-kit/utilities";
-import { useEffect, useState } from "react";
-export const Task = ({
-    tasks,
-    setTasks,
-    id,
-    status,
-    row_index,
-    title,
-    description,
-    assigned_to,
-    date_created,
-    date_due,
-    sprint,
-    percent_complete,
-    }) => {
+import style from "./CoCreationTable.module.css"
+
+export const Task = ({steps, setSteps, id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete }) => {
 
     const CloseIcon = () => (
         <svg 
@@ -36,136 +20,117 @@ export const Task = ({
     );
 
     const handleTaskChange = (value, id, property) => {
-        console.log(tasks);
-        let newList = JSON.parse(JSON.stringify(tasks))
+        let newList = JSON.parse(JSON.stringify(steps))
         newList[newList.findIndex(newList => newList.id === id)][property] = value;
         
         axios.patch(`http://localhost:3000/tickets/update?id=${id}`, {
             [property]: value
         })
 
-        setTasks(newList)
+        setSteps(newList)
     }
 
-    const removeTask = (id) => {
+    const removeTask = (id, status) => {
         axios.delete(`http://localhost:3000/tickets/${id}`)
-        const taskIndex = tasks.findIndex(tasks => tasks.id === id)
-        const status = tasks[taskIndex].status;
 
-        let newTasks = tasks.filter((_, index) => index !== taskIndex)
+        // Determine the index of the step that needs to be deleted in the steps hook and then remove the step task.
+        let stepList = steps.filter((_, index) => index !== steps.findIndex(steps => steps.id === id))
 
-        for (let i=0; i<newTasks.length; ++i) {
-            if (newTasks[i].id > id) {
-                --newTasks[i].id
+        // Reduce the id values of the steps that where values higher than the step just deleted.
+        for (let i=0; i<stepList.length; ++i) {
+            if (stepList[i].id > id) {
+                --stepList[i].id
             }
         }
 
+        // Update the row_indicies of the group status that had a step removed.
         let row_index = 0;
-        for (let i=0; i<newTasks.length; ++i) {
-            if (newTasks[i].status === status) {
-                newTasks[i].row_index = row_index;
+        for (let i=0; i<stepList.length; ++i) {
+            if (stepList[i].status === status) {
+                stepList[i].row_index = row_index;
                 ++row_index
             }
         }
 
-
-        setTasks(newTasks)
+        setSteps(stepList)
     }
 
-    const updateRowIndecies = (status1, status2, list) => {
-        let row_index1 = 0;
-        let row_index2 = 0;
+
+    const handleTaskChangeDropDown = (id, newStatus, oldStatus) => {
         
-        for (let i=0; i<list.length; ++i) {
-            if (list[i].status === status1) {
-                list[i].row_index = row_index1;
-                ++row_index1
+        let newList = JSON.parse(JSON.stringify(steps))
+
+        // Extract the step that matches the id for later.
+        const step = newList.find((step) => step.id === id)
+        step.status = newStatus
+        
+        // Remove the step that matches the id.
+        newList = newList.filter((step) => step.id !== id)
+        
+        let indexToSplice = newList.indexOf((newList.find((step) => (step.status === newStatus))));
+        if (indexToSplice === -1) {indexToSplice = 0}
+        newList.splice(indexToSplice, 0, step)
+
+        // Update the changed two group statuses.
+        let row_index_new_status = 0;
+        let row_index_old_status = 0;
+        for (let i=0; i<newList.length; ++i) {
+            if (newList[i].status === newStatus) {
+                newList[i].row_index = row_index_new_status;
+                ++row_index_new_status
             }
-            if (list[i].status === status2) {
-                list[i].row_index = row_index2;
-                ++row_index2
+            if (newList[i].status === oldStatus) {
+                newList[i].row_index = row_index_old_status;
+                ++row_index_old_status
             }
         }
-        return list;
-    }
-
-    const handleTaskChangeDropDown = (value, id, property) => {
-        const index = tasks.findIndex(tasks => tasks.id === id)
-        const status = tasks[index].status;
-        if (value !== status) {
-            let newList = JSON.parse(JSON.stringify(tasks))
-
-            let replaceIndex = 0;
-            for (let i=0; i<newList.length; ++i) {
-                if (newList[i].status === value) {
-                    replaceIndex = i;
-                    break;
-                }
-            }
-
-            newList[index][property] = value;
-            
-            if (index >= replaceIndex) {
-                newList.splice(replaceIndex, 0, newList.splice(index, 1)[0])
-            }
-            else {
-                newList.splice(replaceIndex - 1, 0, newList.splice(index, 1)[0])
-            }
-
-            newList = updateRowIndecies(status, value, newList)
-            axios.patch(`http://localhost:3000/tickets/?id=${id}`, {
-              id: id,
-                status: value,
-                row_index: 0
-            })
-            setTasks(newList)
-        }
+        
+        axios.patch(`http://localhost:3000/tickets/?id=${id}`, {
+            id: id,
+            status: newStatus,
+            row_index: 0
+        })
+        setSteps(newList)
     }
     
     return (
-        <tr className={style.task}>
-
+        <tr className={style.step}>
             <td className={style.td}>
                 <textarea className={style.input}
                     placeholder="Enter text here..."
                     value={title}
                     onChange={(e) => handleTaskChange(e.target.value, id, 'title')}/>
                 </td>
-            
             <td className={style.td}>
-                <textarea className={style.input} name="skills"
+                <textarea className={style.input}
                     placeholder="Enter text here..."
                     value={description}
                     onChange={(e) => handleTaskChange(e.target.value, id, 'description')}
-                    /></td>
-
+                    />
+            </td>
             <td className={style.td}>
-                <select className={style.select} value={status} onChange={(e) => handleTaskChangeDropDown(e.target.value, id, 'status')}>
-                    
+                <select className={style.select} value={status} onChange={(e) => handleTaskChangeDropDown(id, e.target.value, status)}>
                     <option value="not started">Not Started</option>
                     <option value="in progress">In Progress</option>
                     <option value="completed">Completed</option>
                 </select>
-                
             </td>
             <td className={style.td}>        
-                    <textarea className={style.input} name="skills"
+                    <textarea className={style.input}
                     placeholder="Enter text here..."
                     value={assigned_to}
                     onChange={(e) => handleTaskChange(e.target.value, id, 'assigned_to')}
                     />
-
-                </td>
-            
+                </td>   
             <td>
                 <button
                     type="button"
-                    onClick={() => removeTask(id)}
+                    onClick={() => removeTask(id, status)}
                     className={style.remove_button}
                     >
                     <CloseIcon />
                 </button>
-            </td>
-        
-        </tr>) 
+            </td>      
+        </tr>
+    ) 
 }
