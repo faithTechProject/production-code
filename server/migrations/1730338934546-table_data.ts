@@ -74,6 +74,17 @@ export class TableData1730338934546 implements MigrationInterface {
         await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete) VALUES (5, 'in progress', 1, 'Example5', 'Example5 description', 'Jacob', '11/01/2024', '11/15/2024', 'Sprint #3', '23%')`);
         await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete) VALUES (6, 'completed', 0, 'Example6', 'Example6 description', 'Martin', '11/05/2024', '11/20/2024', 'Sprint #8', '46%')`);
 
+        // Demonstrate: Measure
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (100, 'Demonstrate', 'Measure', 0, 'List of Ideas', '', '0')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (101, 'Demonstrate', 'Measure', 1, 'List of Ideas', '', '1')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (102, 'Demonstrate', 'Measure', 2, 'List of Ideas', '', '2')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (103, 'Demonstrate', 'Measure', 3, 'List of Ideas', '', '3')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (104, 'Demonstrate', 'Measure', 4, 'List of Ideas', '', '4')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (105, 'Demonstrate', 'Measure', 5, 'List of Ideas', '', '5')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (106, 'Demonstrate', 'Measure', 6, 'List of Ideas', '', '6')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (107, 'Demonstrate', 'Measure', 7, 'List of Ideas', '', '7')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (108, 'Demonstrate', 'Measure', 8, 'List of Ideas', '', '8')`);
+
         //Demonstrate: conclusion
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (25, 'Demonstrate', 'Conclusion', 0, '', '', '')`);
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, title, subtitle, reply) VALUES (26, 'Demonstrate', 'Conclusion', 1, '', '', '')`);

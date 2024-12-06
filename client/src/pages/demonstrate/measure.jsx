@@ -1,16 +1,113 @@
 import { Link } from "react-router-dom";
-import styles from './measure.module.css'
+import { Chart } from "chart.js/auto";
+import { Bar, Pie } from "react-chartjs-2";
+import { useEffect } from 'react';
+import axios from 'axios';
+import styles from './measure.module.css';
 
-function toggle(x) {
-    console.log(getComputedStyle(document.getElementsByClassName(styles.iCardCover)[x]).getPropertyValue('height'))
-    if (getComputedStyle(document.getElementsByClassName(styles.iCardCover)[x]).getPropertyValue('height') !== '90px') {
-        document.getElementsByClassName(styles.iCardCover)[x].style.setProperty('height','var(--button-height)')
-    } else {
-        document.getElementsByClassName(styles.iCardCover)[x].style.setProperty('height','calc(var(--var-height) - var(--image-height))')
-    }
-}
 
 export function DemonstrateMeasure() {
+    function toggle(x) {
+
+        console.log(getComputedStyle(document.getElementsByClassName(styles.iCardCover)[x]).getPropertyValue('height'))
+        if (getComputedStyle(document.getElementsByClassName(styles.iCardCover)[x]).getPropertyValue('height') !== '90px') {
+            document.getElementsByClassName(styles.iCardCover)[x].style.setProperty('height','var(--button-height)')
+        } else {
+            document.getElementsByClassName(styles.iCardCover)[x].style.setProperty('height','calc(var(--var-height) - var(--image-height))')
+        }
+    }
+    function updateChart(id) {
+        var pageData = document.getElementsByTagName('input');
+        var chartData = [];
+        for (var i in pageData) {
+            if (pageData[i].value != "") {
+                chartData.push(parseInt(pageData[i].value));
+            } else {
+                chartData.push(0);
+            }}
+        if (id<3) {
+            var updatedData = parseInt((chartData[0+(id*3)]+chartData[1+(id*3)]+chartData[2+(id*3)]+0.5)/3);
+            Chart.getChart('chart'+id).data.datasets[0].data = [updatedData,100-updatedData];
+        }
+        var set0 = parseInt((chartData[0]+chartData[1]+chartData[2]+0.5)/3);
+        var set1 = parseInt((chartData[3]+chartData[4]+chartData[5]+0.5)/3);
+        var set2 = parseInt((chartData[6]+chartData[7]+chartData[8]+0.5)/3);
+        Chart.getChart('chart3').data.datasets[0].data = [set0,set1,set2];
+        Chart.getChart('chart3').update();
+        Chart.getChart('chart'+id).update();
+    }
+
+    useEffect(() => {
+        axios.get(`http://localhost:3000/text-area-reflections/Measure`).then(res => { // Grab and load textarea(s) from db
+            var dbData = res.data;
+            dbData.sort((a, b) => a.entry_pos - b.entry_pos); // orders data by entry_pos
+            for (let response of dbData) {
+                document.getElementById('textarea'+response.entry_pos).value = response.reply;
+                updateChart(0);
+                updateChart(1);
+                updateChart(2);
+                updateChart(3);
+            }
+        })
+
+        // Charts
+        const pieLabels = ["Achieved","Room to Grow"];
+        const pieColors = ["#ffb020","#ea542c"];
+        const pieData = {
+            type: 'pie',
+            data: {
+                labels: pieLabels,
+                datasets: [
+                    {
+                        label: pieLabels,
+                        data: [0,0],
+                        backgroundColor: pieColors,
+                    },
+                ],
+            }
+        };
+        if (Chart.getChart('chart0') == undefined) {
+            const ctx0 = document.getElementById('chart0').getContext('2d');
+            const ctx1 = document.getElementById('chart1').getContext('2d');
+            const ctx2 = document.getElementById('chart2').getContext('2d');
+            const pie0 = new Chart(ctx0, pieData);
+            const pie1 = new Chart(ctx1, pieData);
+            const pie2 = new Chart(ctx2, pieData);
+
+            const ctx3 = document.getElementById('chart3').getContext('2d');
+            const bar0 = new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: ["Depth of Relationship Formed","Community Transformation","Spiritual Growth"],
+                    datasets: [
+                        {
+                            data: [10,20,30],
+                            backgroundColor: ["red","orange","blue"],
+                        },
+                    ],
+                },
+                options: {
+                    plugins: {
+                        legend: {display: false},
+                    },
+                    scales: {
+                        y: {
+                            suggestedMax: 100
+                        }
+                    }
+                }
+            })
+        }
+    }, [])
+
+    function saveData(textarea) {
+        var id = textarea.target.id.substr(8);
+        updateChart(parseInt(id/3));
+        axios.patch(`http://localhost:3000/text-area-reflections/?page=Measure&entry_pos=${id}`, {
+            reply: textarea.target.value
+        });
+    }
+
     return (
         <>
             <div id={styles.oTopImage}>
@@ -18,7 +115,7 @@ export function DemonstrateMeasure() {
             </div>
             <div className='body'>
                 <h1>Measuring Redemptive Impact</h1>
-                <p>Use this guide to create a simple framework for measruing the redemptive impact of your solution.
+                <p>Use this guide to create a simple framework for measuring the redemptive impact of your solution.
                     The goal of this is to quantify your redemptive impact, so you can better visualize the success 
                     of your solution as well as see how much room for growth there is.</p>
                 <p>
@@ -72,13 +169,17 @@ export function DemonstrateMeasure() {
                 </div>
                 <p>Please take a moment to perform your calculations, then input them into the following table</p>
                 <h2 className={styles.solution}>Solution: </h2>
+                <div className={styles.lineDown}></div>
+                <div className={styles.lineAcross}></div>
                 <div className={styles.alignChart}>
                     <div className={styles.column}>
+                        <div className={styles.arrowDown}></div>
                         <h3>Depth of Relationships Formed</h3>
+                        <div className={styles.arrowDown}></div>
                         <div className={styles.relationship}>
                             <p id="relationship1" className={styles.relationshipTitle}>Relationship</p>
                             <div className={styles.percentage}>
-                                <input type="text"></input>
+                                <input type="text" id="textarea0" onChange={(e)=>saveData(e)}></input>
                                 <p>%</p>
                             </div>
                         </div>
@@ -86,20 +187,83 @@ export function DemonstrateMeasure() {
                         <div className={styles.relationship}>
                             <p id="relationship2" className={styles.relationshipTitle}>Relationship</p>
                             <div className={styles.percentage}>
-                                <input type="text"></input>
+                                <input type="text" id="textarea1" onChange={(e)=>saveData(e)}></input>
                                 <p>%</p>
                             </div>
                         </div>
-
+                        <div className={styles.arrowDown}></div>
                         <div className={styles.relationship}>
                             <p id="relationship3" className={styles.relationshipTitle}>Relationship</p>
                             <div className={styles.percentage}>
-                                <input type="text"></input>
+                                <input type="text" id="textarea2" onChange={(e)=>saveData(e)}></input>
                                 <p>%</p>
                             </div>
                         </div>
+                        <div className={styles.arrowDown}></div>
+                        <canvas id="chart0"></canvas>
+                    </div>
+                    <div className={styles.column}>
+                        <div className={styles.arrowDown}></div>
+                        <h3>Community Transformation</h3>
+                        <div className={styles.arrowDown}></div>
+                        <div className={styles.relationship}>
+                            <p id="relationship1" className={styles.relationshipTitle}>Relationship</p>
+                            <div className={styles.percentage}>
+                                <input type="text" id="textarea3" onChange={(e)=>saveData(e)}></input>
+                                <p>%</p>
+                            </div>
+                        </div>
+                        <div className={styles.arrowDown}></div>
+                        <div className={styles.relationship}>
+                            <p id="relationship2" className={styles.relationshipTitle}>Relationship</p>
+                            <div className={styles.percentage}>
+                                <input type="text" id="textarea4" onChange={(e)=>saveData(e)}></input>
+                                <p>%</p>
+                            </div>
+                        </div>
+                        <div className={styles.arrowDown}></div>
+                        <div className={styles.relationship}>
+                            <p id="relationship3" className={styles.relationshipTitle}>Relationship</p>
+                            <div className={styles.percentage}>
+                                <input type="text" id="textarea5" onChange={(e)=>saveData(e)}></input>
+                                <p>%</p>
+                            </div>
+                        </div>
+                        <div className={styles.arrowDown}></div>
+                        <canvas id="chart1"></canvas>
+                    </div>
+                    <div className={styles.column}>
+                        <div className={styles.arrowDown}></div>
+                        <h3>Spiritual Growth</h3>
+                        <div className={styles.arrowDown}></div>
+                        <div className={styles.relationship}>
+                            <p id="relationship1" className={styles.relationshipTitle}>Relationship</p>
+                            <div className={styles.percentage}>
+                                <input type="text" id="textarea6" onChange={(e)=>saveData(e)}></input>
+                                <p>%</p>
+                            </div>
+                        </div>
+                        <div className={styles.arrowDown}></div>
+                        <div className={styles.relationship}>
+                            <p id="relationship2" className={styles.relationshipTitle}>Relationship</p>
+                            <div className={styles.percentage}>
+                                <input type="text" id="textarea7" onChange={(e)=>saveData(e)}></input>
+                                <p>%</p>
+                            </div>
+                        </div>
+                        <div className={styles.arrowDown}></div>
+                        <div className={styles.relationship}>
+                            <p id="relationship3" className={styles.relationshipTitle}>Relationship</p>
+                            <div className={styles.percentage}>
+                                <input type="text" id="textarea8" onChange={(e)=>saveData(e)}></input>
+                                <p>%</p>
+                            </div>
+                        </div>
+                        <div className={styles.arrowDown}></div>
+                        <canvas id="chart2"></canvas>
                     </div>
                 </div>
+                <canvas id="chart3"></canvas>
             </div>
             <div className='bottomLinks'>
                     <div>
