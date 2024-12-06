@@ -5,7 +5,6 @@ import { useSortable } from "@dnd-kit/sortable";
 import { Task } from "./CoCreationTasks";
 
 export const CoCreationTable = ({tasks, setTasks}) => {
-    console.log(tasks)
     return (
     <table className={style.table}>
         <thead>

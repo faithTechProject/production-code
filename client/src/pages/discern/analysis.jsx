@@ -20,6 +20,8 @@ export function DiscernAnalysis() {
       })
     }, [])
   // Function to handle Solutions change
+  
+  
   const handleSolutionsChange = (id, field, value) => {
     //console.log(id)
     //console.log(field)

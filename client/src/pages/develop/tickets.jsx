@@ -97,7 +97,7 @@ export function DevelopTickets() {
     </div>
     <div>    
         <p className={styles.kevin_text}>
-            Tasks added on the co-creation page will be automatically displayed here in ticket format.  
+            Steps added on the co-creation page will be automatically displayed here in ticket format.  
             You can add additional ticket tasks on this page and the co-creation page will reflect the changes. Tickets can be rearranged into different categories depending on the status and can be edited or deleted.  
             There are more text areas for input than on the co-creation page, allowing more details to be added about tasks.
             Creating tickets helps to track and organize assignments and progress that team members are making on a project.   
