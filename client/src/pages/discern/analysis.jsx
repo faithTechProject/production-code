@@ -4,28 +4,42 @@ import React, { useEffect, useState } from 'react';
 import { DndContext } from '@dnd-kit/core';
 import { Draggable } from './draggable';
 import { Droppable } from './droppable';
-import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
 
 export function DiscernAnalysis() {
-  const [Solutions, setSolutions] = useState([
+  //const [Solutions, setSolutions] = useState([]);
     //{ id: 1, solution: '', explanation: '', category: 'unassigned' }
+  const [Solutions, setSolutions] = useState([
+    //{firstBox: []},
+    //{secoundBox: []},
+    //{thirdBox: []},
+    //{forthBox: []}
   ]);
+
   
   useEffect(() => {
     axios.get(`http://localhost:3000/analysis`).then(res => {
       res.data.sort((a, b) => a.id - b.id);
       setSolutions(res.data.map((item) => item))
+      
+      /*
+      let myArray0 = res.data[0].input;
+      let myArray1 = res.data[1].input;
+      let myArray2 = res.data[2].input;
+      let myArray3 = res.data[3].input;
+
+      let finalArray = [...myArray0, ...myArray1, ...myArray2, ...myArray3,]
+      setSolutions(finalArray)
+      //res.data.sort((a, b) => a.id - b.id);
+      //setSolutions(res.data.map((item) => item))
+      */
       })
     }, [])
   // Function to handle Solutions change
   
   
   const handleSolutionsChange = (id, field, value) => {
-    //console.log(id)
-    //console.log(field)
-    //console.log(value)
     const updatedSolutions = [...Solutions];
     let index = 0;
     for(let i=0; i<Solutions.length; ++i) {
@@ -112,8 +126,6 @@ export function DiscernAnalysis() {
       axios.patch(`http://localhost:3000/analysis/?id=${active.id}`, {
         category: over.id 
     })
-      //console.log(active.id);
-      //console.log(over.id);
       setSolutions((prevSolutions) =>
         prevSolutions.map((solution) =>
           
@@ -163,7 +175,6 @@ export function DiscernAnalysis() {
             {Solutions.map((solution, index) => (
               
               <div key={solution.id} className={styles.solutions_field}>
-                {solution.id}
                 <div className={styles.input_wrapper}>
                   <input
                     type="text"
@@ -207,7 +218,6 @@ export function DiscernAnalysis() {
                 .map((solution) => (
                   <Draggable key={solution.id} id={solution.id}>
                     <div className={styles.solution_explanation}>
-                    {solution.id + "hi"}
                       <p1>{solution.solution || 'Unnamed Solution'}</p1>
                       <p>{solution.explanation || 'No explanation provided.'}</p>
                     </div>

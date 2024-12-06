@@ -3,7 +3,5 @@ export class CreateTextAreaReflectionsDto {
     category: string;
     page: string;
     entry_pos: number;
-    title: string;
-    subtitle: string;
     reply: string;
 }

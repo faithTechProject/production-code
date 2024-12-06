@@ -1,3 +1,4 @@
+// tickets.jsx
 import axios from 'axios';
 import { DragNDrop } from '../components/TicketComponent';
 import { Link } from 'react-router-dom';
@@ -82,7 +83,7 @@ export function DevelopTickets() {
             }
         )
 
-        // create a deep copy of the data list and add in the new ticket.
+        // create a deep copy of the data list and add in the new ticket.  This is so that the react hook will be updated with setData().
         let newList = JSON.parse(JSON.stringify(data))
         newList[groupIndex].tasks = [...newList[groupIndex].tasks, {id: nextId + 1, status: newList[groupIndex].group, row_index: newList[groupIndex].tasks.length, title: 'title', description: '', date_created: '', sprint: '', date_due: '', percent_complete: '', assigned_to: ''}];
         
@@ -92,40 +93,39 @@ export function DevelopTickets() {
 
     return (
     <>
-    <div className={styles.kevin_banner}>
-        <h3 className={styles.kevin_title}>TICKETS</h3>
+    <div className={styles.background_image}>
+        <h3 className={styles.title}>TICKETS</h3>
     </div>
     <div>    
-        <p className={styles.kevin_text}>
+        <p className={styles.explanation_text}>
             Steps added on the co-creation page will be automatically displayed here in ticket format.  
             You can add additional ticket tasks on this page and the co-creation page will reflect the changes. Tickets can be rearranged into different categories depending on the status and can be edited or deleted.  
             There are more text areas for input than on the co-creation page, allowing more details to be added about tasks.
             Creating tickets helps to track and organize assignments and progress that team members are making on a project.   
         </p>
+    </div>    
+    <div className={styles.status_group_text}>
+        <p><strong>Not Started</strong></p>
+        <p><strong>In Progress</strong></p>
+        <p><strong>Completed</strong></p>
     </div>
-
-    <div className={styles.kevin_header}>
-        <div className={`${styles.kevin_center} ${styles.kevin_text_status}`}>
-            <p><strong>Not Started</strong></p>
-            <p><strong>In Progress</strong></p>
-            <p><strong>Completed</strong></p>
-        </div>
-        <div className={styles.kevin_center}>
-            <button className={styles.kevin_button} onClick={() => {addTask(0)}}>+ Add Task</button>
-            <button className={styles.kevin_button} onClick={() => {addTask(1)}}>+ Add Task</button>
-            <button className={styles.kevin_button} onClick={() => {addTask(2)}}>+ Add Task</button>
-        </div>
-            <DragNDrop data={data} setData={setData} />
+    <div className={styles.status_group_text}>
+        <button className={styles.add_task} onClick={() => {addTask(0)}}>+ Add Task</button>
+        <button className={styles.add_task} onClick={() => {addTask(1)}}>+ Add Task</button>
+        <button className={styles.add_task} onClick={() => {addTask(2)}}>+ Add Task</button>
+    </div>
+    <div className={styles.page_gap}>
+        <DragNDrop data={data} setData={setData} />
     </div>
     <div className='bottomLinks'>
-                    <div>
-                        <p>Previous</p>
-                        <Link to="/develop/co_creation">Co-Creation</Link>
-                    </div>
-                    <div>
-                        <p>Next</p>
-                        <Link to="/demonstrate/overview">Demonstrate Overview</Link>
-                    </div>
-                </div>
+        <div>
+            <p>Previous</p>
+            <Link to="/develop/co_creation">Co-Creation</Link>
+        </div>
+        <div>
+            <p>Next</p>
+            <Link to="/demonstrate/overview">Demonstrate Overview</Link>
+        </div>
+    </div>
 </>
 )}

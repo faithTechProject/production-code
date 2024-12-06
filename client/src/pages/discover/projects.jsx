@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import styles from './projects.module.css';
 import axios from 'axios';
 import {fillTable} from '../dbTable';
-import { DownloadButton } from "../KevinDownloadPlaybook";
+import { DownloadButton } from "../components/DownloadComponent";
 
 
 export function DiscoverProjects() {

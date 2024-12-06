@@ -11,6 +11,7 @@ export function DiscernBrainstorm() {
        // Get page related tables
         axios.get(`http://localhost:3000/matrix-reflections/${pageName}`).then(res => {
             var tableData = res.data;
+            console.log(res.data)
             tableData.sort((a, b) => a.entry_pos - b.entry_pos); // orders data by entry_pos
             for (let i in tableData) {
                 fillTable(i, tableData, pageName);

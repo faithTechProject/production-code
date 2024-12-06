@@ -22,10 +22,10 @@ export function DiscoverLament() {
         })
     }, [])
 
-    const handleSubmit = (e, replyData) => {
-        e.preventDefault(); 
-        axios.patch(`http://localhost:3000/text-area-reflections/?page=Lament&entry_pos=${e.target.id}`, {
-            reply: replyData
+
+    const handleSubmit = (e, id) => {
+        axios.patch(`http://localhost:3000/text-area-reflections/?page=Lament&entry_pos=${id}`, {
+            reply: e.target.value
         })
     }
 
@@ -98,13 +98,12 @@ export function DiscoverLament() {
 				</div>
 				<p>
 					Write down some or all of your answers to the scripture reflection here:
-					<form id='0' onSubmit={(e) => handleSubmit(e, scriptureReflection)}>
+					<form id='0'>
 						<textarea name="Lament" rows={8} cols={40} 
 						placeholder="Type here..." 
 						value={scriptureReflection}
-						onChange={(e) => setScriptureReflection(e.target.value)}
+						onChange={(e) => {setScriptureReflection(e.target.value); handleSubmit(e, 0)}}
 						/>
-						<input type="submit" value="Save" />
 					</form>
 				</p>
 				<h2 className={styles.oLamenth2}>Phases</h2>
@@ -237,36 +236,33 @@ export function DiscoverLament() {
 				</table>
 				<p className={styles.oLamentp}>
 					Team Lament
-					<form id='1' onSubmit={(e) => handleSubmit(e, lament)}>
+					<form id='1'>
 						<textarea name="Lament" rows={8} cols={40} 
 						placeholder="Type out your team lament here..." 
 						value={lament}
-						onChange={(e) => setLament(e.target.value)}
+						onChange={(e) => {setLament(e.target.value); handleSubmit(e, 1)}}
 						/>
-						<input type="submit" value="Save" />
 					</form>
 				</p>
 				<h1>Reflection Questions</h1>
 				<p className={styles.oLamentp}>
 					How did the process of lament change your perspective on the problem?
-					<form id='2' onSubmit={(e) => handleSubmit(e, Reflection1)}>
+					<form id='2'>
 						<textarea name="Lament" rows={5} cols={40} 
 						placeholder="Type here..." 
 						value={Reflection1}
-						onChange={(e) => setReflection1(e.target.value)}
+						onChange={(e) => {setReflection1(e.target.value); handleSubmit(e, 2)}}
 						/>
-						<input type="submit" value="Save" />
 					</form>
 				</p>
 				<p className={styles.oLamentp}>
 					In what ways did you feel God's presence during this exercise?
-					<form id='3' onSubmit={(e) => handleSubmit(e, Reflection2)}>
+					<form id='3'>
 						<textarea name="Lament" rows={5} cols={40}
 						placeholder="Type here..." 
 						value={Reflection2}
-						onChange={(e) => setReflection2(e.target.value)}
+						onChange={(e) => {setReflection2(e.target.value); handleSubmit(e, 3)}}
 						/>
-						<input type="submit" value="Save" />
 					</form>
 				</p>
 				<p className={styles.oLamentp}>
