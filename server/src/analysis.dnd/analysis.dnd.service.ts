@@ -34,7 +34,6 @@ export class AnalysisDndService {
         
         for(let i=0; i<rowsToUpdate.length; ++i) {
             const newId = rowsToUpdate[i].id - 1;
-            console.log(rowsToUpdate[i]);
             await this.updateBlock(rowsToUpdate[i].id, {"id":newId})
 
             if (i === rowsToUpdate.length - 1) {

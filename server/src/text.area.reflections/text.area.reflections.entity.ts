@@ -15,11 +15,5 @@ export class TextAreaReflections {
     entry_pos: number;
 
     @Column()
-    title: string;
-
-    @Column()
-    subtitle: string;
-
-    @Column()
     reply: string;
 }

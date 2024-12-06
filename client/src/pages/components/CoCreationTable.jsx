@@ -1,28 +1,24 @@
 import React from "react";
 import style from "./CoCreationTable.module.css"
-import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
-import { useSortable } from "@dnd-kit/sortable";
 import { Task } from "./CoCreationTasks";
 
-export const CoCreationTable = ({tasks, setTasks}) => {
-    console.log(tasks)
+export const CoCreationTable = ({steps, setSteps}) => {
     return (
     <table className={style.table}>
         <thead>
             <tr>
-                <td className={style.th}>Steps</td>
-                <td className={style.th}>Description</td>
-                <td className={style.th}>Progress</td>
-                <td className={style.th}>Responsible</td>
-                <td className={style.th}></td>
+                <th className={style.th}>Steps</th>
+                <th className={style.th}>Description</th>
+                <th className={style.th}>Progress</th>
+                <th className={style.th}>Responsible</th>
+                <th className={style.th}></th>
             </tr>
         </thead>
         <tbody>
-            <SortableContext items={tasks} strategy={verticalListSortingStrategy}>
-            {tasks.map(item => (
+            {steps.map(item => (
             
-            <Task tasks={tasks} 
-                setTasks={setTasks}
+            <Task steps={steps} 
+                setSteps={setSteps}
                 id={item.id}
                 status={item.status}
                 row_index={item.row_index}
@@ -35,7 +31,6 @@ export const CoCreationTable = ({tasks, setTasks}) => {
                 percent_complete={item.percent_complete}
                 key={item.id}/>
             ))}
-            </SortableContext>
         </tbody>
     </table>
     )}

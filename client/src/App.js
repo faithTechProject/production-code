@@ -1,6 +1,5 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { Workbook } from './pages/workbook';
-import { Help } from './pages/help';
 import { DiscoverTeams } from './pages/discover/teams';
 import { DiscoverLament } from './pages/discover/lament';
 import { DiscoverProjects } from './pages/discover/projects';
@@ -21,7 +20,6 @@ import { Story } from './pages/demonstrate/story'
 import { Conclusion } from './pages/demonstrate/conclusion';
 import TableOfContents from './pages/common/tableOfContents';
 import Footer from './pages/common/footer';
-import { TestPageDatabase } from './pages/testPageDatabase';
 import { ScrollTop } from './scrollTop';
 
 import './app.css'; 
@@ -37,8 +35,6 @@ function App() {
           <div className="main-content">
             <Routes>
               <Route path="/" element={<Workbook />} />
-              <Route path="/help" element={<Help />} />
-              <Route path="/testPageDatabase" element={<TestPageDatabase />} />
               <Route path="/discover/overview" element={< DiscoverOverview />} />
               <Route path="/discover/projects" element={< DiscoverProjects />} />
               <Route path="/discover/teams" element={< DiscoverTeams />} />

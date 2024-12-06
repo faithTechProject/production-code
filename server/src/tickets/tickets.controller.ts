@@ -28,7 +28,7 @@ export class TicketsController {
         }
     @Patch('update')
         updateTicketIds(@Query('id') id: number, @Body() updateTicketsDto: UpdateTicketsDto) {
-            return this.ticketsService.updateTicketIds(id, updateTicketsDto)
+            return this.ticketsService.updateTickets(id, updateTicketsDto)
         }
 
     @Post()

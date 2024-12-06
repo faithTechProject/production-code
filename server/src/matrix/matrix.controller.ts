@@ -1,6 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query } from '@nestjs/common';
 import { MatrixService } from './matrix.service';
-import { Matrix } from './matrix.entity';
 import { UpdateMatrixDto } from './dto/update-matrix.dto';
 
 @Controller('matrix-reflections')
@@ -22,11 +21,6 @@ export class MatrixController {
     {id: number, category: string, page: string, entry_pos: number, input: string[], tasks_rows: string[], roles_columns: string[], rci_input: string[]}) {
         return this.matrixService.createEntry(id, category, page, entry_pos, input, tasks_rows, roles_columns, rci_input)
     }
-
-    //@Put(':name')
-    //replaceEntry(@Param('name') name: string, @Body() data: Matrix) {
-    //    return this.matrixService.replaceEntry(name, data)
-    //}
 
     @Patch()
     updateEntry(@Query('page') page: string, @Query('entry_pos') entry_pos: number, @Body() updateMatrixDto: UpdateMatrixDto) {

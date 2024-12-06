@@ -5,7 +5,7 @@ import logo from '../images/logo.svg';
 import { useEffect } from "react";
 import axios from "axios";
 import team_pic from '../images/hostIdeaSessions.jpg';
-import { DownloadButton } from "../KevinDownloadPlaybook";
+import { DownloadButton } from "../components/DownloadComponent";
 import { fillTable } from '../dbTable';
 
 

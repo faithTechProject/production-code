@@ -3,7 +3,7 @@ import { TextAreaReflectionsService } from './text.area.reflections.service';
 import { CreateTextAreaReflectionsDto } from './dto/create-text.area.reflections.dto';
 import { UpdateTextAreaReflectionsDto } from './dto/update-text.area.reflections.dto';
 
-@Controller('text-area-reflections') // localhost:3000/text-area-reflection.  This is the base route
+@Controller('text-area-reflections') // localhost:3000/text-area-reflection.  This is the base route.
 export class TextAreaReflectionsController {
     constructor(private readonly textAreaReflectionService: TextAreaReflectionsService) {}
 
@@ -17,12 +17,12 @@ export class TextAreaReflectionsController {
         return this.textAreaReflectionService.findAllPage(page);
     }
 
-    @Post()
-    addPost(@Body() { id, category, page, entry_pos, title, subtitle, reply }: {id: number, category: string, page: string, entry_pos: number, title: string, subtitle: string, reply: string}) {
-        return this.textAreaReflectionService.addPost(id, category, page, entry_pos, title, subtitle, reply);
+    @Post() // adds a new reflection to the database.
+    addPost(@Body() createTextAreaReflectionsDto:CreateTextAreaReflectionsDto) {
+        return this.textAreaReflectionService.addPost(createTextAreaReflectionsDto);
     }
 
-    @Patch()
+    @Patch() // updates an already existing reflection with different data.
     update(@Query('page') page: string, @Query('entry_pos') entry_pos: number, @Body() updateUserDto: UpdateTextAreaReflectionsDto) {
         return this.textAreaReflectionService.update(page, entry_pos, updateUserDto)
     }
