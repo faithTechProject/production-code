@@ -86,14 +86,8 @@ export class TableData1732931769742 implements MigrationInterface {
 
         //Demonstrate: story page
         await queryRunner.query(`INSERT INTO story(id, user_name, email, project_state, challenges, project_status, project_summary, project_link, project_images, project_fulfillment, additional_info, share_info, reflection) VALUES 
-    (1, 'Alice Johnson', 'alice.johnson@example.com', 'Initial Planning', 'Difficulty in gathering initial resources and stakeholder commitment', 'In Progress', 'This project focuses on developing an AI-powered tool for personalized education.', 'https://example.com/project/ai-tool', 'https://example.com/images/ai-tool1.jpg, https://example.com/images/ai-tool2.jpg', 'The program provided initial funding and mentorship that helped kickstart the project.', 'Looking forward to a beta release within three months.', 'Yes', 'The process so far has been rewarding, especially in building a network of experts.')`);
+        (1, 'Alice Johnson', 'alice.johnson@example.com', 'Initial Planning', 'Difficulty in gathering initial resources and stakeholder commitment', 'In Progress', 'This project focuses on developing an AI-powered tool for personalized education.', 'https://example.com/project/ai-tool', 'https://example.com/images/ai-tool1.jpg, https://example.com/images/ai-tool2.jpg', 'The program provided initial funding and mentorship that helped kickstart the project.', 'Looking forward to a beta release within three months.', 'Yes', 'The process so far has been rewarding, especially in building a network of experts.')`);
 
-    await queryRunner.query(`INSERT INTO story(id, user_name, email, project_state, challenges, project_status, project_summary, project_link, project_images, project_fulfillment, additional_info, share_info, reflection) VALUES 
-    (2, 'Bob Martinez', 'bob.martinez@example.com', 'Implementation', 'Technical issues and delays in receiving hardware components', 'Completed', 'A community-driven weather prediction system using IoT devices.', 'https://example.com/project/weather-prediction', 'https://example.com/images/weather1.jpg, https://example.com/images/weather2.jpg', 'The program helped establish connections with local communities to gather data.', 'Planning to expand the system to cover more regions.', 'No', 'It was a challenging but fulfilling journey. We’ve received positive feedback from users.')`);
-
-    await queryRunner.query(`INSERT INTO story(id, user_name, email, project_state, challenges, project_status, project_summary, project_link, project_images, project_fulfillment, additional_info, share_info, reflection) VALUES 
-    (3, 'Charlie Kim', 'charlie.kim@example.com', 'Launch', 'Balancing project demands with personal responsibilities', 'Launched', 'A mobile app that connects volunteers with non-profit organizations.', 'https://example.com/project/volunteer-app', NULL, 'This program provided critical feedback during the development phase.', 'Future updates will focus on expanding language support.', 'Yes', 'The feedback from early adopters has been incredibly motivating.')`);
-     
 }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

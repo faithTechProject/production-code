@@ -38,6 +38,7 @@ export function DiscernBrainstorm() {
             document.getElementById('howMightJesus').innerHTML = `How Might Jesus ${res.data[0].reply}?`;
         })
     })
+    
     function saveResponse(entry) { // Saves data
         var inputData = entry.target.value;
         document.getElementById('howMightJesus').innerHTML = `How Might Jesus ${inputData}?`;

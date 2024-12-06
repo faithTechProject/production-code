@@ -6,16 +6,14 @@ export function DiscoverOverview() {
                 <div id={styles.oDiscoverTopImage}>
                         <h3 class={styles.oTitle}>DISCOVER</h3>
                 </div> 
-                <div className={styles.body}>
-                <div class={styles.oDiscoverBox}>
-                    <p>
-                        <b>Discover</b>
-                    </p>
-                    <p>
-                        Reorient to see, through the lens of Christ, those most affected by the problem
-                    </p>
-                </div>
+                <div className='body'>
+                <div className={styles.highlight4D}>
+                    <div class={styles.oDiscoverBox}>
+                        <h3>Discover</h3>
+                        <p>Reorient to see, through the lens of Christ, those most affected by the problem</p>
+                    </div>
             <div id={styles.o4Ddiscover}></div>
+            </div>
                 <h2>What is Discover?</h2>
                 <p style={{margin: '0% 5%'}}>The first goal of the Discover stage is to help you discover your project.
                     Running Create in your community can be a powerful way to address technological challenges through a redemptive lens.

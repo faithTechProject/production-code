@@ -10,13 +10,17 @@ function Dropdown({ title, items }) {
   // Determine if any of the dropdown items are active
   const isDropdownActive = items.some((item) => location.pathname === item.path);
 
-  const handleButtonClick = () => {
-    setShowDropdown((prev) => !prev);
+  function handleButtonClick(e) {
+    if (e.target.className != 'dropbtn active') {
+      setShowDropdown((prev) => !prev);
+    } else if (e.target.parentElement.children.length == 1) {
+      setShowDropdown((prev) => !prev);
+    }
   };
 
   return (
     <div className={`dropdown ${isDropdownActive ? 'active' : ''}`} ref={dropdownRef}>
-      <button onClick={handleButtonClick} className={`dropbtn ${isDropdownActive ? 'active' : ''}`}>
+      <button onClick={(e) => handleButtonClick(e)} className={`dropbtn ${isDropdownActive ? 'active' : ''}`}>
         {title}
       </button>
       {showDropdown && (

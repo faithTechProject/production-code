@@ -14,7 +14,7 @@
 .hero_Table_of_contents .contents{
   position: fixed;
   max-height: calc(100% - 40px);
-  width: fit-content;
+  width: 200px; /* Matches .hero_Table_of_contents*/
   overflow-y: auto;
   overflow-x: hidden;
 

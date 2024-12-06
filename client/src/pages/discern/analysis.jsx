@@ -84,6 +84,7 @@ export function DiscernAnalysis() {
     axios.delete(`http://localhost:3000/analysis/?id=${idToRemove}`)
   };
 
+
   // Close icon as SVG
   const CloseIcon = () => (
     <svg
