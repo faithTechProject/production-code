@@ -17,7 +17,7 @@ export function DiscernAnalysis() {
     //{forthBox: []}
   ]);
 
-  
+  console.log(Solutions)
   useEffect(() => {
     axios.get(`http://localhost:3000/analysis`).then(res => {
       res.data.sort((a, b) => a.id - b.id);
@@ -93,7 +93,6 @@ export function DiscernAnalysis() {
       if(newList[i].id > idToRemove)
         --newList[i].id;
     }
-    console.log(newList)
     setSolutions(newList);
     axios.delete(`http://localhost:3000/analysis/?id=${idToRemove}`)
   };
@@ -169,48 +168,6 @@ export function DiscernAnalysis() {
           </ul>
         </div>
 
-        <div className={styles.hero_solutions}>
-          <div className={styles.solutions_input}>
-            <label>Enter your solutions</label>
-            {Solutions.map((solution, index) => (
-              
-              <div key={solution.id} className={styles.solutions_field}>
-                <div className={styles.input_wrapper}>
-                  <input
-                    type="text"
-                    value={solution.solution}
-                    onChange={(e) =>
-                      handleSolutionsChange(solution.id, 'solution', e.target.value)
-                    }
-                    placeholder={`Solution ${index + 1}`}
-                    className={styles.input_field}
-                  />
-                  <textarea
-                    value={solution.explanation}
-                    onChange={(e) =>
-                      handleSolutionsChange(solution.id, 'explanation', e.target.value)
-                    }
-                    placeholder={`Explanation for Solution ${index + 1}`}
-                    className={styles.input_field}
-                  />
-                  {Solutions.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => removeSolutions(solution.id)}
-                      className={styles.remove_button}
-                      aria-label="Remove Solution"
-                    >
-                      <CloseIcon />
-                    </button>
-                  )}
-                </div>
-              </div>
-            ))}
-            <button type="button" onClick={addSolutions} className={styles.add_button}>
-              Enter Solution
-            </button>
-          </div>
-          </div>
           <DndContext onDragEnd={handleDragEnd}>
             <div className={styles.unassigned_Solutions}>
               <h2>Unassigned Solutions</h2>
@@ -218,8 +175,8 @@ export function DiscernAnalysis() {
                 .map((solution) => (
                   <Draggable key={solution.id} id={solution.id}>
                     <div className={styles.solution_explanation}>
-                      <p1>{solution.solution || 'Unnamed Solution'}</p1>
-                      <p>{solution.explanation || 'No explanation provided.'}</p>
+                      <p1>{"hi" || 'Unnamed Solution'}</p1>
+                      <textarea rows={3} cols={100}/>
                     </div>
                   </Draggable>
                 ))}
