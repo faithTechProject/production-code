@@ -6,7 +6,6 @@ import { Draggable } from './draggable';
 import { Droppable } from './droppable';
 import axios from 'axios';
 
-
 export function DiscernAnalysis() {
   
   const [solutions, setSolutions] = useState([]);
@@ -33,27 +32,7 @@ export function DiscernAnalysis() {
 
     })
     }, [])
-  
-    // Function to handle Solutions change
-  const handleSolutionsChange = (id, value) => {
-    console.log(value)
-    console.log("onChange")
-    const updatedSolutions = [...solutions];
-    let index = 0;
-    for(let i=0; i<solutions.length; ++i) {
-      if(solutions[i].id === id) {
-        index = i;
-        break;
-      }
-    }
-    
-    updatedSolutions[index].explanation = value;
-    setSolutions(updatedSolutions);
 
-    axios.patch(`http://localhost:3000/analysis/?id=${id}`, {
-      explanation: value
-  })
-  };
 
   // Handle drag end event
   const handleDragEnd = (event) => {
@@ -76,24 +55,6 @@ export function DiscernAnalysis() {
       );
     }
   };
-
-// handles when the space bar is pressed.
-const handleSpace = (id, e)=> {
-  if (e.key === ' '){
-   
-    const updatedSolutions = [...solutions];
-    let index = 0;
-    for(let i=0; i<solutions.length; ++i) {
-      if(solutions[i].id === id) {
-        index = i;
-        break;
-      }
-    }
-    
-    updatedSolutions[index].explanation += ' ';
-    setSolutions(updatedSolutions);
-  }
-}
 
   return (
     <>
@@ -126,138 +87,82 @@ const handleSpace = (id, e)=> {
           </ul>
         </div>
 
-          <DndContext onDragEnd={handleDragEnd}>
-            
+          <DndContext onDragEnd={handleDragEnd}>  
               <h2 className={styles.solutions_title}>Unassigned Solutions</h2>
               <div className={styles.unassigned_Solutions}>
               {solutions.filter((solution) => solution.category === 'unassigned')
                 .map((solution) => (
-                  <Draggable key={solution.id} id={solution.id}>
-                    <div className={styles.solution_explanation}>
-                      <p>{solution.solution || 'Unnamed Solution'}</p>
-                        <textarea className={styles.textarea} rows={3} cols={40}
-                          placeholder="Enter explanation here..."
-                          value={solution.explanation}
-                          onChange={(e) => handleSolutionsChange(solution.id, e.target.value)}
-                          // This next line of code is neeed because dnd-kit breaks space form being recorded in onChange
-                          onKeyDown={(e) => handleSpace(solution.id, e)}
-                        />
-                    </div>
-                  </Draggable>
+                  <Draggable key={solution.id} id={solution.id} solution={solution} solutions={solutions} setSolutions={setSolutions}></Draggable>
                 ))}
             </div>
 
             <div className={styles.solution_categories}>
-                <div className={styles.organize_solutions}>
-                    <Droppable id="Reject">
-                        <h3>Reject</h3>
-                        <div className={styles.explanation_solution_title}>
-                            <h4> Solution </h4>
-                            <h4> Explanation</h4>
-                        </div>
-                        {solutions.filter((solution) => solution.category === 'Reject')
-                        .map((solution) => (
-                            <Draggable key={solution.id} id={solution.id}>
-                            <div className={styles.solution_explanation}>
-                                <p>{solution.solution}</p>
-                                <textarea className={styles.textarea} rows={3} cols={40}
-                                  placeholder="Enter explanation here..."
-                                  value={solution.explanation}
-                                  onChange={(e) => handleSolutionsChange(solution.id, e.target.value)}
-                                  // This next line of code is neeed because dnd-kit breaks space form being recorded in onChange
-                                  onKeyDown={(e) => handleSpace(solution.id, e)}
-                                />
-                            </div>
-                            </Draggable>
-                        ))}
-                    </Droppable>
-                </div>
-                <div className={styles.organize_solutions}>
-              <Droppable id="Receive">
-                <h3>Receive</h3>
-                <div className={styles.explanation_solution_title}>
-                    <h4> Solution </h4>
-                    <h4> Explanation</h4>
-                </div>
-                {solutions.filter((solution) => solution.category === 'Receive')
-                  .map((solution) => (
-                    <Draggable key={solution.id} id={solution.id}>
-                      <div className={styles.solution_explanation}>
-                        <p1>{solution.solution}</p1>
-                        <textarea className={styles.textarea} rows={3} cols={40}
-                          placeholder="Enter explanation here..."
-                          value={solution.explanation}
-                          onChange={(e) => handleSolutionsChange(solution.id, e.target.value)}
-                          // This next line of code is neeed because dnd-kit breaks space form being recorded in onChange
-                          onKeyDown={(e) => handleSpace(solution.id, e)}
-                          />
-                      </div>
-                    </Draggable>
-                  ))}
-              </Droppable>
-              </div>
               <div className={styles.organize_solutions}>
-              <Droppable id="Reimagine">
-                <h3>Reimagine</h3>
-                <div className={styles.explanation_solution_title}>
-                    <h4> Solution </h4>
-                    <h4> Explanation</h4>
-                </div>
-                {solutions.filter((solution) => solution.category === 'Reimagine')
-                  .map((solution) => (
-                    <Draggable key={solution.id} id={solution.id}>
-                      <div className={styles.solution_explanation}>
-                        <p1>{solution.solution}</p1>
-                        <textarea className={styles.textarea} rows={3} cols={40}
-                          placeholder="Enter explanation here..."
-                          value={solution.explanation}
-                          onChange={(e) => handleSolutionsChange(solution.id, e.target.value)}
-                          // This next line of code is neeed because dnd-kit breaks space form being recorded in onChange
-                          onKeyDown={(e) => handleSpace(solution.id, e)}
-                          />
-                      </div>
-                    </Draggable>
-                  ))}
-              </Droppable>
-              </div>
-              <div className={styles.organize_solutions}>
-              <Droppable id="Create">
-                <h3>Create</h3>
-                <div className={styles.explanation_solution_title}>
-                    <h4> Solution </h4>
-                    <h4> Explanation</h4>
-                </div>
-                {solutions.filter((solution) => solution.category === 'Create')
-                  .map((solution) => (
-                    <Draggable key={solution.id} id={solution.id}>
-                      <div className={styles.solution_explanation}>
-                        <p1>{solution.solution}</p1>
-                        <textarea className={styles.textarea} rows={3} cols={40}
-                          placeholder="Enter explanation here..."
-                          value={solution.explanation}
-                          onChange={(e) => handleSolutionsChange(solution.id, e.target.value)}
-                          // This next line of code is neeed because dnd-kit breaks space form being recorded in onChange
-                          onKeyDown={(e) => handleSpace(solution.id, e)}
-                        />
-                      </div>
-                    </Draggable>
-                  ))}
-              </Droppable>
-              </div>
-
+                <Droppable id="Reject">
+                    <h3>Reject</h3>
+                    <div className={styles.explanation_solution_title}>
+                        <h4> Solution </h4>
+                        <h4> Explanation</h4>
+                    </div>
+                    {solutions.filter((solution) => solution.category === 'Reject')
+                    .map((solution) => (
+                        <Draggable  key={solution.id} id={solution.id} solution={solution} solutions={solutions} setSolutions={setSolutions}></Draggable>
+                    ))}
+                </Droppable>
             </div>
-          </DndContext>
+            <div className={styles.organize_solutions}>
+          <Droppable id="Receive">
+            <h3>Receive</h3>
+            <div className={styles.explanation_solution_title}>
+                <h4> Solution </h4>
+                <h4> Explanation</h4>
+            </div>
+            {solutions.filter((solution) => solution.category === 'Receive')
+              .map((solution) => (
+                <Draggable key={solution.id} id={solution.id} solution={solution} solutions={solutions} setSolutions={setSolutions}></Draggable>
+              ))}
+          </Droppable>
+          </div>
+          <div className={styles.organize_solutions}>
+          <Droppable id="Reimagine">
+            <h3>Reimagine</h3>
+            <div className={styles.explanation_solution_title}>
+                <h4> Solution </h4>
+                <h4> Explanation</h4>
+            </div>
+            {solutions.filter((solution) => solution.category === 'Reimagine')
+              .map((solution) => (
+                <Draggable key={solution.id} id={solution.id} solution={solution} solutions={solutions} setSolutions={setSolutions}></Draggable>
+              ))}
+          </Droppable>
+          </div>
+          <div className={styles.organize_solutions}>
+          <Droppable id="Create">
+            <h3>Create</h3>
+            <div className={styles.explanation_solution_title}>
+                <h4> Solution </h4>
+                <h4> Explanation</h4>
+            </div>
+            {solutions.filter((solution) => solution.category === 'Create')
+              .map((solution) => (
+                <Draggable key={solution.id} id={solution.id} solution={solution} solutions={solutions} setSolutions={setSolutions}></Draggable>
+              ))}
+          </Droppable>
+            </div>
+          </div>
+          
+        </DndContext>
         
         <div className='bottomLinks'>
-                    <div>
-                        <p>Previous</p>
-                        <Link to="/discern/brainstorm">Brainstorm</Link>
-                    </div>
-                    <div>
-                        <p>Next</p>
-                        <Link to="/discern/timeline">Timeline</Link>
-                    </div>
-                </div>
+              <div>
+                  <p>Previous</p>
+                  <Link to="/discern/brainstorm">Brainstorm</Link>
+              </div>
+              <div>
+                  <p>Next</p>
+                  <Link to="/discern/timeline">Timeline</Link>
+              </div>
+          </div>
       </div>
     </>
   );
