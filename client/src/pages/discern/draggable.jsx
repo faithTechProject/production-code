@@ -24,8 +24,6 @@ export function Draggable({ id, children, solution, solutions, setSolutions}) {
 
   // Function to handle Solutions change
   const handleSolutionsChange = (id, value) => {
-    console.log(value)
-    console.log("onChange")
     const updatedSolutions = [...solutions];
     let index = 0;
     for(let i=0; i<solutions.length; ++i) {
