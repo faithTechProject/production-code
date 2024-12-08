@@ -52,16 +52,28 @@ export class TableData1732931769742 implements MigrationInterface {
         await queryRunner.query(`INSERT INTO matrix (id, category, page, entry_pos, input, tasks_rows, roles_columns, rci_input) VALUES (2, 'Discover', 'Teams', 0, '[ {"name": "1", "skills": "2", "past_experiences": "4", "areas_for_growth": "3" } ]', ARRAY['row 1', 'row 2'], ARRAY['column 1', 'column 2'], '[{"name": "Consulted", "row": 0, "col": 0}, {"name": "Responsible", "row": 0, "col": 1}, {"name": "Informed", "row": 1, "col": 0}, {"name": "Accountable", "row": 1, "col": 1}]')`);   
         
         // Discern: Analysis
-        await queryRunner.query(`INSERT INTO analysis (id, page, brainstorm_id, brainstorm_table_id, explanation, category) VALUES (0, 'Discern', 0, 0, '', 'unassigned')`);
-        await queryRunner.query(`INSERT INTO analysis (id, page, brainstorm_id, brainstorm_table_id, explanation, category) VALUES (1, 'Discern', 1, 0, '', 'unassigned')`);
-        await queryRunner.query(`INSERT INTO analysis (id, page, brainstorm_id, brainstorm_table_id, explanation, category) VALUES (2, 'Discern', 2, 0, '', 'unassigned')`);
+        await queryRunner.query(`INSERT INTO analysis (id, page, brainstorm_id, brainstorm_table_id, explanation, category) VALUES (1, 'Discern', 0, 0, '', 'unassigned')`);
+        await queryRunner.query(`INSERT INTO analysis (id, page, brainstorm_id, brainstorm_table_id, explanation, category) VALUES (2, 'Discern', 1, 0, '', 'unassigned')`);
+        await queryRunner.query(`INSERT INTO analysis (id, page, brainstorm_id, brainstorm_table_id, explanation, category) VALUES (3, 'Discern', 2, 0, '', 'unassigned')`);
 
+        await queryRunner.query(`INSERT INTO analysis (id, page, brainstorm_id, brainstorm_table_id, explanation, category) VALUES (4, 'Discern', 0, 1, '', 'unassigned')`);
+        await queryRunner.query(`INSERT INTO analysis (id, page, brainstorm_id, brainstorm_table_id, explanation, category) VALUES (5, 'Discern', 1, 1, '', 'unassigned')`);
+
+        await queryRunner.query(`INSERT INTO analysis (id, page, brainstorm_id, brainstorm_table_id, explanation, category) VALUES (6, 'Discern', 0, 2, '', 'unassigned')`);
+        await queryRunner.query(`INSERT INTO analysis (id, page, brainstorm_id, brainstorm_table_id, explanation, category) VALUES (7, 'Discern', 1, 2, '', 'unassigned')`);
+        await queryRunner.query(`INSERT INTO analysis (id, page, brainstorm_id, brainstorm_table_id, explanation, category) VALUES (8, 'Discern', 2, 2, '', 'unassigned')`);
+
+        await queryRunner.query(`INSERT INTO analysis (id, page, brainstorm_id, brainstorm_table_id, explanation, category) VALUES (9, 'Discern', 0, 3, '', 'unassigned')`);
+        await queryRunner.query(`INSERT INTO analysis (id, page, brainstorm_id, brainstorm_table_id, explanation, category) VALUES (10, 'Discern', 1, 3, '', 'unassigned')`);
+        await queryRunner.query(`INSERT INTO analysis (id, page, brainstorm_id, brainstorm_table_id, explanation, category) VALUES (11, 'Discern', 2, 3, '', 'unassigned')`);
+        await queryRunner.query(`INSERT INTO analysis (id, page, brainstorm_id, brainstorm_table_id, explanation, category) VALUES (12, 'Discern', 3, 3, '', 'unassigned')`);
+        
         // Discern: Brainstorm
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (26, 'Discern', 'Brainstorm', 0, '')`);
-        await queryRunner.query(`INSERT INTO matrix (id, category, page, entry_pos, input, tasks_rows, roles_columns, rci_input) VALUES (3, 'Discern', 'Brainstorm', 0, '[ {"id": 0, "solution": "text one"}, {"id": 1, "solution": "text two"}, {"id": 2, "solution": "text three"} ]', ARRAY[''], ARRAY[''], '[{}]')`);
-        await queryRunner.query(`INSERT INTO matrix (id, category, page, entry_pos, input, tasks_rows, roles_columns, rci_input) VALUES (4, 'Discern', 'Brainstorm', 1, '[ {"id": 0, "solution": "2 text one"}, {"id": 1, "solution": "2 text two"}, {"id": 2, "solution": "2 text three"} ]', ARRAY[''], ARRAY[''], '[{}]')`);
+        await queryRunner.query(`INSERT INTO matrix (id, category, page, entry_pos, input, tasks_rows, roles_columns, rci_input) VALUES (3, 'Discern', 'Brainstorm', 0, '[ {"id": 0, "solution": "1 text one"}, {"id": 1, "solution": "1 text two"}, {"id": 2, "solution": "1 text three"} ]', ARRAY[''], ARRAY[''], '[{}]')`);
+        await queryRunner.query(`INSERT INTO matrix (id, category, page, entry_pos, input, tasks_rows, roles_columns, rci_input) VALUES (4, 'Discern', 'Brainstorm', 1, '[ {"id": 0, "solution": "2 text one"}, {"id": 1, "solution": "2 text two"} ]', ARRAY[''], ARRAY[''], '[{}]')`);
         await queryRunner.query(`INSERT INTO matrix (id, category, page, entry_pos, input, tasks_rows, roles_columns, rci_input) VALUES (5, 'Discern', 'Brainstorm', 2, '[ {"id": 0, "solution": "3 text one"}, {"id": 1, "solution": "3 text two"}, {"id": 2, "solution": "3 text three"} ]', ARRAY[''], ARRAY[''], '[{}]')`);
-        await queryRunner.query(`INSERT INTO matrix (id, category, page, entry_pos, input, tasks_rows, roles_columns, rci_input) VALUES (6, 'Discern', 'Brainstorm', 3, '[ {"id": 0, "solution": "4 text one"}, {"id": 1, "solution": "4 text two"}, {"id": 2, "solution": "4 text three"} ]', ARRAY[''], ARRAY[''], '[{}]')`);
+        await queryRunner.query(`INSERT INTO matrix (id, category, page, entry_pos, input, tasks_rows, roles_columns, rci_input) VALUES (6, 'Discern', 'Brainstorm', 3, '[ {"id": 0, "solution": "4 text one"}, {"id": 1, "solution": "4 text two"}, {"id": 2, "solution": "4 text three"}, {"id": 3, "solution": "4 text four"} ]', ARRAY[''], ARRAY[''], '[{}]')`);
 
         //Develop: co-creation page data
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (27, 'Develop', 'CoCreation', 0, '')`);

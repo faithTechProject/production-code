@@ -8,112 +8,51 @@ import axios from 'axios';
 
 
 export function DiscernAnalysis() {
-  //const [Solutions, setSolutions] = useState([]);
-    //{ id: 1, solution: '', explanation: '', category: 'unassigned' }
-  const [Solutions, setSolutions] = useState([
-    //{firstBox: []},
-    //{secoundBox: []},
-    //{thirdBox: []},
-    //{forthBox: []}
-  ]);
+  
+  const [solutions, setSolutions] = useState([]);
 
-  console.log(Solutions)
-  useEffect(() => {
+  function combineAnalysisData(brainstormData) {
     axios.get(`http://localhost:3000/analysis`).then(res => {
-      res.data.sort((a, b) => a.id - b.id);
-      setSolutions(res.data.map((item) => item))
       
-      /*
-      let myArray0 = res.data[0].input;
-      let myArray1 = res.data[1].input;
-      let myArray2 = res.data[2].input;
-      let myArray3 = res.data[3].input;
-
-      let finalArray = [...myArray0, ...myArray1, ...myArray2, ...myArray3,]
-      setSolutions(finalArray)
-      //res.data.sort((a, b) => a.id - b.id);
-      //setSolutions(res.data.map((item) => item))
-      */
+      let analysisSolution = []
+      for (let i=0; i< brainstormData.length; ++i) {
+        const rows = res.data.filter(item => item.brainstorm_table_id === i).sort((a, b) => a.brainstorm_id - b.brainstorm_id)
+        rows.forEach((item, index) => (item.solution = brainstormData[i].input[index].solution))
+        analysisSolution = [...analysisSolution, ...rows]
+      }
+      setSolutions(analysisSolution)
       })
+  }
+
+  console.log(solutions)
+  useEffect(() => {
+    axios.get(`http://localhost:3000/matrix-reflections/Brainstorm`).then(res => {
+      const data = res.data.sort((a, b) => a.id - b.id);
+      combineAnalysisData(data)
+
+    })
     }, [])
   // Function to handle Solutions change
   
-  
-  const handleSolutionsChange = (id, field, value) => {
-    const updatedSolutions = [...Solutions];
+  const handleSolutionsChange = (id, value) => {
+    console.log(value)
+    console.log("onChange")
+    const updatedSolutions = [...solutions];
     let index = 0;
-    for(let i=0; i<Solutions.length; ++i) {
-      if(Solutions[i].id === id) {
+    for(let i=0; i<solutions.length; ++i) {
+      if(solutions[i].id === id) {
         index = i;
         break;
       }
     }
     
-    updatedSolutions[index][field] = value;
+    updatedSolutions[index].explanation = value;
     setSolutions(updatedSolutions);
 
     axios.patch(`http://localhost:3000/analysis/?id=${id}`, {
-      [field]: value
+      explanation: value
   })
   };
-
-  // Function to add a new Solutions input field
-  const addSolutions = () => {
-    //for (let i=0; i<Solutions.length; ++i) {
-
-    //}
-    const id = Solutions.length + 1;
-    
-    setSolutions([
-      ...Solutions,
-      { id: id, page_type: 'Discern', page_name: 'Analysis', solution: '', explanation: '', category: 'unassigned' },
-    ]);
-
-    axios.post(`http://localhost:3000/analysis`, {
-      id: id,
-      page_type: 'discern',
-      page_name: 'analysis',
-      solution: '',
-      explanation: '',
-      category: 'unassigned'
-  })
-    //console.log(Solutions)
-  };
-
-  // Function to remove a specific Solutions
-  const removeSolutions = (idToRemove) => {
-    if (Solutions.length === 1) return;
-    console.log(idToRemove)
-    //setSolutions(Solutions.filter((_, index) => index !== indexToRemove));
-
-    let newList = JSON.parse(JSON.stringify(Solutions))
-    newList = newList.filter((item) => item.id !== idToRemove);
-    
-    for(let i=0; i<newList.length; ++i) {
-      if(newList[i].id > idToRemove)
-        --newList[i].id;
-    }
-    setSolutions(newList);
-    axios.delete(`http://localhost:3000/analysis/?id=${idToRemove}`)
-  };
-
-
-  // Close icon as SVG
-  const CloseIcon = () => (
-    <svg
-      viewBox="0 0 24 24"
-      width="16"
-      height="16"
-      stroke="currentColor"
-      strokeWidth="2"
-      fill="none"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="18" y1="6" x2="6" y2="18"></line>
-      <line x1="6" y1="6" x2="18" y2="18"></line>
-    </svg>
-  );
 
   // Handle drag end event
   const handleDragEnd = (event) => {
@@ -136,6 +75,24 @@ export function DiscernAnalysis() {
       );
     }
   };
+
+// handles when the space bar is pressed.
+const handleSpace = (id, e)=> {
+  if (e.key === ' '){
+   
+    const updatedSolutions = [...solutions];
+    let index = 0;
+    for(let i=0; i<solutions.length; ++i) {
+      if(solutions[i].id === id) {
+        index = i;
+        break;
+      }
+    }
+    
+    updatedSolutions[index].explanation += ' ';
+    setSolutions(updatedSolutions);
+  }
+}
 
   return (
     <>
@@ -169,14 +126,21 @@ export function DiscernAnalysis() {
         </div>
 
           <DndContext onDragEnd={handleDragEnd}>
-            <div className={styles.unassigned_Solutions}>
-              <h2>Unassigned Solutions</h2>
-              {Solutions.filter((solution) => solution.category === 'unassigned')
+            
+              <h2 className={styles.solutions_title}>Unassigned Solutions</h2>
+              <div className={styles.unassigned_Solutions}>
+              {solutions.filter((solution) => solution.category === 'unassigned')
                 .map((solution) => (
                   <Draggable key={solution.id} id={solution.id}>
                     <div className={styles.solution_explanation}>
-                      <p1>{"hi" || 'Unnamed Solution'}</p1>
-                      <textarea rows={3} cols={100}/>
+                      <p>{solution.solution || 'Unnamed Solution'}</p>
+                        <textarea className={styles.textarea} rows={3} cols={40}
+                          placeholder="Enter explanation here..."
+                          value={solution.explanation}
+                          onChange={(e) => handleSolutionsChange(solution.id, e.target.value)}
+                          // This next line of code is neeed because dnd-kit breaks space form being recorded in onChange
+                          onKeyDown={(e) => handleSpace(solution.id, e)}
+                        />
                     </div>
                   </Draggable>
                 ))}
@@ -190,12 +154,18 @@ export function DiscernAnalysis() {
                             <h4> Solution </h4>
                             <h4> Explanation</h4>
                         </div>
-                        {Solutions.filter((solution) => solution.category === 'Reject')
+                        {solutions.filter((solution) => solution.category === 'Reject')
                         .map((solution) => (
                             <Draggable key={solution.id} id={solution.id}>
                             <div className={styles.solution_explanation}>
-                                <p1>{solution.solution}</p1>
-                                <p>{solution.explanation}</p>
+                                <p>{solution.solution}</p>
+                                <textarea className={styles.textarea} rows={3} cols={40}
+                                  placeholder="Enter explanation here..."
+                                  value={solution.explanation}
+                                  onChange={(e) => handleSolutionsChange(solution.id, e.target.value)}
+                                  // This next line of code is neeed because dnd-kit breaks space form being recorded in onChange
+                                  onKeyDown={(e) => handleSpace(solution.id, e)}
+                                />
                             </div>
                             </Draggable>
                         ))}
@@ -208,12 +178,18 @@ export function DiscernAnalysis() {
                     <h4> Solution </h4>
                     <h4> Explanation</h4>
                 </div>
-                {Solutions.filter((solution) => solution.category === 'Receive')
+                {solutions.filter((solution) => solution.category === 'Receive')
                   .map((solution) => (
                     <Draggable key={solution.id} id={solution.id}>
                       <div className={styles.solution_explanation}>
                         <p1>{solution.solution}</p1>
-                        <p>{solution.explanation}</p>
+                        <textarea className={styles.textarea} rows={3} cols={40}
+                          placeholder="Enter explanation here..."
+                          value={solution.explanation}
+                          onChange={(e) => handleSolutionsChange(solution.id, e.target.value)}
+                          // This next line of code is neeed because dnd-kit breaks space form being recorded in onChange
+                          onKeyDown={(e) => handleSpace(solution.id, e)}
+                          />
                       </div>
                     </Draggable>
                   ))}
@@ -226,12 +202,18 @@ export function DiscernAnalysis() {
                     <h4> Solution </h4>
                     <h4> Explanation</h4>
                 </div>
-                {Solutions.filter((solution) => solution.category === 'Reimagine')
+                {solutions.filter((solution) => solution.category === 'Reimagine')
                   .map((solution) => (
                     <Draggable key={solution.id} id={solution.id}>
                       <div className={styles.solution_explanation}>
                         <p1>{solution.solution}</p1>
-                        <p>{solution.explanation}</p>
+                        <textarea className={styles.textarea} rows={3} cols={40}
+                          placeholder="Enter explanation here..."
+                          value={solution.explanation}
+                          onChange={(e) => handleSolutionsChange(solution.id, e.target.value)}
+                          // This next line of code is neeed because dnd-kit breaks space form being recorded in onChange
+                          onKeyDown={(e) => handleSpace(solution.id, e)}
+                          />
                       </div>
                     </Draggable>
                   ))}
@@ -244,12 +226,18 @@ export function DiscernAnalysis() {
                     <h4> Solution </h4>
                     <h4> Explanation</h4>
                 </div>
-                {Solutions.filter((solution) => solution.category === 'Create')
+                {solutions.filter((solution) => solution.category === 'Create')
                   .map((solution) => (
                     <Draggable key={solution.id} id={solution.id}>
                       <div className={styles.solution_explanation}>
                         <p1>{solution.solution}</p1>
-                        <p>{solution.explanation}</p>
+                        <textarea className={styles.textarea} rows={3} cols={40}
+                          placeholder="Enter explanation here..."
+                          value={solution.explanation}
+                          onChange={(e) => handleSolutionsChange(solution.id, e.target.value)}
+                          // This next line of code is neeed because dnd-kit breaks space form being recorded in onChange
+                          onKeyDown={(e) => handleSpace(solution.id, e)}
+                        />
                       </div>
                     </Draggable>
                   ))}

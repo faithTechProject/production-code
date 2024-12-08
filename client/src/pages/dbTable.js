@@ -69,30 +69,36 @@ export function addRow(tableID, data, pageName) {
     //console.log(tableID)
     //console.log(data)
     //console.log(pageName)
-    const newRow = {"id": data[tableID].input.length + 1, "solution": ""}
+    
+    const newRow = {"id": data[tableID].input.length, "solution": ""}
     //var newRow = JSON.parse(JSON.stringify(data[tableID].input[0]));
-    //console.log(newRow) // Recreates row from the first row
+    console.log(newRow) // Recreates row from the first row
     //Object.keys(newRow).forEach(key => { // Empties new row
         //newRow[key] = "";
     //})
-    data[tableID].input.push(newRow); // Adds row to table
+     // Adds row to table
+    data[tableID].input.push(newRow); 
     saveData(data[tableID].input, tableID, pageName);
     fillTable(tableID, data , pageName); // Rebuild table
+    saveAnalysisData(data, tableID, pageName)
 }
 
 export function saveData(inputData, table , pageName) { // Saves data
     axios.patch(`http://localhost:3000/matrix-reflections/?page=${pageName}&entry_pos=${table}`, {
         input: inputData
     });
-    axios.post(`http://localhost:3000/analysis/?page=${pageName}&entry_pos=${table}`, {
-        id: inputData.length - 1,
+}
+
+export function saveAnalysisData(data, tableID, pageName)
+{
+    axios.post(`http://localhost:3000/analysis`, {
+        id: data[0].input.length + data[1].input.length + data[2].input.length + data[3].input.length,
         page: 'Discern',
-        brainstorm_id: inputData.length - 1,
-        brainstorm_table_id: table,
+        brainstorm_id: data[tableID].input.length - 1,
+        brainstorm_table_id: tableID,
         explanation: '',
         category: 'unassigned',
     });
-
 }
 
 export function updateHeight(slot, id, row) {
