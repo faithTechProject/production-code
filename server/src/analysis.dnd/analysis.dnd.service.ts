@@ -28,14 +28,11 @@ export class AnalysisDndService {
     }
 
     async deleteBlock(brainstorm_id: number, brainstorm_table_id: number): Promise<Analysis>{
-        const deleted = await this.analysisDndRepository.findOneBy({ brainstorm_id: brainstorm_id, brainstorm_table_id: brainstorm_table_id })
         await this.analysisDndRepository.delete({ brainstorm_id: brainstorm_id, brainstorm_table_id: brainstorm_table_id })
         
         const brainstormList = await this.analysisDndRepository.findBy( {brainstorm_table_id: brainstorm_table_id })
         brainstormList.sort((a, b) => a.brainstorm_id - b.brainstorm_id);
         
-        
-        console.log(deleted.id)
         // update the brainstrom_id values starting at 0
         for (let i=0; i<brainstormList.length; ++i) {
             await this.updateBlock(brainstormList[i].id, {brainstorm_id: i})
