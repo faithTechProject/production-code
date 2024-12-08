@@ -12,10 +12,6 @@ export function fillTable(index, data , pageName) {
     
     for (let i=0; i<tData.length; i++) { // loops through each row in the data
         var row = document.createElement("tr"); // Create a row element
-        //for (let j=0; j<tData[i].length; ++j) {
-
-        
-        //Object.keys.(tData[i]).forEach(key => { // Add each entry to the row
             var keyData = document.createElement("td"); // Create data element
             keyData.className = `${dbStyles.cell}`;
             var textbox = document.createElement("textarea");
@@ -24,8 +20,7 @@ export function fillTable(index, data , pageName) {
             textbox.onchange = (e) => updateRow(e, index, i, data, pageName);
             keyData.appendChild(textbox);
             row.appendChild(keyData);
-        //}
-        //})
+
         // Delete Buttons
         var buttonSlot = document.createElement("td");
         buttonSlot.className = `${dbStyles.deleteRow}`;
@@ -58,7 +53,6 @@ export function deleteRow(tableID, row, data , pageName) {
     for (let i=0; i<data[tableID].input.length; i++) {
         data[tableID].input[i].id = i;
     }
-    console.log(data)
     saveData(data[tableID].input,tableID, pageName);
     fillTable(tableID, data , pageName); // Rebuids table
 
@@ -66,21 +60,14 @@ export function deleteRow(tableID, row, data , pageName) {
 }
 
 export function addRow(tableID, data, pageName) {
-    //console.log(tableID)
-    //console.log(data)
-    //console.log(pageName)
-    
     const newRow = {"id": data[tableID].input.length, "solution": ""}
-    //var newRow = JSON.parse(JSON.stringify(data[tableID].input[0]));
-    console.log(newRow) // Recreates row from the first row
-    //Object.keys(newRow).forEach(key => { // Empties new row
-        //newRow[key] = "";
-    //})
-     // Adds row to table
+    
+    // Adds row to table
     data[tableID].input.push(newRow); 
+    
     saveData(data[tableID].input, tableID, pageName);
     fillTable(tableID, data , pageName); // Rebuild table
-    saveAnalysisData(data, tableID, pageName)
+    saveAnalysisData(data, tableID)
 }
 
 export function saveData(inputData, table , pageName) { // Saves data
@@ -89,7 +76,7 @@ export function saveData(inputData, table , pageName) { // Saves data
     });
 }
 
-export function saveAnalysisData(data, tableID, pageName)
+export function saveAnalysisData(data, tableID)
 {
     axios.post(`http://localhost:3000/analysis`, {
         id: data[0].input.length + data[1].input.length + data[2].input.length + data[3].input.length,

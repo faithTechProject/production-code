@@ -14,6 +14,7 @@ export function DiscernAnalysis() {
   function combineAnalysisData(brainstormData) {
     axios.get(`http://localhost:3000/analysis`).then(res => {
       
+      //combine data from the brainstorm page into the analysis data.
       let analysisSolution = []
       for (let i=0; i< brainstormData.length; ++i) {
         const rows = res.data.filter(item => item.brainstorm_table_id === i).sort((a, b) => a.brainstorm_id - b.brainstorm_id)
@@ -32,8 +33,8 @@ export function DiscernAnalysis() {
 
     })
     }, [])
-  // Function to handle Solutions change
   
+    // Function to handle Solutions change
   const handleSolutionsChange = (id, value) => {
     console.log(value)
     console.log("onChange")
