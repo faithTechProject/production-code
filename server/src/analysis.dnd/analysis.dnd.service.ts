@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { MoreThan, Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { Analysis } from './analysis.dnd.entity';
 import { AnalysisDndDto } from './dto/create.analysis.dnd.dto';
 import { PartialAnalysisDndDto } from './dto/update.analysis.dnd.dto';
@@ -27,18 +27,23 @@ export class AnalysisDndService {
         await this.analysisDndRepository.save(updated);
     }
 
-    async deleteBlock(id: number) {
-        await this.analysisDndRepository.delete({ id: id })
-        const rowsToUpdate = await this.analysisDndRepository.find({ where: {id: MoreThan(id) }})
-        rowsToUpdate.sort((a, b) => a.id - b.id);
+    async deleteBlock(brainstorm_id: number, brainstorm_table_id: number): Promise<Analysis>{
+        const deleted = await this.analysisDndRepository.findOneBy({ brainstorm_id: brainstorm_id, brainstorm_table_id: brainstorm_table_id })
+        await this.analysisDndRepository.delete({ brainstorm_id: brainstorm_id, brainstorm_table_id: brainstorm_table_id })
         
-        for(let i=0; i<rowsToUpdate.length; ++i) {
-            const newId = rowsToUpdate[i].id - 1;
-            await this.updateBlock(rowsToUpdate[i].id, {"id":newId})
-
-            if (i === rowsToUpdate.length - 1) {
-                await this.analysisDndRepository.delete(({ id: rowsToUpdate[i].id}))
-            }
+        const brainstormList = await this.analysisDndRepository.findBy( {brainstorm_table_id: brainstorm_table_id })
+        brainstormList.sort((a, b) => a.brainstorm_id - b.brainstorm_id);
+        
+        
+        console.log(deleted.id)
+        // update the brainstrom_id values starting at 0
+        for (let i=0; i<brainstormList.length; ++i) {
+            await this.updateBlock(brainstormList[i].id, {brainstorm_id: i})
         }
+
+        // update all the id's in ascending order.
+        await this.analysisDndRepository.query(`WITH renumbered AS (SELECT id, ROW_NUMBER() OVER (ORDER BY id) AS new_id FROM analysis)
+            UPDATE analysis SET id = Renumbered.new_id FROM renumbered WHERE analysis.id = Renumbered.id`)
+        return;
     }
 }
