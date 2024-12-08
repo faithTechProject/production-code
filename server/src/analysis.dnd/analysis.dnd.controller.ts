@@ -23,7 +23,7 @@ export class AnalysisDndController {
     }
 
     @Delete()
-    deleteBlock(@Query('id') id: number) {
-        return this.analysisDndService.deleteBlock(id);
+    deleteBlock(@Query('brainstorm_id') id: number, @Query('brainstorm_table_id') brainstorm_table_id: number) {
+        return this.analysisDndService.deleteBlock(id, brainstorm_table_id);
     }
 }
