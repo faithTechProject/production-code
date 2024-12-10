@@ -81,6 +81,7 @@ export class TableData1732931769742 implements MigrationInterface {
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (29, 'Develop', 'CoCreation', 2, '')`);
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (30, 'Develop', 'CoCreation', 3, '')`);
         await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (31, 'Develop', 'CoCreation', 4, '')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (32, 'Develop', 'CoCreation', 5, '')`);
 
         // Develop: Tickets
         await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete) VALUES (1, 'not started', 0, 'Database', 'Previous page database', 'Kevin Ford', '11/12/2024', '11/17/2024', 'Sprint #5', '100%')`);
@@ -91,13 +92,13 @@ export class TableData1732931769742 implements MigrationInterface {
         await queryRunner.query(`INSERT INTO tickets (id, status, row_index, title, description, assigned_to, date_created, date_due, sprint, percent_complete) VALUES (6, 'completed', 0, 'Example6', 'Example6 description', 'Martin', '11/05/2024', '11/20/2024', 'Sprint #8', '46%')`);
 
         //Demonstrate: conclusion
-        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (32, 'Demonstrate', 'Conclusion', 0, '')`);
-        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (33, 'Demonstrate', 'Conclusion', 1, '')`);
-        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (34, 'Demonstrate', 'Conclusion', 2, '')`);
-        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (35, 'Demonstrate', 'Conclusion', 3, '')`);
-        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (36, 'Demonstrate', 'Conclusion', 4, '')`);
-        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (37, 'Demonstrate', 'Conclusion', 5, '')`);
-        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (38, 'Demonstrate', 'Conclusion', 6, '')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (33, 'Demonstrate', 'Conclusion', 0, '')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (34, 'Demonstrate', 'Conclusion', 1, '')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (35, 'Demonstrate', 'Conclusion', 2, '')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (36, 'Demonstrate', 'Conclusion', 3, '')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (37, 'Demonstrate', 'Conclusion', 4, '')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (38, 'Demonstrate', 'Conclusion', 5, '')`);
+        await queryRunner.query(`INSERT INTO text_area_reflections (id, category, page, entry_pos, reply) VALUES (39, 'Demonstrate', 'Conclusion', 6, '')`);
 
 
         //Demonstrate: story page

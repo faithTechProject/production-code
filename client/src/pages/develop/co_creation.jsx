@@ -12,20 +12,58 @@ export function DevelopCoCreation() {
     const[requestForm2, setRequestForm2] = useState([])
     const[requestForm3, setRequestForm3] = useState([])
     const[requestForm4, setRequestForm4] = useState([])
+    const[requestForm5, setRequestForm5] = useState([])
 
     const isMounted = useRef(false)
     const[steps, setSteps] = useState([])
 
-    const [solutions, set_solutions] = useState({
-        reimagine: [],
-        receive: [],
-        create: [],
+    const [solutions, setSolutions] = useState([])
+
+function combineAnalysisData(brainstormData) {
+    axios.get(`http://localhost:3000/analysis`).then(res => {
+    
+    //combine data from the brainstorm page into the analysis data.
+    let analysisSolutions = []
+    for (let i=0; i< brainstormData.length; ++i) {
+    const rows = res.data.filter(item => item.brainstorm_table_id === i).sort((a, b) => a.brainstorm_id - b.brainstorm_id)
+    rows.forEach((item, index) => (item.solution = brainstormData[i].input[index].solution))
+    analysisSolutions = [...analysisSolutions, ...rows]
+    }
+
+    console.log(analysisSolutions)
+    
+    // find all the solutions that have the following categories: Reimagin, Recieve and Create
+    // The solutions hook is updated with the solutions that are displayed on the page
+    setSolutions([
+        ...analysisSolutions.filter(item => item.category === 'Reimagine'),
+        ...analysisSolutions.filter(item => item.category === 'Receive'),
+        ...analysisSolutions.filter(item => item.category === 'Create')
+    ])
     })
+}
+
 
     useEffect(() => {
-        if (!isMounted.current){
+        if (!isMounted.current) {            
             
+            axios.get(`http://localhost:3000/text-area-reflections/CoCreation`).then(response => {
+                console.log(response.data)
+                const data = response.data;
+                data.sort((a,b) => a.entry_pos - b.entry_pos)
+                
+                const co_creation_response = data;
+                setRequestForm0(co_creation_response[0].reply);
+                setRequestForm1(co_creation_response[1].reply);
+                setRequestForm2(co_creation_response[2].reply);
+                setRequestForm3(co_creation_response[3].reply);
+                setRequestForm4(co_creation_response[4].reply);
+                setRequestForm5(co_creation_response[5].reply);
+            })
 
+            axios.get(`http://localhost:3000/matrix-reflections/Brainstorm`).then(res => {
+                const data = res.data.sort((a, b) => a.id - b.id);
+                combineAnalysisData(data)
+            })
             
             axios.get(`http://localhost:3000/tickets`).then(res => {
                 
@@ -54,7 +92,7 @@ export function DevelopCoCreation() {
         }
     }, [])
 
-console.log(steps)
+console.log(solutions)
 
     const handleAddStep = () => {
         let newList = JSON.parse(JSON.stringify(steps))
@@ -90,67 +128,12 @@ console.log(steps)
         setSteps(newList)
         
     }
-    
-    const baseURL = "http://localhost:3000/text-area-reflections"
 
-    const handleSubmit = (e, entry_pos) => {
+    const handleSubmit = (value, entry_pos) => {
         axios.patch(`http://localhost:3000/text-area-reflections/?page=CoCreation&entry_pos=${entry_pos}`, {
-            reply: e.target.value
+            reply: value
         })
     }
-    const save = (e, input_data) => {
-        e.preventDefault();
-        axios.patch(`${baseURL}/?page=CoCreation&entry_pos=${e.target.id}`, {
-            reply: input_data
-        })
-    }
-
-    useEffect (() => {
-
-        axios.get(`http://localhost:3000/text-area-reflections/CoCreation`).then(response => {
-            console.log(response.data)
-            const data = response.data;
-            data.sort((a,b) => a.entry_pos - b.entry_pos)
-            
-            const co_creation_response = data;
-            setRequestForm0(co_creation_response[0].reply);
-            setRequestForm1(co_creation_response[1].reply);
-            setRequestForm2(co_creation_response[2].reply);
-            setRequestForm3(co_creation_response[3].reply);
-            setRequestForm4(co_creation_response[4].reply);
-        })
-
-        axios
-              .get("http://localhost:3000/analysis")
-
-              
-              .then(response => {
-                // Assuming fetchedData is the object containing your data
-                const fetchedData = response.data
-                
-                // Assuming each object has a `category` field
-                const reimagineSolutions = fetchedData
-                .filter(item => item.category === "Reimagine")
-                .map(item => item.solution);
-                
-                const receiveSolutions = fetchedData
-                .filter(item => item.category === "Receive")
-                .map(item => item.solution);
-
-                const createSolutions = fetchedData
-                .filter(item => item.category === "Create")
-                .map(item => item.solution);
-
-                set_solutions(prevSolutions => ({
-                    ...prevSolutions, // Keep existing state
-                    receive: receiveSolutions,
-                    reimagine: reimagineSolutions,
-                    create: createSolutions,
-                  }));
-              })
-
-              
-    } ,[])
 
     //Timer
     let timerInterval;
@@ -224,43 +207,61 @@ console.log(steps)
                     <div className={styles.three_cs}>
                         <div className={styles.solutions}>
                             <h1> Reimagine </h1>
-                            {solutions.reimagine.map((item, index) => (
-                            <div key={index} className={styles.solution_item}>
-                                {item}
-                            </div>
+                            {solutions.filter((solution) => solution.category === 'Reimagine')
+                            .map((item, index) => (
+                            <button className={styles.solutionsButton} onClick={() => {setRequestForm0(item.solution); handleSubmit(item.solution, 0)}}>
+                                <div key={index} className={styles.solution_item}>
+                                    {item.solution}
+                                </div>
+                            </button>
                             ))}
                         </div>
                         <div className={styles.solutions}>
                             <h1> Receive </h1>
-                            {solutions.receive.map((item, index) => (
-                            <div key={index} className={styles.solution_item}>
-                                {item}
-                            </div>
+                            {solutions.filter((solution) => solution.category === 'Receive')
+                            .map((item, index) => (
+                            <button className={styles.solutionsButton} onClick={() => {setRequestForm0(item.solution); handleSubmit(item.solution, 0)}}>
+                                <div key={index} className={styles.solution_item}>
+                                    {item.solution}
+                                </div>
+                            </button>
                             ))}
                         </div>
                         <div className={styles.solutions}>
                             <h1> Create </h1>
-                            {solutions.create.map((item, index) => (
-                            <div key={index} className={styles.solution_item}>
-                                {item}
-                            </div>
+                            {solutions.filter((solution) => solution.category === 'Create')
+                            .map((item, index) => (
+                            <button className={styles.solutionsButton} onClick={() => {setRequestForm0(item.solution); handleSubmit(item.solution, 0)}}>
+                                <div key={index} className={styles.solution_item}>
+                                    {item.solution}
+                                </div>
+                            </button>
                             ))}
                         </div>
                      </div>
                 </div>
             </div>
-
+            <div className={styles.Request}> 
+                <p className={styles.text_align_left}>Chosen Solution</p>
+                <form id='0'>
+                    <textarea className={styles.response} rows={10} cols={20}
+                    placeholder="Solution..."
+                    value={requestForm0}
+                    onChange={(e) => {setRequestForm0(e.target.value); handleSubmit(e.target.value, 0)}}
+                    />
+                </form>
+            </div>
             <div className={styles.co_creation_cycle}>
                 <h1> Co-Creation Cycle </h1>
                 <p> The Co-Creation cycle is a simple structure that can be repeated as iterations. We "keep asking," creating a rhythm of Spirit-led inspiration and planning as we develop. If your project is short, maybe you'll only go through this cycle once. However, if it's longer, the idea is that your team will cycle through these steps multiple times. Our recommendation is for your team to go through the Co-Creation cycle at the start of every sprint, or whenever you're planning the next sprint. Click the "New Cycle" button to create new areas for input for each activity. </p>
                 <button className={styles.new_cycle}> New Cycle </button>
                 <div className={styles.Request}> 
                     <p> Write a payer inviting the Holy Spirit into your development process</p>
-                    <form id='0'>
+                    <form id='1'>
                         <textarea className={styles.response} rows={10} cols={20}
                         placeholder="Request...."
-                        value={requestForm0}
-                        onChange={(e) => {setRequestForm0(e.target.value); handleSubmit(e, 0)}}
+                        value={requestForm1}
+                        onChange={(e) => {setRequestForm1(e.target.value); handleSubmit(e.target.value, 1)}}
                         />
                     </form>
                 </div>
@@ -277,11 +278,11 @@ console.log(steps)
                         <button id='resetButton' className= {styles.delete} > Delete </button>
                     </div>
                     <p> Note any thoughts, images or scriptures that come to mind in these 10 minutes here. Try to keep your notes brief, so the focus of this time can be to listen and recieve </p>
-                    <form id='1'>
+                    <form id='2'>
                         <textarea className={styles.response} rows={10} cols={20}
                         placeholder="Request...."
-                        value={requestForm1}
-                        onChange={(e) => {setRequestForm1(e.target.value); handleSubmit(e, 1)}}
+                        value={requestForm2}
+                        onChange={(e) => {setRequestForm2(e.target.value); handleSubmit(e.target.value, 2)}}
                         />
                     </form>
                 </div>
@@ -289,11 +290,11 @@ console.log(steps)
                 <div className= {styles.review}>
                     <h2> Review </h2>
                     <p> Use this space to expand on the insights you recieved. Write down what God was telling you. Talk about the connections between the thoughts, images, and/or scriptures that come to mind. Write about how you can use these insights to guide you through the development stage </p>
-                    <form id='2'>
+                    <form id='3'>
                         <textarea className={styles.response} rows={10} cols={20}
                         placeholder="Review...."
-                        value={requestForm2}
-                        onChange={(e) => {setRequestForm2(e.target.value); handleSubmit(e, 2)}}
+                        value={requestForm3}
+                        onChange={(e) => {setRequestForm3(e.target.value); handleSubmit(e.target.value, 3)}}
                         />
                     </form>
                 </div>
@@ -310,19 +311,19 @@ console.log(steps)
 
             <div className='reflection_questions'>
                 <p> How did this process differ from your usual development approach? </p>
-                <form id='3'>
-                        <textarea className={styles.response} rows={10} cols={20}
-                        placeholder="Request...."
-                        value={requestForm3}
-                        onChange={(e) => {setRequestForm3(e.target.value); handleSubmit(e, 3)}}
-                        />
-                    </form>
-                <p> What challenges did you face trying to co-create with the holy spirit  hrcv</p>
                 <form id='4'>
                         <textarea className={styles.response} rows={10} cols={20}
                         placeholder="Request...."
                         value={requestForm4}
-                        onChange={(e) => {setRequestForm4(e.target.value); handleSubmit(e, 4)}}
+                        onChange={(e) => {setRequestForm4(e.target.value); handleSubmit(e.target.value, 4)}}
+                        />
+                    </form>
+                <p> What challenges did you face trying to co-create with the holy spirit  hrcv</p>
+                <form id='5'>
+                        <textarea className={styles.response} rows={10} cols={20}
+                        placeholder="Request...."
+                        value={requestForm5}
+                        onChange={(e) => {setRequestForm5(e.target.value); handleSubmit(e.target.value, 5)}}
                         />
                     </form>
             </div>

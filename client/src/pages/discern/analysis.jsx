@@ -24,12 +24,10 @@ export function DiscernAnalysis() {
       })
   }
 
-  console.log(solutions)
   useEffect(() => {
     axios.get(`http://localhost:3000/matrix-reflections/Brainstorm`).then(res => {
       const data = res.data.sort((a, b) => a.id - b.id);
       combineAnalysisData(data)
-
     })
     }, [])
 
@@ -91,7 +89,7 @@ export function DiscernAnalysis() {
               <h2 className={styles.solutions_title}>Unassigned Solutions</h2>
               <div className={styles.unassigned_Solutions}>
               {solutions.filter((solution) => solution.category === 'unassigned')
-                .map((solution) => (
+              .map((solution) => (
                   <Draggable key={solution.id} id={solution.id} solution={solution} solutions={solutions} setSolutions={setSolutions}></Draggable>
                 ))}
             </div>
