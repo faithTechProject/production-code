@@ -2,8 +2,6 @@ import axios from 'axios';
 import dbStyles from './dbTable.module.css';
 
 export function fillTable(index, data , pageName) {
-
-
     var container = document.getElementById('table'+index);
     container.firstChild.lastChild.innerHTML = "";
     container.firstChild.className = `${dbStyles.table}`;
