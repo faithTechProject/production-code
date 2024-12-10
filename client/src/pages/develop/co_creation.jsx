@@ -170,7 +170,6 @@ export function DevelopCoCreation() {
         axios
               .get("http://localhost:3000/analysis")
 
-              
               .then(response => {
                 // Assuming fetchedData is the object containing your data
                 const fetchedData = response.data
