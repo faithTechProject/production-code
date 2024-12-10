@@ -29,8 +29,6 @@ function combineAnalysisData(brainstormData) {
     rows.forEach((item, index) => (item.solution = brainstormData[i].input[index].solution))
     analysisSolutions = [...analysisSolutions, ...rows]
     }
-
-    console.log(analysisSolutions)
     
     // find all the solutions that have the following categories: Reimagin, Recieve and Create
     // The solutions hook is updated with the solutions that are displayed on the page
@@ -44,10 +42,8 @@ function combineAnalysisData(brainstormData) {
 
 
     useEffect(() => {
-        if (!isMounted.current) {            
-            
+        if (!isMounted.current) {
             axios.get(`http://localhost:3000/text-area-reflections/CoCreation`).then(response => {
-                console.log(response.data)
                 const data = response.data;
                 data.sort((a,b) => a.entry_pos - b.entry_pos)
                 
@@ -66,9 +62,6 @@ function combineAnalysisData(brainstormData) {
             })
             
             axios.get(`http://localhost:3000/tickets`).then(res => {
-                
-                // Varifying the rows in the database are sorted correctly when the page is loaded.
-                // Sorted by: not started, in progress and completed.
                 let notStarted = []
                 let inProgress = []
                 let completed = []
@@ -81,6 +74,7 @@ function combineAnalysisData(brainstormData) {
                     if (res.data[i].status === 'completed') { completed = [...completed, res.data[i]] }
                 }
 
+                // Varifying the rows in the database are sorted correctly when the page is loaded.
                 notStarted.sort((a, b) => a.row_index - b.row_index);
                 inProgress.sort((a, b) => a.row_index - b.row_index);
                 completed.sort((a, b) => a.row_index - b.row_index);
@@ -92,15 +86,12 @@ function combineAnalysisData(brainstormData) {
         }
     }, [])
 
-console.log(solutions)
-
     const handleAddStep = () => {
         let newList = JSON.parse(JSON.stringify(steps))
         let step_index = 0;
         let row_index = 0;
         
         // All new steps added are considered 'not started'
-        
         for (let i=0; i<newList.length; ++i) {
             if (newList[i].status === 'not started') {
                 ++row_index
@@ -209,8 +200,8 @@ console.log(solutions)
                             <h1> Reimagine </h1>
                             {solutions.filter((solution) => solution.category === 'Reimagine')
                             .map((item, index) => (
-                            <button className={styles.solutionsButton} onClick={() => {setRequestForm0(item.solution); handleSubmit(item.solution, 0)}}>
-                                <div key={index} className={styles.solution_item}>
+                            <button key={index} className={styles.solutionsButton} onClick={() => {setRequestForm0(item.solution); handleSubmit(item.solution, 0)}}>
+                                <div className={styles.solution_item}>
                                     {item.solution}
                                 </div>
                             </button>
@@ -220,8 +211,8 @@ console.log(solutions)
                             <h1> Receive </h1>
                             {solutions.filter((solution) => solution.category === 'Receive')
                             .map((item, index) => (
-                            <button className={styles.solutionsButton} onClick={() => {setRequestForm0(item.solution); handleSubmit(item.solution, 0)}}>
-                                <div key={index} className={styles.solution_item}>
+                            <button key={index} className={styles.solutionsButton} onClick={() => {setRequestForm0(item.solution); handleSubmit(item.solution, 0)}}>
+                                <div className={styles.solution_item}>
                                     {item.solution}
                                 </div>
                             </button>
@@ -231,8 +222,8 @@ console.log(solutions)
                             <h1> Create </h1>
                             {solutions.filter((solution) => solution.category === 'Create')
                             .map((item, index) => (
-                            <button className={styles.solutionsButton} onClick={() => {setRequestForm0(item.solution); handleSubmit(item.solution, 0)}}>
-                                <div key={index} className={styles.solution_item}>
+                            <button key={index} className={styles.solutionsButton} onClick={() => {setRequestForm0(item.solution); handleSubmit(item.solution, 0)}}>
+                                <div className={styles.solution_item}>
                                     {item.solution}
                                 </div>
                             </button>
@@ -305,9 +296,7 @@ console.log(solutions)
                 </div>
             </div>
                 <CoCreationTable steps={steps} setSteps={setSteps}/>
-            <button type="button" onClick={handleAddStep} className={style.add_button}>
-                + Add Step
-            </button>
+            <button type="button" onClick={handleAddStep} className={style.add_button}>+ Add Step</button>
 
             <div className='reflection_questions'>
                 <p> How did this process differ from your usual development approach? </p>

@@ -33,7 +33,6 @@ export function DiscoverTeams() {
             for (let i in tableData) {
                 fillTable(i, tableData, pageName);
             }
-            console.log(tableData)
             setTasks(res.data[0].tasks_rows)
             setRoles(res.data[0].roles_columns)
             setOtherForm(res.data.map((item) => item.rci_input)[0])
@@ -377,7 +376,6 @@ export function DiscoverTeams() {
                             </tr>
                         </thead>
                         <tbody>
-                            {console.log("here")}
                             {tasks.map((task, rowIndex) => (
                             <tr key={rowIndex}>
                                 {/* Input field for task name */}

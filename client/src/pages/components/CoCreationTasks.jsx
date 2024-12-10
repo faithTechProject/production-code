@@ -19,6 +19,7 @@ export const Task = ({steps, setSteps, id, status, row_index, title, description
         </svg>
     );
 
+    // updates the database
     const handleTaskChange = (value, id, property) => {
         let newList = JSON.parse(JSON.stringify(steps))
         newList[newList.findIndex(newList => newList.id === id)][property] = value;
@@ -51,13 +52,13 @@ export const Task = ({steps, setSteps, id, status, row_index, title, description
                 ++row_index
             }
         }
-
         setSteps(stepList)
     }
 
 
     const handleTaskChangeDropDown = (id, newStatus, oldStatus) => {
         
+        // Make a deep copy of the steps array within the react hook
         let newList = JSON.parse(JSON.stringify(steps))
 
         // Extract the step that matches the id for later.
