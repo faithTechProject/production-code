@@ -5,6 +5,7 @@ export function Draggable({ id, children }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
   });
+  
   const style = {
     transform: transform
       ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
@@ -12,8 +13,9 @@ export function Draggable({ id, children }) {
     padding: '8px',
     margin: '4px',
     backgroundColor: '#f0f0f0',
-    border: '1px solid #ccc',
+    //border: '1px solid #ccc',
     cursor: 'grab',
+    border: '1px solid var(--color-primary)'
   };
 
   //console.log(children)

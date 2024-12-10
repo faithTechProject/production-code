@@ -2,9 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import styles from './co_creation.module.css';
-import {closestCorners, DndContext} from "@dnd-kit/core"
 import { CoCreationTable } from '../components/CoCreationTable';
-import { arrayMove } from '@dnd-kit/sortable';
 import style from "../components/CoCreationTable.module.css";
 
 
@@ -16,7 +14,7 @@ export function DevelopCoCreation() {
     const[requestForm4, setRequestForm4] = useState([])
 
     const isMounted = useRef(false)
-    const[tasks, setTasks] = useState([])
+    const[steps, setSteps] = useState([])
 
     const [solutions, set_solutions] = useState({
         reimagine: [],
@@ -24,72 +22,54 @@ export function DevelopCoCreation() {
         create: [],
     })
 
-    
-
     useEffect(() => {
         if (!isMounted.current){
-            axios.get(`http://localhost:3000/tickets`).then(res => {
-                let notStarted = []
-                for(let i=0; i<res.data.length; ++i) {
-                    if (res.data[i].status === 'not started') {
-                        notStarted = [...notStarted, res.data[i]]
-                    }
-                }
-                notStarted.sort((a, b) => a.row_index - b.row_index);
-                
-                let inProgress = []
-                for(let i=0; i<res.data.length; ++i) {
-                    if (res.data[i].status === 'in progress') {
-                        inProgress = [...inProgress, res.data[i]]
-                    }
-                }
-                inProgress.sort((a, b) => a.row_index - b.row_index);
+            
 
+            
+            axios.get(`http://localhost:3000/tickets`).then(res => {
+                
+                // Varifying the rows in the database are sorted correctly when the page is loaded.
+                // Sorted by: not started, in progress and completed.
+                let notStarted = []
+                let inProgress = []
                 let completed = []
-                for(let i=0; i<res.data.length; ++i) {
-                    if (res.data[i].status === 'completed') {
-                        completed = [...completed, res.data[i]]
-                    }
+                
+                for (let i=0; i<res.data.length; ++i) {
+                    if (res.data[i].status === 'not started') { notStarted = [...notStarted, res.data[i]] }
+
+                    if (res.data[i].status === 'in progress') { inProgress = [...inProgress, res.data[i]] }
+
+                    if (res.data[i].status === 'completed') { completed = [...completed, res.data[i]] }
                 }
+
+                notStarted.sort((a, b) => a.row_index - b.row_index);
+                inProgress.sort((a, b) => a.row_index - b.row_index);
                 completed.sort((a, b) => a.row_index - b.row_index);
 
-                setTasks([...notStarted, ...inProgress, ...completed]);
+                setSteps([...notStarted, ...inProgress, ...completed]);
             })
+            
             isMounted.current = true;      
         }
     }, [])
 
-    const getTaskPos = id => tasks.findIndex(tasks => tasks.id === id)
-    const updateRowIndecies = (status1, status2, list) => {
-        let row_index1 = 0;
-        let row_index2 = 0;
-        
-        for (let i=0; i<list.length; ++i) {
-            if (list[i].status === status1) {
-                list[i].row_index = row_index1;
-                ++row_index1
-            }
-            if (list[i].status === status2) {
-                list[i].row_index = row_index2;
-                ++row_index2
-            }
-        }
-        return list;
-    }
+console.log(steps)
 
-    const handleAddTask = () => {
-        let newList = JSON.parse(JSON.stringify(tasks))
-        let ticket_index = 0;
+    const handleAddStep = () => {
+        let newList = JSON.parse(JSON.stringify(steps))
+        let step_index = 0;
         let row_index = 0;
-            
+        
+        // All new steps added are considered 'not started'
+        
         for (let i=0; i<newList.length; ++i) {
             if (newList[i].status === 'not started') {
                 ++row_index
-                console.log(i)
-                ticket_index = i + 1;
+                step_index = i + 1;
             }
         }
-
+        
         axios.post(`http://localhost:3000/tickets`,
             {
                 id: newList.length + 1,
@@ -105,66 +85,39 @@ export function DevelopCoCreation() {
             }
         )
 
-        newList.splice(ticket_index, 0, {id: newList.length + 1, status: 'not started', row_index: row_index, title: '', description: '', assigned_to: '', date_created: '', date_due: '', sprint: '', percent_complete: ''})
-        setTasks(newList)
+        // Insert the new task step into the step hook.
+        newList.splice(step_index, 0, {id: newList.length + 1, status: 'not started', row_index: row_index, title: '', description: '', assigned_to: '', date_created: '', date_due: '', sprint: '', percent_complete: ''})
+        setSteps(newList)
         
     }
-    const handleDragEnd = (event) => {
-        
-        console.log("on drag end")
-        console.log(event)
-        const { active, over } = event;
-        if(over === null) return;
-        if(active.id === over.id) return;
-        setTasks(tasks => {
-            const originalPos = getTaskPos(active.id)
-            const newPos = getTaskPos(over.id);
-            const status1 = tasks[originalPos].status
-            const status2 = tasks[newPos].status
-            console.log(tasks[originalPos])
-            console.log(tasks[newPos])
-            tasks[originalPos].status = tasks[newPos].status;
-            //tasks[originalPos].row_index = tasks[newPos].row_index;
-            let newTasks = arrayMove(tasks, originalPos, newPos)
-            newTasks = updateRowIndecies(status1, status2, newTasks)
-            
-            console.log(active.id)
-            console.log(newTasks[originalPos].status)
-            console.log(newTasks[newPos].row_index)
+    
+    const baseURL = "http://localhost:3000/text-area-reflections"
 
-            axios.patch(`http://localhost:3000/tickets/?id=${active.id}`, {
-                id: active.id,
-                status: newTasks[newPos].status,
-                row_index: newTasks[newPos].row_index
-            })
-
-            return newTasks;
+    const handleSubmit = (e, entry_pos) => {
+        axios.patch(`http://localhost:3000/text-area-reflections/?page=CoCreation&entry_pos=${entry_pos}`, {
+            reply: e.target.value
         })
-
-        console.log(tasks)
     }
-    
-    const baseURL = "http://localhost:3000/co_creation/"
-
-    
     const save = (e, input_data) => {
         e.preventDefault();
-        axios.patch(`${baseURL}?id=${e.target.id}`, {
-            data: input_data
+        axios.patch(`${baseURL}/?page=CoCreation&entry_pos=${e.target.id}`, {
+            reply: input_data
         })
     }
 
     useEffect (() => {
-        axios.get(`${baseURL}`).then(response => {
 
-            const data = response.data.map((item) => item)
-            data.sort((a,b) => a.id - b.id)
+        axios.get(`http://localhost:3000/text-area-reflections/CoCreation`).then(response => {
+            console.log(response.data)
+            const data = response.data;
+            data.sort((a,b) => a.entry_pos - b.entry_pos)
+            
             const co_creation_response = data;
-            setRequestForm0(co_creation_response[0].data);
-            setRequestForm1(co_creation_response[1].data);
-            setRequestForm2(co_creation_response[2].data);
-            setRequestForm3(co_creation_response[3].data);
-            setRequestForm4(co_creation_response[4].data);
+            setRequestForm0(co_creation_response[0].reply);
+            setRequestForm1(co_creation_response[1].reply);
+            setRequestForm2(co_creation_response[2].reply);
+            setRequestForm3(co_creation_response[3].reply);
+            setRequestForm4(co_creation_response[4].reply);
         })
 
         axios
@@ -302,13 +255,12 @@ export function DevelopCoCreation() {
                 <button className={styles.new_cycle}> New Cycle </button>
                 <div className={styles.Request}> 
                     <p> Write a payer inviting the Holy Spirit into your development process</p>
-                    <form className='request_form' id='0' onSubmit={(e) => save(e,requestForm0)}>
-                        <textarea name="skills" rows={10} cols={20}
+                    <form id='0'>
+                        <textarea className={styles.response} rows={10} cols={20}
                         placeholder="Request...."
                         value={requestForm0}
-                        onChange={(e) => setRequestForm0(e.target.value)}
+                        onChange={(e) => {setRequestForm0(e.target.value); handleSubmit(e, 0)}}
                         />
-                        <input type="submit" value="Save" />
                     </form>
                 </div>
 
@@ -324,26 +276,24 @@ export function DevelopCoCreation() {
                         <button id='resetButton' className= {styles.delete} > Delete </button>
                     </div>
                     <p> Note any thoughts, images or scriptures that come to mind in these 10 minutes here. Try to keep your notes brief, so the focus of this time can be to listen and recieve </p>
-                    <form className='request_form' id='1' onSubmit={(e) => save(e,requestForm1)}>
-                        <textarea name="skills" rows={10} cols={20}
+                    <form id='1'>
+                        <textarea className={styles.response} rows={10} cols={20}
                         placeholder="Request...."
                         value={requestForm1}
-                        onChange={(e) => setRequestForm1(e.target.value)}
+                        onChange={(e) => {setRequestForm1(e.target.value); handleSubmit(e, 1)}}
                         />
-                        <input type="submit" value="Save" />
                     </form>
                 </div>
 
                 <div className= {styles.review}>
                     <h2> Review </h2>
                     <p> Use this space to expand on the insights you recieved. Write down what God was telling you. Talk about the connections between the thoughts, images, and/or scriptures that come to mind. Write about how you can use these insights to guide you through the development stage </p>
-                    <form className='request_form' id='2' onSubmit={(e) => save(e,requestForm2)}>
-                        <textarea name="skills" rows={10} cols={20}
+                    <form id='2'>
+                        <textarea className={styles.response} rows={10} cols={20}
                         placeholder="Review...."
                         value={requestForm2}
-                        onChange={(e) => setRequestForm1(e.target.value)}
+                        onChange={(e) => {setRequestForm2(e.target.value); handleSubmit(e, 2)}}
                         />
-                        <input type="submit" value="Save" />
                     </form>
                 </div>
 
@@ -352,31 +302,27 @@ export function DevelopCoCreation() {
                     <p> Outline the next steps for implementing these insights. Focus on what can be accomplished in the upcoming or current sprint. Each 'step' is a task, similar to what you entered in your RACI Matrix, except more specific. For example, let's say 3 of the tasks on your matrix were design features, develop features, and test features. Here, it'd be the same, except for a specific feature for each task. It could even just be part of a feature if you think it'll take more than one sprint to accomplish. In the table below, enter the step, a description of it, and which person or people are responsible for it.</p>
                 </div>
             </div>
-            <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
-                <CoCreationTable tasks={tasks} setTasks={setTasks}/>
-            </DndContext>
-            <button type="button" onClick={handleAddTask} className={style.add_button}>
+                <CoCreationTable steps={steps} setSteps={setSteps}/>
+            <button type="button" onClick={handleAddStep} className={style.add_button}>
                 + Add Step
             </button>
 
             <div className='reflection_questions'>
                 <p> How did this process differ from your usual development approach? </p>
-                <form className='request_form' id='3' onSubmit={(e) => save(e,requestForm3)}>
-                        <textarea name="skills" rows={10} cols={20}
+                <form id='3'>
+                        <textarea className={styles.response} rows={10} cols={20}
                         placeholder="Request...."
                         value={requestForm3}
-                        onChange={(e) => setRequestForm1(e.target.value)}
+                        onChange={(e) => {setRequestForm3(e.target.value); handleSubmit(e, 3)}}
                         />
-                        <input type="submit" value="Save" />
                     </form>
                 <p> What challenges did you face trying to co-create with the holy spirit  hrcv</p>
-                <form className='request_form' id='4' onSubmit={(e) => save(e,requestForm4)}>
-                        <textarea name="skills" rows={10} cols={20}
+                <form id='4'>
+                        <textarea className={styles.response} rows={10} cols={20}
                         placeholder="Request...."
                         value={requestForm4}
-                        onChange={(e) => setRequestForm1(e.target.value)}
+                        onChange={(e) => {setRequestForm4(e.target.value); handleSubmit(e, 4)}}
                         />
-                        <input type="submit" value="Save" />
                     </form>
             </div>
             <div className='bottomLinks'>

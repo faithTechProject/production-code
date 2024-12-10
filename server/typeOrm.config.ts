@@ -1,8 +1,4 @@
-import { ConfigService } from "@nestjs/config";
-import { TypeOrmModule } from "@nestjs/typeorm";
 import { config } from "dotenv";
-import { Matrix } from "src/matrix/matrix.entity";
-import { Reflection } from "src/reflection/reflection.entity";
 import { DataSource } from "typeorm";
 
 config();
@@ -20,6 +16,4 @@ export default new DataSource(
     migrations: ['migrations/**'],
     synchronize: false,
     entities: ["dist/**/*.entity{.ts,.js}"], // postgres database tables.
-    
-
 })

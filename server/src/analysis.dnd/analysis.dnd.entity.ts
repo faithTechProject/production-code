@@ -6,13 +6,13 @@ export class Analysis {
     id: number;
 
     @Column()
-    page_type: string;
+    page: string;
 
     @Column()
-    page_name: string;
+    brainstorm_id: number;
 
     @Column()
-    solution: string;
+    brainstorm_table_id: number;
 
     @Column()
     explanation: string;

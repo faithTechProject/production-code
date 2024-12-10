@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./workbook.module.css";
+import styles from "../workbook.module.css";
 
 export function DownloadButton({
   fileName,
@@ -18,7 +18,7 @@ export function DownloadButton({
 
   return (
     <button
-      className={`${styles.kevinDownloadPlaybookButton} ${className || ''}`}
+      className={`${styles.download_button} ${className || ''}`}
       onClick={onButtonClick}
     >
       {displayName}
