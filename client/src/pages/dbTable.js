@@ -2,13 +2,10 @@ import axios from 'axios';
 import dbStyles from './dbTable.module.css';
 
 export function fillTable(index, data , pageName) {
-
-
     var container = document.getElementById('table'+index);
     container.firstChild.lastChild.innerHTML = "";
     container.firstChild.className = `${dbStyles.table}`;
     var tData = data[index].input; // The data grabbed from the database
-    //console.log(tData)
     
     for (let i=0; i<tData.length; i++) { // loops through each row in the data
         var row = document.createElement("tr"); // Create a row element

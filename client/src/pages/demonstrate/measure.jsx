@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Chart } from "chart.js/auto";
-import { Bar, Pie } from "react-chartjs-2";
 import { useEffect } from 'react';
 import axios from 'axios';
 import styles from './measure.module.css';
@@ -38,6 +37,29 @@ export function DemonstrateMeasure() {
     }
 
     useEffect(() => {
+        // Get selected solution
+        axios.get(`http://localhost:3000/text-area-reflections/CoCreation`).then(res => {
+            var dbData = res.data;
+            dbData.sort((a,b) => a.entry_pos - b.entry_pos);
+            document.getElementById("solution").innerHTML = 'Solution: ' + dbData[0].reply;
+        })
+        // Get relationships
+        axios.get(`http://localhost:3000/text-area-reflections/Impact`).then(res => { // Grab and load textarea(s) from db
+            var dbData = res.data;
+            dbData.sort((a, b) => a.entry_pos - b.entry_pos); // orders data by entry_pos
+            document.getElementById('relationship1').innerHTML = dbData[0].reply;
+            document.getElementById('relationship4').innerHTML = dbData[0].reply;
+            document.getElementById('relationship7').innerHTML = dbData[0].reply;
+
+            document.getElementById('relationship2').innerHTML = dbData[4].reply;
+            document.getElementById('relationship5').innerHTML = dbData[4].reply;
+            document.getElementById('relationship8').innerHTML = dbData[4].reply;
+
+            document.getElementById('relationship3').innerHTML = dbData[8].reply;
+            document.getElementById('relationship6').innerHTML = dbData[8].reply;
+            document.getElementById('relationship9').innerHTML = dbData[8].reply;
+        })
+
         axios.get(`http://localhost:3000/text-area-reflections/Measure`).then(res => { // Grab and load textarea(s) from db
             var dbData = res.data;
             dbData.sort((a, b) => a.entry_pos - b.entry_pos); // orders data by entry_pos
@@ -168,7 +190,7 @@ export function DemonstrateMeasure() {
                     </div>
                 </div>
                 <p>Please take a moment to perform your calculations, then input them into the following table</p>
-                <h2 className={styles.solution}>Solution: </h2>
+                <h2 className={styles.solution} id="solution" >Solution: </h2>
                 <div className={styles.lineDown}></div>
                 <div className={styles.lineAcross}></div>
                 <div className={styles.alignChart}>
@@ -207,7 +229,7 @@ export function DemonstrateMeasure() {
                         <h3>Community Transformation</h3>
                         <div className={styles.arrowDown}></div>
                         <div className={styles.relationship}>
-                            <p id="relationship1" className={styles.relationshipTitle}>Relationship</p>
+                            <p id="relationship4" className={styles.relationshipTitle}>Relationship</p>
                             <div className={styles.percentage}>
                                 <input type="text" id="textarea3" onChange={(e)=>saveData(e)}></input>
                                 <p>%</p>
@@ -215,7 +237,7 @@ export function DemonstrateMeasure() {
                         </div>
                         <div className={styles.arrowDown}></div>
                         <div className={styles.relationship}>
-                            <p id="relationship2" className={styles.relationshipTitle}>Relationship</p>
+                            <p id="relationship5" className={styles.relationshipTitle}>Relationship</p>
                             <div className={styles.percentage}>
                                 <input type="text" id="textarea4" onChange={(e)=>saveData(e)}></input>
                                 <p>%</p>
@@ -223,7 +245,7 @@ export function DemonstrateMeasure() {
                         </div>
                         <div className={styles.arrowDown}></div>
                         <div className={styles.relationship}>
-                            <p id="relationship3" className={styles.relationshipTitle}>Relationship</p>
+                            <p id="relationship6" className={styles.relationshipTitle}>Relationship</p>
                             <div className={styles.percentage}>
                                 <input type="text" id="textarea5" onChange={(e)=>saveData(e)}></input>
                                 <p>%</p>
@@ -237,7 +259,7 @@ export function DemonstrateMeasure() {
                         <h3>Spiritual Growth</h3>
                         <div className={styles.arrowDown}></div>
                         <div className={styles.relationship}>
-                            <p id="relationship1" className={styles.relationshipTitle}>Relationship</p>
+                            <p id="relationship7" className={styles.relationshipTitle}>Relationship</p>
                             <div className={styles.percentage}>
                                 <input type="text" id="textarea6" onChange={(e)=>saveData(e)}></input>
                                 <p>%</p>
@@ -245,7 +267,7 @@ export function DemonstrateMeasure() {
                         </div>
                         <div className={styles.arrowDown}></div>
                         <div className={styles.relationship}>
-                            <p id="relationship2" className={styles.relationshipTitle}>Relationship</p>
+                            <p id="relationship8" className={styles.relationshipTitle}>Relationship</p>
                             <div className={styles.percentage}>
                                 <input type="text" id="textarea7" onChange={(e)=>saveData(e)}></input>
                                 <p>%</p>
@@ -253,7 +275,7 @@ export function DemonstrateMeasure() {
                         </div>
                         <div className={styles.arrowDown}></div>
                         <div className={styles.relationship}>
-                            <p id="relationship3" className={styles.relationshipTitle}>Relationship</p>
+                            <p id="relationship9" className={styles.relationshipTitle}>Relationship</p>
                             <div className={styles.percentage}>
                                 <input type="text" id="textarea8" onChange={(e)=>saveData(e)}></input>
                                 <p>%</p>

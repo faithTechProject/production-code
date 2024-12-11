@@ -31,8 +31,8 @@ export function DiscoverOverview() {
                         -The FaithTech Playbook
                     </p>
                 </div>
-                <h2 class={styles.o1Dh2}>Discover Session</h2>
-                <p class={styles.o1Dp2}>Watch this video with your team to learn more about the Discover stage.
+                <h2>Discover Session</h2>
+                <p class={styles.oCenteredText}>Watch this video with your team to learn more about the Discover stage.
                     <br></br>
                 </p>
                 <iframe width="568" height="340" src="https://www.youtube.com/embed/HATvpvzLPcU" title="FaithTech Create 2023-Week 1 - Discover-1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

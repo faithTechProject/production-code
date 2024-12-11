@@ -23,14 +23,14 @@ export function Conclusion() {
 
     return (
         <>
-                <div id={styles.oConclusionTopImage}>
-                    <h3 className={styles.oTitle}>CONCLUSION</h3>
-                </div>
+            <div id={styles.oConclusionTopImage}>
+                <h3 className={styles.oTitle}>CONCLUSION</h3>
+            </div>
             <div className='body'>
-                <h2 className={styles.oh2}>4D Cycle Complete!</h2>
+                <h2>4D Cycle Complete!</h2>
                 <div id={styles.o4D}></div>
-                <h2 className={styles.oh2}>Concluding Thoughts</h2>
-                <p className={styles.op1}>As you complete this workbook, take a moment to reflect on your journey through the 4D Cycle by answering the following questions:</p>
+                <h2>Concluding Thoughts</h2>
+                <p>As you complete this workbook, take a moment to reflect on your journey through the 4D Cycle by answering the following questions:</p>
                 <p>How has this process changed your approach to technology development?</p>
                 <textarea id='textarea0' placeholder="Type here..." className={styles.otextarea} onChange={(e) => saveData(e)}></textarea>
                 <p>What new insights have you gained about integrating your faith with your work?</p>
@@ -41,13 +41,13 @@ export function Conclusion() {
                     become persons who love God and love others more deeply.
                 </p>
 
-                <h2 className={styles.oh2}>Future Work</h2>
-                <p className={styles.op1}>Remember, you can always come back to the workbook if you find new ways to add to your redemptive impact. 
+                <h2>Future Work</h2>
+                <p>Remember, you can always come back to the workbook if you find new ways to add to your redemptive impact. 
                     Use the space below to consider possible future work:</p>
                     <p>What would future work on this project look like?</p>
                     <textarea id='textarea2' placeholder="Type here..." className={styles.otextarea} onChange={(e) => saveData(e)}></textarea>
 
-                <p className={styles.op1}>
+                <p>
                     How might you be able to use the workbook to help you with your future work?
                     Remember, the setup of this workbook is a cycle, which means you can go through the 4D Cycle as many times
                     as you'd like. Specifically regarding future work, it might be helpful to repeat certain stages.
@@ -66,7 +66,7 @@ export function Conclusion() {
                     available for you to use. Don't hesitate to use its resources to assist in the future of this
                     redemptive project, or other future projects.
                 </p>
-                <h2 className={styles.oh2}>Thank you for Choosing Redemptive Technology over Reckless!</h2>
+                <h2>Thank you for Choosing Redemptive Technology over Reckless!</h2>
                 <br></br>
             </div>
             <div className='bottomLinks'>

@@ -42,20 +42,18 @@ export function DiscoverLament() {
 				<p>Nehemiah provides us with a great example of what it looks like to lament.
 				Read through Nehemiah chapter 1 to hear his Lament to God after seeing destruction of the walls in Jerusalem.
 				</p>
-				<h2 className={styles.oLamenth2}>Nehemiah 1:4-6</h2>
-				<div class={styles.oBibleQuoteBox}>
-					<p class={styles.oQuoteText}>
-						When I heard these things, I sat down and wept.
-						For some days I mourned and fasted and prayed before the God of heaven.
-						Then I said:
-						"Lord, the God of heaven, the great and awesome God, who keeps his covenant of love with those who love him and keep his commandments, let your ear be attentive and your eyes open to hear the prayer your servance is praying before you day and night for your servants, the people of Israel."
-					</p>
-				</div>
-				<h2 className={styles.oLamenth2}>Scripture Reflection</h2>
+				<h2>Nehemiah 1:4-6</h2>
+				<p class={styles.oQuoteText}>
+					When I heard these things, I sat down and wept.
+					For some days I mourned and fasted and prayed before the God of heaven.
+					Then I said:
+					"Lord, the God of heaven, the great and awesome God, who keeps his covenant of love with those who love him and keep his commandments, let your ear be attentive and your eyes open to hear the prayer your servance is praying before you day and night for your servants, the people of Israel."
+				</p>
+				<h2>Scripture Reflection</h2>
 				<div className={styles.oScriptureBoxOne}>
 					<div className={styles.oNumberBox}>
 						<p2 className={styles.oLamentp2}>
-							<num>1		</num>
+							<num>1</num>
 						</p2>
 					</div>
 					<p2 className={styles.oLamentp2}>Notice how Nehemiah laments over Jerusalem (1:4). How does he bring this to God?</p2>
@@ -99,14 +97,14 @@ export function DiscoverLament() {
 				<p>
 					Write down some or all of your answers to the scripture reflection here:
 					<form id='0'>
-						<textarea name="Lament" rows={8} cols={40} 
+						<textarea name="Lament" rows={8} cols={135} 
 						placeholder="Type here..." 
 						value={scriptureReflection}
 						onChange={(e) => {setScriptureReflection(e.target.value); handleSubmit(e, 0)}}
 						/>
 					</form>
 				</p>
-				<h2 className={styles.oLamenth2}>Phases</h2>
+				<h2>Phases</h2>
 				<p>The methodology of this Discover step will move us through these phases:</p>
 				<div className={styles.phasesContainer}>
 					<div className={styles.oPhase1Box}>
@@ -237,7 +235,7 @@ export function DiscoverLament() {
 				<p className={styles.oLamentp}>
 					Team Lament
 					<form id='1'>
-						<textarea name="Lament" rows={8} cols={40} 
+						<textarea name="Lament" rows={8} cols={135} 
 						placeholder="Type out your team lament here..." 
 						value={lament}
 						onChange={(e) => {setLament(e.target.value); handleSubmit(e, 1)}}
@@ -248,7 +246,7 @@ export function DiscoverLament() {
 				<p className={styles.oLamentp}>
 					How did the process of lament change your perspective on the problem?
 					<form id='2'>
-						<textarea name="Lament" rows={5} cols={40} 
+						<textarea name="Lament" rows={5} cols={135} 
 						placeholder="Type here..." 
 						value={Reflection1}
 						onChange={(e) => {setReflection1(e.target.value); handleSubmit(e, 2)}}
@@ -258,7 +256,7 @@ export function DiscoverLament() {
 				<p className={styles.oLamentp}>
 					In what ways did you feel God's presence during this exercise?
 					<form id='3'>
-						<textarea name="Lament" rows={5} cols={40}
+						<textarea name="Lament" rows={5} cols={135}
 						placeholder="Type here..." 
 						value={Reflection2}
 						onChange={(e) => {setReflection2(e.target.value); handleSubmit(e, 3)}}
