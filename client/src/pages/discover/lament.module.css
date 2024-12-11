@@ -1,13 +1,18 @@
-.oLamenth2{
-    padding: 20px;
-}
-
 .oTitle{
     color: white;
     padding: 50px;
     text-align: center;
     font-size: 50px;
     margin: 0px;
+}
+
+#oLamentTopImage{
+	height: 200px;
+	width: 100%;
+	background-image: url(../images/lamentPic1.jpg);
+    background-size: 115%;
+    background-position-y: -310px;
+    background-position-x: -160px;
 }
 
 .oLamentp{
@@ -19,39 +24,26 @@
 	color: #ea542c;
 }
 
+/*Area for scripture quote*/
+.oQuoteText{
+    color: white;
+    padding: 15px;
+    border-left: 6px;
+    height: fit-content;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--color-primary);
+    border-radius: 25px;
+}
+
+/*CSS for the Scripture Reflection section*/
 .oLamentp2{
     padding: 5px;
 }
 
 .oLamentp2 num{
     color: white;
-}
-
-.oQuoteText{
-    color: white;
-    padding: 15px;
-    margin: auto;
-    text-align: left;
-}
-
-.oBibleQuoteBox{
-    background-color: #ea542c;
-    width: 50%;
-    height: 190px;
-    border: #ea542c;
-    margin: auto; 
-    border-radius: 25px;
-    resize: vertical;
-    overflow: auto;
-}
-
-#oLamentTopImage{
-	height: 200px;
-	width: 100%;
-	background-image: url(../images/lamentPic1.jpg);
-    background-size: 115%;
-    background-position-y: -310px;
-    background-position-x: -160px;
 }
 
 .oScriptureBoxOne{
@@ -132,6 +124,7 @@
     padding: 15px;
 }
 
+/*CSS for the Phases section*/
 .phasesContainer {
     display: flex;
     justify-content: space-between;
@@ -216,6 +209,7 @@
     margin: auto;
 }
 
+/*CSS for the Create Your Lament section*/
 .lamentStepHeaderText{
     color: white;
     font-size: 18px;
