@@ -139,7 +139,8 @@ function combineAnalysisData(brainstormData) {
             setRequestForm2(co_creation_response[2].reply);
             setRequestForm3(co_creation_response[3].reply);
             setRequestForm4(co_creation_response[4].reply);
-        })              
+        })
+              
     } ,[])
 
     //Timer
@@ -249,14 +250,24 @@ function combineAnalysisData(brainstormData) {
                 </div>
             </div>
             <div className={styles.Request}> 
-                <p className={styles.text_align_left}>Chosen Solution</p>
-                <form id='0'>
-                    <textarea className={styles.response} rows={10} cols={20}
-                    placeholder="Solution..."
-                    value={requestForm0}
-                    onChange={(e) => {setRequestForm0(e.target.value); handleSubmit(e.target.value, 0)}}
-                    />
-                </form>
+               
+                <div className={styles.chosen_solution}>
+                    <div className={styles.solution_display}>
+                    <p className={styles.text_align_left}>Chosen Solution</p>
+                        <p  >
+                            {requestForm0 || "Click on one of the solutions above..."}
+                        </p>
+                    </div>
+                    <div className={styles.solution_textarea}>
+                        <p className={styles.text_align_left}> Expand on your chosen solution</p>
+                        <form id='0'>
+                            <textarea className={styles.response} rows={10} cols={20}
+                            placeholder="Solution..."
+                            onChange={(e) => {setRequestForm0(e.target.value); handleSubmit(e.target.value, 0)}}
+                            />
+                        </form>
+                    </div>
+                </div>
             </div>
             <div className={styles.co_creation_cycle}>
                 <h1> Co-Creation Cycle </h1>
