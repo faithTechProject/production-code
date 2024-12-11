@@ -88,6 +88,8 @@
     color: white;
     background-color: var(--color-primary);
     border-radius: 10px;
+    width: 50%;
+    margin: auto;
     padding: 20px;
 }
 
@@ -95,7 +97,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    padding-top: 20px;;
+    margin-bottom: 50px;
 }
 
 .column {
@@ -109,6 +111,7 @@
     background-color: var(--color-primary);
     border-radius: 10px;
     padding: 20px;
+    margin: 0px;
 }
 
 .relationship {
@@ -139,6 +142,7 @@
     background-color: transparent;
     border-style: none;
     border-bottom-style: solid;
+    text-align: right;
     border-color: white;
     color: white;
     caret-color: white;
@@ -152,22 +156,38 @@
     outline: none;
 }
 
-.arrow {
-    width: 100px;
-    height: 4px;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: 15px;
+/*------ ARROWS & LINES ------*/
+.arrowDown {
+    width: 4px;
+    height: 50px;
+    margin: auto;
+    margin-bottom: 15px;
     position: relative;
-    background-color: #e66e4d;
+    background-color: var(--color-primary);
 }
 
-.arrow::after {
+.arrowDown::after {
     content: '';
     position: absolute;
-    top: -10px;
-    right: -15px;
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid transparent;
-    border-left: 15px solid #e66e4d;
+    bottom: -15px;
+    left: -10px;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 15px solid var(--color-primary);
+}
+
+.lineDown {
+    width: 4px;
+    height: 50px;
+    margin: auto;
+    position: relative;
+    background-color: var(--color-primary);
+}
+
+.lineAcross {
+    width: 67%;
+    height: 4px;
+    margin: auto;
+    background-color: var(--color-primary);
+    border-radius: 4px 4px 0px 0px;
 }

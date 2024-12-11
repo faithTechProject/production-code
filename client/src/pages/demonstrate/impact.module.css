@@ -1,3 +1,7 @@
+/*----------------------
+--------- TITLE --------
+----------------------*/
+
 .oTitle{
     color: white;
     padding: 50px;
@@ -16,6 +20,10 @@
 	background-image: url(../images/network.jpeg);
     background-size: cover;
 }
+
+/*------------------------
+--------- GENERAL --------
+------------------------*/
 
 .textbody{
     margin: 10px 50px ;
@@ -37,95 +45,68 @@
     background-color: #ea542c;
     padding: 10px;
     width: 50%;
-    margin: 10px auto;
+    margin: auto;
 }
 
-.rel-box{
-    background-color: #ea542c;
-    padding: 1px;
-    margin: auto;
-    height: 50px;
-    width: 600px;
-    font-size: x-large;
-}
-/*.rel-text{
-    color: white;
-    background-color: #ea542c;
-    padding: 10px;
-    width:200px;
-    margin: 10px auto;
-}*/
 .userTextInputRelationship{
-    box-sizing: border-box;/*
-    margin: 5px 0px;
-    height: 230px;*/
-    width : 100%;
-    background-color: #ea542c;
+    width : 40%;
+    height: 50px;
+    margin-left: 30%;
+    background-color: var(--color-primary);
     color: white;
+    text-align: center;
     border:none;
     font-size: large;
     resize: none;
 }
+
 .userTextInputRelationship::placeholder {
     color: white;
 }
 
-.hexagonfirst{
-    display: inline-block;
-    unicode-bidi: isolate;
-    width: 400px;
-    float: left;
-    /*margin-right: -50px;*/
-    margin-bottom: -100px;
-}
-.hexagon{
-    display: inline-block;
-    unicode-bidi: isolate;
-    /*float: left; */
-    width: 400px;
-    float: left;
-    /*margin-right: -50px;*/
-    margin-top: -100px;
-}
-.hexagonEven{
-    float: left;
-    margin-top: 200px;
-}
-.hex-tri {
-    float: left;
-    /*display: inline-block;*/
-    border-right: 90px solid #ea542c;
-    border-top: 156px solid transparent;
-    border-bottom: 156px solid transparent;
+/*----------------------
+--------- HEXES --------
+----------------------*/
 
-}
-/* 
-border-right: 30px solid #ea542c;
-    border-top: 52px solid transparent;
-    border-bottom: 52px solid transparent;*/
-.hex-body {
+.hex-body, .hex-first {
     float: left;
-    /*display: inline-block;*/
     width: 220px;
     height: 312px;
-    background-color: #ea542c;
+    margin-top: 312px;
+    background-color: var(--color-primary);
+    position: relative;
 
 }
-/*float: left;
-width: 60px;
-height: 104px;
-background-color: #ea542c;
-*/
-.hex-tri2 {
-    float: left;
-    display: inline-block;
-    border-left: 90px solid #ea542c;
+
+.hex-body::after, .hex-first::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: -90px;
     border-top: 156px solid transparent;
     border-bottom: 156px solid transparent;
+    border-left: 90px solid var(--color-primary);
 }
+
+.hex-body::before, .hex-first::before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: -90px;
+    border-top: 156px solid transparent;
+    border-bottom: 156px solid transparent;
+    border-right: 90px solid var(--color-primary);
+}
+
+.hex-first {
+    margin-top: 0px;
+}
+
 .hex-text{
     color:white;
     text-align: center;
+    height: 272px;
+    margin: 20px auto;
 }
 
 .userTextInput{
@@ -133,29 +114,68 @@ background-color: #ea542c;
     margin: 5px 0px;
     height: 230px;
     width: 95%;
-    /*background-color: #ea542c;
-    color: white;*/
     border:none;
 }
-/*
-.userTextInput:focus {
-    outline: dotted white;
-}
-.userTextInput::-webkit-scrollbar {
-    display: none;
-}
-.CurrentState:focus {
-    border: 3px solid #555;
-    background-color: #f79074;
-}
 
-.userTextInput::placeholder {
-    color: white;
-}
-*/
 .hexes-container{
     margin:auto;
-    text-align:center;
-    clear:left;
-    width:900px;
+    display: flex;
+    justify-content: center;
+    width: 90%;
+}
+
+.hexes-column{
+    width:30%;
+}
+
+/*-------------
+---- LINES ----
+-------------*/
+.lineDownShort {
+    width: 4px;
+    height: 50px;
+    margin: auto;
+    position: relative;
+    background-color: var(--color-primary);
+}
+
+.lineDownLeft {
+    width: 4px;
+    height: 312px;
+    margin: auto;
+    position: relative;
+    background-color: var(--color-primary);
+}
+
+.lineDownLeft::before {
+    content: '';
+    position: absolute;
+    height: 4px;
+    top: 154px;
+    left: -200px;
+    border-left: 200px solid var(--color-primary);
+}
+
+.lineDownRight {
+    width: 4px;
+    height: 312px;
+    margin: auto;
+    position: relative;
+    background-color: var(--color-primary);
+}
+
+.lineDownRight::after {
+    content: '';
+    position: absolute;
+    height: 4px;
+    top: 154px;
+    right: -200px;
+    border-right: 200px solid var(--color-primary);
+}
+
+.lineAcross {
+    width: 5%;
+    height: 4px;
+    margin: auto;
+    background-color: var(--color-primary);
 }
