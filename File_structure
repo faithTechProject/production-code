@@ -1,0 +1,159 @@
+production-code/
+├── .vscode/
+│   └── settings.json
+├── Postgres.session.sql
+├── README.md
+├── client/
+│   ├── Dockerfile
+│   ├── README.md
+│   ├─ node_modules/ (ignored)
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public/
+│   │   ├── Proposal-Template.docx
+│   │   ├── The-FaithTech-Playbook.pdf
+│   │   ├── index.html
+│   │   └── raci_matrix.png
+│   └── src/
+│       ├── App.js
+│       ├── app.css
+│       ├── index.js
+│       ├── pages/
+│       │   ├── 4D.pdf
+│       │   ├── common/
+│       │   │   ├── common.css
+│       │   │   ├── dropdown.jsx
+│       │   │   ├── footer.jsx
+│       │   │   ├── menuItems.jsx
+│       │   │   ├── navbar.css
+│       │   │   ├── navbar.jsx
+│       │   │   ├── tableOfContents.css
+│       │   │   └── tableOfContents.jsx
+│       │   ├── components/
+│       │   │   ├── CoCreationTable.jsx
+│       │   │   ├── CoCreationTable.module.css
+│       │   │   ├── CoCreationTasks.jsx
+│       │   │   ├── DownloadComponent.jsx
+│       │   │   ├── TicketComponent.jsx
+│       │   │   └── TicketComponent.module.css
+│       │   ├── dbTable.js
+│       │   ├── dbTable.module.css
+│       │   ├── dbTablesMatrix.js
+│       │   ├── demonstrate/
+│       │   │   ├── conclusion copy.jsx
+│       │   │   ├── conclusion.jsx
+│       │   │   ├── conclusion.module.css
+│       │   │   ├── impact.jsx
+│       │   │   ├── impact.module.css
+│       │   │   ├── measure.jsx
+│       │   │   ├── measure.module.css
+│       │   │   ├── overview.jsx
+│       │   │   ├── overview.module.css
+│       │   │   ├── story.jsx
+│       │   │   └── story.module.css
+│       │   ├── develop/
+│       │   │   ├── co_creation.jsx
+│       │   │   ├── co_creation.module.css
+│       │   │   ├── overview.jsx
+│       │   │   ├── overview.module.css
+│       │   │   ├── tickets.jsx
+│       │   │   └── tickets.module.css
+│       │   ├── discern/
+│       │   │   ├── analysis.jsx
+│       │   │   ├── analysis.module.css
+│       │   │   ├── brainstorm.jsx
+│       │   │   ├── brainstorm.module.css
+│       │   │   ├── draggable.jsx
+│       │   │   ├── droppable.jsx
+│       │   │   ├── overview.jsx
+│       │   │   ├── overview.module.css
+│       │   │   ├── timeline.jsx
+│       │   │   └── timeline.module.css
+│       │   ├── discover/
+│       │   │   ├── lament.jsx
+│       │   │   ├── lament.module.css
+│       │   │   ├── overview.jsx
+│       │   │   ├── overview.module.css
+│       │   │   ├── problem.jsx
+│       │   │   ├── problem.module.css
+│       │   │   ├── projects.jsx
+│       │   │   ├── projects.module.css
+│       │   │   ├── teams copy.jsx
+│       │   │   ├── teams.jsx
+│       │   │   └── teams.module.css
+│       │   ├── images/
+│       │   │   ├── 4DCycle.png
+│       │   │   ├── ...
+│       │   ├── workbook.jsx
+│       │   └── workbook.module.css
+│       └── scrollTop.js
+├── docker-compose.yml
+├── package-lock.json
+├── package.json
+└── server/
+    ├── Dockerfile
+    ├── README.md
+    ├─ dist/ (ignored)
+    ├── migrations/
+    │   └── 1732931769742-table_data.ts
+    ├── nest-cli.json
+    ├─ node_modules/ (ignored)
+    ├── package-lock.json
+    ├── package.json
+    ├── src/
+    │   ├── analysis.dnd/
+    │   │   ├── analysis.dnd.controller.spec.ts
+    │   │   ├── analysis.dnd.controller.ts
+    │   │   ├── analysis.dnd.entity.ts
+    │   │   ├── analysis.dnd.module.ts
+    │   │   ├── analysis.dnd.service.spec.ts
+    │   │   ├── analysis.dnd.service.ts
+    │   │   └── dto/
+    │   │       ├── create.analysis.dnd.dto.ts
+    │   │       └── update.analysis.dnd.dto.ts
+    │   ├── app.module.ts
+    │   ├── main.ts
+    │   ├── matrix/
+    │   │   ├── dto/
+    │   │   │   ├── create-matrix-dto.ts
+    │   │   │   └── update-matrix.dto.ts
+    │   │   ├── matrix.controller.spec.ts
+    │   │   ├── matrix.controller.ts
+    │   │   ├── matrix.entity.ts
+    │   │   ├── matrix.module.ts
+    │   │   ├── matrix.service.spec.ts
+    │   │   └── matrix.service.ts
+    │   ├── story_page/
+    │   │   ├── dto/
+    │   │   │   ├── story_forms-dto.ts
+    │   │   │   └── update_story_forms-dto.ts
+    │   │   ├── story.controller.ts
+    │   │   ├── story.entity.ts
+    │   │   ├── story.module.ts
+    │   │   └── story.service.ts
+    │   ├── text.area.reflections/
+    │   │   ├── dto/
+    │   │   │   ├── create-text.area.reflections.dto.ts
+    │   │   │   └── update-text.area.reflections.dto.ts
+    │   │   ├── text.area.reflections.controller.spec.ts
+    │   │   ├── text.area.reflections.controller.ts
+    │   │   ├── text.area.reflections.entity.ts
+    │   │   ├── text.area.reflections.module.ts
+    │   │   ├── text.area.reflections.service.spec.ts
+    │   │   └── text.area.reflections.service.ts
+    │   └── tickets/
+    │       ├── dto/
+    │       │   ├── create-tickets-dto.ts
+    │       │   └── update-tickets.dto.ts
+    │       ├── tickets.controller.spec.ts
+    │       ├── tickets.controller.ts
+    │       ├── tickets.entity.ts
+    │       ├── tickets.module.ts
+    │       ├── tickets.service.spec.ts
+    │       └── tickets.service.ts
+    ├── test/
+    │   ├── app.e2e-spec.ts
+    │   └── jest-e2e.json
+    ├── tsconfig.build.json
+    ├── tsconfig.json
+    └── typeOrm.config.ts
