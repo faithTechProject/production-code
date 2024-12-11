@@ -1,0 +1,116 @@
+.container_kK7J {
+    height: 600px;
+    width: 800px;
+    margin: auto;
+    background-color: pink;
+}
+
+.bUTGgW {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.byhYHh {
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    overflow: hidden auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    overscroll-behavior-x: contain;
+    scroll-behavior: smooth;
+    width: 100%;
+    scrollbar-width: thin;
+}
+
+.dBAArN {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0.25rem;
+    outline: 0px;
+}
+
+.faoySa.visible {
+    visibility: visible;
+}
+.faoySa.right {
+    margin-left: auto;
+}
+/* right vertical-item-row visible"*/
+/*visible right" height="200"*/
+
+.markdown li, body {
+    word-wrap: break-word;
+}
+.kpotpU {
+    visibility: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 75%;
+}
+
+.iOwMkL {
+    align-items: flex-start;
+    background: rgb(255, 255, 255);
+    border-radius: 8px;
+    display: flex;
+    filter: drop-shadow(rgba(0, 0, 0, 0.3) 0px 0px 1px);
+    flex-direction: column;
+    justify-content: flex-start;
+    line-height: 1.5em;
+    height: 200px;
+    position: relative;
+    text-align: left;
+    width: 98%;
+    z-index: 0;
+}
+.gccaUx {
+    align-items: center;
+    display: fle;
+    justify-content: center;
+    position: relative;
+    width: 25%;
+}
+
+.kYlNuD {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 98%;
+    margin-right: auto;
+    margin-left: auto;
+    overflow-x: hidden;
+}
+.jIatKG {
+    width: 100%;
+    padding: 0.5rem;
+}
+.markdown h1:first-child {
+    --ifm-h1-font-size: 3rem;
+    margin-bottom: calc(var(--ifm-h1-vertical-rhythm-bottom)* var(--ifm-leading));
+}
+
+.ldRQon {
+    color: rgb(0, 127, 255);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0.25rem 0px 0.5rem;
+    text-align: left;
+    width: 95%;
+}
+
+.gzbhke {
+    color: rgb(0, 0, 0);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0px;
+    text-align: left;
+    width: 97%;
+}
