@@ -1,17 +1,3 @@
-.oh1{
-    color: #ea542c;
-    padding: 15px;
-    text-align: center;
-    font-size: 30px;
-}
-
-.oh2{
-    color: black;
-    padding: 15px;
-    text-align: center;
-    font-size: 30px;
-}
-
 .oTitle{
     color: white;
     padding: 50px;
@@ -20,29 +6,13 @@
 }
 
 .otextarea {
-    width: 50%;
+    width: 100%;
     height: 100px;
-}
-
-.op1{
-    text-align: left;
-    color: black;
-    padding-left: 25px;
-    padding-right: 25px;
-    font-size: 15px;
-}
-
-.op2{
-    text-align: center;
-    color: black;
-    padding: 5px;
-    font-size: 15px;
 }
 
 .oQuoteText{
     color: white;
     padding: 15px;
-    font-size: 15px;
     border-left: 6px;
     height: fit-content;
     width: 50%;
@@ -55,8 +25,9 @@
 #oConclusionTopImage{
 	height: 200px;
 	width: 100%;
-	background-image: url(../images/DiscernPicture.png);
+	background-image: url(../images/workbookTitle.jpg);
     background-size: cover;
+    background-position-y: -190px;
 }
 
 #o4D{
