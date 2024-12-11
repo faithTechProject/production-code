@@ -1,2 +1,1 @@
-SELECT * FROM analysis
-ORDER BY id;
+DROP TABLE "story";
