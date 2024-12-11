@@ -125,12 +125,6 @@ function combineAnalysisData(brainstormData) {
             reply: value
         })
     }
-    const save = (e, input_data) => {
-        e.preventDefault();
-        axios.patch(`${baseURL}/?page=CoCreation&entry_pos=${e.target.id}`, {
-            reply: input_data
-        })
-    }
 
     useEffect (() => {
 
@@ -146,35 +140,6 @@ function combineAnalysisData(brainstormData) {
             setRequestForm3(co_creation_response[3].reply);
             setRequestForm4(co_creation_response[4].reply);
         })
-
-        axios
-              .get("http://localhost:3000/analysis")
-
-              .then(response => {
-                // Assuming fetchedData is the object containing your data
-                const fetchedData = response.data
-                
-                // Assuming each object has a `category` field
-                const reimagineSolutions = fetchedData
-                .filter(item => item.category === "Reimagine")
-                .map(item => item.solution);
-                
-                const receiveSolutions = fetchedData
-                .filter(item => item.category === "Receive")
-                .map(item => item.solution);
-
-                const createSolutions = fetchedData
-                .filter(item => item.category === "Create")
-                .map(item => item.solution);
-
-                set_solutions(prevSolutions => ({
-                    ...prevSolutions, // Keep existing state
-                    receive: receiveSolutions,
-                    reimagine: reimagineSolutions,
-                    create: createSolutions,
-                  }));
-              })
-
               
     } ,[])
 
@@ -285,14 +250,25 @@ function combineAnalysisData(brainstormData) {
                 </div>
             </div>
             <div className={styles.Request}> 
-                <p className={styles.text_align_left}>Chosen Solution</p>
-                <form id='0'>
-                    <textarea className={styles.response} rows={10} cols={20}
-                    placeholder="Solution..."
-                    value={requestForm0}
-                    onChange={(e) => {setRequestForm0(e.target.value); handleSubmit(e.target.value, 0)}}
-                    />
-                </form>
+               
+                <div className={styles.chosen_solution}>
+                    <div className={styles.solution_display}>
+                    <p className={styles.text_align_left}>Chosen Solution</p>
+                        <p  >
+                            {requestForm0 || "Click on one of the solutions above..."}
+                        </p>
+                    </div>
+                    <div className={styles.solution_textarea}>
+                        <p className={styles.text_align_left}> Expand on your chosen solution</p>
+                        <form id='0'>
+                            <textarea className={styles.response} rows={10} cols={20}
+                            placeholder="Solution..."
+                            onChange={(e) => //{setRequestForm0(e.target.value); 
+                                handleSubmit(e.target.value, 0)}
+                            />
+                        </form>
+                    </div>
+                </div>
             </div>
             <div className={styles.co_creation_cycle}>
                 <h1> Co-Creation Cycle </h1>
