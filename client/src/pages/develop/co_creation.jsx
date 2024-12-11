@@ -126,22 +126,7 @@ function combineAnalysisData(brainstormData) {
         })
     }
 
-    useEffect (() => {
-
-        axios.get(`http://localhost:3000/text-area-reflections/CoCreation`).then(response => {
-            console.log(response.data)
-            const data = response.data;
-            data.sort((a,b) => a.entry_pos - b.entry_pos)
-            
-            const co_creation_response = data;
-            setRequestForm0(co_creation_response[0].reply);
-            setRequestForm1(co_creation_response[1].reply);
-            setRequestForm2(co_creation_response[2].reply);
-            setRequestForm3(co_creation_response[3].reply);
-            setRequestForm4(co_creation_response[4].reply);
-        })
-              
-    } ,[])
+    
 
     //Timer
     let timerInterval;
@@ -253,19 +238,10 @@ function combineAnalysisData(brainstormData) {
                
                 <div className={styles.chosen_solution}>
                     <div className={styles.solution_display}>
-                    <p className={styles.text_align_left}>Chosen Solution</p>
+                        <p className={styles.text_align_left}>Chosen Solution</p>
                         <p  >
                             {requestForm0 || "Click on one of the solutions above..."}
                         </p>
-                    </div>
-                    <div className={styles.solution_textarea}>
-                        <p className={styles.text_align_left}> Expand on your chosen solution</p>
-                        <form id='0'>
-                            <textarea className={styles.response} rows={10} cols={20}
-                            placeholder="Solution..."
-                            onChange={(e) => {setRequestForm0(e.target.value); handleSubmit(e.target.value, 0)}}
-                            />
-                        </form>
                     </div>
                 </div>
             </div>

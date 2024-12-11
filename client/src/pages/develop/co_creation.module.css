@@ -169,9 +169,6 @@
   border: 1px solid var(--color-primary);
 }
 
-.solution_display{
-  width: 40%;
-}
 .chosen_solution{
   display: flex;
   width: 90%;
