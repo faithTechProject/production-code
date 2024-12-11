@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import styles from './timeline.module.css';
-import stylest from './timelineExample.module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 export function DiscernTimeline() {
@@ -20,7 +19,7 @@ export function DiscernTimeline() {
             reply: textarea.target.value
         });
     }
-    
+
     return (
         <>
             <div id={styles.oTopImage}>
@@ -55,19 +54,23 @@ export function DiscernTimeline() {
                 <p>Example timeline:</p>
                 <iframe src="https://workbook.faithtech.com/prepare/timeline#developing-a-create-roadmap" width="50%" height="500"></iframe>
                 <h1>Manage Timeline Expectations</h1>
-                <div className = {styles.imageArea}></div>
+                <div className = {styles.flex_container}>
+                    <div className = {styles.bulletsdiv}>
+                        <num className={styles.decorate_list}> 1 </num><p>Communicate timelines clearly to all stakeholders</p>
+                        <num className={styles.decorate_list}> 2 </num><p>Provide regular updates on progress and any changes</p>
+                    </div>
+                    <div className = {styles.imageArea}></div>
+                    <div className = {styles.bulletsdiv}>
+                        <num className={styles.decorate_list}> 3 </num><p>Be transparent about challenges and delays</p>
+                        <num className={styles.decorate_list}> 4 </num><p>Celebrate milestones to maintain motivation</p>
+                    </div>
+                </div>
+                
                 <br></br>
                 <h1>Communication Plan</h1>
                 <p>Share your team's communication method, platforms, or plan.</p>
                 <div className={styles.divbox}>
-                    <form id='0' onSubmit={(e) => handleSubmit(e, communication)}>
-                        <textarea className={styles.communication}
-                        placeholder="Type here..." 
-                        value={communication}
-                        onChange={(e) => setCommunication(e.target.value)}
-                        />
-                        <input type="submit" value="Save" />
-                    </form>
+                    <textarea id='textarea0' placeholder="Type here..." className={styles.communication} onChange={(e)=> saveData(e)}></textarea>
                 </div>
                 <div className='bottomLinks'>
                     <div>
