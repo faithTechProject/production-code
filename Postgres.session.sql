@@ -1,1 +1,3 @@
-DROP TABLE "story";
+SELECT * FROM tickets
+
+ORDER BY id;

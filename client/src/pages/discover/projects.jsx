@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import styles from './projects.module.css';
 import axios from 'axios';
-import {fillTable} from '../dbTable';
+import {fillTable} from '../dbTablesMatrix';
 import { DownloadButton } from "../components/DownloadComponent";
 
 
