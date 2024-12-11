@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import team_pic from '../images/hostIdeaSessions.jpg';
 import { DownloadButton } from "../components/DownloadComponent";
-import { fillTable } from '../dbTable';
+import { fillTable } from '../dbTablesMatrix';
 
 
 
@@ -376,7 +376,6 @@ export function DiscoverTeams() {
                             </tr>
                         </thead>
                         <tbody>
-                            {console.log("here")}
                             {tasks.map((task, rowIndex) => (
                             <tr key={rowIndex}>
                                 {/* Input field for task name */}
