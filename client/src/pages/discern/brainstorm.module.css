@@ -91,7 +91,7 @@
     right: -15px;
     border-top: 12px solid transparent;
     border-bottom: 12px solid transparent;
-    border-left: 15px solid #e66e4d;
+    border-left: 15px solid var(--color-primary);
 }
 
 /*-------------------------

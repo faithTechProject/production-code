@@ -17,6 +17,7 @@ export function DemonstrateImpact() {
             then each of outlined categories in their respective hexagons.</p>
             <br></br>
             <h1 className={impactStyle['sol-text']}>Solution(import)</h1>
+            <div className={impactStyle.lineDownShort}></div>
             <div className = {impactStyle['rel-box']}>
                 <form id='1'>
                     <textarea className = {impactStyle["userTextInputRelationship"]}
@@ -24,10 +25,7 @@ export function DemonstrateImpact() {
                 </form>
             </div>
             <div className = {impactStyle['hexes-container']}>
-                <br></br>
-                <div className = {impactStyle['hexagonfirst']}>
-                    <br></br>
-                    <div className = {impactStyle['hex-tri']}></div>
+                <div className={impactStyle['hexes-column']}>
                     <div className = {impactStyle['hex-body']}>
                         <h3 className = {impactStyle['hex-text']}>Current State
                             <form id='1'>
@@ -36,23 +34,7 @@ export function DemonstrateImpact() {
                             </form>
                         </h3>
                     </div>
-                    <div className = {impactStyle['hex-tri2']}></div>
-                </div>
-                <div className = {impactStyle['hexagonEven']}>
-                    <div className = {impactStyle['hex-tri']}></div>
-                    <div className = {impactStyle['hex-body']}>
-                        <h3 className = {impactStyle['hex-text']}>Desired State
-                            <form id='2'>
-                                <textarea className = {impactStyle["userTextInput"]}
-                                placeholder='type here...'></textarea>
-                            </form>
-                        </h3>
-                    </div>
-                    <div className = {impactStyle['hex-tri2']}></div>
-                </div>
-            
-                <div className = {impactStyle['hexagon']}>
-                    <div className = {impactStyle['hex-tri']}></div>
+                    <div className = {impactStyle['hexagon']}>
                     <div className = {impactStyle['hex-body']}>
                         <h3 className = {impactStyle['hex-text']}>Actions
                             <form id='3'>
@@ -61,7 +43,20 @@ export function DemonstrateImpact() {
                             </form>
                         </h3>
                     </div>
-                    <div className = {impactStyle['hex-tri2']}></div>
+                </div>
+                </div>
+                <div className={impactStyle['hexes-column']}>
+                    <div className={impactStyle.lineDownLong}></div>
+                </div>
+                <div className={impactStyle['hexes-column']}>
+                    <div className = {impactStyle['hex-body']}>
+                        <h3 className = {impactStyle['hex-text']}>Desired State
+                            <form id='2'>
+                                <textarea className = {impactStyle["userTextInput"]}
+                                placeholder='type here...'></textarea>
+                            </form>
+                        </h3>
+                    </div>
                 </div>
             </div>
             <div className='bottomLinks'>
