@@ -1,5 +1,5 @@
 .container_kK7J {
-    /*height: 600px;*/
+    height: 600px;
     width: 800px;
     margin: auto;
     background-color: pink;
@@ -19,7 +19,10 @@
     display: flex;
     justify-content: center;
     overflow: hidden auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     overscroll-behavior: contain;
+    overscroll-behavior-x: contain;
     scroll-behavior: smooth;
     width: 100%;
     scrollbar-width: thin;
@@ -39,6 +42,8 @@
 .faoySa.right {
     margin-left: auto;
 }
+/* right vertical-item-row visible"*/
+/*visible right" height="200"*/
 
 .markdown li, body {
     word-wrap: break-word;
@@ -82,4 +87,30 @@
     margin-right: auto;
     margin-left: auto;
     overflow-x: hidden;
+}
+.jIatKG {
+    width: 100%;
+    padding: 0.5rem;
+}
+.markdown h1:first-child {
+    --ifm-h1-font-size: 3rem;
+    margin-bottom: calc(var(--ifm-h1-vertical-rhythm-bottom)* var(--ifm-leading));
+}
+
+.ldRQon {
+    color: rgb(0, 127, 255);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0.25rem 0px 0.5rem;
+    text-align: left;
+    width: 95%;
+}
+
+.gzbhke {
+    color: rgb(0, 0, 0);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0px;
+    text-align: left;
+    width: 97%;
 }
