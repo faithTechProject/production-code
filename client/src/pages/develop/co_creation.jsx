@@ -125,12 +125,6 @@ function combineAnalysisData(brainstormData) {
             reply: value
         })
     }
-    const save = (e, input_data) => {
-        e.preventDefault();
-        axios.patch(`${baseURL}/?page=CoCreation&entry_pos=${e.target.id}`, {
-            reply: input_data
-        })
-    }
 
     useEffect (() => {
 
@@ -145,37 +139,7 @@ function combineAnalysisData(brainstormData) {
             setRequestForm2(co_creation_response[2].reply);
             setRequestForm3(co_creation_response[3].reply);
             setRequestForm4(co_creation_response[4].reply);
-        })
-
-        axios
-              .get("http://localhost:3000/analysis")
-
-              .then(response => {
-                // Assuming fetchedData is the object containing your data
-                const fetchedData = response.data
-                
-                // Assuming each object has a `category` field
-                const reimagineSolutions = fetchedData
-                .filter(item => item.category === "Reimagine")
-                .map(item => item.solution);
-                
-                const receiveSolutions = fetchedData
-                .filter(item => item.category === "Receive")
-                .map(item => item.solution);
-
-                const createSolutions = fetchedData
-                .filter(item => item.category === "Create")
-                .map(item => item.solution);
-
-                set_solutions(prevSolutions => ({
-                    ...prevSolutions, // Keep existing state
-                    receive: receiveSolutions,
-                    reimagine: reimagineSolutions,
-                    create: createSolutions,
-                  }));
-              })
-
-              
+        })              
     } ,[])
 
     //Timer
