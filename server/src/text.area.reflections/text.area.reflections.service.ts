@@ -1,7 +1,8 @@
-import { Body, Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TextAreaReflections } from './text.area.reflections.entity';
 import { Repository } from 'typeorm';
+import { CreateTextAreaReflectionsDto } from './dto/create-text.area.reflections.dto' 
 import { UpdateTextAreaReflectionsDto } from './dto/update-text.area.reflections.dto';
 
 @Injectable()
@@ -20,14 +21,14 @@ export class TextAreaReflectionsService {
         })
     }
 
-    async addPost(id: number, category: string, page: string, entry_pos: number, title: string, subtitle: string, reply: string): Promise<TextAreaReflections> { 
-        const post = this.textAreasRepository.create({id, category, page, entry_pos, title, subtitle, reply}) // Add new entry
+    async addPost(createTextAreaReflectionsDto:CreateTextAreaReflectionsDto): Promise<TextAreaReflections> { 
+        const post = this.textAreasRepository.create(createTextAreaReflectionsDto) // Add new entry
         return this.textAreasRepository.save(post)
     }
 
     async update(page: string, entry_pos: number, updateTextAreaReflectionsDto: UpdateTextAreaReflectionsDto): Promise<TextAreaReflections>{
         const toUpdate = await this.textAreasRepository.findOne({where: { page:page, entry_pos:entry_pos  } });
         const updated = Object.assign(toUpdate, updateTextAreaReflectionsDto);
-        return await this.textAreasRepository.save(updated);
+        return await this.textAreasRepository.save(updated); // update already existing entry with different data and return.
     }
 }

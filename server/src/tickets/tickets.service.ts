@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { And, ListCollectionsCursor, MoreThan, MoreThanOrEqual, Not, Repository } from 'typeorm';
+import { MoreThan, Repository } from 'typeorm';
 import { Tickets } from './tickets.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UpdateTicketsDto } from './dto/update-tickets.dto';
 import { CreateTicketsDto } from './dto/create-tickets-dto';
-import { NotContains, NotEquals } from 'class-validator';
 
 @Injectable()
 export class TicketsService {
@@ -38,74 +37,37 @@ export class TicketsService {
         return this.ticketsRepository.save(entry);
     }
 
-
-    async ticketUpdateIndex(updateTicketsDto: UpdateTicketsDto) {
-        
-
-    }
-
+    // handels when a ticket is moved around to a different group status.
     async moveTicket(id: number, updateTicketsDto: UpdateTicketsDto) {
-        const toUpdate = await this.ticketsRepository.findOneBy( { id } );
-        const oldStatus = toUpdate.status
-        const updated = Object.assign(toUpdate, updateTicketsDto)
-        await this.ticketsRepository.save(updated);
-        //console.log(updated)
-
-        
-        //console.log(updateTicketsDto.status)
-        
-        if (oldStatus == updateTicketsDto.status) {
-            const tickets = await this.ticketsRepository.find({
-                where: {
-                    row_index: MoreThanOrEqual(updateTicketsDto.row_index), 
-                    status: updateTicketsDto.status,
-                    id: Not(id) 
-                    }
-                });
-
+        const oldTicket = await this.ticketsRepository.findOneBy({ id });
+        if (oldTicket.status == updateTicketsDto.status){
+            
+            const tickets = await this.ticketsRepository.find({ where: { status: updateTicketsDto.status }});
             tickets.sort((a, b) => a.row_index - b.row_index);
+            tickets.splice(updateTicketsDto.row_index, 0, tickets.splice(tickets.findIndex(item => item.id == id), 1)[0]);
             for (let i=0; i<tickets.length; ++i) {
-                tickets[i].row_index = i + 1 + updateTicketsDto.row_index;
-                await this.updateTicketIds(tickets[i].id, tickets[i])
+                await this.updateTickets(tickets[i].id, {row_index: i})
             }
         }
-        
-        
-        //console.log(oldStatus)
-        //console.log(updateTicketsDto.status)
-        if (oldStatus != updateTicketsDto.status) {
-            const otherColumn = await this.ticketsRepository.find({ where: {status: oldStatus }});
-            otherColumn.sort((a, b) => a.row_index - b.row_index);
-            //console.log(otherColumn)
-            for (let i=0; i<otherColumn.length; ++i) {
-                otherColumn[i].row_index = i;
-                await this.updateTicketIds(otherColumn[i].id, otherColumn[i])
+        else {
+            const tickets = await this.ticketsRepository.find({ where: { status: updateTicketsDto.status }});
+            tickets.sort((a, b) => a.row_index - b.row_index);
+            tickets.splice(updateTicketsDto.row_index, 0, await(this.ticketsRepository.findOneBy({ id })));
+            for (let i=0; i<tickets.length; ++i) {
+                await this.updateTickets(tickets[i].id, {status: updateTicketsDto.status, row_index: i})
             }
 
-            const otherColumn2 = await this.ticketsRepository.find({ where: {
-                                                                        row_index: MoreThanOrEqual(updateTicketsDto.row_index),
-                                                                        status: updateTicketsDto.status,
-                                                                        id: Not(id)
-                                                                        
-                                                                        }
-                                                                    });
-            otherColumn2.sort((a, b) => a.row_index - b.row_index);
-            for (let i=0; i<otherColumn2.length; ++i) {
-                console.log("inside")
-                otherColumn2[i].row_index = i + 1 + updateTicketsDto.row_index;
-                console.log(otherColumn2[i])
-                await this.updateTicketIds(otherColumn2[i].id, otherColumn2[i])
-                
+            const otherColumn = await this.ticketsRepository.find({ where: { status: oldTicket.status }});
+            otherColumn.sort((a, b) => a.row_index - b.row_index);
+            for (let i=0; i<otherColumn.length; ++i) {
+                await this.updateTickets(otherColumn[i].id, { row_index: i })
             }
-            //console.log(otherColumn2)
         }
-        
         return this.findAll();
     }
 
 
-    async updateTicketIds(id: number, updateTicketsDto: UpdateTicketsDto) {
-        
+    async updateTickets(id: number, updateTicketsDto: UpdateTicketsDto) {
         const toUpdate = await this.ticketsRepository.findOneBy({ id });
         const updated = Object.assign(toUpdate, updateTicketsDto)
         return await this.ticketsRepository.save(updated)
@@ -121,7 +83,7 @@ export class TicketsService {
         
         for (let i=0; i<rowsToUpdate.length; ++i) {
             --rowsToUpdate[i].id;
-            await this.updateTicketIds(rowsToUpdate[i].id + 1, rowsToUpdate[i])
+            await this.updateTickets(rowsToUpdate[i].id + 1, rowsToUpdate[i])
         }
 
         if (rowNum > 1) {
@@ -129,17 +91,11 @@ export class TicketsService {
         }
         const ticketColumn = await this.findStatus(status);
         ticketColumn.sort((a, b) => a.row_index - b.row_index);
-        console.log(ticketColumn)
         for (let i=0; i<ticketColumn.length; ++i) {
             ticketColumn[i].row_index = i;
             
-            await this.updateTicketIds(ticketColumn[i].id, ticketColumn[i])
+            await this.updateTickets(ticketColumn[i].id, ticketColumn[i])
         }
-
-        
-        //this.ticketsRepository.save()
-        //console.log(rowstoUpdate)
         return await this.findAll();
-                //this.ticketsRepository.delete(id)
     }
 }

@@ -1,65 +1,54 @@
 import styles from './analysis.module.css';
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DndContext } from '@dnd-kit/core';
 import { Draggable } from './draggable';
 import { Droppable } from './droppable';
-import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
 
 export function DiscernAnalysis() {
-  const [Solutions, setSolutions] = useState([
-    { id: uuidv4(), text: '', explanation: '', category: 'unassigned' },
-  ]);
+  
+  const [solutions, setSolutions] = useState([]);
 
-  // Function to handle Solutions change
-  const handleSolutionsChange = (index, field, value) => {
-    const updatedSolutions = [...Solutions];
-    updatedSolutions[index][field] = value;
-    setSolutions(updatedSolutions);
-  };
+  function combineAnalysisData(brainstormData) {
+    axios.get(`http://localhost:3000/analysis`).then(res => {
+      
+      //combine data from the brainstorm page into the analysis data.
+      let analysisSolution = []
+      for (let i=0; i< brainstormData.length; ++i) {
+        const rows = res.data.filter(item => item.brainstorm_table_id === i).sort((a, b) => a.brainstorm_id - b.brainstorm_id)
+        rows.forEach((item, index) => (item.solution = brainstormData[i].input[index].solution))
+        analysisSolution = [...analysisSolution, ...rows]
+      }
+      setSolutions(analysisSolution)
+      })
+  }
 
-  // Function to add a new Solutions input field
-  const addSolutions = () => {
-    setSolutions([
-      ...Solutions,
-      { id: uuidv4(), text: '', explanation: '', category: 'unassigned' },
-    ]);
-  };
+  useEffect(() => {
+    axios.get(`http://localhost:3000/matrix-reflections/Brainstorm`).then(res => {
+      const data = res.data.sort((a, b) => a.id - b.id);
+      combineAnalysisData(data)
+    })
+    }, [])
 
-  // Function to remove a specific Solutions
-  const removeSolutions = (indexToRemove) => {
-    if (Solutions.length === 1) return;
-    setSolutions(Solutions.filter((_, index) => index !== indexToRemove));
-  };
-
-  // Close icon as SVG
-  const CloseIcon = () => (
-    <svg
-      viewBox="0 0 24 24"
-      width="16"
-      height="16"
-      stroke="currentColor"
-      strokeWidth="2"
-      fill="none"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="18" y1="6" x2="6" y2="18"></line>
-      <line x1="6" y1="6" x2="18" y2="18"></line>
-    </svg>
-  );
 
   // Handle drag end event
   const handleDragEnd = (event) => {
     const { active, over } = event;
+    
 
     // If the Solutions was dropped over a droppable area
     if (over) {
+      axios.patch(`http://localhost:3000/analysis/?id=${active.id}`, {
+        category: over.id 
+    })
       setSolutions((prevSolutions) =>
         prevSolutions.map((solution) =>
+          
           solution.id === active.id
             ? { ...solution, category: over.id }
             : solution
+            
         )
       );
     }
@@ -96,148 +85,82 @@ export function DiscernAnalysis() {
           </ul>
         </div>
 
-        <div className={styles.hero_solutions}>
-          <div className={styles.solutions_input}>
-            <label>Enter your solutions</label>
-            {Solutions.map((solution, index) => (
-              <div key={solution.id} className={styles.solutions_field}>
-                <div className={styles.input_wrapper}>
-                  <input
-                    type="text"
-                    value={solution.text}
-                    onChange={(e) =>
-                      handleSolutionsChange(index, 'text', e.target.value)
-                    }
-                    placeholder={`Solution ${index + 1}`}
-                    className={styles.input_field}
-                  />
-                  <textarea
-                    value={solution.explanation}
-                    onChange={(e) =>
-                      handleSolutionsChange(index, 'explanation', e.target.value)
-                    }
-                    placeholder={`Explanation for Solution ${index + 1}`}
-                    className={styles.input_field}
-                  />
-                  {Solutions.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => removeSolutions(index)}
-                      className={styles.remove_button}
-                      aria-label="Remove Solution"
-                    >
-                      <CloseIcon />
-                    </button>
-                  )}
-                </div>
-              </div>
-            ))}
-            <button type="button" onClick={addSolutions} className={styles.add_button}>
-              Enter Solution
-            </button>
-          </div>
-
-          <DndContext onDragEnd={handleDragEnd}>
-            <div className={styles.unassigned-Solutions}>
-              <h2>Unassigned Solutions</h2>
-              {Solutions.filter((solution) => solution.category === 'unassigned')
-                .map((solution) => (
-                  <Draggable key={solution.id} id={solution.id}>
-                    <div className={styles.solution_explanation}>
-                      <p1>{solution.text || 'Unnamed Solution'}</p1>
-                      <p>{solution.explanation || 'No explanation provided.'}</p>
-                    </div>
-                  </Draggable>
+          <DndContext onDragEnd={handleDragEnd}>  
+              <h2 className={styles.solutions_title}>Unassigned Solutions</h2>
+              <div className={styles.unassigned_Solutions}>
+              {solutions.filter((solution) => solution.category === 'unassigned')
+              .map((solution) => (
+                  <Draggable key={solution.id} id={solution.id} solution={solution} solutions={solutions} setSolutions={setSolutions}></Draggable>
                 ))}
             </div>
 
             <div className={styles.solution_categories}>
-                <div className={styles.organize_solutions}>
-                    <Droppable id="Reject">
-                        <h3>Reject</h3>
-                        <div className={styles.explanation_solution_title}>
-                            <h4> Solution </h4>
-                            <h4> Explanation</h4>
-                        </div>
-                        {Solutions.filter((solution) => solution.category === 'Reject')
-                        .map((solution) => (
-                            <Draggable key={solution.id} id={solution.id}>
-                            <div className={styles.solution_explanation}>
-                                <p1>{solution.text}</p1>
-                                <p>{solution.explanation}</p>
-                            </div>
-                            </Draggable>
-                        ))}
-                    </Droppable>
-                </div>
-                <div className={styles.organize_solutions}>
-              <Droppable id="Receive">
-                <h3>Receive</h3>
-                <div className={styles.explanation_solution_title}>
-                    <h4> Solution </h4>
-                    <h4> Explanation</h4>
-                </div>
-                {Solutions.filter((solution) => solution.category === 'Receive')
-                  .map((solution) => (
-                    <Draggable key={solution.id} id={solution.id}>
-                      <div className={styles.solution_explanation}>
-                        <p1>{solution.text}</p1>
-                        <p>{solution.explanation}</p>
-                      </div>
-                    </Draggable>
-                  ))}
-              </Droppable>
-              </div>
               <div className={styles.organize_solutions}>
-              <Droppable id="Reimagine">
-                <h3>Reimagine</h3>
-                <div className={styles.explanation_solution_title}>
-                    <h4> Solution </h4>
-                    <h4> Explanation</h4>
-                </div>
-                {Solutions.filter((solution) => solution.category === 'Reimagine')
-                  .map((solution) => (
-                    <Draggable key={solution.id} id={solution.id}>
-                      <div className={styles.solution_explanation}>
-                        <p1>{solution.text}</p1>
-                        <p>{solution.explanation}</p>
-                      </div>
-                    </Draggable>
-                  ))}
-              </Droppable>
-              </div>
-              <div className={styles.organize_solutions}>
-              <Droppable id="Create">
-                <h3>Create</h3>
-                <div className={styles.explanation_solution_title}>
-                    <h4> Solution </h4>
-                    <h4> Explanation</h4>
-                </div>
-                {Solutions.filter((solution) => solution.category === 'Create')
-                  .map((solution) => (
-                    <Draggable key={solution.id} id={solution.id}>
-                      <div className={styles.solution_explanation}>
-                        <p1>{solution.text}</p1>
-                        <p>{solution.explanation}</p>
-                      </div>
-                    </Draggable>
-                  ))}
-              </Droppable>
-              </div>
-
+                <Droppable id="Reject">
+                    <h3>Reject</h3>
+                    <div className={styles.explanation_solution_title}>
+                        <h4> Solution </h4>
+                        <h4> Explanation</h4>
+                    </div>
+                    {solutions.filter((solution) => solution.category === 'Reject')
+                    .map((solution) => (
+                        <Draggable  key={solution.id} id={solution.id} solution={solution} solutions={solutions} setSolutions={setSolutions}></Draggable>
+                    ))}
+                </Droppable>
             </div>
-          </DndContext>
-        </div>
+            <div className={styles.organize_solutions}>
+          <Droppable id="Receive">
+            <h3>Receive</h3>
+            <div className={styles.explanation_solution_title}>
+                <h4> Solution </h4>
+                <h4> Explanation</h4>
+            </div>
+            {solutions.filter((solution) => solution.category === 'Receive')
+              .map((solution) => (
+                <Draggable key={solution.id} id={solution.id} solution={solution} solutions={solutions} setSolutions={setSolutions}></Draggable>
+              ))}
+          </Droppable>
+          </div>
+          <div className={styles.organize_solutions}>
+          <Droppable id="Reimagine">
+            <h3>Reimagine</h3>
+            <div className={styles.explanation_solution_title}>
+                <h4> Solution </h4>
+                <h4> Explanation</h4>
+            </div>
+            {solutions.filter((solution) => solution.category === 'Reimagine')
+              .map((solution) => (
+                <Draggable key={solution.id} id={solution.id} solution={solution} solutions={solutions} setSolutions={setSolutions}></Draggable>
+              ))}
+          </Droppable>
+          </div>
+          <div className={styles.organize_solutions}>
+          <Droppable id="Create">
+            <h3>Create</h3>
+            <div className={styles.explanation_solution_title}>
+                <h4> Solution </h4>
+                <h4> Explanation</h4>
+            </div>
+            {solutions.filter((solution) => solution.category === 'Create')
+              .map((solution) => (
+                <Draggable key={solution.id} id={solution.id} solution={solution} solutions={solutions} setSolutions={setSolutions}></Draggable>
+              ))}
+          </Droppable>
+            </div>
+          </div>
+          
+        </DndContext>
+        
         <div className='bottomLinks'>
-                    <div>
-                        <p>Previous</p>
-                        <Link to="/discern/brainstorm">Brainstorm</Link>
-                    </div>
-                    <div>
-                        <p>Next</p>
-                        <Link to="/discern/timeline">Timeline</Link>
-                    </div>
-                </div>
+              <div>
+                  <p>Previous</p>
+                  <Link to="/discern/brainstorm">Brainstorm</Link>
+              </div>
+              <div>
+                  <p>Next</p>
+                  <Link to="/discern/timeline">Timeline</Link>
+              </div>
+          </div>
       </div>
     </>
   );

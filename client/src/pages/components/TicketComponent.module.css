@@ -1,109 +1,104 @@
-.kevin_ticket_component_ticket {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    border: 3px solid #ea542c;
+/*-----------------------
+----DND_GROUP_COLUMNS----
+-----------------------*/
+
+.dnd_area {
+    display: grid;
+    gap: 4rem;
+    grid-template-columns: repeat(3, 375px);
+    align-items: start;
+    justify-content:space-around;
 }
 
+.dnd_status_group {
+    padding: .5rem;
+    border-radius: 5px;
+}
 
-.kevin_ticket_component_ticket:not(:last-of-type) {
+/*-------------
+----TICKETS----
+-------------*/
+
+.ticket {
+    background-color: white;
+    border: 3px solid var(--color-primary);
+}
+
+/*allows a space between tickets in the same column*/
+.ticket:not(:last-of-type) {
     margin-bottom: 4rem;
 }
 
-.kevin_ticket_component_title_input {
+.ticket_header {
+    padding: 10px;
+    background-color: var(--color-primary);
+    text-align: center;
+}
+
+.ticket_title {
     color: white;
     width: 60%;
-    background-color: #ea542c;
+    background-color: var(--color-primary);
     border: none;
     text-align: center;
     font-size: 24px;
-    
+    box-shadow: none;
 }
 
-.kevin_ticket_component_title_input::placeholder {
+.ticket_title::placeholder {
     color: white;
-    opacity: 1;
 }
 
-.kevin_ticket_component_textarea {
-    box-sizing: border-box;
-    width: 100%;
-}
-
-.kevin_ticket_component_ticket_input_align_left {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    padding: 5px;
-    box-sizing: border-box;
-    width: 40%;
-    float: left;
-}
-
-.kevin_ticket_component_ticket_input_align_right {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    padding: 5px;
-    box-sizing: border-box;
-    width: 40%;
+.ticket_remove_button{
     float: right;
+    margin: 0px, 25px, 0px, 25px;
+    padding: 8px 12px;
+    font-size: 0.9em;
+    background-color: #a71d2a;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.kevin_ticket_component_title_content {
+.ticket_remove_button:active {
+    background-color: var(--color-primary);
+}
+
+.ticket_body {
     padding: 10px;
-    background-color: #ea542c;
-    text-align: center;
 }
 
-.kevin_ticket_component_body_content {
-    padding: 10px;
-}
-
-.kevin_ticket_component {
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+.ticket_textarea {
+    margin: 5px 5px 5px 0px;
+    box-sizing: border-box;
     width: 100%;
-    padding: 20px;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 20px;
-    touch-action: none;
 }
 
-.kevin_checkbox {
-    height: 20px;
-    width: 20px;
+.flex_tickets_small_textareas {
+    display: flex;
+    justify-content: space-between;   
 }
 
-.kevin_button {
-    background-color: white;
-    border: 1px solid black;
-    padding: 8px 0px 8px 0px;
-    color: #ea542c;
-    margin: 16px;
-    font-size: large;
+.tickets_small_textareas {
+    box-sizing: border-box;
+    width: 45%;
+}
+
+.ticket_label_text_left_side { 
+    display: inline-block;
+    margin: 5px 0px 5px 0px;
+    width: 55%;
+    font-size: small;
+    color: black;
     text-align: left;
-    
 }
 
-.kevin_button:hover {
-    background-color: whitesmoke;
-}
-
-.kevin_text { 
+.ticket_label_text_right_side { 
+    display: inline-block;
+    margin: 5px 0px 5px 0px;
+    font-size: small;
     color: black;
-    width: 50%;
-    margin-left: 25%;
-    font-size: large;
-    text-align: center;
-    
-}
-
-
-.kevin_text_status { 
-    color: black;
-    font-size: large;
-    text-align: center;
-    
-    
+    text-align: left;
 }

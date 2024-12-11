@@ -67,13 +67,10 @@ export function Story() {
            <div className={styles.hero_story_container}>
                 <div className={styles.hero_story_header}>
                     <h1> Share Your Story </h1>
-                    <div className={styles.image_placeholder}>
-                        <img className={styles.image_placeholder} src={team_pic} alt="Logo" />
-                    </div>
                 </div>
-
+                <div className="body">
                 <div className={styles.stories_instructions}>
-                    <h1> Wher to share? </h1>
+                    <h1> Where to share? </h1>
                     <p> Share your story with your FaithTech community. Share regularly at community gatherings or meetups. Consider sharing with local churches, schools, nonprofits, or whoever might benefit from hearing your solution. </p>
 
                     <h1> How to Share?</h1>
@@ -292,7 +289,7 @@ export function Story() {
                 </div>
                 <div className={styles.reflection_questions}>
                     <p> In what ways might this approach to demonstrating impact change your development process </p>
-                    <form >
+                    <form className={styles.reflection_questions_field}>
                          <textarea
                             id="share_info"
                             name="share_info"
@@ -324,6 +321,8 @@ export function Story() {
                         <Link to="/demonstrate/conclusion">Conclusion</Link>
                     </div>
                 </div>
+
+        </div>
         </>
     )
 }

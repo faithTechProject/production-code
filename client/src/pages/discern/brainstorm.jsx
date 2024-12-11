@@ -10,6 +10,7 @@ export function DiscernBrainstorm() {
     useEffect(() => {
        // Get page related tables
         axios.get(`http://localhost:3000/matrix-reflections/${pageName}`).then(res => {
+            console.log(res.data)
             var tableData = res.data;
             tableData.sort((a, b) => a.entry_pos - b.entry_pos); // orders data by entry_pos
             for (let i in tableData) {
@@ -38,6 +39,7 @@ export function DiscernBrainstorm() {
             document.getElementById('howMightJesus').innerHTML = `How Might Jesus ${res.data[0].reply}?`;
         })
     })
+    
     function saveResponse(entry) { // Saves data
         var inputData = entry.target.value;
         document.getElementById('howMightJesus').innerHTML = `How Might Jesus ${inputData}?`;

@@ -1,26 +1,25 @@
 .hero_co_creatioin_container{
     text-align: center;
-    padding-top: 12px;
 }
 
 .hero_co_creatoin_header{
-    border: 2px solid #005f73;
-    color: white;
-    position: relative;
+    height: 200px;
+	width: 100%;
+	background-image: url(../images/DiscernPicture.png);
+    background-size: cover;
+    align-items: center; 
+    justify-content: center; 
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: black;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   }
+
+.hero_solutions p{
+    text-align: left;
+}
   
   
   .hero_co_creatoin_header h1{
     font-size: 60px;
     font-weight: bold;
-    margin-left: 25%;
     color: white;
   }
   
@@ -54,6 +53,38 @@
     height: max-content;
 }
 
+.three_cs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .solutions {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 10px;
+  }
+  
+  .solution_item {
+    margin-bottom: 5px; 
+    background-color: rgb(248, 210, 210);
+    border-radius: 10px;
+    height: fit-content;
+    text-align: center;
+    align-content: center;
+    color: black;
+
+  }
+  
+  .solutions h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    justify-items: left;
+  }
+  
+
 .new_cycle{
     background-color: orangered;
     width: 100px;
@@ -61,19 +92,27 @@
     border-radius: 20px;
     color: white;
 }
-.Receive{
-    
-}
+
 .timer{
     border: 5px solid orangered;
     width: 200px;
     height: 200px;
-    border-radius: 100px;
-    align-content: center;
+    border-radius: 100px;    
     margin-left: 40%;
+    align-content: center;
+}
+
+.timer p{
+    margin-left: 30%;
+    font-size: 32px;
+    font-weight: bold;
 }
 .time_testing{
     color:black;
+}
+
+.start:hover, .pause:hover, .delete:hover{
+    background: rgb(255, 165, 130);
 }
 
 .timer_controls{
@@ -94,6 +133,13 @@
 
 }
 
+.active {
+    /* Styles to indicate the button is active */
+    background-color: #007bff;
+    color: white;
+   
+  }
+
 .render_table button{
     background-color: orangered;
     color: white;
@@ -102,3 +148,25 @@
     border-radius: 20px;
 }
 
+.co_creation_cycle p {
+    text-align: left;
+}
+
+.response {
+  width: 100%;
+  height: 200px;
+}
+
+.text_align_left {
+  text-align: left;
+}
+
+.solutionsButton {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 4px;
+}
+
+.solutionsButton:hover {
+  border: 1px solid var(--color-primary);
+}

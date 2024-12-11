@@ -31,9 +31,4 @@ export class Tickets {
 
     @Column()
     percent_complete: string;
-
-    @Column()
-    is_open: boolean;
-
-
 }

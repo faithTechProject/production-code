@@ -1,0 +1,74 @@
+.table {
+    border-collapse: collapse;
+    background-color: #f2f2f3;
+    border-radius: 5px;
+    border: 1px solid var(--color-primary);
+    width: 100%;
+}
+
+.th {
+    background-color: var(--color-primary);
+    padding: 30px;
+    color:white;
+    font-size: 28px;
+
+}
+.td {
+    border: 1px solid var(--color-primary);
+    padding: 4px;
+}
+
+.step {
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid var(--color-primary);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    width: 100%;
+    touch-action: none;
+}
+
+.select {
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    box-sizing: border-box;
+}
+
+.input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    
+}
+.add_button{
+    padding: 8px 12px;
+    font-size: 0.9em;
+    float:left;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .remove_button{
+    padding: 8px 12px;
+    font-size: 0.9em;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+.add_button:active {
+    background-color: #a71d2a;
+}
+
+.remove_button:active {
+    background-color: #a71d2a;
+}

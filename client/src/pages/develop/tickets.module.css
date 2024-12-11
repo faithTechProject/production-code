@@ -1,101 +1,54 @@
-
-.kevin_bannar {
+.background_image {
     width: 100%;
     height: 200px;
-    background-image: url("../images/ticketBanner.webp");
+    background-image: url("../images/Network 6.jpg");
     background-size: cover;
-    background-position-y: -550px;
+    background-position-y: -240px;
     text-align: center;
-    line-height: 200px;   
+    line-height: 200px;
 }
 
-.kevin_title {
+.title {
     font-size: 50px;
     color: white;
     margin: 0px;
     padding: 0px;
 }
-/*
-.kevin_ticket {
 
-}
-
-.table, td, th{
-    border: none;
-    border-collapse: collapse;
-    
-}
-
-
-.kevin-th-text {
-    text-align: center;
-}
-*/
-
-.kevin_header {
-    /*background-color: #282c34;*/
-    min-height: 100vh;
-    font-size: calc(10px + 2vmin);
-    color: white;
-}
-
-.kevin_center {
-    display: grid;
-    padding: .5rem;
-    display: grid;
-    gap: 4rem;
-    width: 100%;
-    height: 100%;
-    grid-template-columns: repeat(3, 300px);
-    align-items: start;
-    justify-content:space-around;
-
-}
-
-.kevin_drag_n_drop {
-    padding: .5rem;
-    display: grid;
-    gap: 4rem;
-    width: 100%;
-    height: 100%;
-    grid-template-columns: repeat(3, 300px);
-    align-items: start;
-    justify-content:space-around;
-}
-
-.kevin_dnd_group {
-    background-color: white;
-    border-radius: 5px;
-    padding: .5rem
-}
-
-.kevin_dnd_item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 150px;
-    background-color: white;
-    border-radius: 5px;
-    color: #282c34;
-}
-
-.kevin_dnd_item * {
-    margin: 0;
-}
-
-.kevin_dnd_group_title * {
+.explanation_text { 
+    color: black;
+    width: 50%;
+    margin-left: 25%;
+    font-size: large;
     text-align: left;
-    margin-bottom: .5rem;
 }
 
-.kevin_dnd_item:not(:last-of-type) {
-    margin-bottom: 4rem;
+.status_group_text {
+    display: grid;
+    gap: 4rem;
+    grid-template-columns: repeat(3, 375px);
+    align-items: start;
+    justify-content:space-around;
+    color: black;
+    font-size: large;
 }
 
-.kevin_current {
-    background-color: #282c34;
+.add_task {
+    background-color: white;
+    border: 1px solid black;
+    padding: 8px 16px 8px 16px;
+    color: var(--color-primary);
+    margin: 16px;
+    font-size: 20px;
+    text-align: left;
+    cursor: pointer;
+    height: 70px;
 }
 
-.kevin_cursor {
-    cursor:grab;
+.add_task:hover {
+    background-color: whitesmoke;
+}
+
+.page_gap {
+    min-height: 100vh;
 }

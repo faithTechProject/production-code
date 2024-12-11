@@ -5,21 +5,20 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 export function DiscernTimeline() {
     
-    const[communication, setCommunication] = useState([])
-
-    useEffect(()=> {
-        axios.get(`http://localhost:3000/text-area-reflections/Timeline`).then(res => {
-            const response = res.data;
-            response.sort((a, b) => a.entry_pos - b.entry_pos);
-            setCommunication(response[0].reply);
+    useEffect(() => {
+        axios.get(`http://localhost:3000/text-area-reflections/Timeline`).then(res => { // Grab and load textarea(s) from db
+            var dbData = res.data;
+            dbData.sort((a, b) => a.entry_pos - b.entry_pos); // orders data by entry_pos
+            for (let response of dbData) {
+                document.getElementById('textarea'+response.entry_pos).value = response.reply;
+            }
         })
     }, [])
 
-    const handleSubmit = (e, replyData) => {
-        e.preventDefault(); 
-        axios.patch(`http://localhost:3000/text-area-reflections/?page=Timeline&entry_pos=${e.target.id}`, {
-            reply: replyData
-        })
+    function saveData(textarea) {
+        axios.patch(`http://localhost:3000/text-area-reflections/?page=Timeline&entry_pos=${textarea.target.id.substr(8)}`, {
+            reply: textarea.target.value
+        });
     }
     
     return (

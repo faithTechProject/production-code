@@ -6,16 +6,14 @@ export function DiscoverOverview() {
                 <div id={styles.oDiscoverTopImage}>
                         <h3 class={styles.oTitle}>DISCOVER</h3>
                 </div> 
-                <div className={styles.body}>
-                <div class={styles.oDiscoverBox}>
-                    <p>
-                        <b>Discover</b>
-                    </p>
-                    <p>
-                        Reorient to see, through the lens of Christ, those most affected by the problem
-                    </p>
-                </div>
+                <div className='body'>
+                <div className={styles.highlight4D}>
+                    <div class={styles.oDiscoverBox}>
+                        <h3>Discover</h3>
+                        <p>Reorient to see, through the lens of Christ, those most affected by the problem</p>
+                    </div>
             <div id={styles.o4Ddiscover}></div>
+            </div>
                 <h2>What is Discover?</h2>
                 <p style={{margin: '0% 5%'}}>The first goal of the Discover stage is to help you discover your project.
                     Running Create in your community can be a powerful way to address technological challenges through a redemptive lens.
@@ -33,8 +31,8 @@ export function DiscoverOverview() {
                         -The FaithTech Playbook
                     </p>
                 </div>
-                <h2 class={styles.o1Dh2}>Discover Session</h2>
-                <p class={styles.o1Dp2}>Watch this video with your team to learn more about the Discover stage.
+                <h2>Discover Session</h2>
+                <p class={styles.oCenteredText}>Watch this video with your team to learn more about the Discover stage.
                     <br></br>
                 </p>
                 <iframe width="568" height="340" src="https://www.youtube.com/embed/HATvpvzLPcU" title="FaithTech Create 2023-Week 1 - Discover-1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

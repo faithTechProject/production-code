@@ -1,25 +1,20 @@
-import { Controller, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm'; // import typeorm for postgres connection.
-import { ReflectionController } from './reflection/reflection.controller';
-import { Reflection } from './reflection/reflection.entity'
-import { ReflectionService } from './reflection/reflection.service';
-import { MatrixModule } from './matrix/matrix.module';
 import { Matrix } from './matrix/matrix.entity';
 import { MatrixController } from './matrix/matrix.controller';
 import { MatrixService } from './matrix/matrix.service';
-import { ConfigService } from '@nestjs/config';
-import { TextAreaReflectionsModule } from './text.area.reflections/text.area.reflections.module';
 import { TextAreaReflectionsController } from './text.area.reflections/text.area.reflections.controller';
 import { TextAreaReflectionsService } from './text.area.reflections/text.area.reflections.service';
 import { TextAreaReflections } from './text.area.reflections/text.area.reflections.entity';
 import { TicketsController } from './tickets/tickets.controller';
-import { TicketsModule } from './tickets/tickets.module';
 import { Tickets } from './tickets/tickets.entity';
 import { TicketsService } from './tickets/tickets.service';
-import { CoCreationEntity } from './co_creation_page/request-form.entity';
-import { RequestFormModule } from './co_creation_page/request-form.module';
+import { AnalysisDndController } from './analysis.dnd/analysis.dnd.controller';
+import { AnalysisDndService } from './analysis.dnd/analysis.dnd.service';
 import { Story } from './story_page/story.entity';
-import { StoryModule } from './story_page/story.module';
+import { Analysis } from './analysis.dnd/analysis.dnd.entity';
+import { StoryController } from './story_page/story.controller';
+import { StoryService } from './story_page/story.service';
 
 
 
@@ -33,16 +28,15 @@ import { StoryModule } from './story_page/story.module';
       password: 'faithtech_password',
       database: 'faithtech_create',
       synchronize: false,
-      entities: [Reflection, Matrix, TextAreaReflections, CoCreationEntity] 
+      entities: [Analysis, Matrix, Story, TextAreaReflections, Tickets] 
   }),
  
-    TypeOrmModule.forFeature([Reflection, Matrix, TextAreaReflections, Tickets]),
-    RequestFormModule, StoryModule
+    TypeOrmModule.forFeature([Analysis, Matrix, Story, TextAreaReflections, Tickets]),
     
     
   ],
-  controllers: [ReflectionController, MatrixController, TextAreaReflectionsController, TicketsController],
-  providers: [ReflectionService, MatrixService, TextAreaReflectionsService, TicketsService],
+  controllers: [AnalysisDndController, MatrixController, StoryController, TextAreaReflectionsController, TicketsController],
+  providers: [AnalysisDndService, MatrixService, StoryService, TextAreaReflectionsService, TicketsService],
 
 })
 export class AppModule {}

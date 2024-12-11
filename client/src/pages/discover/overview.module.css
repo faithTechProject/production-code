@@ -9,10 +9,13 @@
 #oDiscoverTopImage{
 	height: 200px;
 	width: 100%;
-	background-image: url(../images/DiscoverPicture.png);
+	background-image: url(../images/hexagonBackground.jpg);
     background-size: cover;
+    background-position-y: -415px;
+    background-size: 115%;
 }
 
+/*Area for the FaithTech Playbook quote*/
 .oQuoteBox{
     background-color: #ea542c;
     width: 50%;
@@ -27,12 +30,22 @@
     font-size: 15px;
 }
 
+/*CSS for the 4D cycle image and the box that appears over it,
+which shows the D phase they're in and gives a brief description of it*/
 .oDiscoverBox{
     width: 200px;
+    height: 150px;
     border: 3px solid black;
-    margin-top: 15px;
-    margin-left: 70%;
     padding: 5px;
+    background-color: white;
+    position: absolute;
+    top: -100px;
+    right: -110px;
+}
+
+.oDiscoverBox h3 {
+    font-weight: bold;
+    text-align: center;
 }
 
 #o4Ddiscover{
@@ -41,15 +54,27 @@
     background-image: url(../images/Discover4DCycle.png);
     background-size: cover;
     padding: 20px;
-    margin: auto;
-    margin-bottom: 20px;
-    border-color: #ea542c;
-    border-width: 3px;
-    border-style: solid;
-    border-radius: 20px;
+    border-radius: 25px;
 }
 
+.highlight4D {
+    border: var(--color-primary) solid 3px;
+    border-radius: 20px;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: 120px;
+    background-color: white;
+    position: relative;
+}
+
+/*Discover Session*/
 iframe {
     display: block;
     margin: auto;
+}
+
+.oCenteredText{
+    text-align: center;
+    padding: 5px;
 }
